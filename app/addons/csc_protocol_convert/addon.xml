@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>csc_protocol_convert</id>
+    <name>[CS-Coding]: Конвертация в протокол</name>
+    <description>Позволяет конвертировать видео файл в текстовый протокол</description>
+    <version>1.0</version>
+    <priority>9999</priority>
+    <status>active</status>
+
+    <authors>
+        <author>
+            <name>CS-Coding</name>
+            <email>manager@cs-coding.com</email>
+            <url>https://store.cs-coding.com</url>
+        </author>
+    </authors>
+    <supplier>CS-Coding</supplier>
+    <supplier_link>https://store.cs-coding.ru</supplier_link>
+</addon>

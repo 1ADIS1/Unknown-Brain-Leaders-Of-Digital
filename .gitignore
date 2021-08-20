@@ -1,0 +1,8 @@
+/var/custom_files/
+/var/backups/
+robots.txt
+/var/attachments/
+/var/files/
+/var/cache/
+/var/upgrade/
+var/snapshots/
