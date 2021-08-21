@@ -1,9 +1,9 @@
 <?php
 
-$config['db_host'] = 'localhost';
-$config['db_name'] = 'rosatom';
-$config['db_user'] = 'root';
-$config['db_password'] = 'root';
+$config['db_host'] = 'skater4.mysql.tools';
+$config['db_name'] = 'skater4_rosatom';
+$config['db_user'] = 'skater4_skater4';
+$config['db_password'] = 'gavnovoz';
 
-$config['http_host'] = '185.233.37.254'; //хост или домен
+$config['http_host'] = 'rosatom.cs-coding.com'; //хост или домен
 $config['http_path'] = ''; //    /subfolder
