@@ -3,7 +3,6 @@ use Tygh\Addons\Speechpro;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($mode == 'convert') {
-        fn_save_protocol('text');
         $uploaded_data = fn_filter_uploaded_data('files', ['avi', 'mp4']);
         if (!empty($uploaded_data)) {
             copy($uploaded_data['video']['path'], VIDEO_DIR . '/' . $uploaded_data['video']['name']);
