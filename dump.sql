@@ -1,28 +1,19 @@
--- MySQL dump 10.13  Distrib 5.7.33-36, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
--- Host: skater4.mysql.tools    Database: skater4_rosatom
+-- Host: localhost    Database: rosatom
 -- ------------------------------------------------------
--- Server version	5.7.33-36-log
+-- Server version	8.0.26-0ubuntu0.20.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-/*!50717 SELECT COUNT(*) INTO @rocksdb_has_p_s_session_variables FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'performance_schema' AND TABLE_NAME = 'session_variables' */;
-/*!50717 SET @rocksdb_get_is_supported = IF (@rocksdb_has_p_s_session_variables, 'SELECT COUNT(*) INTO @rocksdb_is_supported FROM performance_schema.session_variables WHERE VARIABLE_NAME=\'rocksdb_bulk_load\'', 'SELECT 0') */;
-/*!50717 PREPARE s FROM @rocksdb_get_is_supported */;
-/*!50717 EXECUTE s */;
-/*!50717 DEALLOCATE PREPARE s */;
-/*!50717 SET @rocksdb_enable_bulk_load = IF (@rocksdb_is_supported, 'SET SESSION rocksdb_bulk_load = 1', 'SET @rocksdb_dummy_bulk_load = 0') */;
-/*!50717 PREPARE s FROM @rocksdb_enable_bulk_load */;
-/*!50717 EXECUTE s */;
-/*!50717 DEALLOCATE PREPARE s */;
 
 --
 -- Table structure for table `cscart_access_restriction`
@@ -30,19 +21,19 @@
 
 DROP TABLE IF EXISTS `cscart_access_restriction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_access_restriction` (
-  `item_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `item_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(66) NOT NULL DEFAULT '',
-  `ip_from` int(11) unsigned NOT NULL DEFAULT '0',
-  `ip_to` int(11) unsigned NOT NULL DEFAULT '0',
+  `ip_from` int unsigned NOT NULL DEFAULT '0',
+  `ip_to` int unsigned NOT NULL DEFAULT '0',
   `type` char(3) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `expires` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `expires` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`),
   KEY `type` (`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,14 +51,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_access_restriction_block`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_access_restriction_block` (
-  `ip` int(11) unsigned NOT NULL DEFAULT '0',
-  `tries` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `expires` int(11) unsigned NOT NULL DEFAULT '0',
+  `ip` int unsigned NOT NULL DEFAULT '0',
+  `tries` smallint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `expires` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,14 +76,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_access_restriction_reason_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_access_restriction_reason_descriptions` (
-  `item_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `item_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `type` char(3) NOT NULL DEFAULT '',
   `reason` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`item_id`,`type`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,12 +101,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_addon_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_addon_data` (
   `addon` varchar(32) NOT NULL DEFAULT '',
   `is_favorite` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`addon`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,14 +124,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_addon_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_addon_descriptions` (
   `addon` varchar(32) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`addon`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,23 +150,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_addons`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_addons` (
   `addon` varchar(32) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `version` varchar(16) NOT NULL DEFAULT '',
-  `priority` int(11) unsigned NOT NULL DEFAULT '0',
+  `priority` int unsigned NOT NULL DEFAULT '0',
   `dependencies` varchar(255) NOT NULL DEFAULT '',
   `conflicts` varchar(255) NOT NULL DEFAULT '',
   `separate` tinyint(1) NOT NULL,
   `unmanaged` tinyint(1) NOT NULL,
   `has_icon` tinyint(1) NOT NULL,
-  `install_datetime` int(11) NOT NULL DEFAULT '0',
-  `marketplace_id` int(11) unsigned DEFAULT NULL,
+  `install_datetime` int NOT NULL DEFAULT '0',
+  `marketplace_id` int unsigned DEFAULT NULL,
   `marketplace_license_key` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`addon`),
   KEY `priority` (`priority`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,13 +185,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_also_bought_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_also_bought_products` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `related_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `related_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`related_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,13 +209,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_attachment_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_attachment_descriptions` (
-  `attachment_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `attachment_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`attachment_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,15 +233,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_attachments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_attachments` (
-  `attachment_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `attachment_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `object_type` varchar(30) NOT NULL DEFAULT '',
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '',
-  `position` int(11) NOT NULL DEFAULT '0',
+  `position` int NOT NULL DEFAULT '0',
   `filename` varchar(100) NOT NULL DEFAULT '',
-  `filesize` int(11) unsigned NOT NULL DEFAULT '0',
+  `filesize` int unsigned NOT NULL DEFAULT '0',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   `on_server` char(1) NOT NULL DEFAULT 'Y',
@@ -258,7 +249,7 @@ CREATE TABLE `cscart_attachments` (
   PRIMARY KEY (`attachment_id`),
   KEY `object_type` (`object_type`,`object_id`),
   KEY `type` (`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,15 +267,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_banner_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_banner_descriptions` (
-  `banner_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `banner_id` mediumint unsigned NOT NULL DEFAULT '0',
   `banner` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `description` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`banner_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +284,7 @@ CREATE TABLE `cscart_banner_descriptions` (
 
 LOCK TABLES `cscart_banner_descriptions` WRITE;
 /*!40000 ALTER TABLE `cscart_banner_descriptions` DISABLE KEYS */;
-INSERT INTO `cscart_banner_descriptions` VALUES (6,'Free shipping','','','en'),(7,'Gift certificate','','','en'),(8,'Holiday gift guide','','','en'),(9,'Discount if select pickup','','','en'),(16,'Final sale','','','en'),(17,'X-Box','','','en'),(18,'Bonus points','','','en'),(19,'Gift certificates','','','en'),(6,'Бесплатная доставка','','','ru'),(7,'Подарочный сертификат','','','ru'),(8,'Выбираем праздничный подарок','','','ru'),(9,'Скидка при выборе пункта самовывоза','','','ru'),(16,'Финальная распродажа','','','ru'),(17,'X-Box','','','ru'),(18,'Бонусные баллы','','','ru'),(19,'Подарочные сертификаты','','','ru'),(22,'Multivendor demo mobile','','','ru'),(21,'Acme Mobile','','','ru'),(20,'X-Box Mobile','','','ru');
+INSERT INTO `cscart_banner_descriptions` VALUES (23,'Brain','','','ru'),(23,'Brain','','','en');
 /*!40000 ALTER TABLE `cscart_banner_descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,14 +294,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_banner_images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_banner_images` (
-  `banner_image_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `banner_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `banner_image_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `banner_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`banner_image_id`),
   UNIQUE KEY `banner` (`banner_id`,`lang_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +310,7 @@ CREATE TABLE `cscart_banner_images` (
 
 LOCK TABLES `cscart_banner_images` WRITE;
 /*!40000 ALTER TABLE `cscart_banner_images` DISABLE KEYS */;
-INSERT INTO `cscart_banner_images` VALUES (16,7,'en'),(39,6,'en'),(40,9,'en'),(18,8,'en'),(35,16,'en'),(36,17,'en'),(37,18,'en'),(38,19,'en'),(41,20,'en'),(42,21,'en'),(47,7,'ru'),(45,6,'ru'),(48,8,'ru'),(46,9,'ru'),(60,16,'ru'),(61,17,'ru'),(43,18,'ru'),(44,19,'ru'),(50,22,'ru'),(49,21,'ru'),(51,20,'ru');
+INSERT INTO `cscart_banner_images` VALUES (63,23,'en'),(62,23,'ru');
 /*!40000 ALTER TABLE `cscart_banner_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,21 +320,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_banners`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_banners` (
-  `banner_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `banner_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
   `type` char(1) NOT NULL DEFAULT 'G',
   `target` char(1) NOT NULL DEFAULT 'B',
   `localization` varchar(255) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`banner_id`),
   KEY `localization` (`localization`),
   KEY `status` (`status`),
   KEY `company_id` (`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,7 +343,7 @@ CREATE TABLE `cscart_banners` (
 
 LOCK TABLES `cscart_banners` WRITE;
 /*!40000 ALTER TABLE `cscart_banners` DISABLE KEYS */;
-INSERT INTO `cscart_banners` VALUES (7,'A','G','T','',1629471624,0,1),(8,'A','G','T','',1629471624,0,1),(16,'A','G','T','',1629474624,10,1),(17,'A','G','T','',1629474624,20,1),(18,'A','G','T','',1629474624,30,1),(19,'A','G','T','',1629474624,40,1),(6,'A','G','T','',1629473624,0,1),(9,'A','G','T','',1629473624,0,1),(20,'A','G','T','',1629473624,0,1),(21,'A','G','T','',1629473624,0,1),(22,'A','G','T','',1629473624,0,1);
+INSERT INTO `cscart_banners` VALUES (23,'A','G','T','',1629493200,0,1);
 /*!40000 ALTER TABLE `cscart_banners` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,12 +353,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_blog_authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_blog_authors` (
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`page_id`,`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,13 +376,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_block_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_block_statuses` (
-  `snapping_id` int(11) NOT NULL,
+  `snapping_id` int NOT NULL,
   `object_ids` text,
   `object_type` varchar(32) NOT NULL,
   UNIQUE KEY `snapping_id` (`snapping_id`,`object_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -409,15 +400,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_blocks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_blocks` (
-  `block_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `block_id` int unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(64) NOT NULL DEFAULT '',
   `properties` text,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`block_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -436,16 +427,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_blocks_content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_blocks_content` (
-  `snapping_id` int(11) unsigned NOT NULL,
-  `object_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `snapping_id` int unsigned NOT NULL,
+  `object_id` int unsigned NOT NULL DEFAULT '0',
   `object_type` varchar(64) NOT NULL DEFAULT '',
-  `block_id` int(11) unsigned NOT NULL,
+  `block_id` int unsigned NOT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   PRIMARY KEY (`block_id`,`snapping_id`,`lang_code`,`object_id`,`object_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +445,7 @@ CREATE TABLE `cscart_bm_blocks_content` (
 
 LOCK TABLES `cscart_bm_blocks_content` WRITE;
 /*!40000 ALTER TABLE `cscart_bm_blocks_content` DISABLE KEYS */;
-INSERT INTO `cscart_bm_blocks_content` VALUES (0,0,'',1,'ru',''),(0,0,'',1,'en',''),(0,0,'',2,'ru',''),(0,0,'',2,'en',''),(0,0,'',3,'ru','a:1:{s:4:\"menu\";s:1:\"1\";}'),(0,0,'',3,'en','a:1:{s:4:\"menu\";s:1:\"1\";}'),(0,0,'',4,'ru',''),(0,0,'',4,'en',''),(0,0,'',5,'ru',''),(0,0,'',5,'en',''),(0,0,'',6,'ru',''),(0,0,'',6,'en',''),(0,0,'',7,'ru',''),(0,0,'',7,'en',''),(0,0,'',8,'ru',''),(0,0,'',8,'en',''),(0,0,'',9,'ru',''),(0,0,'',9,'en',''),(0,0,'',10,'ru','a:1:{s:4:\"menu\";s:1:\"2\";}'),(0,0,'',10,'en','a:1:{s:4:\"menu\";s:1:\"2\";}'),(0,0,'',11,'ru',''),(0,0,'',11,'en',''),(0,0,'',12,'ru',''),(0,0,'',12,'en',''),(0,0,'',13,'ru',''),(0,0,'',13,'en',''),(0,0,'',14,'ru','a:1:{s:7:\"content\";s:761:\"<div class=\"ty-social-link-block\"><h3 class=\"ty-social-link__title\">{__(\"get_social\")}</h3>\n\n<div class=\"ty-social-link facebook\">\n    <a target=\"_blank\" href=\"https://www.facebook.com/CSCartRu\"><i class=\"ty-icon-facebook ty-icon-moon-facebook\"></i></a>\n</div>\n\n<div class=\"ty-social-link instagram\">\n    <a target=\"_blank\" href=\"https://www.instagram.com\"><i class=\"ty-icon-instagram ty-icon-moon-instagram\"></i></a>\n</div>\n\n<div class=\"ty-social-link twitter\">\n    <a  target=\"_blank\" href=\"http://vk.com\"><i class=\"ty-icon-twitter ty-icon-moon-vk\"></i></a>\n</div>\n\n<div class=\"ty-social-link youtube\">\n    <a target=\"_blank\" href=\"https://www.youtube.com/channel/UC5hI_lecNxdp1UfLR2GZ4iQ\"><i class=\"ty-icon-youtube ty-icon-moon-youtube\"></i></a>\n</div></div>\";}'),(0,0,'',14,'en','a:1:{s:7:\"content\";s:761:\"<div class=\"ty-social-link-block\"><h3 class=\"ty-social-link__title\">{__(\"get_social\")}</h3>\n\n<div class=\"ty-social-link facebook\">\n    <a target=\"_blank\" href=\"https://www.facebook.com/CSCartRu\"><i class=\"ty-icon-facebook ty-icon-moon-facebook\"></i></a>\n</div>\n\n<div class=\"ty-social-link instagram\">\n    <a target=\"_blank\" href=\"https://www.instagram.com\"><i class=\"ty-icon-instagram ty-icon-moon-instagram\"></i></a>\n</div>\n\n<div class=\"ty-social-link twitter\">\n    <a  target=\"_blank\" href=\"http://vk.com\"><i class=\"ty-icon-twitter ty-icon-moon-vk\"></i></a>\n</div>\n\n<div class=\"ty-social-link youtube\">\n    <a target=\"_blank\" href=\"https://www.youtube.com/channel/UC5hI_lecNxdp1UfLR2GZ4iQ\"><i class=\"ty-icon-youtube ty-icon-moon-youtube\"></i></a>\n</div></div>\";}'),(0,0,'',15,'ru',''),(0,0,'',15,'en',''),(0,0,'',16,'ru','a:1:{s:4:\"menu\";s:1:\"3\";}'),(0,0,'',16,'en','a:1:{s:4:\"menu\";s:1:\"3\";}'),(0,0,'',17,'ru','a:1:{s:4:\"menu\";s:1:\"4\";}'),(0,0,'',17,'en','a:1:{s:4:\"menu\";s:1:\"4\";}'),(0,0,'',18,'ru','a:1:{s:7:\"content\";s:456:\"<ul>\n    <li>г. Москва, ул. 1-я Дубровская, д.1, офис 100</li>\n    <li><bdi>8-800-000-00-00</bdi> (звонок бесплатный)</li>\n    <li><bdi>Пн-Пт 9.00 - 18.00</bdi></li>\n    <li><a class=\"ty-exception__links-a greeny\" href=\"mailto:sales@example.com\">sales@example.com</a></li>\n\n    <li><a href=\"{\"pages.view?page_id=20\"|fn_url}\" class=\"ty-exception__links-a\">Посмотреть на карте</a></li>\n\n</ul>\n\n\n\n\";}'),(0,0,'',18,'en','a:1:{s:7:\"content\";s:432:\"<ul>\n    <li>Apt. 1, the 1st Dubrovskaya St., office 100<br/>Moscow, Russia\n</li>\n    <li><bdi>8-800-0000-00-00</bdi> (call is free)</li>\n    <li><bdi>10:00 — 18:00</bdi> (Moscow time)<br/>\nMonday — Friday</li>\n    <li><a class=\"ty-exception__links-a greeny\" href=\"mailto:sales@example.com\">sales@example.com</a></li>\n\n    <li><a href=\"{\"pages.view?page_id=20\"|fn_url}\" class=\"ty-exception__links-a\">View a map</a></li>\n\n</ul>\n\n\";}'),(0,0,'',19,'ru',''),(0,0,'',19,'en',''),(0,0,'',20,'ru',''),(0,0,'',20,'en',''),(0,0,'',21,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:11:\"16,17,18,19\";}}'),(0,0,'',21,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:11:\"16,17,18,19\";}}'),(0,0,'',21,'','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',22,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"6\";}}'),(0,0,'',22,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"6\";}}'),(0,0,'',23,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"9\";}}'),(0,0,'',23,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"9\";}}'),(0,0,'',24,'ru','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"6\";}}'),(0,0,'',24,'en','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"6\";}}'),(0,0,'',25,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:7:\"on_sale\";s:5:\"limit\";s:1:\"8\";s:3:\"cid\";s:0:\"\";}}'),(0,0,'',25,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:7:\"on_sale\";s:5:\"limit\";s:1:\"8\";s:3:\"cid\";s:0:\"\";}}'),(0,0,'',26,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:15:\"blog.text_links\";s:14:\"parent_page_id\";s:1:\"7\";s:5:\"limit\";s:1:\"5\";}}'),(0,0,'',26,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:15:\"blog.text_links\";s:14:\"parent_page_id\";s:1:\"7\";s:5:\"limit\";s:1:\"5\";}}'),(0,0,'',27,'ru',''),(0,0,'',27,'en',''),(0,0,'',28,'ru',''),(0,0,'',28,'en',''),(0,0,'',29,'ru','a:1:{s:7:\"content\";s:1128:\"<div class=\"ty-benefits-guarantees clearfix\">\n<ul class=\"ty-benefits-guarantees__list\">\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=6\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-low-price\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Low price</strong> Guarantee</h4>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=5\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-shipping\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> shipping</h4>\n        <p class=\"ty-benefits-guarantees__txt\">Orders $19 and up.</p>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=4\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-returns\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> returns</h4>\n        </a>\n    </li>\n</ul>\n\n</div>\";}'),(0,0,'',29,'en','a:1:{s:7:\"content\";s:1128:\"<div class=\"ty-benefits-guarantees clearfix\">\n<ul class=\"ty-benefits-guarantees__list\">\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=6\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-low-price\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Low price</strong> Guarantee</h4>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=5\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-shipping\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> shipping</h4>\n        <p class=\"ty-benefits-guarantees__txt\">Orders $19 and up.</p>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=4\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-returns\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> returns</h4>\n        </a>\n    </li>\n</ul>\n\n</div>\";}'),(0,0,'',30,'ru','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"4\";s:13:\"percent_range\";s:0:\"\";s:16:\"similar_category\";s:1:\"Y\";s:15:\"similar_subcats\";s:1:\"Y\";s:16:\"similar_in_stock\";s:1:\"Y\";}}'),(0,0,'',30,'en','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"4\";s:13:\"percent_range\";s:0:\"\";s:16:\"similar_category\";s:1:\"Y\";s:15:\"similar_subcats\";s:1:\"Y\";s:16:\"similar_in_stock\";s:1:\"Y\";}}'),(0,0,'',31,'ru','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"3\";s:13:\"percent_range\";s:1:\"5\";s:16:\"similar_category\";s:1:\"N\";s:15:\"similar_subcats\";s:1:\"N\";s:16:\"similar_in_stock\";s:1:\"N\";}}'),(0,0,'',31,'en','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"3\";s:13:\"percent_range\";s:1:\"5\";s:16:\"similar_category\";s:1:\"N\";s:15:\"similar_subcats\";s:1:\"N\";s:16:\"similar_in_stock\";s:1:\"N\";}}'),(0,0,'',32,'ru','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',32,'en','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',33,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:15:\"recent_products\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',33,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:15:\"recent_products\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',34,'ru',''),(0,0,'',34,'en',''),(0,0,'',35,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"23,25,27\";s:8:\"required\";a:3:{s:11:\"field_id_23\";s:1:\"N\";s:11:\"field_id_25\";s:1:\"N\";s:11:\"field_id_27\";s:1:\"N\";}}}'),(0,0,'',35,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"23,25,27\";s:8:\"required\";a:3:{s:11:\"field_id_23\";s:1:\"N\";s:11:\"field_id_25\";s:1:\"N\";s:11:\"field_id_27\";s:1:\"N\";}}}'),(0,0,'',36,'ru',''),(0,0,'',36,'en',''),(0,0,'',37,'ru',''),(0,0,'',37,'en',''),(0,0,'',38,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:5:\"19,29\";s:8:\"required\";a:2:{s:11:\"field_id_19\";s:1:\"Y\";s:11:\"field_id_29\";s:1:\"Y\";}}}'),(0,0,'',38,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:5:\"19,29\";s:8:\"required\";a:2:{s:11:\"field_id_19\";s:1:\"Y\";s:11:\"field_id_29\";s:1:\"Y\";}}}'),(0,0,'',39,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"6,7,9,32\";s:8:\"required\";a:4:{s:10:\"field_id_6\";s:1:\"N\";s:10:\"field_id_7\";s:1:\"N\";s:10:\"field_id_9\";s:1:\"N\";s:11:\"field_id_32\";s:1:\"N\";}}}'),(0,0,'',39,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"6,7,9,32\";s:8:\"required\";a:4:{s:10:\"field_id_6\";s:1:\"N\";s:10:\"field_id_7\";s:1:\"N\";s:10:\"field_id_9\";s:1:\"N\";s:11:\"field_id_32\";s:1:\"Y\";}}}'),(0,0,'',40,'ru',''),(0,0,'',40,'en',''),(0,0,'',41,'ru',''),(0,0,'',41,'en',''),(0,0,'',42,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:23:\"14,16,30,18,28,22,24,26\";s:8:\"required\";a:8:{s:11:\"field_id_14\";s:1:\"N\";s:11:\"field_id_16\";s:1:\"N\";s:11:\"field_id_30\";s:1:\"N\";s:11:\"field_id_18\";s:1:\"N\";s:11:\"field_id_28\";s:1:\"N\";s:11:\"field_id_22\";s:1:\"N\";s:11:\"field_id_24\";s:1:\"N\";s:11:\"field_id_26\";s:1:\"N\";}}}'),(0,0,'',42,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:23:\"14,16,30,18,28,22,24,26\";s:8:\"required\";a:8:{s:11:\"field_id_14\";s:1:\"N\";s:11:\"field_id_16\";s:1:\"N\";s:11:\"field_id_30\";s:1:\"N\";s:11:\"field_id_18\";s:1:\"N\";s:11:\"field_id_28\";s:1:\"N\";s:11:\"field_id_22\";s:1:\"N\";s:11:\"field_id_24\";s:1:\"N\";s:11:\"field_id_26\";s:1:\"N\";}}}'),(0,0,'',43,'ru',''),(0,0,'',43,'en',''),(0,0,'',44,'ru',''),(0,0,'',44,'en',''),(0,0,'',45,'ru',''),(0,0,'',45,'en',''),(0,0,'',46,'ru',''),(0,0,'',46,'en',''),(0,0,'',47,'ru',''),(0,0,'',47,'en',''),(0,0,'',48,'ru',''),(0,0,'',48,'en',''),(0,0,'',49,'ru',''),(0,0,'',49,'en',''),(0,0,'',50,'ru','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',50,'en','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',51,'ru','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:17:\"blog.recent_posts\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:1:\"1\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',51,'en','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:17:\"blog.recent_posts\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:1:\"1\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',52,'ru',''),(0,0,'',52,'en',''),(0,0,'',53,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:37:\"product_variations.variations_filling\";s:5:\"limit\";s:3:\"100\";s:19:\"variations_in_stock\";s:1:\"N\";}}'),(0,0,'',53,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:37:\"product_variations.variations_filling\";s:5:\"limit\";s:3:\"100\";s:19:\"variations_in_stock\";s:1:\"N\";}}');
+INSERT INTO `cscart_bm_blocks_content` VALUES (0,0,'',1,'ru',''),(0,0,'',1,'en',''),(0,0,'',2,'ru',''),(0,0,'',2,'en',''),(0,0,'',3,'ru','a:1:{s:4:\"menu\";s:1:\"1\";}'),(0,0,'',3,'en','a:1:{s:4:\"menu\";s:1:\"1\";}'),(0,0,'',4,'ru',''),(0,0,'',4,'en',''),(0,0,'',5,'ru',''),(0,0,'',5,'en',''),(0,0,'',6,'ru',''),(0,0,'',6,'en',''),(0,0,'',7,'ru',''),(0,0,'',7,'en',''),(0,0,'',8,'ru',''),(0,0,'',8,'en',''),(0,0,'',9,'ru',''),(0,0,'',9,'en',''),(0,0,'',10,'ru','a:1:{s:4:\"menu\";s:1:\"2\";}'),(0,0,'',10,'en','a:1:{s:4:\"menu\";s:1:\"2\";}'),(0,0,'',11,'ru',''),(0,0,'',11,'en',''),(0,0,'',12,'ru',''),(0,0,'',12,'en',''),(0,0,'',13,'ru',''),(0,0,'',13,'en',''),(0,0,'',14,'ru','a:1:{s:7:\"content\";s:761:\"<div class=\"ty-social-link-block\"><h3 class=\"ty-social-link__title\">{__(\"get_social\")}</h3>\n\n<div class=\"ty-social-link facebook\">\n    <a target=\"_blank\" href=\"https://www.facebook.com/CSCartRu\"><i class=\"ty-icon-facebook ty-icon-moon-facebook\"></i></a>\n</div>\n\n<div class=\"ty-social-link instagram\">\n    <a target=\"_blank\" href=\"https://www.instagram.com\"><i class=\"ty-icon-instagram ty-icon-moon-instagram\"></i></a>\n</div>\n\n<div class=\"ty-social-link twitter\">\n    <a  target=\"_blank\" href=\"http://vk.com\"><i class=\"ty-icon-twitter ty-icon-moon-vk\"></i></a>\n</div>\n\n<div class=\"ty-social-link youtube\">\n    <a target=\"_blank\" href=\"https://www.youtube.com/channel/UC5hI_lecNxdp1UfLR2GZ4iQ\"><i class=\"ty-icon-youtube ty-icon-moon-youtube\"></i></a>\n</div></div>\";}'),(0,0,'',14,'en','a:1:{s:7:\"content\";s:761:\"<div class=\"ty-social-link-block\"><h3 class=\"ty-social-link__title\">{__(\"get_social\")}</h3>\n\n<div class=\"ty-social-link facebook\">\n    <a target=\"_blank\" href=\"https://www.facebook.com/CSCartRu\"><i class=\"ty-icon-facebook ty-icon-moon-facebook\"></i></a>\n</div>\n\n<div class=\"ty-social-link instagram\">\n    <a target=\"_blank\" href=\"https://www.instagram.com\"><i class=\"ty-icon-instagram ty-icon-moon-instagram\"></i></a>\n</div>\n\n<div class=\"ty-social-link twitter\">\n    <a  target=\"_blank\" href=\"http://vk.com\"><i class=\"ty-icon-twitter ty-icon-moon-vk\"></i></a>\n</div>\n\n<div class=\"ty-social-link youtube\">\n    <a target=\"_blank\" href=\"https://www.youtube.com/channel/UC5hI_lecNxdp1UfLR2GZ4iQ\"><i class=\"ty-icon-youtube ty-icon-moon-youtube\"></i></a>\n</div></div>\";}'),(0,0,'',15,'ru',''),(0,0,'',15,'en',''),(0,0,'',16,'ru','a:1:{s:4:\"menu\";s:1:\"3\";}'),(0,0,'',16,'en','a:1:{s:4:\"menu\";s:1:\"3\";}'),(0,0,'',17,'ru','a:1:{s:4:\"menu\";s:1:\"4\";}'),(0,0,'',17,'en','a:1:{s:4:\"menu\";s:1:\"4\";}'),(0,0,'',18,'ru','a:1:{s:7:\"content\";s:456:\"<ul>\n    <li>г. Москва, ул. 1-я Дубровская, д.1, офис 100</li>\n    <li><bdi>8-800-000-00-00</bdi> (звонок бесплатный)</li>\n    <li><bdi>Пн-Пт 9.00 - 18.00</bdi></li>\n    <li><a class=\"ty-exception__links-a greeny\" href=\"mailto:sales@example.com\">sales@example.com</a></li>\n\n    <li><a href=\"{\"pages.view?page_id=20\"|fn_url}\" class=\"ty-exception__links-a\">Посмотреть на карте</a></li>\n\n</ul>\n\n\n\n\";}'),(0,0,'',18,'en','a:1:{s:7:\"content\";s:432:\"<ul>\n    <li>Apt. 1, the 1st Dubrovskaya St., office 100<br/>Moscow, Russia\n</li>\n    <li><bdi>8-800-0000-00-00</bdi> (call is free)</li>\n    <li><bdi>10:00 — 18:00</bdi> (Moscow time)<br/>\nMonday — Friday</li>\n    <li><a class=\"ty-exception__links-a greeny\" href=\"mailto:sales@example.com\">sales@example.com</a></li>\n\n    <li><a href=\"{\"pages.view?page_id=20\"|fn_url}\" class=\"ty-exception__links-a\">View a map</a></li>\n\n</ul>\n\n\";}'),(0,0,'',19,'ru',''),(0,0,'',19,'en',''),(0,0,'',20,'ru',''),(0,0,'',20,'en',''),(0,0,'',21,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:2:\"23\";}}'),(0,0,'',21,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:2:\"23\";}}'),(0,0,'',21,'','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',22,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"6\";}}'),(0,0,'',22,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"6\";}}'),(0,0,'',23,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"9\";}}'),(0,0,'',23,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:1:\"9\";}}'),(0,0,'',24,'ru','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"6\";}}'),(0,0,'',24,'en','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:6:\"newest\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:2:\"10\";s:5:\"limit\";s:1:\"6\";}}'),(0,0,'',25,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:7:\"on_sale\";s:5:\"limit\";s:1:\"8\";s:3:\"cid\";s:0:\"\";}}'),(0,0,'',25,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:7:\"on_sale\";s:5:\"limit\";s:1:\"8\";s:3:\"cid\";s:0:\"\";}}'),(0,0,'',26,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:15:\"blog.text_links\";s:14:\"parent_page_id\";s:1:\"7\";s:5:\"limit\";s:1:\"5\";}}'),(0,0,'',26,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:15:\"blog.text_links\";s:14:\"parent_page_id\";s:1:\"7\";s:5:\"limit\";s:1:\"5\";}}'),(0,0,'',27,'ru',''),(0,0,'',27,'en',''),(0,0,'',28,'ru',''),(0,0,'',28,'en',''),(0,0,'',29,'ru','a:1:{s:7:\"content\";s:1128:\"<div class=\"ty-benefits-guarantees clearfix\">\n<ul class=\"ty-benefits-guarantees__list\">\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=6\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-low-price\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Low price</strong> Guarantee</h4>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=5\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-shipping\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> shipping</h4>\n        <p class=\"ty-benefits-guarantees__txt\">Orders $19 and up.</p>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=4\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-returns\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> returns</h4>\n        </a>\n    </li>\n</ul>\n\n</div>\";}'),(0,0,'',29,'en','a:1:{s:7:\"content\";s:1128:\"<div class=\"ty-benefits-guarantees clearfix\">\n<ul class=\"ty-benefits-guarantees__list\">\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=6\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-low-price\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Low price</strong> Guarantee</h4>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=5\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-shipping\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> shipping</h4>\n        <p class=\"ty-benefits-guarantees__txt\">Orders $19 and up.</p>\n        </a>\n    </li>\n    <li class=\"ty-benefits-guarantees__item\">\n        <a class=\"ty-benefits-guarantees__a\" href=\"{\"pages.view?page_id=4\"|fn_url}\">\n        <i class=\"ty-benefits-guarantees__icon ty-benefits-free-returns\"></i>\n        <h4 class=\"ty-benefits-guarantees__title\"><strong>Free</strong> returns</h4>\n        </a>\n    </li>\n</ul>\n\n</div>\";}'),(0,0,'',30,'ru','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"4\";s:13:\"percent_range\";s:0:\"\";s:16:\"similar_category\";s:1:\"Y\";s:15:\"similar_subcats\";s:1:\"Y\";s:16:\"similar_in_stock\";s:1:\"Y\";}}'),(0,0,'',30,'en','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"4\";s:13:\"percent_range\";s:0:\"\";s:16:\"similar_category\";s:1:\"Y\";s:15:\"similar_subcats\";s:1:\"Y\";s:16:\"similar_in_stock\";s:1:\"Y\";}}'),(0,0,'',31,'ru','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"3\";s:13:\"percent_range\";s:1:\"5\";s:16:\"similar_category\";s:1:\"N\";s:15:\"similar_subcats\";s:1:\"N\";s:16:\"similar_in_stock\";s:1:\"N\";}}'),(0,0,'',31,'en','a:1:{s:5:\"items\";a:6:{s:7:\"filling\";s:7:\"similar\";s:5:\"limit\";s:1:\"3\";s:13:\"percent_range\";s:1:\"5\";s:16:\"similar_category\";s:1:\"N\";s:15:\"similar_subcats\";s:1:\"N\";s:16:\"similar_in_stock\";s:1:\"N\";}}'),(0,0,'',32,'ru','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',32,'en','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',33,'ru','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:15:\"recent_products\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',33,'en','a:1:{s:5:\"items\";a:2:{s:7:\"filling\";s:15:\"recent_products\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',34,'ru',''),(0,0,'',34,'en',''),(0,0,'',35,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"23,25,27\";s:8:\"required\";a:3:{s:11:\"field_id_23\";s:1:\"N\";s:11:\"field_id_25\";s:1:\"N\";s:11:\"field_id_27\";s:1:\"N\";}}}'),(0,0,'',35,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"23,25,27\";s:8:\"required\";a:3:{s:11:\"field_id_23\";s:1:\"N\";s:11:\"field_id_25\";s:1:\"N\";s:11:\"field_id_27\";s:1:\"N\";}}}'),(0,0,'',36,'ru',''),(0,0,'',36,'en',''),(0,0,'',37,'ru',''),(0,0,'',37,'en',''),(0,0,'',38,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:5:\"19,29\";s:8:\"required\";a:2:{s:11:\"field_id_19\";s:1:\"Y\";s:11:\"field_id_29\";s:1:\"Y\";}}}'),(0,0,'',38,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:5:\"19,29\";s:8:\"required\";a:2:{s:11:\"field_id_19\";s:1:\"Y\";s:11:\"field_id_29\";s:1:\"Y\";}}}'),(0,0,'',39,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"6,7,9,32\";s:8:\"required\";a:4:{s:10:\"field_id_6\";s:1:\"N\";s:10:\"field_id_7\";s:1:\"N\";s:10:\"field_id_9\";s:1:\"N\";s:11:\"field_id_32\";s:1:\"N\";}}}'),(0,0,'',39,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:8:\"6,7,9,32\";s:8:\"required\";a:4:{s:10:\"field_id_6\";s:1:\"N\";s:10:\"field_id_7\";s:1:\"N\";s:10:\"field_id_9\";s:1:\"N\";s:11:\"field_id_32\";s:1:\"Y\";}}}'),(0,0,'',40,'ru',''),(0,0,'',40,'en',''),(0,0,'',41,'ru',''),(0,0,'',41,'en',''),(0,0,'',42,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:23:\"14,16,30,18,28,22,24,26\";s:8:\"required\";a:8:{s:11:\"field_id_14\";s:1:\"N\";s:11:\"field_id_16\";s:1:\"N\";s:11:\"field_id_30\";s:1:\"N\";s:11:\"field_id_18\";s:1:\"N\";s:11:\"field_id_28\";s:1:\"N\";s:11:\"field_id_22\";s:1:\"N\";s:11:\"field_id_24\";s:1:\"N\";s:11:\"field_id_26\";s:1:\"N\";}}}'),(0,0,'',42,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:8:\"manually\";s:8:\"item_ids\";s:23:\"14,16,30,18,28,22,24,26\";s:8:\"required\";a:8:{s:11:\"field_id_14\";s:1:\"N\";s:11:\"field_id_16\";s:1:\"N\";s:11:\"field_id_30\";s:1:\"N\";s:11:\"field_id_18\";s:1:\"N\";s:11:\"field_id_28\";s:1:\"N\";s:11:\"field_id_22\";s:1:\"N\";s:11:\"field_id_24\";s:1:\"N\";s:11:\"field_id_26\";s:1:\"N\";}}}'),(0,0,'',43,'ru',''),(0,0,'',43,'en',''),(0,0,'',44,'ru',''),(0,0,'',44,'en',''),(0,0,'',45,'ru',''),(0,0,'',45,'en',''),(0,0,'',46,'ru',''),(0,0,'',46,'en',''),(0,0,'',47,'ru',''),(0,0,'',47,'en',''),(0,0,'',48,'ru',''),(0,0,'',48,'en',''),(0,0,'',49,'ru',''),(0,0,'',49,'en',''),(0,0,'',50,'ru','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',50,'en','a:1:{s:5:\"items\";a:1:{s:7:\"filling\";s:8:\"manually\";}}'),(0,0,'',51,'ru','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:17:\"blog.recent_posts\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:1:\"1\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',51,'en','a:1:{s:5:\"items\";a:4:{s:7:\"filling\";s:17:\"blog.recent_posts\";s:6:\"period\";s:1:\"A\";s:9:\"last_days\";s:1:\"1\";s:5:\"limit\";s:1:\"3\";}}'),(0,0,'',52,'ru',''),(0,0,'',52,'en',''),(0,0,'',53,'ru','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:37:\"product_variations.variations_filling\";s:5:\"limit\";s:3:\"100\";s:19:\"variations_in_stock\";s:1:\"N\";}}'),(0,0,'',53,'en','a:1:{s:5:\"items\";a:3:{s:7:\"filling\";s:37:\"product_variations.variations_filling\";s:5:\"limit\";s:3:\"100\";s:19:\"variations_in_stock\";s:1:\"N\";}}');
 /*!40000 ALTER TABLE `cscart_bm_blocks_content` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,13 +455,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_blocks_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_blocks_descriptions` (
-  `block_id` int(11) unsigned NOT NULL,
+  `block_id` int unsigned NOT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(64) NOT NULL DEFAULT '',
   PRIMARY KEY (`block_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -489,21 +480,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_containers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_containers` (
-  `container_id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
-  `location_id` mediumint(9) unsigned NOT NULL,
+  `container_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `location_id` mediumint unsigned NOT NULL,
   `position` enum('TOP_PANEL','HEADER','CONTENT','FOOTER') NOT NULL,
-  `width` tinyint(4) NOT NULL,
+  `width` tinyint NOT NULL,
   `user_class` varchar(128) NOT NULL DEFAULT '',
   `linked_to_default` varchar(1) NOT NULL DEFAULT 'Y',
   `status` varchar(1) NOT NULL DEFAULT 'A',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'If a vendor uses custom block configuration for a container, his/her vendor ID is stored here',
+  `company_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'If a vendor uses custom block configuration for a container, his/her vendor ID is stored here',
   PRIMARY KEY (`container_id`),
   KEY `location_id` (`location_id`),
   KEY `location_id_company_id` (`location_id`,`company_id`),
   KEY `location_id_position_company_id` (`location_id`,`position`,`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +503,7 @@ CREATE TABLE `cscart_bm_containers` (
 
 LOCK TABLES `cscart_bm_containers` WRITE;
 /*!40000 ALTER TABLE `cscart_bm_containers` DISABLE KEYS */;
-INSERT INTO `cscart_bm_containers` VALUES (1,1,'TOP_PANEL',16,'top-grid','Y','A',0),(2,1,'HEADER',16,'header-grid','Y','A',0),(3,1,'CONTENT',16,'content-grid','Y','A',0),(4,1,'FOOTER',16,'ty-footer-grid','Y','A',0),(5,2,'TOP_PANEL',16,'','Y','A',0),(6,2,'HEADER',16,'','Y','A',0),(7,2,'CONTENT',16,'content-grid','Y','A',0),(8,2,'FOOTER',16,'','Y','A',0),(9,3,'TOP_PANEL',16,'','Y','A',0),(10,3,'HEADER',16,'','Y','A',0),(11,3,'CONTENT',16,'content-grid','Y','A',0),(12,3,'FOOTER',16,'','Y','A',0),(13,4,'TOP_PANEL',16,'','Y','A',0),(14,4,'HEADER',16,'','Y','A',0),(15,4,'CONTENT',16,'content-grid','Y','A',0),(16,4,'FOOTER',16,'','Y','A',0),(17,5,'TOP_PANEL',16,'','Y','A',0),(18,5,'HEADER',16,'','Y','A',0),(19,5,'CONTENT',16,'content-grid','Y','A',0),(20,5,'FOOTER',16,'','Y','A',0),(21,6,'TOP_PANEL',16,'','N','D',0),(22,6,'HEADER',16,'litecheckout__header','N','A',0),(23,6,'CONTENT',16,'content-grid','Y','A',0),(24,6,'FOOTER',16,'litecheckout__footer','N','A',0),(25,7,'TOP_PANEL',16,'','Y','A',0),(26,7,'HEADER',16,'','Y','A',0),(27,7,'CONTENT',16,'content-grid','Y','A',0),(28,7,'FOOTER',16,'','Y','A',0),(29,8,'TOP_PANEL',16,'','Y','A',0),(30,8,'HEADER',16,'','Y','A',0),(31,8,'CONTENT',16,'content-grid','Y','A',0),(32,8,'FOOTER',16,'','Y','A',0),(33,9,'TOP_PANEL',16,'','Y','A',0),(34,9,'HEADER',16,'','Y','A',0),(35,9,'CONTENT',16,'content-grid','Y','A',0),(36,9,'FOOTER',16,'','Y','A',0),(37,10,'TOP_PANEL',16,'','Y','A',0),(38,10,'HEADER',16,'','Y','A',0),(39,10,'CONTENT',16,'content-grid','Y','A',0),(40,10,'FOOTER',16,'','Y','A',0),(41,11,'TOP_PANEL',16,'','Y','A',0),(42,11,'HEADER',16,'','Y','A',0),(43,11,'CONTENT',16,'content-grid','Y','A',0),(44,11,'FOOTER',16,'','Y','A',0),(45,12,'TOP_PANEL',16,'','Y','A',0),(46,12,'HEADER',16,'','Y','A',0),(47,12,'CONTENT',16,'content-grid','Y','A',0),(48,12,'FOOTER',16,'','Y','A',0),(49,13,'TOP_PANEL',16,'','Y','A',0),(50,13,'HEADER',16,'','Y','A',0),(51,13,'CONTENT',16,'','Y','A',0),(52,13,'FOOTER',16,'','Y','A',0),(68,17,'FOOTER',16,'','N','A',0),(67,17,'CONTENT',16,'','Y','A',0),(66,17,'HEADER',16,'','N','A',0),(65,17,'TOP_PANEL',16,'','N','A',0),(57,15,'TOP_PANEL',16,'','Y','A',0),(58,15,'HEADER',16,'','Y','A',0),(59,15,'CONTENT',16,'content-grid','Y','A',0),(60,15,'FOOTER',16,'','Y','A',0),(61,16,'TOP_PANEL',16,'','Y','A',0),(62,16,'HEADER',16,'','Y','A',0),(63,16,'CONTENT',16,'','Y','A',0),(64,16,'FOOTER',16,'','Y','A',0);
+INSERT INTO `cscart_bm_containers` VALUES (1,1,'TOP_PANEL',16,'top-grid','Y','D',0),(2,1,'HEADER',16,'header-grid','Y','A',0),(3,1,'CONTENT',16,'content-grid','Y','A',0),(4,1,'FOOTER',16,'ty-footer-grid','Y','A',0),(5,2,'TOP_PANEL',16,'','Y','A',0),(6,2,'HEADER',16,'','Y','A',0),(7,2,'CONTENT',16,'content-grid','Y','A',0),(8,2,'FOOTER',16,'','Y','A',0),(9,3,'TOP_PANEL',16,'','Y','A',0),(10,3,'HEADER',16,'','Y','A',0),(11,3,'CONTENT',16,'content-grid','Y','A',0),(12,3,'FOOTER',16,'','Y','A',0),(13,4,'TOP_PANEL',16,'','Y','A',0),(14,4,'HEADER',16,'','Y','A',0),(15,4,'CONTENT',16,'content-grid','Y','A',0),(16,4,'FOOTER',16,'','Y','A',0),(17,5,'TOP_PANEL',16,'','Y','A',0),(18,5,'HEADER',16,'','Y','A',0),(19,5,'CONTENT',16,'content-grid','Y','A',0),(20,5,'FOOTER',16,'','Y','A',0),(21,6,'TOP_PANEL',16,'','N','D',0),(22,6,'HEADER',16,'litecheckout__header','N','A',0),(23,6,'CONTENT',16,'content-grid','Y','A',0),(24,6,'FOOTER',16,'litecheckout__footer','N','A',0),(25,7,'TOP_PANEL',16,'','Y','A',0),(26,7,'HEADER',16,'','Y','A',0),(27,7,'CONTENT',16,'content-grid','Y','A',0),(28,7,'FOOTER',16,'','Y','A',0),(29,8,'TOP_PANEL',16,'','Y','A',0),(30,8,'HEADER',16,'','Y','A',0),(31,8,'CONTENT',16,'content-grid','Y','A',0),(32,8,'FOOTER',16,'','Y','A',0),(33,9,'TOP_PANEL',16,'','Y','A',0),(34,9,'HEADER',16,'','Y','A',0),(35,9,'CONTENT',16,'content-grid','Y','A',0),(36,9,'FOOTER',16,'','Y','A',0),(37,10,'TOP_PANEL',16,'','Y','A',0),(38,10,'HEADER',16,'','Y','A',0),(39,10,'CONTENT',16,'content-grid','Y','A',0),(40,10,'FOOTER',16,'','Y','A',0),(41,11,'TOP_PANEL',16,'','Y','A',0),(42,11,'HEADER',16,'','Y','A',0),(43,11,'CONTENT',16,'content-grid','Y','A',0),(44,11,'FOOTER',16,'','Y','A',0),(45,12,'TOP_PANEL',16,'','Y','A',0),(46,12,'HEADER',16,'','Y','A',0),(47,12,'CONTENT',16,'content-grid','Y','A',0),(48,12,'FOOTER',16,'','Y','A',0),(49,13,'TOP_PANEL',16,'','Y','A',0),(50,13,'HEADER',16,'','Y','A',0),(51,13,'CONTENT',16,'','Y','A',0),(52,13,'FOOTER',16,'','Y','A',0),(68,17,'FOOTER',16,'','Y','A',0),(67,17,'CONTENT',16,'','Y','A',0),(66,17,'HEADER',16,'','Y','A',0),(65,17,'TOP_PANEL',16,'','Y','A',0),(57,15,'TOP_PANEL',16,'','Y','A',0),(58,15,'HEADER',16,'','Y','A',0),(59,15,'CONTENT',16,'content-grid','Y','A',0),(60,15,'FOOTER',16,'','Y','A',0),(61,16,'TOP_PANEL',16,'','Y','A',0),(62,16,'HEADER',16,'','Y','A',0),(63,16,'CONTENT',16,'','Y','A',0),(64,16,'FOOTER',16,'','Y','A',0);
 /*!40000 ALTER TABLE `cscart_bm_containers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -522,25 +513,25 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_grids`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_grids` (
-  `grid_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `container_id` mediumint(9) unsigned NOT NULL,
-  `parent_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `order` mediumint(9) unsigned NOT NULL DEFAULT '0',
-  `width` tinyint(4) unsigned NOT NULL DEFAULT '1',
-  `offset` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `grid_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `container_id` mediumint unsigned NOT NULL,
+  `parent_id` int unsigned NOT NULL DEFAULT '0',
+  `order` mediumint unsigned NOT NULL DEFAULT '0',
+  `width` tinyint unsigned NOT NULL DEFAULT '1',
+  `offset` tinyint unsigned NOT NULL DEFAULT '0',
   `user_class` varchar(128) NOT NULL DEFAULT '',
-  `omega` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `alpha` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `omega` tinyint unsigned NOT NULL DEFAULT '0',
+  `alpha` tinyint unsigned NOT NULL DEFAULT '0',
   `wrapper` varchar(128) NOT NULL DEFAULT '',
   `content_align` enum('LEFT','RIGHT','FULL_WIDTH') NOT NULL DEFAULT 'FULL_WIDTH',
   `html_element` varchar(8) NOT NULL DEFAULT 'div',
-  `clear` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `clear` tinyint unsigned NOT NULL DEFAULT '0',
   `status` varchar(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`grid_id`),
   KEY `container_id` (`container_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -549,7 +540,7 @@ CREATE TABLE `cscart_bm_grids` (
 
 LOCK TABLES `cscart_bm_grids` WRITE;
 /*!40000 ALTER TABLE `cscart_bm_grids` DISABLE KEYS */;
-INSERT INTO `cscart_bm_grids` VALUES (1,1,0,0,3,0,'top-links-grid ty-top-grid_float',0,1,'','LEFT','div',0,'A'),(2,1,0,0,8,0,'top-links-grid',0,0,'','LEFT','div',0,'A'),(3,1,0,0,3,0,'top-links-grid',0,0,'','RIGHT','div',0,'A'),(4,1,0,0,2,0,'top-links-grid',1,0,'','RIGHT','div',1,'A'),(5,2,0,0,3,0,'top-logo-grid',0,1,'','FULL_WIDTH','div',0,'A'),(6,2,0,0,5,0,'ty-cr-content-grid',0,0,'','FULL_WIDTH','div',0,'A'),(7,2,0,0,8,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(8,2,7,0,4,0,'search-block-grid',0,1,'','FULL_WIDTH','div',0,'A'),(9,2,7,0,4,0,'cart-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(10,2,0,0,16,0,'top-menu-grid',1,1,'','FULL_WIDTH','div',1,'A'),(11,3,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(12,3,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(13,4,0,0,16,0,'ty-footer-grid__full-width footer-stay-connected',1,1,'','FULL_WIDTH','div',1,'A'),(14,4,13,0,11,0,'ty-grid',0,1,'','FULL_WIDTH','div',0,'A'),(15,4,13,0,5,0,'ty-grid',1,0,'','FULL_WIDTH','div',1,'A'),(16,4,0,0,16,0,'ty-footer-grid__full-width ty-footer-menu',1,1,'','FULL_WIDTH','div',1,'A'),(17,4,16,0,4,0,'my-account-grid',0,1,'','LEFT','div',0,'A'),(18,4,16,0,4,0,'footer-store-grid',0,0,'','LEFT','div',0,'A'),(19,4,16,0,4,0,'customer-service-grid',0,0,'','LEFT','div',0,'A'),(20,4,16,0,4,0,'about-grid',1,0,'','LEFT','div',1,'A'),(21,4,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(22,4,21,0,8,0,'',0,1,'','LEFT','div',0,'A'),(23,4,21,0,8,0,'',1,0,'','RIGHT','div',1,'A'),(24,7,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(25,7,24,0,10,0,'',0,1,'','FULL_WIDTH','div',0,'A'),(26,7,24,0,6,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(27,7,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(28,7,0,0,8,0,'',0,1,'','FULL_WIDTH','div',0,'A'),(29,7,0,0,8,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(30,7,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(31,9,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(32,11,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(33,11,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(34,11,0,0,9,0,'',0,1,'','FULL_WIDTH','div',0,'A'),(35,11,0,0,7,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(36,12,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(37,13,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(38,15,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(39,15,0,0,4,0,'side-grid',0,1,'','FULL_WIDTH','div',0,'A'),(40,15,0,0,12,0,'main-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(41,16,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(42,17,0,0,16,0,'',1,1,'','FULL_WIDTH','div',0,'A'),(43,19,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(44,19,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(45,20,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(46,21,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(47,22,0,0,3,0,'top-logo-grid',1,1,'','FULL_WIDTH','div',1,'A'),(48,23,0,0,12,0,'main-content-grid',0,1,'blocks/grid_wrappers/lite_checkout.tpl','FULL_WIDTH','div',0,'A'),(49,23,0,0,4,0,'side-grid litecheckout__cart',1,0,'','FULL_WIDTH','div',1,'A'),(50,24,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(51,24,50,0,2,0,'',0,1,'','LEFT','div',0,'A'),(52,24,50,0,14,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(53,27,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(54,27,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(55,27,0,0,8,0,'auth-information-grid',1,0,'','FULL_WIDTH','div',1,'A'),(56,31,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(57,31,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(58,31,0,0,8,0,'profile-information-grid',1,0,'','FULL_WIDTH','div',1,'A'),(59,35,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(60,37,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(61,39,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(62,40,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(63,41,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(64,43,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(65,43,0,0,4,0,'side-grid',0,1,'','FULL_WIDTH','div',0,'D'),(66,43,0,0,12,0,'main-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(67,44,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(68,47,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(69,51,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(70,51,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',0,'A'),(79,63,0,0,3,0,'',1,0,'','FULL_WIDTH','div',0,'A'),(78,63,0,0,13,0,'ty-blog-grid',0,1,'','FULL_WIDTH','div',0,'A'),(77,63,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(74,59,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(75,59,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(76,59,0,0,8,0,'certificates-verify-grid',1,0,'','RIGHT','div',0,'A'),(80,65,0,0,3,0,'top-links-grid ty-top-grid_float',0,1,'','LEFT','div',0,'A'),(81,65,0,0,8,0,'top-links-grid',0,0,'','LEFT','div',0,'A'),(82,65,0,0,3,0,'top-links-grid',0,0,'','RIGHT','div',0,'A'),(83,65,0,0,2,0,'top-links-grid',1,0,'','RIGHT','div',1,'A'),(84,66,0,0,3,0,'top-logo-grid',0,1,'','FULL_WIDTH','div',0,'A'),(85,66,0,0,5,0,'ty-cr-content-grid',0,0,'','FULL_WIDTH','div',0,'A'),(86,66,0,0,8,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(87,66,86,0,4,0,'search-block-grid',0,1,'','FULL_WIDTH','div',0,'A'),(88,66,86,0,4,0,'cart-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(89,66,0,0,16,0,'top-menu-grid',1,1,'','FULL_WIDTH','div',1,'A'),(90,68,0,0,16,0,'ty-footer-grid__full-width footer-stay-connected',1,1,'','FULL_WIDTH','div',1,'A'),(91,68,90,0,11,0,'ty-grid',0,1,'','FULL_WIDTH','div',0,'A'),(92,68,90,0,5,0,'ty-grid',1,0,'','FULL_WIDTH','div',1,'A'),(93,68,0,0,16,0,'ty-footer-grid__full-width ty-footer-menu',1,1,'','FULL_WIDTH','div',1,'A'),(94,68,93,0,4,0,'my-account-grid',0,1,'','LEFT','div',0,'A'),(95,68,93,0,4,0,'footer-store-grid',0,0,'','LEFT','div',0,'A'),(96,68,93,0,4,0,'customer-service-grid',0,0,'','LEFT','div',0,'A'),(97,68,93,0,4,0,'about-grid',1,0,'','LEFT','div',1,'A'),(98,68,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(99,68,98,0,8,0,'',0,1,'','LEFT','div',0,'A'),(100,68,98,0,8,0,'',1,0,'','RIGHT','div',1,'A'),(101,67,0,0,16,0,'',1,1,'','FULL_WIDTH','div',0,'A');
+INSERT INTO `cscart_bm_grids` VALUES (1,1,0,0,3,0,'top-links-grid ty-top-grid_float',0,1,'','LEFT','div',0,'A'),(2,1,0,0,8,0,'top-links-grid',0,0,'','LEFT','div',0,'A'),(3,1,0,0,3,0,'top-links-grid',0,0,'','RIGHT','div',0,'A'),(4,1,0,0,2,0,'top-links-grid',1,0,'','RIGHT','div',1,'A'),(5,2,0,0,3,0,'top-logo-grid',0,1,'','FULL_WIDTH','div',0,'D'),(6,2,0,0,5,0,'ty-cr-content-grid',0,0,'','FULL_WIDTH','div',0,'D'),(7,2,0,0,8,0,'',1,0,'','FULL_WIDTH','div',1,'D'),(8,2,7,0,4,0,'search-block-grid',0,1,'','FULL_WIDTH','div',0,'A'),(9,2,7,0,4,0,'cart-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(10,2,0,0,16,0,'top-menu-grid',1,1,'','FULL_WIDTH','div',1,'A'),(11,3,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(12,3,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(13,4,0,0,16,0,'ty-footer-grid__full-width footer-stay-connected',1,1,'','FULL_WIDTH','div',1,'D'),(14,4,13,0,11,0,'ty-grid',0,1,'','FULL_WIDTH','div',0,'A'),(15,4,13,0,5,0,'ty-grid',1,0,'','FULL_WIDTH','div',1,'A'),(16,4,0,0,16,0,'ty-footer-grid__full-width ty-footer-menu',1,1,'','FULL_WIDTH','div',1,'D'),(17,4,16,0,4,0,'my-account-grid',0,1,'','LEFT','div',0,'A'),(18,4,16,0,4,0,'footer-store-grid',0,0,'','LEFT','div',0,'A'),(19,4,16,0,4,0,'customer-service-grid',0,0,'','LEFT','div',0,'A'),(20,4,16,0,4,0,'about-grid',1,0,'','LEFT','div',1,'A'),(21,4,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(22,4,21,0,8,0,'',0,1,'','LEFT','div',0,'D'),(23,4,21,0,8,0,'',1,0,'','RIGHT','div',1,'A'),(24,7,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(25,7,24,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(30,7,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(31,9,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(32,11,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(33,11,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(34,11,0,0,9,0,'',0,1,'','FULL_WIDTH','div',0,'A'),(35,11,0,0,7,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(36,12,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(37,13,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(38,15,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(39,15,0,0,4,0,'side-grid',0,1,'','FULL_WIDTH','div',0,'A'),(40,15,0,0,12,0,'main-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(41,16,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(42,17,0,0,16,0,'',1,1,'','FULL_WIDTH','div',0,'A'),(43,19,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(44,19,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(45,20,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(46,21,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(47,22,0,0,3,0,'top-logo-grid',1,1,'','FULL_WIDTH','div',1,'A'),(48,23,0,0,12,0,'main-content-grid',0,1,'blocks/grid_wrappers/lite_checkout.tpl','FULL_WIDTH','div',0,'A'),(49,23,0,0,4,0,'side-grid litecheckout__cart',1,0,'','FULL_WIDTH','div',1,'A'),(50,24,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(51,24,50,0,2,0,'',0,1,'','LEFT','div',0,'A'),(52,24,50,0,14,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(53,27,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(54,27,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(55,27,0,0,8,0,'auth-information-grid',1,0,'','FULL_WIDTH','div',1,'A'),(56,31,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(57,31,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(58,31,0,0,8,0,'profile-information-grid',1,0,'','FULL_WIDTH','div',1,'A'),(59,35,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(60,37,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(61,39,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(62,40,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(63,41,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(64,43,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(65,43,0,0,4,0,'side-grid',0,1,'','FULL_WIDTH','div',0,'D'),(66,43,0,0,12,0,'main-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(67,44,0,0,16,0,'',0,0,'','FULL_WIDTH','div',0,'A'),(68,47,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',1,'A'),(69,51,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(70,51,0,0,16,0,'main-content-grid',1,1,'','FULL_WIDTH','div',0,'A'),(79,63,0,0,3,0,'',1,0,'','FULL_WIDTH','div',0,'A'),(78,63,0,0,13,0,'ty-blog-grid',0,1,'','FULL_WIDTH','div',0,'A'),(77,63,0,0,16,0,'',1,1,'','FULL_WIDTH','div',1,'A'),(74,59,0,0,16,0,'breadcrumbs-grid',1,1,'','FULL_WIDTH','div',1,'A'),(75,59,0,0,8,0,'main-content-grid',0,1,'','FULL_WIDTH','div',0,'A'),(76,59,0,0,8,0,'certificates-verify-grid',1,0,'','RIGHT','div',0,'A'),(80,65,0,0,3,0,'top-links-grid ty-top-grid_float',0,1,'','LEFT','div',0,'A'),(81,65,0,0,8,0,'top-links-grid',0,0,'','LEFT','div',0,'A'),(82,65,0,0,3,0,'top-links-grid',0,0,'','RIGHT','div',0,'A'),(83,65,0,0,2,0,'top-links-grid',1,0,'','RIGHT','div',1,'A'),(84,66,0,0,3,0,'top-logo-grid',0,1,'','FULL_WIDTH','div',0,'A'),(85,66,0,0,5,0,'ty-cr-content-grid',0,0,'','FULL_WIDTH','div',0,'A'),(86,66,0,0,8,0,'',1,0,'','FULL_WIDTH','div',1,'A'),(87,66,86,0,4,0,'search-block-grid',0,1,'','FULL_WIDTH','div',0,'A'),(88,66,86,0,4,0,'cart-content-grid',1,0,'','FULL_WIDTH','div',1,'A'),(89,66,0,0,16,0,'top-menu-grid',1,1,'','FULL_WIDTH','div',1,'A'),(90,68,0,0,16,0,'ty-footer-grid__full-width footer-stay-connected',1,1,'','FULL_WIDTH','div',1,'A'),(91,68,90,0,11,0,'ty-grid',0,1,'','FULL_WIDTH','div',0,'A'),(92,68,90,0,5,0,'ty-grid',1,0,'','FULL_WIDTH','div',1,'A'),(93,68,0,0,16,0,'ty-footer-grid__full-width ty-footer-menu',1,1,'','FULL_WIDTH','div',1,'A'),(94,68,93,0,4,0,'my-account-grid',0,1,'','LEFT','div',0,'A'),(95,68,93,0,4,0,'footer-store-grid',0,0,'','LEFT','div',0,'A'),(96,68,93,0,4,0,'customer-service-grid',0,0,'','LEFT','div',0,'A'),(97,68,93,0,4,0,'about-grid',1,0,'','LEFT','div',1,'A'),(98,68,0,0,16,0,'ty-footer-grid__full-width footer-copyright',1,1,'','FULL_WIDTH','div',1,'A'),(99,68,98,0,8,0,'',0,1,'','LEFT','div',0,'A'),(100,68,98,0,8,0,'',1,0,'','RIGHT','div',1,'A'),(101,67,0,0,16,0,'',1,1,'','FULL_WIDTH','div',0,'A');
 /*!40000 ALTER TABLE `cscart_bm_grids` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -559,21 +550,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_layouts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_layouts` (
-  `layout_id` int(11) NOT NULL AUTO_INCREMENT,
+  `layout_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL DEFAULT '',
-  `is_default` tinyint(4) NOT NULL DEFAULT '0',
-  `width` tinyint(4) NOT NULL DEFAULT '16',
+  `is_default` tinyint NOT NULL DEFAULT '0',
+  `width` tinyint NOT NULL DEFAULT '16',
   `layout_width` enum('fixed','fluid','full_width') NOT NULL DEFAULT 'fixed',
-  `min_width` int(11) unsigned NOT NULL DEFAULT '760',
-  `max_width` int(11) unsigned NOT NULL DEFAULT '960',
+  `min_width` int unsigned NOT NULL DEFAULT '760',
+  `max_width` int unsigned NOT NULL DEFAULT '960',
   `theme_name` varchar(64) NOT NULL DEFAULT '',
   `style_id` varchar(64) NOT NULL DEFAULT '',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`layout_id`),
   KEY `is_default` (`is_default`,`storefront_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,17 +583,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_locations` (
-  `location_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `location_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `dispatch` varchar(64) NOT NULL,
   `is_default` tinyint(1) NOT NULL,
-  `layout_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `layout_id` int unsigned NOT NULL DEFAULT '0',
   `object_ids` text,
   `custom_html` text,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`location_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -621,16 +612,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_locations_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_locations_descriptions` (
-  `location_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `location_id` int unsigned NOT NULL AUTO_INCREMENT,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(64) NOT NULL,
   `title` text NOT NULL,
   `meta_description` text NOT NULL,
   `meta_keywords` text NOT NULL,
   PRIMARY KEY (`location_id`,`lang_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -649,18 +640,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_bm_snapping`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_bm_snapping` (
-  `snapping_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `block_id` int(11) unsigned NOT NULL,
-  `grid_id` int(11) unsigned NOT NULL,
+  `snapping_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `block_id` int unsigned NOT NULL,
+  `grid_id` int unsigned NOT NULL,
   `wrapper` varchar(128) NOT NULL DEFAULT '',
   `user_class` varchar(128) NOT NULL DEFAULT '',
-  `order` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `order` mediumint unsigned NOT NULL DEFAULT '0',
   `status` varchar(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`snapping_id`),
   KEY `grid_id` (`grid_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -669,7 +660,7 @@ CREATE TABLE `cscart_bm_snapping` (
 
 LOCK TABLES `cscart_bm_snapping` WRITE;
 /*!40000 ALTER TABLE `cscart_bm_snapping` DISABLE KEYS */;
-INSERT INTO `cscart_bm_snapping` VALUES (1,1,1,'','top-languages',2,'A'),(2,2,1,'','top-currencies',3,'A'),(3,3,2,'','top-quick-links',3,'A'),(4,4,3,'','',0,'A'),(5,5,4,'blocks/wrappers/onclick_dropdown.tpl','top-my-account',2,'A'),(6,6,5,'','top-logo',0,'A'),(7,7,6,'','',0,'A'),(8,8,8,'','top-search',0,'A'),(9,9,9,'','top-cart-content',2,'A'),(10,10,10,'','top-menu',2,'A'),(11,11,11,'','',0,'A'),(12,12,12,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(13,13,14,'','',2,'A'),(14,14,15,'','',2,'A'),(15,15,17,'blocks/wrappers/footer_general.tpl','',0,'A'),(16,16,18,'blocks/wrappers/footer_general.tpl','footer-menu-shop',0,'A'),(17,17,19,'blocks/wrappers/footer_general.tpl','footer-menu-create-orders',0,'A'),(18,18,20,'blocks/wrappers/footer_general.tpl','footer-no-wysiwyg footer-contacts',0,'A'),(19,19,22,'','',2,'A'),(20,20,23,'','',2,'A'),(21,21,25,'','homepage-banners',0,'A'),(22,22,26,'','ty-banners-free-ship',3,'A'),(23,23,26,'','ty-banners-pickup',4,'A'),(24,24,27,'blocks/wrappers/mainbox_simple.tpl','homepage-hotdeals',2,'A'),(25,25,27,'blocks/wrappers/mainbox_simple.tpl','homepage-on-sale',5,'A'),(26,26,28,'blocks/wrappers/mainbox_simple.tpl','',0,'A'),(27,27,29,'blocks/wrappers/mainbox_simple.tpl','homepage-reviews',0,'A'),(28,12,30,'','',1,'A'),(29,28,30,'blocks/wrappers/mainbox_simple.tpl','homepage-our-brands',2,'A'),(30,29,30,'','homepage-benefits-guarantees',3,'D'),(31,11,32,'','',0,'A'),(32,12,33,'','',0,'A'),(33,30,34,'blocks/wrappers/mainbox_simple.tpl','',2,'A'),(34,31,35,'blocks/wrappers/mainbox_simple.tpl','',2,'A'),(35,11,38,'','',0,'A'),(36,32,39,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(37,33,39,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(38,12,40,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(39,11,43,'','',0,'A'),(40,12,44,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(41,34,47,'','',0,'A'),(42,35,48,'','',0,'A'),(43,36,48,'','',1,'A'),(44,37,48,'','',2,'A'),(45,38,48,'','',3,'A'),(46,39,48,'','',4,'A'),(47,40,48,'','',5,'A'),(48,41,48,'blocks/lite_checkout/wrappers/checkout_block_with_heading.tpl','',6,'A'),(49,42,48,'','',7,'A'),(50,43,48,'','',8,'A'),(51,44,48,'','',9,'A'),(52,12,48,'blocks/wrappers/mainbox_general.tpl','',10,'D'),(53,45,49,'','order-products',0,'A'),(54,46,49,'','',1,'A'),(55,6,51,'','top-logo',0,'A'),(56,19,52,'','',2,'A'),(57,11,53,'','',0,'A'),(58,12,54,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(59,47,55,'','',0,'A'),(60,11,56,'','',0,'A'),(61,12,57,'blocks/wrappers/mainbox_general.tpl','',2,'A'),(62,48,58,'','',0,'A'),(63,11,59,'','',0,'A'),(64,12,59,'blocks/wrappers/mainbox_general.tpl','',1,'A'),(65,11,61,'','',0,'A'),(66,12,61,'blocks/wrappers/mainbox_general.tpl','',1,'A'),(67,11,64,'','',0,'A'),(68,5,65,'blocks/wrappers/sidebox_important.tpl','',1,'A'),(69,33,65,'blocks/wrappers/sidebox_important.tpl','',2,'A'),(70,12,66,'','',0,'A'),(71,49,68,'','',0,'A'),(72,11,69,'','',0,'A'),(73,50,69,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(74,12,70,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(83,51,79,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(82,12,78,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(81,11,77,'','',0,'A'),(78,11,74,'','',0,'A'),(79,12,75,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(80,52,76,'','',0,'A'),(84,1,80,'','top-languages',2,'A'),(85,2,80,'','top-currencies',3,'A'),(86,3,81,'','top-quick-links',3,'A'),(87,4,82,'','',0,'A'),(88,5,83,'blocks/wrappers/onclick_dropdown.tpl','top-my-account',2,'A'),(89,6,84,'','top-logo',0,'A'),(90,7,85,'','',0,'A'),(91,8,87,'','top-search',0,'A'),(92,9,88,'','top-cart-content',2,'A'),(93,10,89,'','top-menu',0,'A'),(94,13,91,'','',2,'A'),(95,14,92,'','',2,'A'),(96,15,94,'blocks/wrappers/footer_general.tpl','',0,'A'),(97,16,95,'blocks/wrappers/footer_general.tpl','footer-menu-shop',0,'A'),(98,17,96,'blocks/wrappers/footer_general.tpl','footer-menu-create-orders',0,'A'),(99,18,97,'blocks/wrappers/footer_general.tpl','footer-no-wysiwyg footer-contacts',0,'A'),(100,19,99,'','',2,'A'),(101,20,100,'','',2,'A'),(102,12,101,'','',0,'A'),(103,11,89,'','',1,'A');
+INSERT INTO `cscart_bm_snapping` VALUES (1,1,1,'','top-languages',2,'A'),(2,2,1,'','top-currencies',3,'A'),(3,3,2,'','top-quick-links',3,'A'),(4,4,3,'','',0,'A'),(5,5,4,'blocks/wrappers/onclick_dropdown.tpl','top-my-account',2,'A'),(6,6,5,'','top-logo',0,'A'),(7,7,6,'','',0,'A'),(8,8,8,'','top-search',0,'A'),(9,9,9,'','top-cart-content',2,'A'),(10,10,10,'','top-menu',2,'A'),(11,11,11,'','',0,'A'),(12,12,12,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(13,13,14,'','',2,'A'),(14,14,15,'','',2,'A'),(15,15,17,'blocks/wrappers/footer_general.tpl','',0,'A'),(16,16,18,'blocks/wrappers/footer_general.tpl','footer-menu-shop',0,'A'),(17,17,19,'blocks/wrappers/footer_general.tpl','footer-menu-create-orders',0,'A'),(18,18,20,'blocks/wrappers/footer_general.tpl','footer-no-wysiwyg footer-contacts',0,'A'),(19,19,22,'','',2,'A'),(20,20,23,'','',2,'D'),(21,21,25,'','homepage-banners',0,'A'),(28,12,30,'','',1,'A'),(30,29,30,'','homepage-benefits-guarantees',3,'D'),(31,11,32,'','',0,'A'),(32,12,33,'','',0,'A'),(33,30,34,'blocks/wrappers/mainbox_simple.tpl','',2,'A'),(34,31,35,'blocks/wrappers/mainbox_simple.tpl','',2,'A'),(35,11,38,'','',0,'A'),(36,32,39,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(37,33,39,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(38,12,40,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(39,11,43,'','',0,'A'),(40,12,44,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(41,34,47,'','',0,'A'),(42,35,48,'','',0,'A'),(43,36,48,'','',1,'A'),(44,37,48,'','',2,'A'),(45,38,48,'','',3,'A'),(46,39,48,'','',4,'A'),(47,40,48,'','',5,'A'),(48,41,48,'blocks/lite_checkout/wrappers/checkout_block_with_heading.tpl','',6,'A'),(49,42,48,'','',7,'A'),(50,43,48,'','',8,'A'),(51,44,48,'','',9,'A'),(52,12,48,'blocks/wrappers/mainbox_general.tpl','',10,'D'),(53,45,49,'','order-products',0,'A'),(54,46,49,'','',1,'A'),(55,6,51,'','top-logo',0,'A'),(56,19,52,'','',2,'A'),(57,11,53,'','',0,'A'),(58,12,54,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(59,47,55,'','',0,'A'),(60,11,56,'','',0,'A'),(61,12,57,'blocks/wrappers/mainbox_general.tpl','',2,'A'),(62,48,58,'','',0,'A'),(63,11,59,'','',0,'A'),(64,12,59,'blocks/wrappers/mainbox_general.tpl','',1,'A'),(65,11,61,'','',0,'A'),(66,12,61,'blocks/wrappers/mainbox_general.tpl','',1,'A'),(67,11,64,'','',0,'A'),(68,5,65,'blocks/wrappers/sidebox_important.tpl','',1,'A'),(69,33,65,'blocks/wrappers/sidebox_important.tpl','',2,'A'),(70,12,66,'','',0,'A'),(71,49,68,'','',0,'A'),(72,11,69,'','',0,'A'),(73,50,69,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(74,12,70,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(83,51,79,'blocks/wrappers/sidebox_important.tpl','',0,'A'),(82,12,78,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(81,11,77,'','',0,'A'),(78,11,74,'','',0,'A'),(79,12,75,'blocks/wrappers/mainbox_general.tpl','',0,'A'),(80,52,76,'','',0,'A'),(84,1,80,'','top-languages',2,'A'),(85,2,80,'','top-currencies',3,'A'),(86,3,81,'','top-quick-links',3,'A'),(87,4,82,'','',0,'A'),(88,5,83,'blocks/wrappers/onclick_dropdown.tpl','top-my-account',2,'A'),(89,6,84,'','top-logo',0,'A'),(90,7,85,'','',0,'A'),(91,8,87,'','top-search',0,'A'),(92,9,88,'','top-cart-content',2,'A'),(93,10,89,'','top-menu',0,'A'),(94,13,91,'','',2,'A'),(95,14,92,'','',2,'A'),(96,15,94,'blocks/wrappers/footer_general.tpl','',0,'A'),(97,16,95,'blocks/wrappers/footer_general.tpl','footer-menu-shop',0,'A'),(98,17,96,'blocks/wrappers/footer_general.tpl','footer-menu-create-orders',0,'A'),(99,18,97,'blocks/wrappers/footer_general.tpl','footer-no-wysiwyg footer-contacts',0,'A'),(100,19,99,'','',2,'A'),(101,20,100,'','',2,'A'),(102,12,101,'','',1,'A'),(103,11,89,'','',1,'A'),(104,21,101,'','',0,'A');
 /*!40000 ALTER TABLE `cscart_bm_snapping` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -679,20 +670,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_buy_together`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_buy_together` (
-  `chain_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `chain_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `products` text,
   `modifier` decimal(12,3) unsigned NOT NULL DEFAULT '0.000',
   `modifier_type` varchar(20) NOT NULL DEFAULT 'by_fixed',
-  `date_from` int(11) unsigned NOT NULL DEFAULT '0',
-  `date_to` int(11) unsigned NOT NULL DEFAULT '0',
+  `date_from` int unsigned NOT NULL DEFAULT '0',
+  `date_to` int unsigned NOT NULL DEFAULT '0',
   `display_in_promotions` char(1) NOT NULL DEFAULT 'Y',
   `status` char(1) NOT NULL DEFAULT 'D',
   PRIMARY KEY (`chain_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -710,14 +701,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_buy_together_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_buy_together_descriptions` (
-  `chain_id` int(10) unsigned NOT NULL,
+  `chain_id` int unsigned NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`chain_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -735,13 +726,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_cache_handlers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_cache_handlers` (
   `table_name` varchar(128) NOT NULL COMMENT 'Table name the cache record depends on',
   `cache_key` varchar(128) NOT NULL COMMENT 'Cache key or prefix used to register cache record',
   UNIQUE KEY `table_name_cache_key` (`table_name`,`cache_key`),
   KEY `table_name` (`table_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Stores relations between cache records registered with TyghRegistry::registerCache() and tables they depend on';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='Stores relations between cache records registered with TyghRegistry::registerCache() and tables they depend on';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -760,14 +751,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_call_requests`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_call_requests` (
-  `request_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `request_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `status` enum('new','in_progress','completed','no_answer') NOT NULL DEFAULT 'new',
   `name` varchar(250) NOT NULL DEFAULT '',
   `phone` varchar(128) NOT NULL DEFAULT '',
@@ -779,7 +770,7 @@ CREATE TABLE `cscart_call_requests` (
   KEY `user_id` (`company_id`,`user_id`),
   KEY `timestamp` (`timestamp`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -797,28 +788,28 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_categories` (
-  `category_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `category_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `id_path` varchar(255) NOT NULL DEFAULT '',
-  `level` int(11) unsigned NOT NULL DEFAULT '1',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `level` int unsigned NOT NULL DEFAULT '1',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `product_count` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `product_count` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `is_op` char(1) NOT NULL DEFAULT 'N',
   `localization` varchar(255) NOT NULL DEFAULT '',
   `age_verification` char(1) NOT NULL DEFAULT 'N',
-  `age_limit` tinyint(4) NOT NULL DEFAULT '0',
+  `age_limit` tinyint NOT NULL DEFAULT '0',
   `parent_age_verification` char(1) NOT NULL DEFAULT 'N',
-  `parent_age_limit` tinyint(4) NOT NULL DEFAULT '0',
+  `parent_age_limit` tinyint NOT NULL DEFAULT '0',
   `selected_views` text,
   `default_view` varchar(50) NOT NULL DEFAULT '',
   `product_details_view` varchar(50) NOT NULL DEFAULT '',
-  `product_columns` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `product_columns` tinyint unsigned NOT NULL DEFAULT '0',
   `is_trash` char(1) NOT NULL DEFAULT 'N',
   `is_default` char(1) NOT NULL DEFAULT 'N',
   `yml2_market_category` varchar(255) NOT NULL DEFAULT '',
@@ -836,7 +827,7 @@ CREATE TABLE `cscart_categories` (
   KEY `age_verification` (`age_verification`,`age_limit`),
   KEY `parent_age_verification` (`parent_age_verification`,`parent_age_limit`),
   KEY `p_category_id` (`category_id`,`usergroup_ids`,`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -854,9 +845,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_category_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_category_descriptions` (
-  `category_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `category_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `category` varchar(255) NOT NULL DEFAULT '',
   `description` mediumtext,
@@ -865,7 +856,7 @@ CREATE TABLE `cscart_category_descriptions` (
   `page_title` varchar(255) NOT NULL DEFAULT '',
   `age_warning_message` text,
   PRIMARY KEY (`category_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -883,16 +874,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_common_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_common_descriptions` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `object_type` varchar(32) NOT NULL DEFAULT '',
   `description` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `object` varchar(128) NOT NULL DEFAULT '',
   `object_holder` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`object_id`,`lang_code`,`object_holder`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -901,7 +892,7 @@ CREATE TABLE `cscart_common_descriptions` (
 
 LOCK TABLES `cscart_common_descriptions` WRITE;
 /*!40000 ALTER TABLE `cscart_common_descriptions` DISABLE KEYS */;
-INSERT INTO `cscart_common_descriptions` VALUES (2,'','','ru','Мой профиль','sitemap_sections'),(1,'','Просмотреть корзину','ru','Корзина','sitemap_links'),(2,'','Избранное','ru','Избранное','sitemap_links'),(3,'','Оформление заказа','ru','Оформление заказа','sitemap_links'),(4,'','Редактировать профиль','ru','Редактировать профиль','sitemap_links'),(11,'','Партнерский план','ru','Тестовый план','affiliate_plans'),(1,'','Брендирование','ru','','quick_menu'),(2,'','Юридические документы','ru','','quick_menu'),(4,'','Оформление заказа','ru','','quick_menu'),(5,'','Логотип','ru','','quick_menu'),(6,'','Компания и контакты','ru','','quick_menu'),(7,'','Цвета и шрифты темы','ru','','quick_menu'),(8,'','Условия для покупателей','ru','','quick_menu'),(9,'','Политика конфиденциальности','ru','','quick_menu'),(10,'','Согласие на обработку данных (GDPR)','ru','','quick_menu'),(11,'','Политика возврата товаров','ru','','quick_menu'),(19,'','Структура и поля','ru','','quick_menu'),(20,'','Дополнительные поля','ru','','quick_menu'),(21,'','Способы оплаты','ru','','quick_menu'),(22,'','Способы доставки','ru','','quick_menu'),(23,'','Налоги','ru','','quick_menu'),(180,'','men_clothes.jpg','ru','','images'),(181,'','w-phones_cat.gif','ru','','images'),(182,'','100009923665.gif','ru','','images'),(183,'','audio_video.gif','ru','','images'),(184,'','computes.gif','ru','','images'),(185,'','pc-desktops-sony_cat.jpg','ru','','images'),(186,'','dvds.gif','ru','','images'),(187,'','books.jpg','ru','','images'),(188,'','music.gif','ru','','images'),(189,'','build_your_pc.jpg','ru','','images'),(190,'','special_offer_ads.gif','ru','','images'),(191,'','thumbnail_B000068IG9.01._SCMZZZZZZZ_.jpg','ru','','images'),(192,'','modems.jpg','ru','','images'),(193,'','tjpg','ru','','images'),(194,'','ujpg','ru','','images'),(195,'','group_ddr_memory.jpg','ru','','images'),(196,'','group_laser_printers.jpg','ru','','images'),(197,'','tjpg','ru','','images'),(198,'','ujpg','ru','','images'),(199,'','tjpg','ru','','images'),(200,'','ujpg','ru','','images'),(237,'','','ru','','images'),(238,'','','ru','','images'),(239,'','','ru','','images'),(240,'','','ru','','images'),(243,'','','ru','','images'),(244,'','','ru','','images'),(245,'','','ru','','images'),(246,'','','ru','','images'),(247,'','','ru','','images'),(248,'','','ru','','images'),(249,'','','ru','','images'),(250,'','','ru','','images'),(251,'','','ru','','images'),(252,'','','ru','','images'),(254,'','','ru','','images'),(255,'','','ru','','images'),(256,'','','ru','','images'),(257,'','','ru','','images'),(258,'','','ru','','images'),(259,'','','ru','','images'),(260,'','','ru','','images'),(261,'','','ru','','images'),(262,'','','ru','','images'),(263,'','','ru','','images'),(264,'','','ru','','images'),(265,'','','ru','','images'),(266,'','','ru','','images'),(267,'','','ru','','images'),(268,'','','ru','','images'),(269,'','','ru','','images'),(270,'','','ru','','images'),(271,'','','ru','','images'),(274,'','','ru','','images'),(275,'','','ru','','images'),(276,'','','ru','','images'),(277,'','','ru','','images'),(278,'','','ru','','images'),(279,'','','ru','','images'),(280,'','','ru','','images'),(281,'','','ru','','images'),(282,'','','ru','','images'),(283,'','','ru','','images'),(284,'','','ru','','images'),(285,'','','ru','','images'),(286,'','','ru','','images'),(287,'','','ru','','images'),(288,'','','ru','','images'),(289,'','','ru','','images'),(290,'','','ru','','images'),(291,'','','ru','','images'),(292,'','','ru','','images'),(293,'','','ru','','images'),(294,'','','ru','','images'),(295,'','','ru','','images'),(296,'','','ru','','images'),(297,'','','ru','','images'),(298,'','','ru','','images'),(299,'','','ru','','images'),(300,'','','ru','','images'),(301,'','','ru','','images'),(302,'','','ru','','images'),(303,'','','ru','','images'),(304,'','','ru','','images'),(305,'','','ru','','images'),(306,'','','ru','','images'),(307,'','','ru','','images'),(308,'','','ru','','images'),(309,'','','ru','','images'),(310,'','','ru','','images'),(311,'','','ru','','images'),(312,'','','ru','','images'),(313,'','','ru','','images'),(314,'','','ru','','images'),(315,'','','ru','','images'),(316,'','','ru','','images'),(317,'','','ru','','images'),(318,'','','ru','','images'),(319,'','','ru','','images'),(320,'','','ru','','images'),(321,'','','ru','','images'),(322,'','','ru','','images'),(323,'','','ru','','images'),(324,'','','ru','','images'),(325,'','','ru','','images'),(327,'','','ru','','images'),(328,'','','ru','','images'),(329,'','','ru','','images'),(330,'','','ru','','images'),(331,'','','ru','','images'),(332,'','','ru','','images'),(333,'','','ru','','images'),(334,'','','ru','','images'),(335,'','','ru','','images'),(336,'','','ru','','images'),(337,'','','ru','','images'),(338,'','','ru','','images'),(339,'','','ru','','images'),(340,'','','ru','','images'),(341,'','','ru','','images'),(342,'','','ru','','images'),(343,'','','ru','','images'),(344,'','','ru','','images'),(345,'','','ru','','images'),(346,'','','ru','','images'),(347,'','','ru','','images'),(348,'','','ru','','images'),(349,'','','ru','','images'),(350,'','','ru','','images'),(351,'','','ru','','images'),(352,'','','ru','','images'),(353,'','','ru','','images'),(354,'','','ru','','images'),(355,'','','ru','','images'),(356,'','','ru','','images'),(357,'','','ru','','images'),(358,'','','ru','','images'),(359,'','','ru','','images'),(360,'','','ru','','images'),(361,'','','ru','','images'),(362,'','','ru','','images'),(363,'','','ru','','images'),(364,'','','ru','','images'),(365,'','','ru','','images'),(366,'','','ru','','images'),(367,'','','ru','','images'),(368,'','','ru','','images'),(369,'','','ru','','images'),(370,'','','ru','','images'),(371,'','','ru','','images'),(372,'','','ru','','images'),(373,'','','ru','','images'),(374,'','','ru','','images'),(375,'','','ru','','images'),(376,'','','ru','','images'),(377,'','','ru','','images'),(378,'','','ru','','images'),(379,'','','ru','','images'),(380,'','','ru','','images'),(381,'','','ru','','images'),(382,'','','ru','','images'),(383,'','','ru','','images'),(384,'','','ru','','images'),(385,'','','ru','','images'),(386,'','','ru','','images'),(390,'','','ru','','images'),(391,'','','ru','','images'),(392,'','','ru','','images'),(393,'','','ru','','images'),(394,'','','ru','','images'),(395,'','','ru','','images'),(396,'','','ru','','images'),(397,'','','ru','','images'),(398,'','','ru','','images'),(399,'','','ru','','images'),(400,'','','ru','','images'),(401,'','','ru','','images'),(402,'','','ru','','images'),(403,'','','ru','','images'),(404,'','','ru','','images'),(405,'','','ru','','images'),(406,'','','ru','','images'),(407,'','','ru','','images'),(408,'','','ru','','images'),(409,'','','ru','','images'),(410,'','','ru','','images'),(411,'','','ru','','images'),(412,'','','ru','','images'),(413,'','','ru','','images'),(414,'','','ru','','images'),(415,'','','ru','','images'),(416,'','','ru','','images'),(417,'','','ru','','images'),(418,'','','ru','','images'),(419,'','','ru','','images'),(420,'','','ru','','images'),(421,'','','ru','','images'),(422,'','','ru','','images'),(423,'','','ru','','images'),(424,'','','ru','','images'),(425,'','','ru','','images'),(426,'','','ru','','images'),(427,'','','ru','','images'),(428,'','','ru','','images'),(429,'','','ru','','images'),(430,'','','ru','','images'),(431,'','','ru','','images'),(432,'','','ru','','images'),(433,'','','ru','','images'),(434,'','','ru','','images'),(435,'','','ru','','images'),(436,'','','ru','','images'),(437,'','','ru','','images'),(438,'','','ru','','images'),(439,'','','ru','','images'),(440,'','','ru','','images'),(441,'','','ru','','images'),(442,'','','ru','','images'),(443,'','','ru','','images'),(444,'','','ru','','images'),(445,'','','ru','','images'),(446,'','','ru','','images'),(447,'','','ru','','images'),(522,'','','ru','','images'),(525,'','','ru','','images'),(524,'','','ru','','images'),(523,'','','ru','','images'),(453,'','','ru','','images'),(454,'','','ru','','images'),(455,'','','ru','','images'),(456,'','','ru','','images'),(457,'','','ru','','images'),(458,'','','ru','','images'),(459,'','','ru','','images'),(460,'','','ru','','images'),(461,'','','ru','','images'),(462,'','','ru','','images'),(463,'','','ru','','images'),(464,'','','ru','','images'),(465,'','','ru','','images'),(466,'','','ru','','images'),(467,'','','ru','','images'),(468,'','','ru','','images'),(469,'','','ru','','images'),(470,'','','ru','','images'),(471,'','','ru','','images'),(510,'','','ru','','images'),(473,'','','ru','','images'),(474,'','','ru','','images'),(475,'','','ru','','images'),(476,'','','ru','','images'),(477,'','','ru','','images'),(478,'','','ru','','images'),(479,'','','ru','','images'),(480,'','','ru','','images'),(481,'','','ru','','images'),(482,'','','ru','','images'),(483,'','','ru','','images'),(484,'','','ru','','images'),(485,'','','ru','','images'),(486,'','','ru','','images'),(487,'','','ru','','images'),(488,'','','ru','','images'),(489,'','','ru','','images'),(511,'','','ru','','images'),(491,'','','ru','','images'),(514,'','','ru','','images'),(495,'','','ru','','images'),(516,'','','ru','','images'),(515,'','','ru','','images'),(498,'','','ru','','images'),(513,'','','ru','','images'),(500,'','','ru','','images'),(501,'','','ru','','images'),(502,'','','ru','','images'),(503,'','','ru','','images'),(504,'','','ru','','images'),(518,'','','ru','','images'),(517,'','','ru','','images'),(507,'','','ru','','images'),(508,'','','ru','','images'),(509,'','','ru','','images'),(512,'','','ru','','images'),(519,'','','ru','','images'),(520,'','','ru','','images'),(521,'','','ru','','images'),(526,'','','ru','','images'),(527,'','','ru','','images'),(528,'','','ru','','images'),(529,'','','ru','','images'),(530,'','','ru','','images'),(531,'','','ru','','images'),(532,'','','ru','','images'),(533,'','','ru','','images'),(534,'','','ru','','images'),(535,'','','ru','','images'),(536,'','','ru','','images'),(537,'','','ru','','images'),(538,'','','ru','','images'),(539,'','','ru','','images'),(540,'','','ru','','images'),(541,'','','ru','','images'),(542,'','','ru','','images'),(543,'','','ru','','images'),(544,'','','ru','','images'),(545,'','','ru','','images'),(546,'','','ru','','images'),(547,'','','ru','','images'),(548,'','','ru','','images'),(549,'','','ru','','images'),(550,'','','ru','','images'),(551,'','','ru','','images'),(552,'','','ru','','images'),(553,'','','ru','','images'),(554,'','','ru','','images'),(555,'','','ru','','images'),(556,'','','ru','','images'),(557,'','','ru','','images'),(558,'','','ru','','images'),(559,'','','ru','','images'),(560,'','','ru','','images'),(561,'','','ru','','images'),(562,'','','ru','','images'),(563,'','','ru','','images'),(572,'','','ru','','images'),(565,'','','ru','','images'),(566,'','','ru','','images'),(567,'','','ru','','images'),(568,'','','ru','','images'),(569,'','','ru','','images'),(570,'','','ru','','images'),(571,'','','ru','','images'),(573,'','','ru','','images'),(574,'','','ru','','images'),(575,'','','ru','','images'),(576,'','','ru','','images'),(577,'','','ru','','images'),(578,'','','ru','','images'),(579,'','','ru','','images'),(580,'','','ru','','images'),(581,'','','ru','','images'),(582,'','','ru','','images'),(583,'','','ru','','images'),(584,'','','ru','','images'),(585,'','','ru','','images'),(586,'','','ru','','images'),(587,'','','ru','','images'),(588,'','','ru','','images'),(589,'','','ru','','images'),(590,'','','ru','','images'),(591,'','','ru','','images'),(592,'','','ru','','images'),(593,'','','ru','','images'),(594,'','','ru','','images'),(595,'','','ru','','images'),(596,'','','ru','','images'),(597,'','','ru','','images'),(598,'','','ru','','images'),(599,'','','ru','','images'),(600,'','','ru','','images'),(601,'','','ru','','images'),(602,'','','ru','','images'),(603,'','','ru','','images'),(604,'','','ru','','images'),(605,'','','ru','','images'),(606,'','','ru','','images'),(607,'','','ru','','images'),(608,'','','ru','','images'),(609,'','','ru','','images'),(610,'','','ru','','images'),(611,'','','ru','','images'),(612,'','','ru','','images'),(613,'','','ru','','images'),(614,'','','ru','','images'),(615,'','','ru','','images'),(616,'','','ru','','images'),(617,'','','ru','','images'),(618,'','','ru','','images'),(619,'','','ru','','images'),(620,'','','ru','','images'),(621,'','','ru','','images'),(622,'','','ru','','images'),(623,'','','ru','','images'),(624,'','','ru','','images'),(625,'','','ru','','images'),(626,'','','ru','','images'),(627,'','','ru','','images'),(628,'','','ru','','images'),(629,'','','ru','','images'),(630,'','','ru','','images'),(631,'','','ru','','images'),(632,'','','ru','','images'),(633,'','','ru','','images'),(634,'','','ru','','images'),(635,'','','ru','','images'),(636,'','','ru','','images'),(637,'','','ru','','images'),(638,'','','ru','','images'),(639,'','','ru','','images'),(640,'','','ru','','images'),(641,'','','ru','','images'),(642,'','','ru','','images'),(643,'','','ru','','images'),(644,'','','ru','','images'),(645,'','','ru','','images'),(646,'','','ru','','images'),(647,'','','ru','','images'),(648,'','','ru','','images'),(649,'','','ru','','images'),(650,'','','ru','','images'),(651,'','','ru','','images'),(652,'','','ru','','images'),(653,'','','ru','','images'),(654,'','','ru','','images'),(655,'','','ru','','images'),(656,'','','ru','','images'),(657,'','','ru','','images'),(658,'','','ru','','images'),(659,'','','ru','','images'),(660,'','','ru','','images'),(661,'','','ru','','images'),(662,'','','ru','','images'),(663,'','','ru','','images'),(664,'','','ru','','images'),(665,'','','ru','','images'),(666,'','','ru','','images'),(667,'','','ru','','images'),(668,'','','ru','','images'),(669,'','','ru','','images'),(670,'','','ru','','images'),(671,'','','ru','','images'),(672,'','','ru','','images'),(673,'','','ru','','images'),(674,'','','ru','','images'),(675,'','','ru','','images'),(676,'','','ru','','images'),(677,'','','ru','','images'),(678,'','','ru','','images'),(679,'','','ru','','images'),(680,'','','ru','','images'),(681,'','','ru','','images'),(682,'','','ru','','images'),(683,'','','ru','','images'),(684,'','','ru','','images'),(685,'','','ru','','images'),(686,'','','ru','','images'),(687,'','','ru','','images'),(688,'','','ru','','images'),(689,'','','ru','','images'),(690,'','','ru','','images'),(691,'','','ru','','images'),(692,'','','ru','','images'),(693,'','','ru','','images'),(694,'','','ru','','images'),(695,'','','ru','','images'),(696,'','','ru','','images'),(697,'','','ru','','images'),(698,'','','ru','','images'),(699,'','','ru','','images'),(700,'','','ru','','images'),(701,'','','ru','','images'),(702,'','','ru','','images'),(703,'','','ru','','images'),(704,'','','ru','','images'),(705,'','','ru','','images'),(706,'','','ru','','images'),(707,'','','ru','','images'),(708,'','','ru','','images'),(709,'','','ru','','images'),(710,'','','ru','','images'),(711,'','','ru','','images'),(712,'','','ru','','images'),(713,'','','ru','','images'),(714,'','','ru','','images'),(715,'','','ru','','images'),(716,'','','ru','','images'),(717,'','','ru','','images'),(718,'','','ru','','images'),(719,'','','ru','','images'),(720,'','','ru','','images'),(721,'','','ru','','images'),(722,'','','ru','','images'),(723,'','','ru','','images'),(724,'','','ru','','images'),(725,'','','ru','','images'),(739,'','','ru','','images'),(727,'','','ru','','images'),(728,'','','ru','','images'),(729,'','','ru','','images'),(730,'','','ru','','images'),(731,'','','ru','','images'),(732,'','','ru','','images'),(733,'','','ru','','images'),(734,'','','ru','','images'),(735,'','','ru','','images'),(736,'','','ru','','images'),(737,'','','ru','','images'),(738,'','','ru','','images'),(740,'','','ru','','images'),(741,'','','ru','','images'),(742,'','','ru','','images'),(743,'','','ru','','images'),(744,'','','ru','','images'),(745,'','','ru','','images'),(746,'','','ru','','images'),(747,'','','ru','','images'),(748,'','','ru','','images'),(749,'','','ru','','images'),(750,'','','ru','','images'),(751,'','','ru','','images'),(752,'','','ru','','images'),(753,'','','ru','','images'),(754,'','','ru','','images'),(755,'','','ru','','images'),(756,'','','ru','','images'),(757,'','','ru','','images'),(758,'','','ru','','images'),(759,'','','ru','','images'),(760,'','','ru','','images'),(761,'','','ru','','images'),(762,'','','ru','','images'),(763,'','','ru','','images'),(764,'','','ru','','images'),(765,'','','ru','','images'),(766,'','','ru','','images'),(767,'','','ru','','images'),(768,'','','ru','','images'),(769,'','','ru','','images'),(833,'','','ru','','images'),(771,'','','ru','','images'),(772,'','','ru','','images'),(773,'','','ru','','images'),(774,'','','ru','','images'),(775,'','','ru','','images'),(776,'','','ru','','images'),(777,'','','ru','','images'),(778,'','','ru','','images'),(779,'','','ru','','images'),(780,'','','ru','','images'),(781,'','','ru','','images'),(782,'','','ru','','images'),(783,'','','ru','','images'),(784,'','','ru','','images'),(785,'','','ru','','images'),(786,'','','ru','','images'),(787,'','','ru','','images'),(788,'','','ru','','images'),(789,'','','ru','','images'),(790,'','','ru','','images'),(791,'','','ru','','images'),(792,'','','ru','','images'),(793,'','','ru','','images'),(794,'','','ru','','images'),(795,'','','ru','','images'),(796,'','','ru','','images'),(797,'','','ru','','images'),(798,'','','ru','','images'),(799,'','','ru','','images'),(800,'','','ru','','images'),(801,'','','ru','','images'),(802,'','','ru','','images'),(803,'','','ru','','images'),(804,'','','ru','','images'),(805,'','','ru','','images'),(806,'','','ru','','images'),(807,'','','ru','','images'),(808,'','','ru','','images'),(809,'','','ru','','images'),(810,'','','ru','','images'),(811,'','','ru','','images'),(812,'','','ru','','images'),(813,'','','ru','','images'),(814,'','','ru','','images'),(815,'','','ru','','images'),(816,'','','ru','','images'),(817,'','','ru','','images'),(818,'','','ru','','images'),(819,'','','ru','','images'),(820,'','','ru','','images'),(821,'','','ru','','images'),(822,'','','ru','','images'),(823,'','','ru','','images'),(824,'','','ru','','images'),(825,'','','ru','','images'),(826,'','','ru','','images'),(827,'','','ru','','images'),(828,'','','ru','','images'),(829,'','','ru','','images'),(830,'','','ru','','images'),(831,'','','ru','','images'),(832,'','','ru','','images'),(834,'','','ru','','images'),(835,'','','ru','','images'),(836,'','','ru','','images'),(837,'','','ru','','images'),(838,'','','ru','','images'),(839,'','','ru','','images'),(840,'','','ru','','images'),(841,'','','ru','','images'),(842,'','','ru','','images'),(843,'','','ru','','images'),(844,'','','ru','','images'),(845,'','','ru','','images'),(846,'','','ru','','images'),(847,'','','ru','','images'),(848,'','','ru','','images'),(849,'','','ru','','images'),(850,'','','ru','','images'),(851,'','','ru','','images'),(852,'','','ru','','images'),(853,'','','ru','','images'),(854,'','','ru','','images'),(855,'','','ru','','images'),(856,'','','ru','','images'),(857,'','','ru','','images'),(858,'','','ru','','images'),(862,'','','ru','','images'),(861,'','','ru','','images'),(863,'','','ru','','images'),(879,'','','ru','','images'),(898,'','','ru','','images'),(881,'','','ru','','images'),(882,'','','ru','','images'),(905,'','','ru','','images'),(906,'','','ru','','images'),(908,'','','ru','','images'),(909,'','','ru','','images'),(904,'','','ru','','images'),(907,'','','ru','','images'),(926,'','','ru','','images'),(1006,'','','ru','','images'),(1007,'','','ru','','images'),(1008,'','','ru','','images'),(1009,'','','ru','','images'),(1010,'','','ru','','images'),(1011,'','','ru','','images'),(1012,'','','ru','','images'),(1013,'','','ru','','images'),(1014,'','','ru','','images'),(1015,'','','ru','','images'),(1016,'','','ru','','images'),(1017,'','','ru','','images'),(1018,'','','ru','','images'),(1019,'','','ru','','images'),(1020,'','','ru','','images'),(1021,'','','ru','','images'),(1022,'','','ru','','images'),(1023,'','','ru','','images'),(1024,'','','ru','','images'),(1025,'','','ru','','images'),(1026,'','','ru','','images'),(1027,'','','ru','','images'),(1028,'','','ru','','images'),(1029,'','','ru','','images'),(1030,'','','ru','','images'),(1031,'','','ru','','images'),(1032,'','','ru','','images'),(1033,'','','ru','','images'),(1034,'','','ru','','images'),(1035,'','','ru','','images'),(1036,'','','ru','','images'),(1037,'','','ru','','images'),(1038,'','','ru','','images'),(1039,'','','ru','','images'),(1040,'','','ru','','images'),(1041,'','','ru','','images'),(1042,'','','ru','','images'),(1043,'','','ru','','images'),(1044,'','','ru','','images'),(1045,'','','ru','','images'),(1046,'','','ru','','images'),(1047,'','','ru','','images'),(1048,'','','ru','','images'),(1051,'','','ru','','images'),(1052,'','','ru','','images'),(1053,'','','ru','','images'),(1054,'','','ru','','images'),(1055,'','','ru','','images'),(0,'','ООО \"Симбирские технологии\"','ru','','Admin_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Customer_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Gift_certificate_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Mail_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Signin_logo'),(1,'','','ru','Список рассылки 1','mailing_lists'),(2,'','','en','My account','sitemap_sections'),(1,'','View cart','en','View cart','sitemap_links'),(2,'','Wish List','en','Wish List','sitemap_links'),(3,'','Checkout','en','Checkout','sitemap_links'),(4,'','Edit profile','en','Edit profile','sitemap_links'),(11,'','Fourth affiliate plan description.','en','Test plan','affiliate_plans'),(1,'','Branding','en','','quick_menu'),(2,'','Legal documents','en','','quick_menu'),(4,'','Checkout','en','','quick_menu'),(5,'','Logo','en','','quick_menu'),(6,'','Company & contacts','en','','quick_menu'),(7,'','Theme colors & fonts','en','','quick_menu'),(8,'','Terms for customers','en','','quick_menu'),(9,'','Privacy policy','en','','quick_menu'),(10,'','GDPR','en','','quick_menu'),(11,'','Returns and exchanges','en','','quick_menu'),(19,'','Structure and fields','en','','quick_menu'),(20,'','Extra fields','en','','quick_menu'),(21,'','Payment methods','en','','quick_menu'),(22,'','Shipping methods','en','','quick_menu'),(23,'','Taxes','en','','quick_menu'),(180,'','men_clothes.jpg','en','','images'),(181,'','w-phones_cat.gif','en','','images'),(182,'','100009923665.gif','en','','images'),(183,'','audio_video.gif','en','','images'),(184,'','computes.gif','en','','images'),(185,'','pc-desktops-sony_cat.jpg','en','','images'),(186,'','dvds.gif','en','','images'),(187,'','books.jpg','en','','images'),(188,'','music.gif','en','','images'),(189,'','build_your_pc.jpg','en','','images'),(190,'','special_offer_ads.gif','en','','images'),(191,'','thumbnail_B000068IG9.01._SCMZZZZZZZ_.jpg','en','','images'),(192,'','modems.jpg','en','','images'),(193,'','tjpg','en','','images'),(194,'','ujpg','en','','images'),(195,'','group_ddr_memory.jpg','en','','images'),(196,'','group_laser_printers.jpg','en','','images'),(197,'','tjpg','en','','images'),(198,'','ujpg','en','','images'),(199,'','tjpg','en','','images'),(200,'','ujpg','en','','images'),(237,'','','en','','images'),(238,'','','en','','images'),(239,'','','en','','images'),(240,'','','en','','images'),(243,'','','en','','images'),(244,'','','en','','images'),(245,'','','en','','images'),(246,'','','en','','images'),(247,'','','en','','images'),(248,'','','en','','images'),(249,'','','en','','images'),(250,'','','en','','images'),(251,'','','en','','images'),(252,'','','en','','images'),(254,'','','en','','images'),(255,'','','en','','images'),(256,'','','en','','images'),(257,'','','en','','images'),(258,'','','en','','images'),(259,'','','en','','images'),(260,'','','en','','images'),(261,'','','en','','images'),(262,'','','en','','images'),(263,'','','en','','images'),(264,'','','en','','images'),(265,'','','en','','images'),(266,'','','en','','images'),(267,'','','en','','images'),(268,'','','en','','images'),(269,'','','en','','images'),(270,'','','en','','images'),(271,'','','en','','images'),(274,'','','en','','images'),(275,'','','en','','images'),(276,'','','en','','images'),(277,'','','en','','images'),(278,'','','en','','images'),(279,'','','en','','images'),(280,'','','en','','images'),(281,'','','en','','images'),(282,'','','en','','images'),(283,'','','en','','images'),(284,'','','en','','images'),(285,'','','en','','images'),(286,'','','en','','images'),(287,'','','en','','images'),(288,'','','en','','images'),(289,'','','en','','images'),(290,'','','en','','images'),(291,'','','en','','images'),(292,'','','en','','images'),(293,'','','en','','images'),(294,'','','en','','images'),(295,'','','en','','images'),(296,'','','en','','images'),(297,'','','en','','images'),(298,'','','en','','images'),(299,'','','en','','images'),(300,'','','en','','images'),(301,'','','en','','images'),(302,'','','en','','images'),(303,'','','en','','images'),(304,'','','en','','images'),(305,'','','en','','images'),(306,'','','en','','images'),(307,'','','en','','images'),(308,'','','en','','images'),(309,'','','en','','images'),(310,'','','en','','images'),(311,'','','en','','images'),(312,'','','en','','images'),(313,'','','en','','images'),(314,'','','en','','images'),(315,'','','en','','images'),(316,'','','en','','images'),(317,'','','en','','images'),(318,'','','en','','images'),(319,'','','en','','images'),(320,'','','en','','images'),(321,'','','en','','images'),(322,'','','en','','images'),(323,'','','en','','images'),(324,'','','en','','images'),(325,'','','en','','images'),(327,'','','en','','images'),(328,'','','en','','images'),(329,'','','en','','images'),(330,'','','en','','images'),(331,'','','en','','images'),(332,'','','en','','images'),(333,'','','en','','images'),(334,'','','en','','images'),(335,'','','en','','images'),(336,'','','en','','images'),(337,'','','en','','images'),(338,'','','en','','images'),(339,'','','en','','images'),(340,'','','en','','images'),(341,'','','en','','images'),(342,'','','en','','images'),(343,'','','en','','images'),(344,'','','en','','images'),(345,'','','en','','images'),(346,'','','en','','images'),(347,'','','en','','images'),(348,'','','en','','images'),(349,'','','en','','images'),(350,'','','en','','images'),(351,'','','en','','images'),(352,'','','en','','images'),(353,'','','en','','images'),(354,'','','en','','images'),(355,'','','en','','images'),(356,'','','en','','images'),(357,'','','en','','images'),(358,'','','en','','images'),(359,'','','en','','images'),(360,'','','en','','images'),(361,'','','en','','images'),(362,'','','en','','images'),(363,'','','en','','images'),(364,'','','en','','images'),(365,'','','en','','images'),(366,'','','en','','images'),(367,'','','en','','images'),(368,'','','en','','images'),(369,'','','en','','images'),(370,'','','en','','images'),(371,'','','en','','images'),(372,'','','en','','images'),(373,'','','en','','images'),(374,'','','en','','images'),(375,'','','en','','images'),(376,'','','en','','images'),(377,'','','en','','images'),(378,'','','en','','images'),(379,'','','en','','images'),(380,'','','en','','images'),(381,'','','en','','images'),(382,'','','en','','images'),(383,'','','en','','images'),(384,'','','en','','images'),(385,'','','en','','images'),(386,'','','en','','images'),(390,'','','en','','images'),(391,'','','en','','images'),(392,'','','en','','images'),(393,'','','en','','images'),(394,'','','en','','images'),(395,'','','en','','images'),(396,'','','en','','images'),(397,'','','en','','images'),(398,'','','en','','images'),(399,'','','en','','images'),(400,'','','en','','images'),(401,'','','en','','images'),(402,'','','en','','images'),(403,'','','en','','images'),(404,'','','en','','images'),(405,'','','en','','images'),(406,'','','en','','images'),(407,'','','en','','images'),(408,'','','en','','images'),(409,'','','en','','images'),(410,'','','en','','images'),(411,'','','en','','images'),(412,'','','en','','images'),(413,'','','en','','images'),(414,'','','en','','images'),(415,'','','en','','images'),(416,'','','en','','images'),(417,'','','en','','images'),(418,'','','en','','images'),(419,'','','en','','images'),(420,'','','en','','images'),(421,'','','en','','images'),(422,'','','en','','images'),(423,'','','en','','images'),(424,'','','en','','images'),(425,'','','en','','images'),(426,'','','en','','images'),(427,'','','en','','images'),(428,'','','en','','images'),(429,'','','en','','images'),(430,'','','en','','images'),(431,'','','en','','images'),(432,'','','en','','images'),(433,'','','en','','images'),(434,'','','en','','images'),(435,'','','en','','images'),(436,'','','en','','images'),(437,'','','en','','images'),(438,'','','en','','images'),(439,'','','en','','images'),(440,'','','en','','images'),(441,'','','en','','images'),(442,'','','en','','images'),(443,'','','en','','images'),(444,'','','en','','images'),(445,'','','en','','images'),(446,'','','en','','images'),(447,'','','en','','images'),(522,'','','en','','images'),(525,'','','en','','images'),(524,'','','en','','images'),(523,'','','en','','images'),(453,'','','en','','images'),(454,'','','en','','images'),(455,'','','en','','images'),(456,'','','en','','images'),(457,'','','en','','images'),(458,'','','en','','images'),(459,'','','en','','images'),(460,'','','en','','images'),(461,'','','en','','images'),(462,'','','en','','images'),(463,'','','en','','images'),(464,'','','en','','images'),(465,'','','en','','images'),(466,'','','en','','images'),(467,'','','en','','images'),(468,'','','en','','images'),(469,'','','en','','images'),(470,'','','en','','images'),(471,'','','en','','images'),(510,'','','en','','images'),(473,'','','en','','images'),(474,'','','en','','images'),(475,'','','en','','images'),(476,'','','en','','images'),(477,'','','en','','images'),(478,'','','en','','images'),(479,'','','en','','images'),(480,'','','en','','images'),(481,'','','en','','images'),(482,'','','en','','images'),(483,'','','en','','images'),(484,'','','en','','images'),(485,'','','en','','images'),(486,'','','en','','images'),(487,'','','en','','images'),(488,'','','en','','images'),(489,'','','en','','images'),(511,'','','en','','images'),(491,'','','en','','images'),(514,'','','en','','images'),(495,'','','en','','images'),(516,'','','en','','images'),(515,'','','en','','images'),(498,'','','en','','images'),(513,'','','en','','images'),(500,'','','en','','images'),(501,'','','en','','images'),(502,'','','en','','images'),(503,'','','en','','images'),(504,'','','en','','images'),(518,'','','en','','images'),(517,'','','en','','images'),(507,'','','en','','images'),(508,'','','en','','images'),(509,'','','en','','images'),(512,'','','en','','images'),(519,'','','en','','images'),(520,'','','en','','images'),(521,'','','en','','images'),(526,'','','en','','images'),(527,'','','en','','images'),(528,'','','en','','images'),(529,'','','en','','images'),(530,'','','en','','images'),(531,'','','en','','images'),(532,'','','en','','images'),(533,'','','en','','images'),(534,'','','en','','images'),(535,'','','en','','images'),(536,'','','en','','images'),(537,'','','en','','images'),(538,'','','en','','images'),(539,'','','en','','images'),(540,'','','en','','images'),(541,'','','en','','images'),(542,'','','en','','images'),(543,'','','en','','images'),(544,'','','en','','images'),(545,'','','en','','images'),(546,'','','en','','images'),(547,'','','en','','images'),(548,'','','en','','images'),(549,'','','en','','images'),(550,'','','en','','images'),(551,'','','en','','images'),(552,'','','en','','images'),(553,'','','en','','images'),(554,'','','en','','images'),(555,'','','en','','images'),(556,'','','en','','images'),(557,'','','en','','images'),(558,'','','en','','images'),(559,'','','en','','images'),(560,'','','en','','images'),(561,'','','en','','images'),(562,'','','en','','images'),(563,'','','en','','images'),(572,'','','en','','images'),(565,'','','en','','images'),(566,'','','en','','images'),(567,'','','en','','images'),(568,'','','en','','images'),(569,'','','en','','images'),(570,'','','en','','images'),(571,'','','en','','images'),(573,'','','en','','images'),(574,'','','en','','images'),(575,'','','en','','images'),(576,'','','en','','images'),(577,'','','en','','images'),(578,'','','en','','images'),(579,'','','en','','images'),(580,'','','en','','images'),(581,'','','en','','images'),(582,'','','en','','images'),(583,'','','en','','images'),(584,'','','en','','images'),(585,'','','en','','images'),(586,'','','en','','images'),(587,'','','en','','images'),(588,'','','en','','images'),(589,'','','en','','images'),(590,'','','en','','images'),(591,'','','en','','images'),(592,'','','en','','images'),(593,'','','en','','images'),(594,'','','en','','images'),(595,'','','en','','images'),(596,'','','en','','images'),(597,'','','en','','images'),(598,'','','en','','images'),(599,'','','en','','images'),(600,'','','en','','images'),(601,'','','en','','images'),(602,'','','en','','images'),(603,'','','en','','images'),(604,'','','en','','images'),(605,'','','en','','images'),(606,'','','en','','images'),(607,'','','en','','images'),(608,'','','en','','images'),(609,'','','en','','images'),(610,'','','en','','images'),(611,'','','en','','images'),(612,'','','en','','images'),(613,'','','en','','images'),(614,'','','en','','images'),(615,'','','en','','images'),(616,'','','en','','images'),(617,'','','en','','images'),(618,'','','en','','images'),(619,'','','en','','images'),(620,'','','en','','images'),(621,'','','en','','images'),(622,'','','en','','images'),(623,'','','en','','images'),(624,'','','en','','images'),(625,'','','en','','images'),(626,'','','en','','images'),(627,'','','en','','images'),(628,'','','en','','images'),(629,'','','en','','images'),(630,'','','en','','images'),(631,'','','en','','images'),(632,'','','en','','images'),(633,'','','en','','images'),(634,'','','en','','images'),(635,'','','en','','images'),(636,'','','en','','images'),(637,'','','en','','images'),(638,'','','en','','images'),(639,'','','en','','images'),(640,'','','en','','images'),(641,'','','en','','images'),(642,'','','en','','images'),(643,'','','en','','images'),(644,'','','en','','images'),(645,'','','en','','images'),(646,'','','en','','images'),(647,'','','en','','images'),(648,'','','en','','images'),(649,'','','en','','images'),(650,'','','en','','images'),(651,'','','en','','images'),(652,'','','en','','images'),(653,'','','en','','images'),(654,'','','en','','images'),(655,'','','en','','images'),(656,'','','en','','images'),(657,'','','en','','images'),(658,'','','en','','images'),(659,'','','en','','images'),(660,'','','en','','images'),(661,'','','en','','images'),(662,'','','en','','images'),(663,'','','en','','images'),(664,'','','en','','images'),(665,'','','en','','images'),(666,'','','en','','images'),(667,'','','en','','images'),(668,'','','en','','images'),(669,'','','en','','images'),(670,'','','en','','images'),(671,'','','en','','images'),(672,'','','en','','images'),(673,'','','en','','images'),(674,'','','en','','images'),(675,'','','en','','images'),(676,'','','en','','images'),(677,'','','en','','images'),(678,'','','en','','images'),(679,'','','en','','images'),(680,'','','en','','images'),(681,'','','en','','images'),(682,'','','en','','images'),(683,'','','en','','images'),(684,'','','en','','images'),(685,'','','en','','images'),(686,'','','en','','images'),(687,'','','en','','images'),(688,'','','en','','images'),(689,'','','en','','images'),(690,'','','en','','images'),(691,'','','en','','images'),(692,'','','en','','images'),(693,'','','en','','images'),(694,'','','en','','images'),(695,'','','en','','images'),(696,'','','en','','images'),(697,'','','en','','images'),(698,'','','en','','images'),(699,'','','en','','images'),(700,'','','en','','images'),(701,'','','en','','images'),(702,'','','en','','images'),(703,'','','en','','images'),(704,'','','en','','images'),(705,'','','en','','images'),(706,'','','en','','images'),(707,'','','en','','images'),(708,'','','en','','images'),(709,'','','en','','images'),(710,'','','en','','images'),(711,'','','en','','images'),(712,'','','en','','images'),(713,'','','en','','images'),(714,'','','en','','images'),(715,'','','en','','images'),(716,'','','en','','images'),(717,'','','en','','images'),(718,'','','en','','images'),(719,'','','en','','images'),(720,'','','en','','images'),(721,'','','en','','images'),(722,'','','en','','images'),(723,'','','en','','images'),(724,'','','en','','images'),(725,'','','en','','images'),(739,'','','en','','images'),(727,'','','en','','images'),(728,'','','en','','images'),(729,'','','en','','images'),(730,'','','en','','images'),(731,'','','en','','images'),(732,'','','en','','images'),(733,'','','en','','images'),(734,'','','en','','images'),(735,'','','en','','images'),(736,'','','en','','images'),(737,'','','en','','images'),(738,'','','en','','images'),(740,'','','en','','images'),(741,'','','en','','images'),(742,'','','en','','images'),(743,'','','en','','images'),(744,'','','en','','images'),(745,'','','en','','images'),(746,'','','en','','images'),(747,'','','en','','images'),(748,'','','en','','images'),(749,'','','en','','images'),(750,'','','en','','images'),(751,'','','en','','images'),(752,'','','en','','images'),(753,'','','en','','images'),(754,'','','en','','images'),(755,'','','en','','images'),(756,'','','en','','images'),(757,'','','en','','images'),(758,'','','en','','images'),(759,'','','en','','images'),(760,'','','en','','images'),(761,'','','en','','images'),(762,'','','en','','images'),(763,'','','en','','images'),(764,'','','en','','images'),(765,'','','en','','images'),(766,'','','en','','images'),(767,'','','en','','images'),(768,'','','en','','images'),(769,'','','en','','images'),(833,'','','en','','images'),(771,'','','en','','images'),(772,'','','en','','images'),(773,'','','en','','images'),(774,'','','en','','images'),(775,'','','en','','images'),(776,'','','en','','images'),(777,'','','en','','images'),(778,'','','en','','images'),(779,'','','en','','images'),(780,'','','en','','images'),(781,'','','en','','images'),(782,'','','en','','images'),(783,'','','en','','images'),(784,'','','en','','images'),(785,'','','en','','images'),(786,'','','en','','images'),(787,'','','en','','images'),(788,'','','en','','images'),(789,'','','en','','images'),(790,'','','en','','images'),(791,'','','en','','images'),(792,'','','en','','images'),(793,'','','en','','images'),(794,'','','en','','images'),(795,'','','en','','images'),(796,'','','en','','images'),(797,'','','en','','images'),(798,'','','en','','images'),(799,'','','en','','images'),(800,'','','en','','images'),(801,'','','en','','images'),(802,'','','en','','images'),(803,'','','en','','images'),(804,'','','en','','images'),(805,'','','en','','images'),(806,'','','en','','images'),(807,'','','en','','images'),(808,'','','en','','images'),(809,'','','en','','images'),(810,'','','en','','images'),(811,'','','en','','images'),(812,'','','en','','images'),(813,'','','en','','images'),(814,'','','en','','images'),(815,'','','en','','images'),(816,'','','en','','images'),(817,'','','en','','images'),(818,'','','en','','images'),(819,'','','en','','images'),(820,'','','en','','images'),(821,'','','en','','images'),(822,'','','en','','images'),(823,'','','en','','images'),(824,'','','en','','images'),(825,'','','en','','images'),(826,'','','en','','images'),(827,'','','en','','images'),(828,'','','en','','images'),(829,'','','en','','images'),(830,'','','en','','images'),(831,'','','en','','images'),(832,'','','en','','images'),(834,'','','en','','images'),(835,'','','en','','images'),(836,'','','en','','images'),(837,'','','en','','images'),(838,'','','en','','images'),(839,'','','en','','images'),(840,'','','en','','images'),(841,'','','en','','images'),(842,'','','en','','images'),(843,'','','en','','images'),(844,'','','en','','images'),(845,'','','en','','images'),(846,'','','en','','images'),(847,'','','en','','images'),(848,'','','en','','images'),(849,'','','en','','images'),(850,'','','en','','images'),(851,'','','en','','images'),(852,'','','en','','images'),(853,'','','en','','images'),(854,'','','en','','images'),(855,'','','en','','images'),(856,'','','en','','images'),(857,'','','en','','images'),(858,'','','en','','images'),(862,'','','en','','images'),(861,'','','en','','images'),(863,'','','en','','images'),(879,'','','en','','images'),(898,'','','en','','images'),(881,'','','en','','images'),(882,'','','en','','images'),(905,'','','en','','images'),(906,'','','en','','images'),(908,'','','en','','images'),(909,'','','en','','images'),(904,'','','en','','images'),(907,'','','en','','images'),(926,'','','en','','images'),(1006,'','','en','','images'),(1007,'','','en','','images'),(1008,'','','en','','images'),(1009,'','','en','','images'),(1010,'','','en','','images'),(1011,'','','en','','images'),(1012,'','','en','','images'),(1013,'','','en','','images'),(1014,'','','en','','images'),(1015,'','','en','','images'),(1016,'','','en','','images'),(1017,'','','en','','images'),(1018,'','','en','','images'),(1019,'','','en','','images'),(1020,'','','en','','images'),(1021,'','','en','','images'),(1022,'','','en','','images'),(1023,'','','en','','images'),(1024,'','','en','','images'),(1025,'','','en','','images'),(1026,'','','en','','images'),(1027,'','','en','','images'),(1028,'','','en','','images'),(1029,'','','en','','images'),(1030,'','','en','','images'),(1031,'','','en','','images'),(1032,'','','en','','images'),(1033,'','','en','','images'),(1034,'','','en','','images'),(1035,'','','en','','images'),(1036,'','','en','','images'),(1037,'','','en','','images'),(1038,'','','en','','images'),(1039,'','','en','','images'),(1040,'','','en','','images'),(1041,'','','en','','images'),(1042,'','','en','','images'),(1043,'','','en','','images'),(1044,'','','en','','images'),(1045,'','','en','','images'),(1046,'','','en','','images'),(1047,'','','en','','images'),(1048,'','','en','','images'),(1051,'','','en','','images'),(1052,'','','en','','images'),(1053,'','','en','','images'),(1054,'','','en','','images'),(1055,'','','en','','images'),(0,'','ООО \"Симбирские технологии\"','en','','Admin_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Customer_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Gift_certificate_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Mail_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Signin_logo'),(1,'','','en','Список рассылки 1','mailing_lists');
+INSERT INTO `cscart_common_descriptions` VALUES (2,'','','ru','Мой профиль','sitemap_sections'),(1,'','Просмотреть корзину','ru','Корзина','sitemap_links'),(2,'','Избранное','ru','Избранное','sitemap_links'),(3,'','Оформление заказа','ru','Оформление заказа','sitemap_links'),(4,'','Редактировать профиль','ru','Редактировать профиль','sitemap_links'),(11,'','Партнерский план','ru','Тестовый план','affiliate_plans'),(1,'','Брендирование','ru','','quick_menu'),(2,'','Юридические документы','ru','','quick_menu'),(4,'','Оформление заказа','ru','','quick_menu'),(5,'','Логотип','ru','','quick_menu'),(6,'','Компания и контакты','ru','','quick_menu'),(7,'','Цвета и шрифты темы','ru','','quick_menu'),(8,'','Условия для покупателей','ru','','quick_menu'),(9,'','Политика конфиденциальности','ru','','quick_menu'),(10,'','Согласие на обработку данных (GDPR)','ru','','quick_menu'),(11,'','Политика возврата товаров','ru','','quick_menu'),(19,'','Структура и поля','ru','','quick_menu'),(20,'','Дополнительные поля','ru','','quick_menu'),(21,'','Способы оплаты','ru','','quick_menu'),(22,'','Способы доставки','ru','','quick_menu'),(23,'','Налоги','ru','','quick_menu'),(180,'','men_clothes.jpg','ru','','images'),(181,'','w-phones_cat.gif','ru','','images'),(182,'','100009923665.gif','ru','','images'),(183,'','audio_video.gif','ru','','images'),(184,'','computes.gif','ru','','images'),(185,'','pc-desktops-sony_cat.jpg','ru','','images'),(186,'','dvds.gif','ru','','images'),(187,'','books.jpg','ru','','images'),(188,'','music.gif','ru','','images'),(189,'','build_your_pc.jpg','ru','','images'),(190,'','special_offer_ads.gif','ru','','images'),(191,'','thumbnail_B000068IG9.01._SCMZZZZZZZ_.jpg','ru','','images'),(192,'','modems.jpg','ru','','images'),(193,'','tjpg','ru','','images'),(194,'','ujpg','ru','','images'),(195,'','group_ddr_memory.jpg','ru','','images'),(196,'','group_laser_printers.jpg','ru','','images'),(197,'','tjpg','ru','','images'),(198,'','ujpg','ru','','images'),(199,'','tjpg','ru','','images'),(200,'','ujpg','ru','','images'),(237,'','','ru','','images'),(238,'','','ru','','images'),(239,'','','ru','','images'),(240,'','','ru','','images'),(243,'','','ru','','images'),(244,'','','ru','','images'),(245,'','','ru','','images'),(246,'','','ru','','images'),(247,'','','ru','','images'),(248,'','','ru','','images'),(249,'','','ru','','images'),(250,'','','ru','','images'),(251,'','','ru','','images'),(252,'','','ru','','images'),(254,'','','ru','','images'),(255,'','','ru','','images'),(256,'','','ru','','images'),(257,'','','ru','','images'),(258,'','','ru','','images'),(259,'','','ru','','images'),(260,'','','ru','','images'),(261,'','','ru','','images'),(262,'','','ru','','images'),(263,'','','ru','','images'),(264,'','','ru','','images'),(265,'','','ru','','images'),(266,'','','ru','','images'),(267,'','','ru','','images'),(268,'','','ru','','images'),(269,'','','ru','','images'),(270,'','','ru','','images'),(271,'','','ru','','images'),(274,'','','ru','','images'),(275,'','','ru','','images'),(276,'','','ru','','images'),(277,'','','ru','','images'),(278,'','','ru','','images'),(279,'','','ru','','images'),(280,'','','ru','','images'),(281,'','','ru','','images'),(282,'','','ru','','images'),(283,'','','ru','','images'),(284,'','','ru','','images'),(285,'','','ru','','images'),(286,'','','ru','','images'),(287,'','','ru','','images'),(288,'','','ru','','images'),(289,'','','ru','','images'),(290,'','','ru','','images'),(291,'','','ru','','images'),(292,'','','ru','','images'),(293,'','','ru','','images'),(294,'','','ru','','images'),(295,'','','ru','','images'),(296,'','','ru','','images'),(297,'','','ru','','images'),(298,'','','ru','','images'),(299,'','','ru','','images'),(300,'','','ru','','images'),(301,'','','ru','','images'),(302,'','','ru','','images'),(303,'','','ru','','images'),(304,'','','ru','','images'),(305,'','','ru','','images'),(306,'','','ru','','images'),(307,'','','ru','','images'),(308,'','','ru','','images'),(309,'','','ru','','images'),(310,'','','ru','','images'),(311,'','','ru','','images'),(312,'','','ru','','images'),(313,'','','ru','','images'),(314,'','','ru','','images'),(315,'','','ru','','images'),(316,'','','ru','','images'),(317,'','','ru','','images'),(318,'','','ru','','images'),(319,'','','ru','','images'),(320,'','','ru','','images'),(321,'','','ru','','images'),(322,'','','ru','','images'),(323,'','','ru','','images'),(324,'','','ru','','images'),(325,'','','ru','','images'),(327,'','','ru','','images'),(328,'','','ru','','images'),(329,'','','ru','','images'),(330,'','','ru','','images'),(331,'','','ru','','images'),(332,'','','ru','','images'),(333,'','','ru','','images'),(334,'','','ru','','images'),(335,'','','ru','','images'),(336,'','','ru','','images'),(337,'','','ru','','images'),(338,'','','ru','','images'),(339,'','','ru','','images'),(340,'','','ru','','images'),(341,'','','ru','','images'),(342,'','','ru','','images'),(343,'','','ru','','images'),(344,'','','ru','','images'),(345,'','','ru','','images'),(346,'','','ru','','images'),(347,'','','ru','','images'),(348,'','','ru','','images'),(349,'','','ru','','images'),(350,'','','ru','','images'),(351,'','','ru','','images'),(352,'','','ru','','images'),(353,'','','ru','','images'),(354,'','','ru','','images'),(355,'','','ru','','images'),(356,'','','ru','','images'),(357,'','','ru','','images'),(358,'','','ru','','images'),(359,'','','ru','','images'),(360,'','','ru','','images'),(361,'','','ru','','images'),(362,'','','ru','','images'),(363,'','','ru','','images'),(364,'','','ru','','images'),(365,'','','ru','','images'),(366,'','','ru','','images'),(367,'','','ru','','images'),(368,'','','ru','','images'),(369,'','','ru','','images'),(370,'','','ru','','images'),(371,'','','ru','','images'),(372,'','','ru','','images'),(373,'','','ru','','images'),(374,'','','ru','','images'),(375,'','','ru','','images'),(376,'','','ru','','images'),(377,'','','ru','','images'),(378,'','','ru','','images'),(379,'','','ru','','images'),(380,'','','ru','','images'),(381,'','','ru','','images'),(382,'','','ru','','images'),(383,'','','ru','','images'),(384,'','','ru','','images'),(385,'','','ru','','images'),(386,'','','ru','','images'),(390,'','','ru','','images'),(391,'','','ru','','images'),(392,'','','ru','','images'),(393,'','','ru','','images'),(394,'','','ru','','images'),(395,'','','ru','','images'),(396,'','','ru','','images'),(397,'','','ru','','images'),(398,'','','ru','','images'),(399,'','','ru','','images'),(400,'','','ru','','images'),(401,'','','ru','','images'),(402,'','','ru','','images'),(403,'','','ru','','images'),(404,'','','ru','','images'),(405,'','','ru','','images'),(406,'','','ru','','images'),(407,'','','ru','','images'),(408,'','','ru','','images'),(409,'','','ru','','images'),(410,'','','ru','','images'),(411,'','','ru','','images'),(412,'','','ru','','images'),(413,'','','ru','','images'),(414,'','','ru','','images'),(415,'','','ru','','images'),(416,'','','ru','','images'),(417,'','','ru','','images'),(418,'','','ru','','images'),(419,'','','ru','','images'),(420,'','','ru','','images'),(421,'','','ru','','images'),(422,'','','ru','','images'),(423,'','','ru','','images'),(424,'','','ru','','images'),(425,'','','ru','','images'),(426,'','','ru','','images'),(427,'','','ru','','images'),(428,'','','ru','','images'),(429,'','','ru','','images'),(430,'','','ru','','images'),(431,'','','ru','','images'),(432,'','','ru','','images'),(433,'','','ru','','images'),(434,'','','ru','','images'),(435,'','','ru','','images'),(436,'','','ru','','images'),(437,'','','ru','','images'),(438,'','','ru','','images'),(439,'','','ru','','images'),(440,'','','ru','','images'),(441,'','','ru','','images'),(442,'','','ru','','images'),(443,'','','ru','','images'),(444,'','','ru','','images'),(445,'','','ru','','images'),(446,'','','ru','','images'),(447,'','','ru','','images'),(522,'','','ru','','images'),(525,'','','ru','','images'),(524,'','','ru','','images'),(523,'','','ru','','images'),(453,'','','ru','','images'),(454,'','','ru','','images'),(455,'','','ru','','images'),(456,'','','ru','','images'),(457,'','','ru','','images'),(458,'','','ru','','images'),(459,'','','ru','','images'),(460,'','','ru','','images'),(461,'','','ru','','images'),(462,'','','ru','','images'),(463,'','','ru','','images'),(464,'','','ru','','images'),(465,'','','ru','','images'),(466,'','','ru','','images'),(467,'','','ru','','images'),(468,'','','ru','','images'),(469,'','','ru','','images'),(470,'','','ru','','images'),(471,'','','ru','','images'),(510,'','','ru','','images'),(473,'','','ru','','images'),(474,'','','ru','','images'),(475,'','','ru','','images'),(476,'','','ru','','images'),(477,'','','ru','','images'),(478,'','','ru','','images'),(479,'','','ru','','images'),(480,'','','ru','','images'),(481,'','','ru','','images'),(482,'','','ru','','images'),(483,'','','ru','','images'),(484,'','','ru','','images'),(485,'','','ru','','images'),(486,'','','ru','','images'),(487,'','','ru','','images'),(488,'','','ru','','images'),(489,'','','ru','','images'),(511,'','','ru','','images'),(491,'','','ru','','images'),(514,'','','ru','','images'),(495,'','','ru','','images'),(516,'','','ru','','images'),(515,'','','ru','','images'),(498,'','','ru','','images'),(513,'','','ru','','images'),(500,'','','ru','','images'),(501,'','','ru','','images'),(502,'','','ru','','images'),(503,'','','ru','','images'),(504,'','','ru','','images'),(518,'','','ru','','images'),(517,'','','ru','','images'),(507,'','','ru','','images'),(508,'','','ru','','images'),(509,'','','ru','','images'),(512,'','','ru','','images'),(519,'','','ru','','images'),(520,'','','ru','','images'),(521,'','','ru','','images'),(526,'','','ru','','images'),(527,'','','ru','','images'),(528,'','','ru','','images'),(529,'','','ru','','images'),(530,'','','ru','','images'),(531,'','','ru','','images'),(532,'','','ru','','images'),(533,'','','ru','','images'),(534,'','','ru','','images'),(535,'','','ru','','images'),(536,'','','ru','','images'),(537,'','','ru','','images'),(538,'','','ru','','images'),(539,'','','ru','','images'),(540,'','','ru','','images'),(541,'','','ru','','images'),(542,'','','ru','','images'),(543,'','','ru','','images'),(544,'','','ru','','images'),(545,'','','ru','','images'),(546,'','','ru','','images'),(547,'','','ru','','images'),(548,'','','ru','','images'),(549,'','','ru','','images'),(550,'','','ru','','images'),(551,'','','ru','','images'),(552,'','','ru','','images'),(553,'','','ru','','images'),(554,'','','ru','','images'),(555,'','','ru','','images'),(556,'','','ru','','images'),(557,'','','ru','','images'),(558,'','','ru','','images'),(559,'','','ru','','images'),(560,'','','ru','','images'),(561,'','','ru','','images'),(562,'','','ru','','images'),(563,'','','ru','','images'),(572,'','','ru','','images'),(565,'','','ru','','images'),(566,'','','ru','','images'),(567,'','','ru','','images'),(568,'','','ru','','images'),(569,'','','ru','','images'),(570,'','','ru','','images'),(571,'','','ru','','images'),(573,'','','ru','','images'),(574,'','','ru','','images'),(575,'','','ru','','images'),(576,'','','ru','','images'),(577,'','','ru','','images'),(578,'','','ru','','images'),(579,'','','ru','','images'),(580,'','','ru','','images'),(581,'','','ru','','images'),(582,'','','ru','','images'),(583,'','','ru','','images'),(584,'','','ru','','images'),(585,'','','ru','','images'),(586,'','','ru','','images'),(587,'','','ru','','images'),(588,'','','ru','','images'),(589,'','','ru','','images'),(590,'','','ru','','images'),(591,'','','ru','','images'),(592,'','','ru','','images'),(593,'','','ru','','images'),(594,'','','ru','','images'),(595,'','','ru','','images'),(596,'','','ru','','images'),(597,'','','ru','','images'),(598,'','','ru','','images'),(599,'','','ru','','images'),(600,'','','ru','','images'),(601,'','','ru','','images'),(602,'','','ru','','images'),(603,'','','ru','','images'),(604,'','','ru','','images'),(605,'','','ru','','images'),(606,'','','ru','','images'),(607,'','','ru','','images'),(608,'','','ru','','images'),(609,'','','ru','','images'),(610,'','','ru','','images'),(611,'','','ru','','images'),(612,'','','ru','','images'),(613,'','','ru','','images'),(614,'','','ru','','images'),(615,'','','ru','','images'),(616,'','','ru','','images'),(617,'','','ru','','images'),(618,'','','ru','','images'),(619,'','','ru','','images'),(620,'','','ru','','images'),(621,'','','ru','','images'),(622,'','','ru','','images'),(623,'','','ru','','images'),(624,'','','ru','','images'),(625,'','','ru','','images'),(626,'','','ru','','images'),(627,'','','ru','','images'),(628,'','','ru','','images'),(629,'','','ru','','images'),(630,'','','ru','','images'),(631,'','','ru','','images'),(632,'','','ru','','images'),(633,'','','ru','','images'),(634,'','','ru','','images'),(635,'','','ru','','images'),(636,'','','ru','','images'),(637,'','','ru','','images'),(638,'','','ru','','images'),(639,'','','ru','','images'),(640,'','','ru','','images'),(641,'','','ru','','images'),(642,'','','ru','','images'),(643,'','','ru','','images'),(644,'','','ru','','images'),(645,'','','ru','','images'),(646,'','','ru','','images'),(647,'','','ru','','images'),(648,'','','ru','','images'),(649,'','','ru','','images'),(650,'','','ru','','images'),(651,'','','ru','','images'),(652,'','','ru','','images'),(653,'','','ru','','images'),(654,'','','ru','','images'),(655,'','','ru','','images'),(656,'','','ru','','images'),(657,'','','ru','','images'),(658,'','','ru','','images'),(659,'','','ru','','images'),(660,'','','ru','','images'),(661,'','','ru','','images'),(662,'','','ru','','images'),(663,'','','ru','','images'),(664,'','','ru','','images'),(665,'','','ru','','images'),(666,'','','ru','','images'),(667,'','','ru','','images'),(668,'','','ru','','images'),(669,'','','ru','','images'),(670,'','','ru','','images'),(671,'','','ru','','images'),(672,'','','ru','','images'),(673,'','','ru','','images'),(674,'','','ru','','images'),(675,'','','ru','','images'),(676,'','','ru','','images'),(677,'','','ru','','images'),(678,'','','ru','','images'),(679,'','','ru','','images'),(680,'','','ru','','images'),(681,'','','ru','','images'),(682,'','','ru','','images'),(683,'','','ru','','images'),(684,'','','ru','','images'),(685,'','','ru','','images'),(686,'','','ru','','images'),(687,'','','ru','','images'),(688,'','','ru','','images'),(689,'','','ru','','images'),(690,'','','ru','','images'),(691,'','','ru','','images'),(692,'','','ru','','images'),(693,'','','ru','','images'),(694,'','','ru','','images'),(695,'','','ru','','images'),(696,'','','ru','','images'),(697,'','','ru','','images'),(698,'','','ru','','images'),(699,'','','ru','','images'),(700,'','','ru','','images'),(701,'','','ru','','images'),(702,'','','ru','','images'),(703,'','','ru','','images'),(704,'','','ru','','images'),(705,'','','ru','','images'),(706,'','','ru','','images'),(707,'','','ru','','images'),(708,'','','ru','','images'),(709,'','','ru','','images'),(710,'','','ru','','images'),(711,'','','ru','','images'),(712,'','','ru','','images'),(713,'','','ru','','images'),(714,'','','ru','','images'),(715,'','','ru','','images'),(716,'','','ru','','images'),(717,'','','ru','','images'),(718,'','','ru','','images'),(719,'','','ru','','images'),(720,'','','ru','','images'),(721,'','','ru','','images'),(722,'','','ru','','images'),(723,'','','ru','','images'),(724,'','','ru','','images'),(725,'','','ru','','images'),(739,'','','ru','','images'),(727,'','','ru','','images'),(728,'','','ru','','images'),(729,'','','ru','','images'),(730,'','','ru','','images'),(731,'','','ru','','images'),(732,'','','ru','','images'),(733,'','','ru','','images'),(734,'','','ru','','images'),(735,'','','ru','','images'),(736,'','','ru','','images'),(737,'','','ru','','images'),(738,'','','ru','','images'),(740,'','','ru','','images'),(741,'','','ru','','images'),(742,'','','ru','','images'),(743,'','','ru','','images'),(744,'','','ru','','images'),(745,'','','ru','','images'),(746,'','','ru','','images'),(747,'','','ru','','images'),(748,'','','ru','','images'),(749,'','','ru','','images'),(750,'','','ru','','images'),(751,'','','ru','','images'),(752,'','','ru','','images'),(753,'','','ru','','images'),(754,'','','ru','','images'),(755,'','','ru','','images'),(756,'','','ru','','images'),(757,'','','ru','','images'),(758,'','','ru','','images'),(759,'','','ru','','images'),(760,'','','ru','','images'),(761,'','','ru','','images'),(762,'','','ru','','images'),(763,'','','ru','','images'),(764,'','','ru','','images'),(765,'','','ru','','images'),(766,'','','ru','','images'),(767,'','','ru','','images'),(768,'','','ru','','images'),(769,'','','ru','','images'),(833,'','','ru','','images'),(771,'','','ru','','images'),(772,'','','ru','','images'),(773,'','','ru','','images'),(774,'','','ru','','images'),(775,'','','ru','','images'),(776,'','','ru','','images'),(777,'','','ru','','images'),(778,'','','ru','','images'),(779,'','','ru','','images'),(780,'','','ru','','images'),(781,'','','ru','','images'),(782,'','','ru','','images'),(783,'','','ru','','images'),(784,'','','ru','','images'),(785,'','','ru','','images'),(786,'','','ru','','images'),(787,'','','ru','','images'),(788,'','','ru','','images'),(789,'','','ru','','images'),(790,'','','ru','','images'),(791,'','','ru','','images'),(792,'','','ru','','images'),(793,'','','ru','','images'),(794,'','','ru','','images'),(795,'','','ru','','images'),(796,'','','ru','','images'),(797,'','','ru','','images'),(798,'','','ru','','images'),(799,'','','ru','','images'),(800,'','','ru','','images'),(801,'','','ru','','images'),(802,'','','ru','','images'),(803,'','','ru','','images'),(804,'','','ru','','images'),(805,'','','ru','','images'),(806,'','','ru','','images'),(807,'','','ru','','images'),(808,'','','ru','','images'),(809,'','','ru','','images'),(810,'','','ru','','images'),(811,'','','ru','','images'),(812,'','','ru','','images'),(813,'','','ru','','images'),(814,'','','ru','','images'),(815,'','','ru','','images'),(816,'','','ru','','images'),(817,'','','ru','','images'),(818,'','','ru','','images'),(819,'','','ru','','images'),(820,'','','ru','','images'),(821,'','','ru','','images'),(822,'','','ru','','images'),(823,'','','ru','','images'),(824,'','','ru','','images'),(825,'','','ru','','images'),(826,'','','ru','','images'),(827,'','','ru','','images'),(828,'','','ru','','images'),(829,'','','ru','','images'),(830,'','','ru','','images'),(831,'','','ru','','images'),(832,'','','ru','','images'),(834,'','','ru','','images'),(835,'','','ru','','images'),(836,'','','ru','','images'),(837,'','','ru','','images'),(838,'','','ru','','images'),(839,'','','ru','','images'),(840,'','','ru','','images'),(841,'','','ru','','images'),(842,'','','ru','','images'),(843,'','','ru','','images'),(844,'','','ru','','images'),(845,'','','ru','','images'),(846,'','','ru','','images'),(847,'','','ru','','images'),(848,'','','ru','','images'),(849,'','','ru','','images'),(850,'','','ru','','images'),(851,'','','ru','','images'),(852,'','','ru','','images'),(853,'','','ru','','images'),(854,'','','ru','','images'),(855,'','','ru','','images'),(856,'','','ru','','images'),(857,'','','ru','','images'),(858,'','','ru','','images'),(862,'','','ru','','images'),(861,'','','ru','','images'),(863,'','','ru','','images'),(879,'','','ru','','images'),(898,'','','ru','','images'),(881,'','','ru','','images'),(882,'','','ru','','images'),(905,'','','ru','','images'),(906,'','','ru','','images'),(908,'','','ru','','images'),(909,'','','ru','','images'),(904,'','','ru','','images'),(907,'','','ru','','images'),(926,'','','ru','','images'),(1006,'','','ru','','images'),(1007,'','','ru','','images'),(1008,'','','ru','','images'),(1009,'','','ru','','images'),(1010,'','','ru','','images'),(1011,'','','ru','','images'),(1012,'','','ru','','images'),(1013,'','','ru','','images'),(1014,'','','ru','','images'),(1015,'','','ru','','images'),(1016,'','','ru','','images'),(1017,'','','ru','','images'),(1018,'','','ru','','images'),(1019,'','','ru','','images'),(1020,'','','ru','','images'),(1021,'','','ru','','images'),(1022,'','','ru','','images'),(1023,'','','ru','','images'),(1024,'','','ru','','images'),(1025,'','','ru','','images'),(1026,'','','ru','','images'),(1027,'','','ru','','images'),(1028,'','','ru','','images'),(1029,'','','ru','','images'),(1030,'','','ru','','images'),(1031,'','','ru','','images'),(1032,'','','ru','','images'),(1033,'','','ru','','images'),(1034,'','','ru','','images'),(1035,'','','ru','','images'),(1036,'','','ru','','images'),(1037,'','','ru','','images'),(1038,'','','ru','','images'),(1039,'','','ru','','images'),(1040,'','','ru','','images'),(1041,'','','ru','','images'),(1042,'','','ru','','images'),(1043,'','','ru','','images'),(1044,'','','ru','','images'),(1045,'','','ru','','images'),(1046,'','','ru','','images'),(1047,'','','ru','','images'),(1048,'','','ru','','images'),(1051,'','','ru','','images'),(1052,'','','ru','','images'),(1053,'','','ru','','images'),(1054,'','','ru','','images'),(1055,'','','ru','','images'),(0,'','ООО \"Симбирские технологии\"','ru','','Admin_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Customer_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Gift_certificate_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Mail_logo'),(0,'','ООО \"Симбирские технологии\"','ru','','Signin_logo'),(1,'','','ru','Список рассылки 1','mailing_lists'),(2,'','','en','My account','sitemap_sections'),(1,'','View cart','en','View cart','sitemap_links'),(2,'','Wish List','en','Wish List','sitemap_links'),(3,'','Checkout','en','Checkout','sitemap_links'),(4,'','Edit profile','en','Edit profile','sitemap_links'),(11,'','Fourth affiliate plan description.','en','Test plan','affiliate_plans'),(1,'','Branding','en','','quick_menu'),(2,'','Legal documents','en','','quick_menu'),(4,'','Checkout','en','','quick_menu'),(5,'','Logo','en','','quick_menu'),(6,'','Company & contacts','en','','quick_menu'),(7,'','Theme colors & fonts','en','','quick_menu'),(8,'','Terms for customers','en','','quick_menu'),(9,'','Privacy policy','en','','quick_menu'),(10,'','GDPR','en','','quick_menu'),(11,'','Returns and exchanges','en','','quick_menu'),(19,'','Structure and fields','en','','quick_menu'),(20,'','Extra fields','en','','quick_menu'),(21,'','Payment methods','en','','quick_menu'),(22,'','Shipping methods','en','','quick_menu'),(23,'','Taxes','en','','quick_menu'),(180,'','men_clothes.jpg','en','','images'),(181,'','w-phones_cat.gif','en','','images'),(182,'','100009923665.gif','en','','images'),(183,'','audio_video.gif','en','','images'),(184,'','computes.gif','en','','images'),(185,'','pc-desktops-sony_cat.jpg','en','','images'),(186,'','dvds.gif','en','','images'),(187,'','books.jpg','en','','images'),(188,'','music.gif','en','','images'),(189,'','build_your_pc.jpg','en','','images'),(190,'','special_offer_ads.gif','en','','images'),(191,'','thumbnail_B000068IG9.01._SCMZZZZZZZ_.jpg','en','','images'),(192,'','modems.jpg','en','','images'),(193,'','tjpg','en','','images'),(194,'','ujpg','en','','images'),(195,'','group_ddr_memory.jpg','en','','images'),(196,'','group_laser_printers.jpg','en','','images'),(197,'','tjpg','en','','images'),(198,'','ujpg','en','','images'),(199,'','tjpg','en','','images'),(200,'','ujpg','en','','images'),(237,'','','en','','images'),(238,'','','en','','images'),(239,'','','en','','images'),(240,'','','en','','images'),(243,'','','en','','images'),(244,'','','en','','images'),(245,'','','en','','images'),(246,'','','en','','images'),(247,'','','en','','images'),(248,'','','en','','images'),(249,'','','en','','images'),(250,'','','en','','images'),(251,'','','en','','images'),(252,'','','en','','images'),(254,'','','en','','images'),(255,'','','en','','images'),(256,'','','en','','images'),(257,'','','en','','images'),(258,'','','en','','images'),(259,'','','en','','images'),(260,'','','en','','images'),(261,'','','en','','images'),(262,'','','en','','images'),(263,'','','en','','images'),(264,'','','en','','images'),(265,'','','en','','images'),(266,'','','en','','images'),(267,'','','en','','images'),(268,'','','en','','images'),(269,'','','en','','images'),(270,'','','en','','images'),(271,'','','en','','images'),(274,'','','en','','images'),(275,'','','en','','images'),(276,'','','en','','images'),(277,'','','en','','images'),(278,'','','en','','images'),(279,'','','en','','images'),(280,'','','en','','images'),(281,'','','en','','images'),(282,'','','en','','images'),(283,'','','en','','images'),(284,'','','en','','images'),(285,'','','en','','images'),(286,'','','en','','images'),(287,'','','en','','images'),(288,'','','en','','images'),(289,'','','en','','images'),(290,'','','en','','images'),(291,'','','en','','images'),(292,'','','en','','images'),(293,'','','en','','images'),(294,'','','en','','images'),(295,'','','en','','images'),(296,'','','en','','images'),(297,'','','en','','images'),(298,'','','en','','images'),(299,'','','en','','images'),(300,'','','en','','images'),(301,'','','en','','images'),(302,'','','en','','images'),(303,'','','en','','images'),(304,'','','en','','images'),(305,'','','en','','images'),(306,'','','en','','images'),(307,'','','en','','images'),(308,'','','en','','images'),(309,'','','en','','images'),(310,'','','en','','images'),(311,'','','en','','images'),(312,'','','en','','images'),(313,'','','en','','images'),(314,'','','en','','images'),(315,'','','en','','images'),(316,'','','en','','images'),(317,'','','en','','images'),(318,'','','en','','images'),(319,'','','en','','images'),(320,'','','en','','images'),(321,'','','en','','images'),(322,'','','en','','images'),(323,'','','en','','images'),(324,'','','en','','images'),(325,'','','en','','images'),(327,'','','en','','images'),(328,'','','en','','images'),(329,'','','en','','images'),(330,'','','en','','images'),(331,'','','en','','images'),(332,'','','en','','images'),(333,'','','en','','images'),(334,'','','en','','images'),(335,'','','en','','images'),(336,'','','en','','images'),(337,'','','en','','images'),(338,'','','en','','images'),(339,'','','en','','images'),(340,'','','en','','images'),(341,'','','en','','images'),(342,'','','en','','images'),(343,'','','en','','images'),(344,'','','en','','images'),(345,'','','en','','images'),(346,'','','en','','images'),(347,'','','en','','images'),(348,'','','en','','images'),(349,'','','en','','images'),(350,'','','en','','images'),(351,'','','en','','images'),(352,'','','en','','images'),(353,'','','en','','images'),(354,'','','en','','images'),(355,'','','en','','images'),(356,'','','en','','images'),(357,'','','en','','images'),(358,'','','en','','images'),(359,'','','en','','images'),(360,'','','en','','images'),(361,'','','en','','images'),(362,'','','en','','images'),(363,'','','en','','images'),(364,'','','en','','images'),(365,'','','en','','images'),(366,'','','en','','images'),(367,'','','en','','images'),(368,'','','en','','images'),(369,'','','en','','images'),(370,'','','en','','images'),(371,'','','en','','images'),(372,'','','en','','images'),(373,'','','en','','images'),(374,'','','en','','images'),(375,'','','en','','images'),(376,'','','en','','images'),(377,'','','en','','images'),(378,'','','en','','images'),(379,'','','en','','images'),(380,'','','en','','images'),(381,'','','en','','images'),(382,'','','en','','images'),(383,'','','en','','images'),(384,'','','en','','images'),(385,'','','en','','images'),(386,'','','en','','images'),(390,'','','en','','images'),(391,'','','en','','images'),(392,'','','en','','images'),(393,'','','en','','images'),(394,'','','en','','images'),(395,'','','en','','images'),(396,'','','en','','images'),(397,'','','en','','images'),(398,'','','en','','images'),(399,'','','en','','images'),(400,'','','en','','images'),(401,'','','en','','images'),(402,'','','en','','images'),(403,'','','en','','images'),(404,'','','en','','images'),(405,'','','en','','images'),(406,'','','en','','images'),(407,'','','en','','images'),(408,'','','en','','images'),(409,'','','en','','images'),(410,'','','en','','images'),(411,'','','en','','images'),(412,'','','en','','images'),(413,'','','en','','images'),(414,'','','en','','images'),(415,'','','en','','images'),(416,'','','en','','images'),(417,'','','en','','images'),(418,'','','en','','images'),(419,'','','en','','images'),(420,'','','en','','images'),(421,'','','en','','images'),(422,'','','en','','images'),(423,'','','en','','images'),(424,'','','en','','images'),(425,'','','en','','images'),(426,'','','en','','images'),(427,'','','en','','images'),(428,'','','en','','images'),(429,'','','en','','images'),(430,'','','en','','images'),(431,'','','en','','images'),(432,'','','en','','images'),(433,'','','en','','images'),(434,'','','en','','images'),(435,'','','en','','images'),(436,'','','en','','images'),(437,'','','en','','images'),(438,'','','en','','images'),(439,'','','en','','images'),(440,'','','en','','images'),(441,'','','en','','images'),(442,'','','en','','images'),(443,'','','en','','images'),(444,'','','en','','images'),(445,'','','en','','images'),(446,'','','en','','images'),(447,'','','en','','images'),(522,'','','en','','images'),(525,'','','en','','images'),(524,'','','en','','images'),(523,'','','en','','images'),(453,'','','en','','images'),(454,'','','en','','images'),(455,'','','en','','images'),(456,'','','en','','images'),(457,'','','en','','images'),(458,'','','en','','images'),(459,'','','en','','images'),(460,'','','en','','images'),(461,'','','en','','images'),(462,'','','en','','images'),(463,'','','en','','images'),(464,'','','en','','images'),(465,'','','en','','images'),(466,'','','en','','images'),(467,'','','en','','images'),(468,'','','en','','images'),(469,'','','en','','images'),(470,'','','en','','images'),(471,'','','en','','images'),(510,'','','en','','images'),(473,'','','en','','images'),(474,'','','en','','images'),(475,'','','en','','images'),(476,'','','en','','images'),(477,'','','en','','images'),(478,'','','en','','images'),(479,'','','en','','images'),(480,'','','en','','images'),(481,'','','en','','images'),(482,'','','en','','images'),(483,'','','en','','images'),(484,'','','en','','images'),(485,'','','en','','images'),(486,'','','en','','images'),(487,'','','en','','images'),(488,'','','en','','images'),(489,'','','en','','images'),(511,'','','en','','images'),(491,'','','en','','images'),(514,'','','en','','images'),(495,'','','en','','images'),(516,'','','en','','images'),(515,'','','en','','images'),(498,'','','en','','images'),(513,'','','en','','images'),(500,'','','en','','images'),(501,'','','en','','images'),(502,'','','en','','images'),(503,'','','en','','images'),(504,'','','en','','images'),(518,'','','en','','images'),(517,'','','en','','images'),(507,'','','en','','images'),(508,'','','en','','images'),(509,'','','en','','images'),(512,'','','en','','images'),(519,'','','en','','images'),(520,'','','en','','images'),(521,'','','en','','images'),(526,'','','en','','images'),(527,'','','en','','images'),(528,'','','en','','images'),(529,'','','en','','images'),(530,'','','en','','images'),(531,'','','en','','images'),(532,'','','en','','images'),(533,'','','en','','images'),(534,'','','en','','images'),(535,'','','en','','images'),(536,'','','en','','images'),(537,'','','en','','images'),(538,'','','en','','images'),(539,'','','en','','images'),(540,'','','en','','images'),(541,'','','en','','images'),(542,'','','en','','images'),(543,'','','en','','images'),(544,'','','en','','images'),(545,'','','en','','images'),(546,'','','en','','images'),(547,'','','en','','images'),(548,'','','en','','images'),(549,'','','en','','images'),(550,'','','en','','images'),(551,'','','en','','images'),(552,'','','en','','images'),(553,'','','en','','images'),(554,'','','en','','images'),(555,'','','en','','images'),(556,'','','en','','images'),(557,'','','en','','images'),(558,'','','en','','images'),(559,'','','en','','images'),(560,'','','en','','images'),(561,'','','en','','images'),(562,'','','en','','images'),(563,'','','en','','images'),(572,'','','en','','images'),(565,'','','en','','images'),(566,'','','en','','images'),(567,'','','en','','images'),(568,'','','en','','images'),(569,'','','en','','images'),(570,'','','en','','images'),(571,'','','en','','images'),(573,'','','en','','images'),(574,'','','en','','images'),(575,'','','en','','images'),(576,'','','en','','images'),(577,'','','en','','images'),(578,'','','en','','images'),(579,'','','en','','images'),(580,'','','en','','images'),(581,'','','en','','images'),(582,'','','en','','images'),(583,'','','en','','images'),(584,'','','en','','images'),(585,'','','en','','images'),(586,'','','en','','images'),(587,'','','en','','images'),(588,'','','en','','images'),(589,'','','en','','images'),(590,'','','en','','images'),(591,'','','en','','images'),(592,'','','en','','images'),(593,'','','en','','images'),(594,'','','en','','images'),(595,'','','en','','images'),(596,'','','en','','images'),(597,'','','en','','images'),(598,'','','en','','images'),(599,'','','en','','images'),(600,'','','en','','images'),(601,'','','en','','images'),(602,'','','en','','images'),(603,'','','en','','images'),(604,'','','en','','images'),(605,'','','en','','images'),(606,'','','en','','images'),(607,'','','en','','images'),(608,'','','en','','images'),(609,'','','en','','images'),(610,'','','en','','images'),(611,'','','en','','images'),(612,'','','en','','images'),(613,'','','en','','images'),(614,'','','en','','images'),(615,'','','en','','images'),(616,'','','en','','images'),(617,'','','en','','images'),(618,'','','en','','images'),(619,'','','en','','images'),(620,'','','en','','images'),(621,'','','en','','images'),(622,'','','en','','images'),(623,'','','en','','images'),(624,'','','en','','images'),(625,'','','en','','images'),(626,'','','en','','images'),(627,'','','en','','images'),(628,'','','en','','images'),(629,'','','en','','images'),(630,'','','en','','images'),(631,'','','en','','images'),(632,'','','en','','images'),(633,'','','en','','images'),(634,'','','en','','images'),(635,'','','en','','images'),(636,'','','en','','images'),(637,'','','en','','images'),(638,'','','en','','images'),(639,'','','en','','images'),(640,'','','en','','images'),(641,'','','en','','images'),(642,'','','en','','images'),(643,'','','en','','images'),(644,'','','en','','images'),(645,'','','en','','images'),(646,'','','en','','images'),(647,'','','en','','images'),(648,'','','en','','images'),(649,'','','en','','images'),(650,'','','en','','images'),(651,'','','en','','images'),(652,'','','en','','images'),(653,'','','en','','images'),(654,'','','en','','images'),(655,'','','en','','images'),(656,'','','en','','images'),(657,'','','en','','images'),(658,'','','en','','images'),(659,'','','en','','images'),(660,'','','en','','images'),(661,'','','en','','images'),(662,'','','en','','images'),(663,'','','en','','images'),(664,'','','en','','images'),(665,'','','en','','images'),(666,'','','en','','images'),(667,'','','en','','images'),(668,'','','en','','images'),(669,'','','en','','images'),(670,'','','en','','images'),(671,'','','en','','images'),(672,'','','en','','images'),(673,'','','en','','images'),(674,'','','en','','images'),(675,'','','en','','images'),(676,'','','en','','images'),(677,'','','en','','images'),(678,'','','en','','images'),(679,'','','en','','images'),(680,'','','en','','images'),(681,'','','en','','images'),(682,'','','en','','images'),(683,'','','en','','images'),(684,'','','en','','images'),(685,'','','en','','images'),(686,'','','en','','images'),(687,'','','en','','images'),(688,'','','en','','images'),(689,'','','en','','images'),(690,'','','en','','images'),(691,'','','en','','images'),(692,'','','en','','images'),(693,'','','en','','images'),(694,'','','en','','images'),(695,'','','en','','images'),(696,'','','en','','images'),(697,'','','en','','images'),(698,'','','en','','images'),(699,'','','en','','images'),(700,'','','en','','images'),(701,'','','en','','images'),(702,'','','en','','images'),(703,'','','en','','images'),(704,'','','en','','images'),(705,'','','en','','images'),(706,'','','en','','images'),(707,'','','en','','images'),(708,'','','en','','images'),(709,'','','en','','images'),(710,'','','en','','images'),(711,'','','en','','images'),(712,'','','en','','images'),(713,'','','en','','images'),(714,'','','en','','images'),(715,'','','en','','images'),(716,'','','en','','images'),(717,'','','en','','images'),(718,'','','en','','images'),(719,'','','en','','images'),(720,'','','en','','images'),(721,'','','en','','images'),(722,'','','en','','images'),(723,'','','en','','images'),(724,'','','en','','images'),(725,'','','en','','images'),(739,'','','en','','images'),(727,'','','en','','images'),(728,'','','en','','images'),(729,'','','en','','images'),(730,'','','en','','images'),(731,'','','en','','images'),(732,'','','en','','images'),(733,'','','en','','images'),(734,'','','en','','images'),(735,'','','en','','images'),(736,'','','en','','images'),(737,'','','en','','images'),(738,'','','en','','images'),(740,'','','en','','images'),(741,'','','en','','images'),(742,'','','en','','images'),(743,'','','en','','images'),(744,'','','en','','images'),(745,'','','en','','images'),(746,'','','en','','images'),(747,'','','en','','images'),(748,'','','en','','images'),(749,'','','en','','images'),(750,'','','en','','images'),(751,'','','en','','images'),(752,'','','en','','images'),(753,'','','en','','images'),(754,'','','en','','images'),(755,'','','en','','images'),(756,'','','en','','images'),(757,'','','en','','images'),(758,'','','en','','images'),(759,'','','en','','images'),(760,'','','en','','images'),(761,'','','en','','images'),(762,'','','en','','images'),(763,'','','en','','images'),(764,'','','en','','images'),(765,'','','en','','images'),(766,'','','en','','images'),(767,'','','en','','images'),(768,'','','en','','images'),(769,'','','en','','images'),(833,'','','en','','images'),(771,'','','en','','images'),(772,'','','en','','images'),(773,'','','en','','images'),(774,'','','en','','images'),(775,'','','en','','images'),(776,'','','en','','images'),(777,'','','en','','images'),(778,'','','en','','images'),(779,'','','en','','images'),(780,'','','en','','images'),(781,'','','en','','images'),(782,'','','en','','images'),(783,'','','en','','images'),(784,'','','en','','images'),(785,'','','en','','images'),(786,'','','en','','images'),(787,'','','en','','images'),(788,'','','en','','images'),(789,'','','en','','images'),(790,'','','en','','images'),(791,'','','en','','images'),(792,'','','en','','images'),(793,'','','en','','images'),(794,'','','en','','images'),(795,'','','en','','images'),(796,'','','en','','images'),(797,'','','en','','images'),(798,'','','en','','images'),(799,'','','en','','images'),(800,'','','en','','images'),(801,'','','en','','images'),(802,'','','en','','images'),(803,'','','en','','images'),(804,'','','en','','images'),(805,'','','en','','images'),(806,'','','en','','images'),(807,'','','en','','images'),(808,'','','en','','images'),(809,'','','en','','images'),(810,'','','en','','images'),(811,'','','en','','images'),(812,'','','en','','images'),(813,'','','en','','images'),(814,'','','en','','images'),(815,'','','en','','images'),(816,'','','en','','images'),(817,'','','en','','images'),(818,'','','en','','images'),(819,'','','en','','images'),(820,'','','en','','images'),(821,'','','en','','images'),(822,'','','en','','images'),(823,'','','en','','images'),(824,'','','en','','images'),(825,'','','en','','images'),(826,'','','en','','images'),(827,'','','en','','images'),(828,'','','en','','images'),(829,'','','en','','images'),(830,'','','en','','images'),(831,'','','en','','images'),(832,'','','en','','images'),(834,'','','en','','images'),(835,'','','en','','images'),(836,'','','en','','images'),(837,'','','en','','images'),(838,'','','en','','images'),(839,'','','en','','images'),(840,'','','en','','images'),(841,'','','en','','images'),(842,'','','en','','images'),(843,'','','en','','images'),(844,'','','en','','images'),(845,'','','en','','images'),(846,'','','en','','images'),(847,'','','en','','images'),(848,'','','en','','images'),(849,'','','en','','images'),(850,'','','en','','images'),(851,'','','en','','images'),(852,'','','en','','images'),(853,'','','en','','images'),(854,'','','en','','images'),(855,'','','en','','images'),(856,'','','en','','images'),(857,'','','en','','images'),(858,'','','en','','images'),(862,'','','en','','images'),(861,'','','en','','images'),(863,'','','en','','images'),(879,'','','en','','images'),(898,'','','en','','images'),(881,'','','en','','images'),(882,'','','en','','images'),(905,'','','en','','images'),(906,'','','en','','images'),(908,'','','en','','images'),(909,'','','en','','images'),(904,'','','en','','images'),(907,'','','en','','images'),(926,'','','en','','images'),(1006,'','','en','','images'),(1007,'','','en','','images'),(1008,'','','en','','images'),(1009,'','','en','','images'),(1010,'','','en','','images'),(1011,'','','en','','images'),(1012,'','','en','','images'),(1013,'','','en','','images'),(1014,'','','en','','images'),(1015,'','','en','','images'),(1016,'','','en','','images'),(1017,'','','en','','images'),(1018,'','','en','','images'),(1019,'','','en','','images'),(1020,'','','en','','images'),(1021,'','','en','','images'),(1022,'','','en','','images'),(1023,'','','en','','images'),(1024,'','','en','','images'),(1025,'','','en','','images'),(1026,'','','en','','images'),(1027,'','','en','','images'),(1028,'','','en','','images'),(1029,'','','en','','images'),(1030,'','','en','','images'),(1031,'','','en','','images'),(1032,'','','en','','images'),(1033,'','','en','','images'),(1034,'','','en','','images'),(1035,'','','en','','images'),(1036,'','','en','','images'),(1037,'','','en','','images'),(1038,'','','en','','images'),(1039,'','','en','','images'),(1040,'','','en','','images'),(1041,'','','en','','images'),(1042,'','','en','','images'),(1043,'','','en','','images'),(1044,'','','en','','images'),(1045,'','','en','','images'),(1046,'','','en','','images'),(1047,'','','en','','images'),(1048,'','','en','','images'),(1051,'','','en','','images'),(1052,'','','en','','images'),(1053,'','','en','','images'),(1054,'','','en','','images'),(1055,'','','en','','images'),(0,'','ООО \"Симбирские технологии\"','en','','Admin_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Customer_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Gift_certificate_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Mail_logo'),(0,'','ООО \"Симбирские технологии\"','en','','Signin_logo'),(1,'','','en','Список рассылки 1','mailing_lists'),(8639,'','','ru','','images'),(8639,'','','en','','images');
 /*!40000 ALTER TABLE `cscart_common_descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -911,9 +902,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_companies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_companies` (
-  `company_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
   `company` varchar(255) NOT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
@@ -930,14 +921,14 @@ CREATE TABLE `cscart_companies` (
   `entry_page` varchar(50) NOT NULL DEFAULT 'none',
   `redirect_customer` char(1) NOT NULL DEFAULT 'Y',
   `countries_list` text,
-  `timestamp` int(11) NOT NULL,
+  `timestamp` int NOT NULL,
   `shippings` text,
   `logos` text,
-  `request_user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `request_user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `request_account_name` varchar(255) NOT NULL DEFAULT '',
   `request_account_data` blob,
   PRIMARY KEY (`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -946,7 +937,7 @@ CREATE TABLE `cscart_companies` (
 
 LOCK TABLES `cscart_companies` WRITE;
 /*!40000 ALTER TABLE `cscart_companies` DISABLE KEYS */;
-INSERT INTO `cscart_companies` VALUES (1,'A','Simtech','ru','ул. Мира, д. 1 ','Москва ','MOW ','RU','101000','simtech@example.com ','555555555555 ','http://example.com','dev.cs-coding.com/rosatom','dev.cs-coding.com/rosatom','none','Y',NULL,1269610461,'1,7,10,11,9,6 ','',0,'',NULL);
+INSERT INTO `cscart_companies` VALUES (1,'A','Simtech','ru','ул. Мира, д. 1 ','Москва ','MOW ','RU','101000','simtech@example.com ','555555555555 ','http://example.com','185.233.37.254','185.233.37.254','none','Y',NULL,1269610461,'1,7,10,11,9,6 ','',0,'',NULL);
 /*!40000 ALTER TABLE `cscart_companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -956,13 +947,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_company_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_company_descriptions` (
-  `company_id` int(11) unsigned NOT NULL,
+  `company_id` int unsigned NOT NULL,
   `lang_code` char(2) NOT NULL,
   `company_description` text,
   PRIMARY KEY (`company_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -981,7 +972,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_countries` (
   `code` char(2) NOT NULL DEFAULT '',
   `code_A3` char(3) NOT NULL DEFAULT '',
@@ -992,7 +983,7 @@ CREATE TABLE `cscart_countries` (
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`code`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1011,13 +1002,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_country_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_country_descriptions` (
   `code` char(2) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `country` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`code`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1036,22 +1027,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_currencies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_currencies` (
-  `currency_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `currency_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `currency_code` varchar(10) NOT NULL DEFAULT '',
   `after` char(1) NOT NULL DEFAULT 'N',
   `symbol` tinytext,
   `coefficient` double(12,5) NOT NULL DEFAULT '1.00000',
   `is_primary` char(1) NOT NULL DEFAULT 'N',
-  `position` smallint(5) NOT NULL,
+  `position` smallint NOT NULL,
   `decimals_separator` varchar(6) NOT NULL DEFAULT '.',
   `thousands_separator` varchar(6) NOT NULL DEFAULT ',',
-  `decimals` smallint(5) NOT NULL DEFAULT '2',
+  `decimals` smallint NOT NULL DEFAULT '2',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`currency_id`),
   UNIQUE KEY `currency_code` (`currency_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1070,13 +1061,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_currency_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_currency_descriptions` (
-  `currency_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `currency_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`currency_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1095,13 +1086,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_data_feed_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_data_feed_descriptions` (
-  `datafeed_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `datafeed_id` int unsigned NOT NULL DEFAULT '0',
   `datafeed_name` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`datafeed_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1119,10 +1110,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_data_feeds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_data_feeds` (
-  `datafeed_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `datafeed_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `categories` text,
   `products` text,
   `fields` text,
@@ -1139,10 +1130,10 @@ CREATE TABLE `cscart_data_feeds` (
   `export_options` text,
   `save_dir` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT '',
-  `layout_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `layout_id` int unsigned NOT NULL DEFAULT '0',
   `params` text,
   PRIMARY KEY (`datafeed_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1160,13 +1151,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_destination_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_destination_descriptions` (
-  `destination_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `destination_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `destination` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`destination_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1185,15 +1176,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_destination_elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_destination_elements` (
-  `element_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `destination_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `element_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `destination_id` mediumint unsigned NOT NULL DEFAULT '0',
   `element` varchar(255) NOT NULL DEFAULT '',
   `element_type` char(1) NOT NULL DEFAULT 'S',
   PRIMARY KEY (`element_id`),
   KEY `c_status` (`destination_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=548 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=548 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1212,15 +1203,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_destinations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_destinations` (
-  `destination_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `destination_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `localization` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`destination_id`),
   KEY `localization` (`localization`),
   KEY `c_status` (`destination_id`,`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1239,17 +1230,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_discussion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_discussion` (
-  `thread_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `thread_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `object_type` char(1) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'D',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`thread_id`),
   UNIQUE KEY `object_id` (`object_id`,`object_type`,`company_id`),
   KEY `idx_company_id` (`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1268,14 +1259,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_discussion_messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_discussion_messages` (
   `message` mediumtext,
-  `post_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `thread_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `post_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `thread_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`post_id`),
   KEY `thread_id` (`thread_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1293,19 +1284,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_discussion_posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_discussion_posts` (
-  `post_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `thread_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `post_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `thread_id` mediumint unsigned NOT NULL DEFAULT '0',
   `name` varchar(128) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'D',
   PRIMARY KEY (`post_id`),
   KEY `thread_id` (`thread_id`,`ip_address`),
   KEY `thread_id_2` (`thread_id`,`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1323,14 +1314,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_discussion_rating`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_discussion_rating` (
-  `rating_value` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  `post_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `thread_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `rating_value` tinyint unsigned NOT NULL DEFAULT '0',
+  `post_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `thread_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`post_id`),
   KEY `thread_id` (`thread_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1348,18 +1339,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ekeys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ekeys` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `object_string` varchar(128) NOT NULL DEFAULT '',
   `object_type` char(1) NOT NULL DEFAULT 'R',
   `ekey` varchar(255) NOT NULL DEFAULT '',
-  `ttl` int(11) unsigned NOT NULL DEFAULT '0',
+  `ttl` int unsigned NOT NULL DEFAULT '0',
   `data` text,
   PRIMARY KEY (`object_id`,`object_type`,`ekey`(64)),
   UNIQUE KEY `object_string` (`object_string`,`object_type`,`ekey`(64)),
   KEY `c_status` (`ekey`(64),`object_type`,`ttl`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1377,12 +1368,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_em_mailchimp_webhooks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_em_mailchimp_webhooks` (
   `webhook_id` varchar(128) NOT NULL DEFAULT '',
   `list_id` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`webhook_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1400,20 +1391,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_em_subscribers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_em_subscribers` (
-  `subscriber_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `subscriber_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL DEFAULT '',
   `name` varchar(128) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `unsubscribe_key` varchar(32) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`subscriber_id`),
   UNIQUE KEY `email` (`email`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1431,9 +1422,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_exim_layouts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_exim_layouts` (
-  `layout_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `layout_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL DEFAULT '',
   `cols` text,
   `options` text,
@@ -1441,7 +1432,7 @@ CREATE TABLE `cscart_exim_layouts` (
   `active` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`layout_id`),
   KEY `pattern_id` (`pattern_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1460,13 +1451,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_form_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_form_descriptions` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` text,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`object_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1485,20 +1476,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_form_options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_form_options` (
-  `element_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `element_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `element_type` char(1) NOT NULL DEFAULT 'I',
   `value` varchar(255) NOT NULL DEFAULT '',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `required` char(1) NOT NULL DEFAULT 'N',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`element_id`),
   KEY `page_id` (`page_id`,`status`),
   KEY `position` (`position`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1517,10 +1508,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_gift_certificates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_gift_certificates` (
-  `gift_cert_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `gift_cert_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `gift_cert_code` varchar(255) NOT NULL DEFAULT '',
   `sender` varchar(64) NOT NULL DEFAULT '',
   `recipient` varchar(64) NOT NULL DEFAULT '',
@@ -1534,7 +1525,7 @@ CREATE TABLE `cscart_gift_certificates` (
   `country` char(2) NOT NULL DEFAULT '',
   `zipcode` varchar(10) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'P',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `phone` varchar(32) NOT NULL DEFAULT '',
   `order_ids` varchar(255) NOT NULL DEFAULT '',
   `template` varchar(128) NOT NULL DEFAULT '',
@@ -1543,7 +1534,7 @@ CREATE TABLE `cscart_gift_certificates` (
   PRIMARY KEY (`gift_cert_id`),
   KEY `status` (`status`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1561,14 +1552,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_gift_certificates_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_gift_certificates_log` (
-  `log_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `gift_cert_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `log_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `gift_cert_id` mediumint unsigned NOT NULL DEFAULT '0',
   `area` char(1) NOT NULL DEFAULT 'C',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `amount` decimal(12,2) NOT NULL DEFAULT '0.00',
   `debit` decimal(12,2) NOT NULL DEFAULT '0.00',
   `products` text,
@@ -1578,7 +1569,7 @@ CREATE TABLE `cscart_gift_certificates_log` (
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1596,20 +1587,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_hybrid_auth_providers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_hybrid_auth_providers` (
-  `provider_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `provider_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `provider` varchar(32) NOT NULL,
-  `position` smallint(6) NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   `app_id` varchar(255) NOT NULL DEFAULT '',
   `app_secret_key` varchar(255) DEFAULT '',
   `app_public_key` varchar(255) DEFAULT '',
   `app_params` text,
   `status` char(1) DEFAULT 'D',
   PRIMARY KEY (`provider_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1627,12 +1618,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_hybrid_auth_storefronts_providers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_hybrid_auth_storefronts_providers` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `provider_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `provider_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`provider_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1650,14 +1641,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_hybrid_auth_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_hybrid_auth_users` (
-  `user_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `provider_id` mediumint(8) unsigned NOT NULL,
+  `user_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `provider_id` mediumint unsigned NOT NULL,
   `identifier` varchar(128) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`,`provider_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1675,16 +1666,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_images` (
-  `image_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `image_id` int unsigned NOT NULL AUTO_INCREMENT,
   `image_path` varchar(255) NOT NULL DEFAULT '',
-  `image_x` int(5) NOT NULL DEFAULT '0',
-  `image_y` int(5) NOT NULL DEFAULT '0',
+  `image_x` int NOT NULL DEFAULT '0',
+  `image_y` int NOT NULL DEFAULT '0',
   `is_high_res` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`image_id`),
   KEY `image_path` (`image_path`)
-) ENGINE=MyISAM AUTO_INCREMENT=8639 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8640 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1693,7 +1684,7 @@ CREATE TABLE `cscart_images` (
 
 LOCK TABLES `cscart_images` WRITE;
 /*!40000 ALTER TABLE `cscart_images` DISABLE KEYS */;
-INSERT INTO `cscart_images` VALUES (1,'cart.png',205,35,'N'),(2,'favicon.ico',16,16,'N'),(3,'invoice_logo.png',205,35,'N'),(4,'gift_cert_logo.png',176,42,'N'),(1076,'gift_certificate.png',1200,136,'N'),(1077,'holiday_gift.png',900,175,'N'),(1300,'banner-en-sale-40-80.ru.png',740,395,'N'),(1301,'banner-en-xbox360.ru.jpg',740,395,'N'),(1302,'banner-en-point.ru.jpg',740,395,'N'),(1303,'banner-en-girl.ru.jpg',740,395,'N'),(1304,'banner_en_free_ship_lies-pz.ru.png',434,185,'N'),(1305,'banner_en_pickup_ok56-7h.ru.png',434,185,'N'),(8633,'banner_acme_mobile.jpg',770,471,'N'),(8634,'banner_multivendor_mobile.jpg',770,471,'N'),(8632,'banner_x-box_mobile.jpg',770,471,'N'),(1360,'banner-ru-sale-40-80.png',740,395,'N'),(1361,'banner-ru-xbox360.png',740,395,'N'),(1362,'banner-ru-point.png',740,395,'N'),(1363,'banner-ru-girl.png',740,395,'N'),(1364,'banner_ru_free_ship_lies-pz.png',434,185,'N'),(1365,'banner_ru_pickup_ok56-7h.png',434,185,'N'),(8638,'banner_x-box_mobile.jpg',770,471,'N'),(8637,'banner_multivendor_mobile.jpg',770,471,'N'),(8636,'banner_acme_mobile.jpg',770,471,'N');
+INSERT INTO `cscart_images` VALUES (1,'cart.png',205,35,'N'),(2,'favicon.ico',16,16,'N'),(3,'invoice_logo.png',205,35,'N'),(4,'gift_cert_logo.png',176,42,'N'),(8639,'photo_2021-08-21_17-33-08.jpg',640,640,'N');
 /*!40000 ALTER TABLE `cscart_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1703,20 +1694,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_images_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_images_links` (
-  `pair_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `object_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `pair_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` int unsigned NOT NULL DEFAULT '0',
   `object_type` varchar(24) NOT NULL DEFAULT '',
-  `image_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `detailed_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `image_id` int unsigned NOT NULL DEFAULT '0',
+  `detailed_id` int unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT 'M',
-  `position` int(11) NOT NULL DEFAULT '0',
+  `position` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`pair_id`),
   KEY `object_id` (`object_id`,`object_type`,`type`),
   KEY `detailed_id` (`detailed_id`),
   KEY `image_id` (`image_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1725,7 +1716,7 @@ CREATE TABLE `cscart_images_links` (
 
 LOCK TABLES `cscart_images_links` WRITE;
 /*!40000 ALTER TABLE `cscart_images_links` DISABLE KEYS */;
-INSERT INTO `cscart_images_links` VALUES (1,1,'logos',1,0,'M',0),(2,2,'logos',2,0,'M',0),(3,3,'logos',3,0,'M',0),(4,4,'logos',4,0,'M',0),(5,16,'promo',1076,0,'M',0),(6,18,'promo',1077,0,'M',0),(7,35,'promo',1300,0,'M',0),(8,36,'promo',1301,0,'M',0),(9,37,'promo',1302,0,'M',0),(10,38,'promo',1303,0,'M',0),(11,39,'promo',1304,0,'M',0),(12,40,'promo',1305,0,'M',0),(13,42,'promo',8633,0,'M',0),(14,47,'promo',8634,0,'M',0),(15,41,'promo',8632,0,'M',0),(16,60,'promo',1360,0,'M',0),(17,61,'promo',1361,0,'M',0),(18,43,'promo',1362,0,'M',0),(19,44,'promo',1363,0,'M',0),(20,45,'promo',1364,0,'M',0),(21,46,'promo',1365,0,'M',0),(22,47,'promo',1076,0,'M',0),(23,48,'promo',1077,0,'M',0),(24,51,'promo',8638,0,'M',0),(25,50,'promo',8637,0,'M',0),(26,49,'promo',8636,0,'M',0);
+INSERT INTO `cscart_images_links` VALUES (1,1,'logos',1,0,'M',0),(2,2,'logos',2,0,'M',0),(3,3,'logos',3,0,'M',0),(4,4,'logos',4,0,'M',0),(28,63,'promo',8639,0,'M',0),(27,62,'promo',8639,0,'M',0);
 /*!40000 ALTER TABLE `cscart_images_links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1735,13 +1726,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_import_preset_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_import_preset_descriptions` (
-  `preset_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `preset_id` int unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `preset` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`preset_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1759,16 +1750,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_import_preset_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_import_preset_fields` (
-  `field_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `preset_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `field_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `preset_id` int unsigned NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `related_object_type` varchar(32) NOT NULL DEFAULT 'product_field',
   `related_object` varchar(255) NOT NULL DEFAULT '',
   `modifier` text,
   PRIMARY KEY (`field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1786,17 +1777,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_import_preset_states`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_import_preset_states` (
-  `preset_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `last_launch` int(11) unsigned NOT NULL DEFAULT '0',
+  `preset_id` int unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `last_launch` int unsigned NOT NULL DEFAULT '0',
   `last_status` char(1) NOT NULL DEFAULT 'X',
   `last_result` text,
   `file` varchar(255) NOT NULL DEFAULT '',
   `file_type` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`preset_id`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1814,15 +1805,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_import_presets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_import_presets` (
-  `preset_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `preset_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `object_type` varchar(32) NOT NULL DEFAULT 'products',
   `file_extension` varchar(6) NOT NULL DEFAULT '',
   `options` text,
   PRIMARY KEY (`preset_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1840,16 +1831,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_installed_upgrades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_installed_upgrades` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
-  `timestamp` int(11) NOT NULL DEFAULT '0',
+  `timestamp` int NOT NULL DEFAULT '0',
   `description` text,
   `conflicts` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1867,13 +1858,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_language_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_language_values` (
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(128) NOT NULL DEFAULT '',
   `value` text NOT NULL,
   PRIMARY KEY (`lang_code`,`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1893,16 +1884,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_languages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_languages` (
-  `lang_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `lang_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(64) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `country_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`lang_id`),
   UNIQUE KEY `lang_code` (`lang_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1921,13 +1912,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_localization_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_localization_descriptions` (
-  `localization_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `localization_id` mediumint unsigned NOT NULL DEFAULT '0',
   `localization` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   KEY `localisation_id` (`localization_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1945,18 +1936,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_localization_elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_localization_elements` (
-  `element_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `localization_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `element_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `localization_id` mediumint unsigned NOT NULL DEFAULT '0',
   `element` varchar(36) NOT NULL DEFAULT '',
   `element_type` char(1) NOT NULL DEFAULT 'S',
-  `position` smallint(5) NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`element_id`),
   KEY `c_avail` (`localization_id`),
   KEY `element` (`element`,`element_type`),
   KEY `position` (`position`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1974,16 +1965,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_localizations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_localizations` (
-  `localization_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `localization_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `custom_weight_settings` char(1) NOT NULL DEFAULT 'Y',
   `weight_symbol` varchar(255) NOT NULL DEFAULT '',
   `weight_unit` decimal(12,2) NOT NULL DEFAULT '0.00',
   `is_default` char(1) NOT NULL DEFAULT 'N',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`localization_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2001,13 +1992,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_lock_keys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_lock_keys` (
   `key_id` varchar(64) NOT NULL,
   `token` varchar(64) NOT NULL,
-  `expiry_at` int(11) unsigned NOT NULL,
+  `expiry_at` int unsigned NOT NULL,
   PRIMARY KEY (`key_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2025,17 +2016,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_logos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_logos` (
-  `logo_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `layout_id` int(11) NOT NULL DEFAULT '0',
+  `logo_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `layout_id` int NOT NULL DEFAULT '0',
   `style_id` varchar(50) NOT NULL DEFAULT '',
-  `company_id` int(11) NOT NULL DEFAULT '0',
+  `company_id` int NOT NULL DEFAULT '0',
   `type` varchar(32) NOT NULL DEFAULT '',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`logo_id`),
   KEY `type` (`type`,`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2054,23 +2045,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_logs` (
-  `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `log_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `type` varchar(16) NOT NULL DEFAULT '',
   `event_type` char(1) NOT NULL DEFAULT 'N',
   `action` varchar(16) NOT NULL DEFAULT '',
   `object` char(1) NOT NULL DEFAULT '',
   `content` text,
   `backtrace` text,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`log_id`),
   KEY `object` (`object`),
   KEY `type` (`type`,`action`),
   KEY `idx_timestamp` (`timestamp`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2079,7 +2070,7 @@ CREATE TABLE `cscart_logs` (
 
 LOCK TABLES `cscart_logs` WRITE;
 /*!40000 ALTER TABLE `cscart_logs` DISABLE KEYS */;
-INSERT INTO `cscart_logs` VALUES (1,1,1629474645,'requests','N','http','','a:3:{s:3:\"url\";s:37:\"https://updates.cs-cart.com/index.php\";s:7:\"request\";s:848:\"\'dispatch=product_updates.check_available&request=%3C%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%3E%3CRequest+action%3D%22check_license%22+api%3D%223%22%3E%3Cstore_mode_selector%3EY%3C%2Fstore_mode_selector%3E%3Cstore_mode%3E%3C%2Fstore_mode%3E%3Clicense_number%3ECS-UE-GHKA-57DO-4X6M-0XBS%3C%2Flicense_number%3E%3Cver%3E4.13.2.SP2%3C%2Fver%3E%3Cproduct_status%3E%3C%2Fproduct_status%3E%3Cproduct_build%3ERU%3C%2Fproduct_build%3E%3Cedition%3EULTIMATE%3C%2Fedition%3E%3Clang%3ERU%3C%2Flang%3E%3Cstore_uri%3Ehttp%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fstore_uri%3E%3Csecure_store_uri%3Ehttps%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fsecure_store_uri%3E%3Chttps_enabled%3EN%3C%2Fhttps_enabled%3E%3Cadmin_uri%3Ehttp%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fadmin_uri%3E%3Cstore_ip%3E109.195.200.160%3C%2Fstore_ip%3E%3C%2FRequest%3E\'\";s:8:\"response\";s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";}','',0);
+INSERT INTO `cscart_logs` VALUES (1,1,1629474645,'requests','N','http','','a:3:{s:3:\"url\";s:37:\"https://updates.cs-cart.com/index.php\";s:7:\"request\";s:848:\"\'dispatch=product_updates.check_available&request=%3C%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%3E%3CRequest+action%3D%22check_license%22+api%3D%223%22%3E%3Cstore_mode_selector%3EY%3C%2Fstore_mode_selector%3E%3Cstore_mode%3E%3C%2Fstore_mode%3E%3Clicense_number%3ECS-UE-GHKA-57DO-4X6M-0XBS%3C%2Flicense_number%3E%3Cver%3E4.13.2.SP2%3C%2Fver%3E%3Cproduct_status%3E%3C%2Fproduct_status%3E%3Cproduct_build%3ERU%3C%2Fproduct_build%3E%3Cedition%3EULTIMATE%3C%2Fedition%3E%3Clang%3ERU%3C%2Flang%3E%3Cstore_uri%3Ehttp%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fstore_uri%3E%3Csecure_store_uri%3Ehttps%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fsecure_store_uri%3E%3Chttps_enabled%3EN%3C%2Fhttps_enabled%3E%3Cadmin_uri%3Ehttp%3A%2F%2Fdev.cs-coding.com%2Frosatom%2F%3C%2Fadmin_uri%3E%3Cstore_ip%3E109.195.200.160%3C%2Fstore_ip%3E%3C%2FRequest%3E\'\";s:8:\"response\";s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";}','',0),(2,0,1629539041,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:67:\"\'domain_id=4989&username=skater4%40yandex.ru&password=Uc665G%24gLr\'\";s:8:\"response\";s:70:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 415 Unsupported Media Type\"}\";}','',0),(3,0,1629539068,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:70:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 415 Unsupported Media Type\"}\";}','',0),(4,0,1629539138,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"b2cfe129-8111-4d80-9cfa-8af34276ad4a\"}\";}','',0),(5,0,1629539160,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"aa789454-952b-4180-ae20-966ba3d2d49a\"}\";}','',0),(6,0,1629539172,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"01d386fd-2564-4e1a-959c-a53ba7e2004d\"}\";}','',0),(7,0,1629539443,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"2399f57d-bf31-473f-b5e0-d3124b27fd8b\"}\";}','',0),(8,0,1629539470,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"375233f7-9894-4e27-86e6-23c9b2e01663\"}\";}','',0),(9,0,1629539470,'requests','N','http','','a:3:{s:3:\"url\";s:61:\"https://cloud.speechpro.com/vkdiarization/rest/v1/diarization\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:226:\"{\"reason\":\"DATA_CORRUPTED\",\"message\":\"Voice sample is corrupted: Failed to initialize preprocessor instance - /home/build/buildAgent/work/ddb4f3a17e387358/src/protection/Protection.cpp(190): License connection is unavailable\"}\";}','',0),(10,0,1629540191,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"162f64ae-a278-4802-baf8-3e7d176f2a2e\"}\";}','',0),(11,0,1629540191,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:66:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 405 Method Not Allowed\"}\";}','',0),(12,0,1629540203,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"501c4989-c187-44e6-b217-aafb6bf5d9b0\"}\";}','',0),(13,0,1629540203,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:66:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 405 Method Not Allowed\"}\";}','',0),(14,0,1629540217,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"f37fd253-a32e-4aa1-8c8c-99aad1121e77\"}\";}','',0),(15,0,1629540217,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:66:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 405 Method Not Allowed\"}\";}','',0),(16,0,1629540259,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"dcf2c08a-2557-4d55-bf69-b9203ed5d03f\"}\";}','',0),(17,0,1629540259,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:128:\"{\"reason\":\"MODEL_NOT_FOUND\",\"message\":\"No information about \'FarFieldRusOffline7\' model available. Check available models list\"}\";}','',0),(18,0,1629540305,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"6023921b-9cf5-4e88-a34b-49db00aba7c9\"}\";}','',0),(19,0,1629540305,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:91:\"<html><body><h1>400 Bad request</h1>\nYour browser sent an invalid request.\n</body></html>\n\n\";}','',0),(20,0,1629540315,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"eddc827e-c4de-4254-bbfc-7670d88144e4\"}\";}','',0),(21,0,1629540315,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:128:\"{\"reason\":\"MODEL_NOT_FOUND\",\"message\":\"No information about \'FarFieldRusOffline7\' model available. Check available models list\"}\";}','',0),(22,0,1629540394,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"9f446048-cb6c-4102-a095-9bf1a24e27a3\"}\";}','',0),(23,0,1629540394,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:66:\"{\"reason\":\"WEB_EXCEPTION\",\"message\":\"HTTP 405 Method Not Allowed\"}\";}','',0),(24,0,1629540414,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"f01effe5-f75a-4844-b1d6-de2c66f0831d\"}\";}','',0),(25,0,1629540414,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(26,0,1629540443,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"b5efc92c-95b6-4ee7-a0af-e36ef44aed08\"}\";}','',0),(27,0,1629540443,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(28,0,1629540443,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:79:\"{\"reason\":\"ILLEGAL_ARGUMENT\",\"message\":\"Argument X-Session-Id cannot be null.\"}\";}','',0),(29,0,1629540480,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"64dc28a5-f2c7-4766-ac08-4fad335f9e03\"}\";}','',0),(30,0,1629540480,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(31,0,1629540480,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.36\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(32,0,1629540527,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"cfb3a3de-c3c6-4bac-b28f-f9a78b70d63d\"}\";}','',0),(33,0,1629540527,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(34,0,1629540527,'requests','N','http','','a:3:{s:3:\"url\";s:58:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/words\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:5391:\"[{\"word\":\"А\",\"score\":\"39.20\",\"begin\":\"0.48\",\"length\":\"0.21\",\"stop_sign\":\"\"},{\"word\":\"всякие\",\"score\":\"39.20\",\"begin\":\"0.69\",\"length\":\"0.36\",\"stop_sign\":\"\"},{\"word\":\"там\",\"score\":\"39.20\",\"begin\":\"1.05\",\"length\":\"0.21\",\"stop_sign\":\"\"},{\"word\":\"уязвимость\",\"score\":\"39.20\",\"begin\":\"1.26\",\"length\":\"0.54\",\"stop_sign\":\"\"},{\"word\":\"и\",\"score\":\"39.20\",\"begin\":\"1.80\",\"length\":\"0.06\",\"stop_sign\":\"\"},{\"word\":\"прочие\",\"score\":\"39.20\",\"begin\":\"1.86\",\"length\":\"0.39\",\"stop_sign\":\"\"},{\"word\":\"вещи\",\"score\":\"39.20\",\"begin\":\"2.25\",\"length\":\"0.39\",\"stop_sign\":\".\"},{\"word\":\"Они\",\"score\":\"39.20\",\"begin\":\"3.21\",\"length\":\"0.24\",\"stop_sign\":\"\"},{\"word\":\"не\",\"score\":\"39.20\",\"begin\":\"3.45\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"связано\",\"score\":\"39.20\",\"begin\":\"3.57\",\"length\":\"0.48\",\"stop_sign\":\".\"},{\"word\":\"Никак\",\"score\":\"39.20\",\"begin\":\"4.71\",\"length\":\"0.30\",\"stop_sign\":\"\"},{\"word\":\"с\",\"score\":\"39.20\",\"begin\":\"5.01\",\"length\":\"0.09\",\"stop_sign\":\"\"},{\"word\":\"мыслями\",\"score\":\"39.20\",\"begin\":\"5.10\",\"length\":\"0.51\",\"stop_sign\":\",\"},{\"word\":\"как\",\"score\":\"39.20\",\"begin\":\"5.61\",\"length\":\"0.18\",\"stop_sign\":\"\"},{\"word\":\"бы\",\"score\":\"39.20\",\"begin\":\"5.79\",\"length\":\"0.15\",\"stop_sign\":\",\"},{\"word\":\"да\",\"score\":\"39.20\",\"begin\":\"5.94\",\"length\":\"0.30\",\"stop_sign\":\",\"},{\"word\":\"они\",\"score\":\"39.20\",\"begin\":\"6.90\",\"length\":\"0.45\",\"stop_sign\":\"\"},{\"word\":\"как\",\"score\":\"39.20\",\"begin\":\"7.35\",\"length\":\"0.18\",\"stop_sign\":\"\"},{\"word\":\"бы\",\"score\":\"39.20\",\"begin\":\"7.53\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"они\",\"score\":\"39.20\",\"begin\":\"7.65\",\"length\":\"0.15\",\"stop_sign\":\"\"},{\"word\":\"либо\",\"score\":\"39.20\",\"begin\":\"7.80\",\"length\":\"0.24\",\"stop_sign\":\"\"},{\"word\":\"есть\",\"score\":\"39.20\",\"begin\":\"8.04\",\"length\":\"0.21\",\"stop_sign\":\"\"},{\"word\":\"продукте\",\"score\":\"39.20\",\"begin\":\"8.25\",\"length\":\"0.42\",\"stop_sign\":\",\"},{\"word\":\"либо\",\"score\":\"39.20\",\"begin\":\"8.67\",\"length\":\"0.21\",\"stop_sign\":\"\"},{\"word\":\"нет\",\"score\":\"39.20\",\"begin\":\"8.88\",\"length\":\"0.24\",\"stop_sign\":\".\"},{\"word\":\"Мы\",\"score\":\"39.20\",\"begin\":\"9.27\",\"length\":\"0.36\",\"stop_sign\":\"\"},{\"word\":\"понятно\",\"score\":\"39.20\",\"begin\":\"10.32\",\"length\":\"0.57\",\"stop_sign\":\".\"},{\"word\":\"Слушайте\",\"score\":\"39.20\",\"begin\":\"11.25\",\"length\":\"0.30\",\"stop_sign\":\".\"},{\"word\":\"Ну\",\"score\":\"39.20\",\"begin\":\"11.55\",\"length\":\"0.15\",\"stop_sign\":\",\"},{\"word\":\"я\",\"score\":\"39.20\",\"begin\":\"11.70\",\"length\":\"0.18\",\"stop_sign\":\"\"},{\"word\":\"и\",\"score\":\"39.20\",\"begin\":\"11.88\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"да\",\"score\":\"39.20\",\"begin\":\"12.00\",\"length\":\"0.27\",\"stop_sign\":\"\"},{\"word\":\"вот\",\"score\":\"39.20\",\"begin\":\"12.27\",\"length\":\"0.27\",\"stop_sign\":\"\"},{\"word\":\"коллеги\",\"score\":\"39.20\",\"begin\":\"12.60\",\"length\":\"0.57\",\"stop_sign\":\".\"},{\"word\":\"Спасибо\",\"score\":\"39.20\",\"begin\":\"13.17\",\"length\":\"0.54\",\"stop_sign\":\".\"},{\"word\":\"Это\",\"score\":\"39.20\",\"begin\":\"13.80\",\"length\":\"0.24\",\"stop_sign\":\"\"},{\"word\":\"прям\",\"score\":\"39.20\",\"begin\":\"14.04\",\"length\":\"0.30\",\"stop_sign\":\".\"},{\"word\":\"Вижу\",\"score\":\"39.20\",\"begin\":\"14.40\",\"length\":\"0.42\",\"stop_sign\":\"\"},{\"word\":\"глубокое\",\"score\":\"39.20\",\"begin\":\"14.91\",\"length\":\"0.48\",\"stop_sign\":\"\"},{\"word\":\"погружение\",\"score\":\"39.20\",\"begin\":\"15.39\",\"length\":\"0.72\",\"stop_sign\":\".\"},{\"word\":\"Честно\",\"score\":\"39.20\",\"begin\":\"16.20\",\"length\":\"0.39\",\"stop_sign\":\"\"},{\"word\":\"прямо\",\"score\":\"39.20\",\"begin\":\"16.59\",\"length\":\"0.15\",\"stop_sign\":\"\"},{\"word\":\"глубокая\",\"score\":\"39.20\",\"begin\":\"16.74\",\"length\":\"0.51\",\"stop_sign\":\".\"},{\"word\":\"Смотрите\",\"score\":\"39.20\",\"begin\":\"17.91\",\"length\":\"0.51\",\"stop_sign\":\".\"},{\"word\":\"Видимо\",\"score\":\"39.20\",\"begin\":\"18.42\",\"length\":\"0.36\",\"stop_sign\":\",\"},{\"word\":\"для\",\"score\":\"39.20\",\"begin\":\"18.78\",\"length\":\"0.15\",\"stop_sign\":\"\"},{\"word\":\"гаранина\",\"score\":\"39.20\",\"begin\":\"18.93\",\"length\":\"0.48\",\"stop_sign\":\".\"},{\"word\":\"Там\",\"score\":\"39.20\",\"begin\":\"19.41\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"Евгений\",\"score\":\"39.20\",\"begin\":\"19.53\",\"length\":\"0.24\",\"stop_sign\":\"\"},{\"word\":\"Сергеевич\",\"score\":\"39.20\",\"begin\":\"19.77\",\"length\":\"0.30\",\"stop_sign\":\",\"},{\"word\":\"нужно\",\"score\":\"39.20\",\"begin\":\"20.07\",\"length\":\"0.45\",\"stop_sign\":\"\"},{\"word\":\"как-то\",\"score\":\"39.20\",\"begin\":\"21.03\",\"length\":\"0.39\",\"stop_sign\":\"\"},{\"word\":\"просто\",\"score\":\"39.20\",\"begin\":\"21.42\",\"length\":\"0.36\",\"stop_sign\":\"\"},{\"word\":\"есть\",\"score\":\"39.20\",\"begin\":\"21.78\",\"length\":\"0.36\",\"stop_sign\":\"\"},{\"word\":\"нормальный\",\"score\":\"39.20\",\"begin\":\"22.23\",\"length\":\"0.69\",\"stop_sign\":\"\"},{\"word\":\"план\",\"score\":\"39.20\",\"begin\":\"22.92\",\"length\":\"0.33\",\"stop_sign\":\".\"},{\"word\":\"Да\",\"score\":\"39.20\",\"begin\":\"23.31\",\"length\":\"0.30\",\"stop_sign\":\"\"},{\"word\":\"то\",\"score\":\"43.75\",\"begin\":\"23.61\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"есть\",\"score\":\"43.75\",\"begin\":\"23.73\",\"length\":\"0.12\",\"stop_sign\":\"\"},{\"word\":\"тот\",\"score\":\"43.75\",\"begin\":\"23.85\",\"length\":\"0.12\",\"stop_sign\":\",\"},{\"word\":\"который\",\"score\":\"43.75\",\"begin\":\"23.97\",\"length\":\"0.42\",\"stop_sign\":\"\"},{\"word\":\"прям\",\"score\":\"41.13\",\"begin\":\"24.39\",\"length\":\"0.24\",\"stop_sign\":\"\"},{\"word\":\"реальный\",\"score\":\"41.13\",\"begin\":\"24.63\",\"length\":\"0.36\",\"stop_sign\":\"\"},{\"word\":\"план\",\"score\":\"41.13\",\"begin\":\"24.99\",\"length\":\"0.39\",\"stop_sign\":\"\"}]\";}','',0),(35,0,1629540554,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"bc6bf2e7-0dde-4a72-a1d2-55093c715705\"}\";}','',0),(36,0,1629540554,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(37,0,1629540554,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.36\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(38,0,1629541770,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"9c5ffbac-a5de-4087-b55e-73e7fddae780\"}\";}','',0),(39,0,1629541770,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(40,0,1629541770,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.36\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(41,0,1629542000,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"503db7e7-9922-4a81-9349-92635d9d6c1f\"}\";}','',0),(42,0,1629542000,'requests','N','http','','a:3:{s:3:\"url\";s:61:\"https://cloud.speechpro.com/vkdiarization/rest/v1/diarization\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:226:\"{\"reason\":\"DATA_CORRUPTED\",\"message\":\"Voice sample is corrupted: Failed to initialize preprocessor instance - /home/build/buildAgent/work/ddb4f3a17e387358/src/protection/Protection.cpp(190): License connection is unavailable\"}\";}','',0),(43,0,1629542000,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(44,0,1629542000,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.36\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(45,0,1629542325,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"3cccb285-afb4-41bf-ad16-afa935f029b5\"}\";}','',0),(46,0,1629542325,'requests','N','http','','a:3:{s:3:\"url\";s:61:\"https://cloud.speechpro.com/vkdiarization/rest/v1/diarization\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:226:\"{\"reason\":\"DATA_CORRUPTED\",\"message\":\"Voice sample is corrupted: Failed to initialize preprocessor instance - /home/build/buildAgent/work/ddb4f3a17e387358/src/protection/Protection.cpp(190): License connection is unavailable\"}\";}','',0),(47,0,1629542325,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(48,0,1629542325,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.38\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(49,0,1629542421,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"37c63116-7656-4ad6-826f-de09e4d816a5\"}\";}','',0),(50,0,1629542421,'requests','N','http','','a:3:{s:3:\"url\";s:61:\"https://cloud.speechpro.com/vkdiarization/rest/v1/diarization\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:226:\"{\"reason\":\"DATA_CORRUPTED\",\"message\":\"Voice sample is corrupted: Failed to initialize preprocessor instance - /home/build/buildAgent/work/ddb4f3a17e387358/src/protection/Protection.cpp(190): License connection is unavailable\"}\";}','',0),(51,0,1629542421,'requests','N','http','','a:3:{s:3:\"url\";s:48:\"https://cloud.speechpro.com/vkasr/rest/v2/models\";s:7:\"request\";s:2:\"\'\'\";s:8:\"response\";s:912:\"[{\"model_id\":\"SpontEs1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"es\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:offline\",\"name\":\"Medium microphone model for offline recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"IvrKz1\",\"name\":\"Model for IVR systems\",\"language\":\"kz\",\"sample_rate\":8000},{\"model_id\":\"SpontRus4s\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru\",\"sample_rate\":8000},{\"model_id\":\"SpontEng1\",\"name\":\"Telecom model for offline scenario\",\"language\":\"en\",\"sample_rate\":8000},{\"model_id\":\"SpontKazRusMix2\",\"name\":\"Telecom model for offline scenario\",\"language\":\"ru-kz\",\"sample_rate\":8000},{\"model_id\":\"FarFieldRus10:online\",\"name\":\"Medium microphone model for online recognition\",\"language\":\"ru\",\"sample_rate\":16000},{\"model_id\":\"FarFieldEngOffline1:light\",\"name\":\"Light medium microphone model for offline recognition\",\"language\":\"en\",\"sample_rate\":16000}]\";}','',0),(52,0,1629542421,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:563:\"{\"reason\":\"WRONG_JSON\",\"message\":\"Cannot deserialize value of type `com.speechpro.biometric.platform.application.asr.data.AudioType` from String \\\"MP3\\\": value not one of declared Enum instance names: [WAV, PCM_8000, PCM_16000]\\n at [Source: (org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream); line: 1, column: 15791660] (through reference chain: com.speechpro.biometric.platform.application.asr.data.dto.SampleRecognitionRequestDto[\\\"audio\\\"]->com.speechpro.biometric.platform.application.asr.data.dto.SampleDto[\\\"mime\\\"])\"}\";}','',0),(53,0,1629543483,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"f96df975-5d96-402c-9ad6-3ef14ecdb0ba\"}\";}','',0),(54,0,1629543483,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:44:\"{\"score\":\"70.10\",\"text\":\"В прошлом\"}\";}','',0),(55,0,1629543504,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"33fb8efb-0d60-448b-bda4-114a353a130c\"}\";}','',0),(56,0,1629543504,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:706:\"{\"score\":\"41.38\",\"text\":\"А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушайте. Ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокая. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да то есть тот, который прям реальный план\"}\";}','',0),(57,0,1629544018,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"5c517762-92a6-4ad7-a614-4a91ade2a688\"}\";}','',0),(58,0,1629544111,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"7d9a0c43-f41f-4a20-92f8-cb1569105bbe\"}\";}','',0),(59,0,1629544111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:152:\"\'{\"model_id\":\"FarFieldRus10:offline\",\"audio\":{\"data\":\"\",\"mime\":\"WAV\"},\"recognition_config\":{\"additional_words\":[\"string\"],\"vocabulary_ids\":[\"string\"]}}\'\";s:8:\"response\";s:72:\"{\"reason\":\"ILLEGAL_ARGUMENT\",\"message\":\"Argument data cannot be empty.\"}\";}','',0),(60,0,1629544125,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"9d00ce74-13d3-42d5-8646-87730e7081c1\"}\";}','',0),(61,0,1629544125,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:164:\"{\"reason\":\"SAMPLE_TOO_LONG\",\"message\":\"This sample can\'t be processed. It\'s length is \'731\' seconds. but server can accept only records shorter than \'600\' seconds\"}\";}','',0),(62,0,1629544815,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"d3f9d7b5-3471-46e8-8e70-274311085862\"}\";}','',0),(63,0,1629544815,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:164:\"{\"reason\":\"SAMPLE_TOO_LONG\",\"message\":\"This sample can\'t be processed. It\'s length is \'731\' seconds. but server can accept only records shorter than \'600\' seconds\"}\";}','',0),(64,0,1629545269,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"fb81350a-5452-4900-a3b3-7789c0e52039\"}\";}','',0),(65,0,1629545269,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',0),(66,0,1629550510,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"b7e5ce42-4fcf-4e81-8c0d-d5e24ccf0148\"}\";}','',1),(67,0,1629550521,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"39bbfabb-b0a4-4b1a-a151-bb548523ad91\"}\";}','',1),(68,0,1629550544,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"04be1582-5c26-4c38-9c56-3a563fbdcbb7\"}\";}','',1),(69,0,1629550544,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(70,0,1629550800,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"b1571c40-5538-47b7-850f-728169177688\"}\";}','',1),(71,0,1629550800,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(72,0,1629550800,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(73,0,1629550952,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"8669b16d-adc1-49d1-ab96-a54a7de9a004\"}\";}','',1),(74,0,1629550952,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(75,0,1629550952,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(76,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"dcfdf507-43c9-4fc7-b75d-15dacf60c78a\"}\";}','',1),(77,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:10708:\"{\"score\":\"51.73\",\"text\":\"Ну, прежде, прежде всего хочу всех поприветствовать на втором этапе проекта управляющий совет проекта приняло решение о продолжении реализации системы бюджетирования, бизнес-планирования в топливной компании с использованием оптимист кросса. Вот так же хочу представить нового руководителя проекта со стороны ТВЭЛ это Ермилов Андрей Александрович. Он сейчас с нами, и он будет, но решать ряд организационных вопросов внутри ТВЭЛ, но и совместно с командой, гранатом и командует М один. Поэтому прошу не удивляться, да к тому, что от него тоже могут вам приходить какие-то вопросы письма. В общем, он такой же руководитель проекта, как и я, и я думаю, что следующий там, в том числе подготовку материалов к оперативным советом. Да, мы будем уже с ним согласовывать про прорабатывать да здравствуйте, коллеги. Так теперь по давайте пройдемся по статусу. Я надеюсь, что сегодняшнее совещание. Мы достаточно быстро проведем мы уложимся в полчаса, после чего мы сможем с Андреем Герасимовым ещё обсудить ряд вопросов касательно цифру два так. Итак, у нас сейчас идет этап проектирования, на котором мы должны создать техническое задание на разрабатывают на разрабатываемую систему в рамках этого этапа решаются. Первая задача это детальный анализ существующих на всех предприятиях процессов бюджетирования. К сожалению, у нас это под задача идет не так гладко, как хотелось бы, да, а на следующих слайдах к этому вернемся, второй. Вторая такая не верхние уровневая данного проектная веха. Это у нас стоит вопрос по актуализации проектной команды. Ну во-первых, на предприятиях у вас есть ряд изменений штатных изменений и с некоторыми мы обсуждали, кого нужно включить кого-то исключить из приказа о реализации проекта о включении в рабочую группу, но и во-вторых, нам нужно будет добавить сотрудников тех компаний, которые не участвовали в проекте на предыдущем этапе прототипирования и так. Но основная задача сейчас это изучение тех методологии, которые у вас используются и в начале, в конце, в конце даже января был направлен запрос на предоставление ряда информации это на самом деле очень критичные. Запрос. К сожалению, коллеги из ТМ один получает информацию со значительным отставанием от графика, что ставит под риск выполнения там и ну изучение основных методологии. К концу марта, да и соответственно успех успешную подготовку предложений по будущим методологиям и завершение своевременное завершение этапа проектирования. Андрей Максимов. Все верно. Давайте немножко наверное, из желтого статуса. Всё-таки красных несем и наверно, каждый день я предлагаю рассылку делать по коллегам. Кто еще не дослал информацию. Ну напоминалку. Вот даже, чтобы частично, что появляются люди уже присылали, а не ну, если даже полного списка. Нет, что нам требуется. Предлагаю вот так вот сейчас сегодняшнего дня двигаться там сегодня тогда с тобой свяжусь побыстрее обсудим, как в рассылку делать по списку рассылку готовы делать. Но она сейчас вот на следующем слайде. У нас табличка по текущему статусу. Да у нас сейчас раз получится практически на все компании. Огромное спасибо, чем за и МТЗ за своевременное предоставление документов. Но есть некоторые уточнения сейчас поэтому стоит восемьдесят пять девяносто процентов по МТЗ сегодня утром переписали относительно того, что не предоставляли еще в декабре справочник продуктов я коллегам и сказал ой, и ставим ставим один. Переправь. Перенаправил письмо посмотрите. Пожалуйста. Наверное, это то что то, чего как раз вам не хватает с АФК да или о, у нас так у нас встреча. Сейчас секунду секунду так Альфика. Да у нас встреча сегодня с девяти утра идет и прямо сейчас коллеги ещё за завершается обсуждение последних документов, то есть, я думаю, что основные вопросы они снимут с уехать к с уральским электрохимическим комбинатом. Встреча назначена на сегодня после обеда коллеги из других компаний. Пожалуйста, сообщайте удобное время для проведения встречи с вами. Я понимаю, что инфа запрос он очень большой и по нему, но не все однозначно. Понятно, да не всегда. Понятно, что от вас ожидаются коллеги из М один. Поэтому давайте проводить активно встречи, уже начиная с понедельника. Сообщайте, напишите мне в почту, удобное для вас время будем назначать и общаться на эту тему также ну, здесь вопрос у нас скорее к Андрея Герасимова да по ряду компаний, которые не участвовали в первом этапе проекта. Да потому что эти компании ещё это я понимаю, что это достаточно маленькие компании, но тем не менее с ними тоже все вопросы. Нужно проработать это и не расска. Яйцо кальян с Русак. Но, к сожалению, пока вот я даже не знаю, к кому обращаться. Вот мы говорили о том, что нужно сделать в запросы. Видимо, по финансовым финансово экономическому блоку и возможно. Вот с выходом Андрея. Мы можем как-то ускорить какие-то внутренние процессы внутри ТВЭЛ, потому что, чтобы ввести новых коллег в проект объяснить им, чем мы занимаемся, что мы от них хотим. Андрей Валерьевич. Хорошо. Мы к этому вопросу вернемся чуть позже, после, после встречи так значит, дальше по рискам по основным рискам проекта. Сейчас мы выделили два риска. Это как раз риск по отставание по анализу существующих процессов бюджетирования, которую мы. Мы уже поговорили. Да и просьба предоставить недостающую информацию и пишите мне. Да удобное время для проведения встреч с вашими компаниями, но вскоре соберемся совещание в скайп, чтобы все, все вопросы. Снять также просьба по изменению. Org по изменению участников проекта некоторых компаний уже приходили запросы о том, что вот кого-то добавить кого-то исключить. Если вы считаете, что нужно изменить состав рабочей группы по проекту. Напишите, пожалуйста. Мне письмо об этом, чтоб мы это учли в новом обновлении приказа о реализации проекта возраста в части состава рабочих групп и второй риск. Он у нас появился у тебя обсуждения сертификации системы по ТЭК ратификацию стек это необходимо сертификат\"}\";}','',1),(78,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:14403:\"{\"score\":\"70.81\",\"text\":\"Который должен быть его оптимальностью. Для того, чтобы мы могли в системе обрабатывать данные. Котэ ДСП. Персональные данные и есть риск о том, что из процедур, сертифицирующих органов, оптимально, сможет не успеть получить сертификат к окончанию этапа внедрения, то есть к шестому, одиннадцатому двадцать первого года. Задержка может, по текущим оценкам, задержка может составить один, два месяца соответственно, это может привести к тому, что система переданы в опытную эксплуатацию до получения сертификата на не сможет работать с реальными данными и начала опытной эксплуатации у нас может быть только на таких, но на фальсифицированных данных, да не совсем не совсем корректно, но при этом мы понимаем, что это некоторые формальные процедуры, на которую нам очень тяжело повлиять. Вопрос мы этот вопрос мы обсуждали уже на совещание с Денисом Калашниковым с представителями информационной безопасности, и поэтому в рамках был было предложено решение о возможности принятия системы до получения там итогового сертификатов, стек при условия при выполнении ряда условий для о том, что назначены испытательная лаборатория проведены испытания подготовлен проект формуляра с подробным описанием системного ландшафта и проект формуляра передан на получение сертификатов стек соответствующую организацию. Данное решение предлагается зафиксировать в рамках оперативного совета, так как работу по мероприятия по риску несвоевременного получения сертификата стек мой доклад. В общем окончен. Да, предлагаю приступить к вопросам. Комментарием. Может быть, кто-то хочет прокомментировать да вопросы, там связанные с как раз предоставлением информации по запросу. Может быть проблемы. У кого-то какие-то возникают. Пожалуйста, сообщите об этом. Ну, мы собственно, а, да добрый день Максим с нами, Ирина Романова. Шевяков Сергей, в принципе по запросам мы вот, кроме как рассылку наверное, ничего предложить не можем. Только если вот коллеги предложат, как, может, ускориться вам помочь. Вот мы как бы готова. Те предложения выслушать, что вам помочь да, да, коллеги. Добрый день. Денис сказал Калашников, может быть, а кто-нибудь от предприятия от заводов там слово возьмет, скажет в чем проблема. Почему долго и как, может, помочь нам я не знаю ТВЭЛ или М. Один да говорите. Здравствуйте, индюка Юлия Городкова. Я хочу туда прокомментировать. Значит, в чем у нас проблема в том, что вводится файлы очень большие. Приходится. То есть мы не будем отправлять файл с данными приходится чистить. Вот это занимает очень много времени с учетом как бы текущей работы. То что сейчас у нас как раз январь, февраль был очень горячая. Это же месяц, а с учетом того, что мы консолидировали. Ну, свой бизнес. План. Потом у нас была отчетность был пошла. Ну и так далее. Ну, то есть не буду рассказывать. Да, все это все в этом участвовали. Вот и это знать при этом текущая работа, которые уже январь февраль. Да у нас идет вот приходится чистить файлы. Просто. Вот, например, у меня занимает это. Ну часа три в день понимаете, то есть три часа в день найти. Но это как бы сейчас в данной ситуации не так просто огромные, то есть. Ну, например, сбор факты. Я вот писала ужин о том, что ну Андрею Владимировичу Василенко о том, что, например, у меня один файл месяца. Например, январь да он больше двадцати трех мегабайт. Ну, то есть понимаете, что значит его почистить Юлия. Добрый день смотрите, а мы бы могли построить обмен документами и следующим образом там в запросе. Помимо факт, помимо файлов, ну, шаблонов и ваших рабочих файлов. Там есть документы, но, грубо говоря pdf учетная политика положение внутренние. Ну, не знаю, какие-то там вплоть до презентации шаблонов презентации образцов презентация, которую вы делаете, то есть такие файлы, которые ну назовем стационарными, то есть если бы хотя бы какую-то часть из имеющий из того, что вы можете из из опроса нам прислать оно у вас нового, грубо говоря, лежит где-то в папке нужно собрать и отправить этого уже помогло нам приступить к. Ну, скажем, так к анализу. Я понимаю, что рабочие файлы, все живые и там. Ну, не у всех лежит пустой шаблон. Где там там, в папочке шаблонами, но хотя бы частично какой-то такой вот стационарного мою информацию. Хотелось бы получить, то есть если у вас, например, есть из опроса там шестьдесят процентов информации, готовой да. А вы вот вы четыре четыреста сорок процентов. Оставшиеся обрабатываете чистите и так далее, то пришлите хотя бы шестьдесят нет. Ну, у нас на сегодняшний день готова, например, ну процентов пять. Вот так, опять же смотрите, про те файлы, которые вы говорите презентации. Там что-то ещё, например, у нас презентации. Наша форма. Мы сами ничего не придумываем. У нас все зависит от того, как нам ТВЭЛ, какую презентацию пришлет на ту презентацию рисуем. Понятно. Одна учетная политика. Ведь у вас есть положение по бизнес планирование есть пока положение по калькулировать есть описание процессов, приказы о бизнес-планирования. Они тоже. Наверное, есть уже по крайней мере там с осени остались с прошлого года. Если нет свежим учетной политики на двадцатый. Я знаю, что никогда вовремя на нее руки не доходят хотя бы за девятнадцатый год. Ну, они же уже есть это конечно, что-то есть. Но вот это тоже. Это все как бы надо идти, и где-то искать на это тоже надо время, то есть где-то искать, то есть они не лежат у меня в какой-то папке, которая называлась бы там нормативные. Там какие-нибудь документы да, то есть. Это одна, например, учетная политика где-то в бухгалтерии, да приказы наш ну, с приказами проще, то есть с теми документами, которые выпускала наша служба. Но конкретно планово экономический отдел с этим проще, потому что они у нас есть да. А вот ещё что-то. Это надо где-то вот идти искать по подразделениям. У нас такая ситуация. Но, может быть, тогда нужно напрямую запрос главному бухгалтеру нам направить или вы дайте контактный лица. Кто может пошарить там я не знаю по почтовым ящикам по людям походить. Я не знаю, как это можно сделать ну, это равносильно тому же, что сейчас вспомнить людей это вспомнить, где какие приказы да ну, то есть, чтоб понимаю понимать, как чью дать, так сказать контактную информацию нужно понимать. Какой документ ну, то есть. Это нужно вспомнить. Для начала документ. Ну, то есть это все равно я говорю, требует время это ну во-первых, ну, я, конечно, как бы тут вот сейчас не оправдывает. Ну, я просто хочу писать нашу ситуацию конкретные закуску. Во-первых, у нас произошло уменьшение людей в отделе. Так скажем, да в связи с увольнениями у нас ещё ситуация. Я это говорила, когда мы к этому прототип тестировали. Да что у нас очень сложной ситуации в связи с тем, что количество людей уменьшилась. Работы не уменьшилось, то есть мы сейчас передаем работу. Опять же я говорю вот это текущие отчетность, все такое прочее, и ещё. Вот это навалилось, то есть у нас вот покойной. За какая ситуация и занимается этим фактически один человек. Вот то есть это физически это. Ну, физически, просто должны. Поймите да двадцать четыре часа. В сутках это не всегда. Возможно. Понятно. Я правильно понимаю, что мы со своей стороны. Наверное, не можем вам чем-то помочь или у нас есть какие-то возможности нет, вы со своей не можете помочь. Просто я говорю, что у нас ситуация именно связанные с тем, что у нас вот короткое время в шутку Юлия Владимировна. А скажите, а может быть в ту часть документов, которые более-менее легко может быть просто хотя бы первую часть отдать, чтобы коллеги могли работать, но как бы по частям этот запрос отработать ну что-то я вам говорю, что что-то есть что-то подобрана, но это процентов пять можно ее. Конечно. Да отдать. Мне кажется, лучше отдать все равно, чтобы коллеги уже могли начале накопится. Хорошо, я поняла. Да, это мы выложим туда Наиб. Да куда вы, сука да, да, да вот на внутренние ресурсы, а мы его синхронизируем уже с этой М одиннадцать внешне или Владимировна у меня ещё тоже предложение давайте, может быть, мы подскажите, насколько это скажем, так творческий процесс, очистка данных от\"}\";}','',1),(79,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:13942:\"{\"score\":\"58.32\",\"text\":\"Факта. Вот это вот этого файла от фактических данных можно какого-то неквалифицированного кого-то попросить. Вот вы сможете как-то быстро объяснить. Вот что нужно делать. Я понимаю, что процесс не сможете. Да там понимаете, это файлы, и все мои. Ну, то есть это вот как вот мне сейчас прислали какой-то свой рабочий файлы, попросили бы его очистить. Да, то есть я туда зашла, что чистить, что там хранится. Что за информацию, то есть там понимаете, они вот эти документы наши рабочие файлы. Они созданы. Ну как бы под каждого конкретного. Вот я садилась, да и с учетом той задачи, которую бы я хотела я это реализовано, так, как я это вижу и другой человек, который вот приходит он, может быть. Ну и не поймет того, чего там содержится ну, понятно. Ну, то есть так не получится привлечь какого-то неквалифицированного исполнителя условно мы могли бы там где-то найти человечка. Там я не знаю гранатами. Где-то в филиале. Вы думаете, что вряд ли. Да получит. Видите, как я же хочу удалить только ту информацию. Ну, например, какие-то, то есть, чтобы там остались связи ссылки формулы. Да чтобы вот ты М. Один было проще понять, зачем это данную формула прописана, да чтобы они поняли, для чего это нужно да, да формулу лучше не удалять. Она нам побольше тройку понять. Да мы посадим человека, который неквалифицированный, что произойдет, он просто оттуда все снесет вместе с формулами, суками, то есть я вот, предполагая такое, то есть, то только я знаю, где в моем файле содержатся данные, которые можно да, то есть что можно удалить. А что можно оставить Юлия Владимировна, а мы с вами обсуждали, что эту чистку файлов необходимо произвести потому что там данные, которые ДСП правильно. Ну да, там всякие данные, то есть. И вот с точки зрения. Ну, если, например, говорить о фактических данных. Да, то это просто выгрузка из этапов. Массив ватсапа. Да вот из там содержаться. Может, все что угодно вопроса. Может быть, мы просто организуем тогда передачу. Именно через ТВЭЛ. Конечно, через Андрея Герасимова передачу этого полного файла с Котэ ДСП в твоем отдела. Может быть, это будет быстрее и удобнее образом. А каким образом, например, по по как мы это по электронной почте. Нет, нет. Но у вас есть внутренний каналов ТВ или как вы можете. Этот файл передать Андрея Герасимова. Да, есть почта. Да почта специальный защищенный канал. Защищенная почта. Дальше. ТМ один делает запрос на этот документ официальный и официально его получает от твоего да, со всеми на на флешке. Да с со всеми там пометками о том, что им передано такая-то документация, Котэ ДСП договор о неразглашении. У них есть, то есть я поняла нет, я поняла. Теперь дальше технический вопрос. У меня файл двадцать три мегабайта пятьдесят три мегабайта. Это я, как передам по электронной почте, а то есть по. По. По защищенной почте. Это тоже нельзя, так. Конечно, они не передаю. Ну, почту, электронную, но это же можно, можно же заархивировать и разбить на тома. Это не проблема. Ну, то есть Павел там по десять мегабайт. Он нарезается архиватор. Хорошо, если чистка, если у меня чистка занимает три часа в день я не знаю сколько у меня будет занимать архивирования коллеги, а можно к вам присоединюсь. Смотрите у нас есть и давайте через эту информацию передавать, а мы уже всем один передадим через письмо, которое ну, то есть. Ноги тоже пойдем с данными, то есть. Да ну, не знаю. Если это если это можно мы Наиб создали специальный раздел, который есть там автоматизации. Давайте через него передавать информацию чисто спаивает и по это просто проектные. Область на портале Шариповым, то он у нас сертифицирован, в том числе по СП и приказом введен таким образом, что там коты, то есть, то можно обрабатывать в целом это в да вариант тоже передачи. Скажем так легальной информации нет. Если это можно так ну, давайте, конечно, не будем тратить время на чистку ещё раз я ей мы сейчас понимаем. Вот этот проектный портал, на котором сейчас все выкладываем или или ещё какой-то денег есть отдельный портал под названием единое информационное пространство Пэм финансово-экономического блока. Это вот коллеги. Все знают это не наш проектный портал ни в коем случае это отдельный отдельное. Проектная область там коллеги. Вот они его под названием и знаю. А хорошо, хорошо. Да ну туда, куда мы кладем прогнозы, планы там и так далее даже да ну, тогда там нужно какую-то папку. Для этого создать отдельную. Наверное, которая бы нажралась материала для Андрей Валерьевич сможете создать там разделы именно для обмена документами, содержащими кота ДСП велик, потому что там сейчас нету такого раздела это нужно будет для каждого общество создать, потому что у них отдельные папки. Насколько я понимаю, там, которым ТВЭЛ ко всем имеет доступа предприятие друг другу не имеет доступ. Но это у меня туда тоже доступа. Нет. Это надо, чтобы нам Андрей Герасимов, либо попросил кого-то либо как-то там Андрюх, ты сможешь. Коллеги, я сделаю рассылку. Сегодня там папка создано предприятие там есть, то есть доступ будет. Давайте туда выкладывать информацию. И все. Хорошо, хорошо. Единственное уточняю, что я, но как бы я из Ренатом не смогу. Нет. Поступление туда информации, то есть это, должно быть, где-то на вас нет, а вся информация будет передаваться отдельным письмом, грифом КП. Да и все то есть никакие не наши файлообменник и все остальное понятно, то есть информация. Тогда мы вот ноги, выкладываем информацию именно или вот с, которая содержит Котэ ДСП данные информацию, которая не содержит, который ДСП прошу передавать через проектной портал, потому что это будет быстрее. Да, я быстрее ее смогу передать, что М один хорошо, коллеги. А вот вариант с диском кота ДСП там организовать там курьерскую доставку под роспись там доверенных лиц, может, так быстрее всего не поедете. Сейчас по всем предприятиям Сибири. Там за разными дисками. Это будет лучше ее собрать сейчас твоего Андрея Герасимова и Максима и будет диск вам мужики с передачей информации ещё раз всю информацию. А ну да, да, да отлично. Да. Договорились коллеги из цифр три. Может быть, еще какие-то есть. Сложности, вопросы. Давайте обсудим, подскажите, а будет официальное письмо на предприятие на генеральных директоров, что у нас такой проект начальство, чтобы все подразделения предприятий смежные, которые должны будут предоставлять информацию и так далее тоже были в курсе. Подождите. Был. Был приказ осенью о том, что проект начинался. Ну вот мы его что-то не лицезрели. Давайте я ещё раз, раз сделаю в рассылку приказа пометил. Был. Был приказ осенью о том, что начался проект в рамках приказа были, был сформирован. Собственно, все наши управляющие органы по проекту рабочей группы по проекту и было поручение обеспечить работу сотрудникам проект продублируйте. Пожалуйста. Ещё хорошо. Добрый день, а будьте добры, скажите, пожалуйста, как рассчитан процент по статусу предоставления информации, потому что мы вот, допустим, по всем пунктам практически предоставили информацию. Процент стоит очень маленький. Там ХК Обухова беспокоит. Коллеги из 1С к вам вопрос вы его рассчитывали у нас просто дело в том, что вот в части учетной политики свой регламентов. Документы были отправлены через ЮЗАО, потому что у нас отдел по интеллектуальной собственности, запретил нам передавать напрямую там по там каналам от Лука или там выкладывание, какие-то ресурсы вот этих вот документов, потому что они имеют статус. Ну, так, скажем, интеллектуальной собственности, а на кого они были переданы приезду на Андрея Валерьевича. А, понятно. Значит, мы. Мы видимо, не успели их обработать с Андреем Валерьевичем. Спасибо коллеги. Добрый день вводимых рад за методолог. А как считался процент. Расскажу. У нас есть кем-то запрос у которого по разным блоком. Это запрос разных дата предоставления, но\"}\";}','',1),(80,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:14738:\"{\"score\":\"69.33\",\"text\":\"Все они уже наступили соответственно считался по пунктам и по запросы, которые покрываются теми документами, которые были предоставлены коллегами и которые мы успели увидеть по состоянию на вечер вчерашнего дня. Да. Но вот они отработали документы и в из которые передавались поделилась до мы этих попробуем сегодня с этим разобраться. А можно вопросик задать по внешнему, с кем можно связаться каких документах не хватает, может быть не хватает учетной политики. Я ее не предоставляла, может, ещё что-то им можно связаться. Я думаю, лучше будет вам сообщить мне удобнее для а смотрите вы можете, либо напрямую позвонить. Там было. Были в рассылке телефон вводимым Махарадзе или Ирины. Либо мы можем просто назначить встречу в удобное для вас время. Просто сообщите мне его, где пройдемся по всему списку документов. А в понедельник и свободное время, просто у вас там встреча назначена уже, а нет на счету денег. Есть свободное время. Да просто напишите мне удобное удобное время для вас сейчас я смотрю, да понедельник нас, пока весь свободен. Хорошо, спасибо денег продолжить, и эхо там шикарно. Ну наши, а их, каковы поставим наверно, на самое утро да часов на девять. Опять же цитата и так по ты сразу за ними. Видимо, можно задать в понедельник подскажите назначается о чем разговор, то ведут сейчас на данном этапе какие предоставлены документы, каких не хватает или что-то глобальное, уже дальше идет. Давайте отвечу на этот вопрос. Вот в. Начинаются обычно встречи с обсуждения. Ну, то есть нам задают уточняющие вопросы по запросу, то есть там, в каком виде предоставить информацию в какой детализации и так далее с. С некоторыми предприятиями мы напрямую не общались. Ну, так, скажем, в тесном режиме на в ходе первого этапа по этому фактически знакомство происходит у нас есть чек лист, по которому мы идем и проверяем полноту предоставления информации детализация из того, что предоставлена, то есть там задаем, уточняющие вопросы по предоставленной информации. Ну и задаем вопросы, например, по процессу, если у предприятия нет описание процесса планирования. Мы задаем вопросы кто кому что предоставляет точно ли вот этот вот формат там таблицы. Вот он финальный. Это сводные таблицы, либо это рабочий файл. Если это сводная таблица. Есть ли рабочий файл предоставьте пожалуйста. Ну и так далее, то есть. Вот такая первая встреча на понимание полноты объемы информации, потому что мы сейчас производим обследование. Сначала нам нужно для того, чтобы вас не дергать по вопросам. Расскажите, как вы тут планируете да, мы фактически вот запрашиваем такой большой объем информации с тем, чтобы не отвлекаю вас его проанализировать, составить какую-то картину и задать уже вам предметные точечные вопросы на понимание. Естественно встречи такая будет не одна, то есть задача номер один наша понять ваши процессы бизнес-планирования с точки зрения процесса, взаимодействие информационных систем детализации идентифицировать объекты бронирования. В первую очередь калькулировать реализации закупок инвестиционного планирования и так далее. Именно ваши объекты не то, как это собирается наверх, а то, как вы это у себя при планировании вашей деятельности осуществляете с учетом особенностей каждого отдельного предприятия, если мы на первом этапе по ней разрабатывали, понимали общую схему понимали, как бы конструкцию инструмента. Да, который мы разрабатываем Максима акроса, как он будет устроены. Подходит ли он вам сейчас мы уже идем на следующий шаг с пониманием особенности каждого отдельного предприятия с тем, чтобы их настроить в системе, потом соответственно. Вот первая итерация это понимание полноты предоставления информации. Следующая итерация будет на на согласование с вами описание существующих процессов. Там мы будем предлагать вам презентацию. Рабочие материалы, с тем, чтобы с вами их согласовать, то есть, мы это все формализуем. Соберем в кучку и будем вам показывать и спрашивать мы правильно. Вас поняли вот. Ну, то есть как минимум две встречи с каждым предприятием пройдет в течение в течение марта месяца это должно было быть у нас в феврале, но у нас из-за вот этих сдвигов по предоставлению информации у нас это все. Вот сейчас вылезает на март. Просто мы предоставили информацию, которую владей мы, а и смежных функций. Мы такую информацию не запрашивали и не знаем, что запросить, если условно закупки, что я конкретно должна у него спросить какую информацию для вас или там у МТО. Ну вот не знаю, что хотел бы у них узнать какой документ. Но для этого для этого нам и нужна встреча с вами там обсудим и в телефонном формате. Но лучше. Конечно, с возможностью по видео показать, да чтоб сразу. Ну какие-то вещи объяснить там показать наших лиц. Чек лист. Мы делаем по каждому предприятию. Мы как бы его, по мере обработки информации, всем отправляем и соответственно, уже общаемся. Вот, вот. А у таких деталях, которые вы задаете, а нет нигде такого образца, которые уже к примеру, сделали все, и мы бы хотя бы конкретно посмотрели, а это вот этот документ вам нужен ну, смотрите, мы вам название документа мы вам не можем сказать. Мы не телепаты. Мы не знаем, как он у вас называется, понимаете. Поэтому специфика этого документа, например предприятий какой-то уже сделаю условно о закупках. Что там вы хотите увидеть, и мы тогда найдем. Но вот, например, мы запрашивали в первом запросе. У нас есть строчка запроса. Положение о закупках или аналогичный документ либо положение о калькулировать или бронирования себестоимости или аналогичный документ, например, предприятие нам его не предоставила. Мы начинаем задавать вопросы. А у вас его точно нет. Может быть, у вас есть. Инструкция по назвал под названием планирование, если его нет формального документа, то кто знает, как планируется производство имеется ввиду физики, например, потому что понятно, что там у вас это соединяется информации с бюджетами, но какой-то физическое же планированиями. Этому предшествует, какую часть увидете в сапе, какую часть введете в экселе или в каких-то ещё дам системах. Если у вас нет, формализованного документы. Нам придется вас в деталях опрашивать голосом и записать под диктовку все как у вас осуществляется бронирование. Если это не знаете. Вы лично, то мы попросим либо пригласить на встрече либо дать контакты человека, кто это знает, либо попросим вас с этим человеком пообщаться внутри себя. Если, например, его как бы с ним нельзя нам пообщаться напрямую. То есть это вот как раз особенности каждого предприятия. Но вот честно скажу коллеги. Вот хорошо, что мы все здесь собрались ответ мы не предоставили информацию по данному пункту, потому что мы не знаем. Ну, а он нас ставят в тупик. На самом деле. Тогда мы будем спрашивать, а кто знает понятно спасибо, да и вполне это мне кажется нормальная ситуация. Да, то есть, если вам предоставляет уже какую-то готовы информацию в каких-то форумах. Да мы вопрос скажите, откуда эта информация попадает и мы можем связаться уже с теми, кто осуществляет это планировании нам в рамках проекта тоже очень важно. Правильно выстроить границу, что какие процессы планирования будут осуществляться внутри кросса. А какие в ней его да потому что мы сейчас обсуждаем, что ряд по производственного планированию. Да там, где используется сахар их целесообразно оставить в сапе по планированию и чартам тоже есть очень много своих особенностей взаимной обсуждаемых изучаем сейчас форма, как планируется HR, то есть это. Это сейчас это диалог. Да, сейчас важно разобраться. И правильно выстроить описание границы проекта, а там она все же будет, если у нас планирование производства. Оно в секретен. Все нормы стилем тоннаж то что делать то у меня какой-то будет ещё. Но если это все в секрете. Да, то тогда мы должны будем просто хорошо, пусть это то есть это. Это КТСП. Это будет за пределами за пределами нашей прототипами. Что это это тогда, но оптимально раз к гостайне. Он то есть на гостайну, точно не будет сертифицирован. Да, поэтому видимо будет просто передача данных. Но, может быть где-то оставим экселевском реформы передачи данных, но это. Это нужно просто обсудить. Да коллеги ещё вопросы просим НПО зарезервировать встреч\"}\";}','',1),(81,0,1629551111,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:5314:\"{\"score\":\"48.41\",\"text\":\"На понедельник на послеобеденное время. Ну, желательно, чтобы это было тринадцать ноль ноль якобы, если возможно хорошо в понедельник тринадцать ноль ноль. Я пришлю сегодня встречу. А в Нины пожалуйста, если можно на пятнадцать ноль ноль записал, а подождите, я услышала тринадцать часов это екатеринбургского времени я правильно поняла правильно, то есть это у нас одиннадцать, но у нас же на одиннадцать. Какая-то встреча уже. А это да еще раз по московскому времени одиннадцать да, получается так у нас у нас встреча Собчака девять, но с девяти до одиннадцати, я думаю, закончу у нас ЦКП и потом, после с РПЦ и давайте сдвинем чуть-чуть попозже только на если, может двенадцать Москвы. Давайте вы закончите на за час. Но я думаю, да потому что у нас уже первая встреча прошла у нас продал на продолжение встречи хорошо, то есть на два часа Екатеринбурга, то есть будет. Да у нас, а подскажите. Если мы, например, в понедельник вторник и с той, пройдемте по всему перечню и вам отправим документы. Вам сколько нужно с ним ознакомиться сколько времени, чтобы назначить следующий. Встретимся на уме день сутки, точно нужно. Желательно два рабочих дня, потому что я чувствую, что нам в понедельник. Все, все, все пришлют. Кто вот кто не прислал для того, чтобы мы уже который уже отработано. Да, да, да, согласна. Но нам два дня за свое время напишем, какой мы бы хотели, да, хорошо, а будьте тогда добры, скажите ПАО ГК, может быть, нам нет смысла сегодня встречаться. Если документы не обработаны. Коллеги поехать там мы уже смотрели ваши документы и подготовили чек лист вчера администратор проекта направил новацию заполнены нами чек лист. А ну, то есть он есть, что обсудить да, да, да как точно есть, просто молча. А, здравствуйте, важна вот беспокоит. А скажите пожалуйста, на вторник можно зарезервировать время навстречу. В девять часов ориентировочно записал, да. И вот вопрос по чек листу по нам. Мы вот разговаривали с Белоусова Федором Петром. Он обещал нам тоже вопросы прислать какие панам есть будет какая-то обратная связь коллеги да по МЦД у нас уже подготовлен чек, лист мы его направим сегодня угу. Спасибо. Большое спасибо. Нам хорошо. Я тогда предлагаю завершить сегодняшнюю встречу на это позитивно решение мое, то есть в понедельник в начале следующей недели запланировали много встреч с теми, кто не запланированы свяжемся ещё в рабочем порядке, для того, чтобы при провести все об обследовании. Вот и я очень рассчитываю, что мы все-таки вложимся сроки и предпроектного обследования и сделаем вовремя техническое задание на систему. Поэтому, если вопросов больше нет, предлагаю завершится и приступить к другим обязанностям. Обратите. Пожалуйста, внимание там, в чате есть сообщение о чем же я записал да третьего числа. Спасибо большое до двенадцати часов Андрей Герасимов, можно с тобой ещё задержаться на небольшое время. Вот коллеги. Большое спасибо, спасибо. До свидания. До свидания, всего доброго,\"}\";}','',1),(82,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"026dbe4d-b079-4215-a3e3-44f2bdfdc9b0\"}\";}','',1),(83,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:10708:\"{\"score\":\"51.73\",\"text\":\"Ну, прежде, прежде всего хочу всех поприветствовать на втором этапе проекта управляющий совет проекта приняло решение о продолжении реализации системы бюджетирования, бизнес-планирования в топливной компании с использованием оптимист кросса. Вот так же хочу представить нового руководителя проекта со стороны ТВЭЛ это Ермилов Андрей Александрович. Он сейчас с нами, и он будет, но решать ряд организационных вопросов внутри ТВЭЛ, но и совместно с командой, гранатом и командует М один. Поэтому прошу не удивляться, да к тому, что от него тоже могут вам приходить какие-то вопросы письма. В общем, он такой же руководитель проекта, как и я, и я думаю, что следующий там, в том числе подготовку материалов к оперативным советом. Да, мы будем уже с ним согласовывать про прорабатывать да здравствуйте, коллеги. Так теперь по давайте пройдемся по статусу. Я надеюсь, что сегодняшнее совещание. Мы достаточно быстро проведем мы уложимся в полчаса, после чего мы сможем с Андреем Герасимовым ещё обсудить ряд вопросов касательно цифру два так. Итак, у нас сейчас идет этап проектирования, на котором мы должны создать техническое задание на разрабатывают на разрабатываемую систему в рамках этого этапа решаются. Первая задача это детальный анализ существующих на всех предприятиях процессов бюджетирования. К сожалению, у нас это под задача идет не так гладко, как хотелось бы, да, а на следующих слайдах к этому вернемся, второй. Вторая такая не верхние уровневая данного проектная веха. Это у нас стоит вопрос по актуализации проектной команды. Ну во-первых, на предприятиях у вас есть ряд изменений штатных изменений и с некоторыми мы обсуждали, кого нужно включить кого-то исключить из приказа о реализации проекта о включении в рабочую группу, но и во-вторых, нам нужно будет добавить сотрудников тех компаний, которые не участвовали в проекте на предыдущем этапе прототипирования и так. Но основная задача сейчас это изучение тех методологии, которые у вас используются и в начале, в конце, в конце даже января был направлен запрос на предоставление ряда информации это на самом деле очень критичные. Запрос. К сожалению, коллеги из ТМ один получает информацию со значительным отставанием от графика, что ставит под риск выполнения там и ну изучение основных методологии. К концу марта, да и соответственно успех успешную подготовку предложений по будущим методологиям и завершение своевременное завершение этапа проектирования. Андрей Максимов. Все верно. Давайте немножко наверное, из желтого статуса. Всё-таки красных несем и наверно, каждый день я предлагаю рассылку делать по коллегам. Кто еще не дослал информацию. Ну напоминалку. Вот даже, чтобы частично, что появляются люди уже присылали, а не ну, если даже полного списка. Нет, что нам требуется. Предлагаю вот так вот сейчас сегодняшнего дня двигаться там сегодня тогда с тобой свяжусь побыстрее обсудим, как в рассылку делать по списку рассылку готовы делать. Но она сейчас вот на следующем слайде. У нас табличка по текущему статусу. Да у нас сейчас раз получится практически на все компании. Огромное спасибо, чем за и МТЗ за своевременное предоставление документов. Но есть некоторые уточнения сейчас поэтому стоит восемьдесят пять девяносто процентов по МТЗ сегодня утром переписали относительно того, что не предоставляли еще в декабре справочник продуктов я коллегам и сказал ой, и ставим ставим один. Переправь. Перенаправил письмо посмотрите. Пожалуйста. Наверное, это то что то, чего как раз вам не хватает с АФК да или о, у нас так у нас встреча. Сейчас секунду секунду так Альфика. Да у нас встреча сегодня с девяти утра идет и прямо сейчас коллеги ещё за завершается обсуждение последних документов, то есть, я думаю, что основные вопросы они снимут с уехать к с уральским электрохимическим комбинатом. Встреча назначена на сегодня после обеда коллеги из других компаний. Пожалуйста, сообщайте удобное время для проведения встречи с вами. Я понимаю, что инфа запрос он очень большой и по нему, но не все однозначно. Понятно, да не всегда. Понятно, что от вас ожидаются коллеги из М один. Поэтому давайте проводить активно встречи, уже начиная с понедельника. Сообщайте, напишите мне в почту, удобное для вас время будем назначать и общаться на эту тему также ну, здесь вопрос у нас скорее к Андрея Герасимова да по ряду компаний, которые не участвовали в первом этапе проекта. Да потому что эти компании ещё это я понимаю, что это достаточно маленькие компании, но тем не менее с ними тоже все вопросы. Нужно проработать это и не расска. Яйцо кальян с Русак. Но, к сожалению, пока вот я даже не знаю, к кому обращаться. Вот мы говорили о том, что нужно сделать в запросы. Видимо, по финансовым финансово экономическому блоку и возможно. Вот с выходом Андрея. Мы можем как-то ускорить какие-то внутренние процессы внутри ТВЭЛ, потому что, чтобы ввести новых коллег в проект объяснить им, чем мы занимаемся, что мы от них хотим. Андрей Валерьевич. Хорошо. Мы к этому вопросу вернемся чуть позже, после, после встречи так значит, дальше по рискам по основным рискам проекта. Сейчас мы выделили два риска. Это как раз риск по отставание по анализу существующих процессов бюджетирования, которую мы. Мы уже поговорили. Да и просьба предоставить недостающую информацию и пишите мне. Да удобное время для проведения встреч с вашими компаниями, но вскоре соберемся совещание в скайп, чтобы все, все вопросы. Снять также просьба по изменению. Org по изменению участников проекта некоторых компаний уже приходили запросы о том, что вот кого-то добавить кого-то исключить. Если вы считаете, что нужно изменить состав рабочей группы по проекту. Напишите, пожалуйста. Мне письмо об этом, чтоб мы это учли в новом обновлении приказа о реализации проекта возраста в части состава рабочих групп и второй риск. Он у нас появился у тебя обсуждения сертификации системы по ТЭК ратификацию стек это необходимо сертификат\"}\";}','',1),(84,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:14403:\"{\"score\":\"70.81\",\"text\":\"Который должен быть его оптимальностью. Для того, чтобы мы могли в системе обрабатывать данные. Котэ ДСП. Персональные данные и есть риск о том, что из процедур, сертифицирующих органов, оптимально, сможет не успеть получить сертификат к окончанию этапа внедрения, то есть к шестому, одиннадцатому двадцать первого года. Задержка может, по текущим оценкам, задержка может составить один, два месяца соответственно, это может привести к тому, что система переданы в опытную эксплуатацию до получения сертификата на не сможет работать с реальными данными и начала опытной эксплуатации у нас может быть только на таких, но на фальсифицированных данных, да не совсем не совсем корректно, но при этом мы понимаем, что это некоторые формальные процедуры, на которую нам очень тяжело повлиять. Вопрос мы этот вопрос мы обсуждали уже на совещание с Денисом Калашниковым с представителями информационной безопасности, и поэтому в рамках был было предложено решение о возможности принятия системы до получения там итогового сертификатов, стек при условия при выполнении ряда условий для о том, что назначены испытательная лаборатория проведены испытания подготовлен проект формуляра с подробным описанием системного ландшафта и проект формуляра передан на получение сертификатов стек соответствующую организацию. Данное решение предлагается зафиксировать в рамках оперативного совета, так как работу по мероприятия по риску несвоевременного получения сертификата стек мой доклад. В общем окончен. Да, предлагаю приступить к вопросам. Комментарием. Может быть, кто-то хочет прокомментировать да вопросы, там связанные с как раз предоставлением информации по запросу. Может быть проблемы. У кого-то какие-то возникают. Пожалуйста, сообщите об этом. Ну, мы собственно, а, да добрый день Максим с нами, Ирина Романова. Шевяков Сергей, в принципе по запросам мы вот, кроме как рассылку наверное, ничего предложить не можем. Только если вот коллеги предложат, как, может, ускориться вам помочь. Вот мы как бы готова. Те предложения выслушать, что вам помочь да, да, коллеги. Добрый день. Денис сказал Калашников, может быть, а кто-нибудь от предприятия от заводов там слово возьмет, скажет в чем проблема. Почему долго и как, может, помочь нам я не знаю ТВЭЛ или М. Один да говорите. Здравствуйте, индюка Юлия Городкова. Я хочу туда прокомментировать. Значит, в чем у нас проблема в том, что вводится файлы очень большие. Приходится. То есть мы не будем отправлять файл с данными приходится чистить. Вот это занимает очень много времени с учетом как бы текущей работы. То что сейчас у нас как раз январь, февраль был очень горячая. Это же месяц, а с учетом того, что мы консолидировали. Ну, свой бизнес. План. Потом у нас была отчетность был пошла. Ну и так далее. Ну, то есть не буду рассказывать. Да, все это все в этом участвовали. Вот и это знать при этом текущая работа, которые уже январь февраль. Да у нас идет вот приходится чистить файлы. Просто. Вот, например, у меня занимает это. Ну часа три в день понимаете, то есть три часа в день найти. Но это как бы сейчас в данной ситуации не так просто огромные, то есть. Ну, например, сбор факты. Я вот писала ужин о том, что ну Андрею Владимировичу Василенко о том, что, например, у меня один файл месяца. Например, январь да он больше двадцати трех мегабайт. Ну, то есть понимаете, что значит его почистить Юлия. Добрый день смотрите, а мы бы могли построить обмен документами и следующим образом там в запросе. Помимо факт, помимо файлов, ну, шаблонов и ваших рабочих файлов. Там есть документы, но, грубо говоря pdf учетная политика положение внутренние. Ну, не знаю, какие-то там вплоть до презентации шаблонов презентации образцов презентация, которую вы делаете, то есть такие файлы, которые ну назовем стационарными, то есть если бы хотя бы какую-то часть из имеющий из того, что вы можете из из опроса нам прислать оно у вас нового, грубо говоря, лежит где-то в папке нужно собрать и отправить этого уже помогло нам приступить к. Ну, скажем, так к анализу. Я понимаю, что рабочие файлы, все живые и там. Ну, не у всех лежит пустой шаблон. Где там там, в папочке шаблонами, но хотя бы частично какой-то такой вот стационарного мою информацию. Хотелось бы получить, то есть если у вас, например, есть из опроса там шестьдесят процентов информации, готовой да. А вы вот вы четыре четыреста сорок процентов. Оставшиеся обрабатываете чистите и так далее, то пришлите хотя бы шестьдесят нет. Ну, у нас на сегодняшний день готова, например, ну процентов пять. Вот так, опять же смотрите, про те файлы, которые вы говорите презентации. Там что-то ещё, например, у нас презентации. Наша форма. Мы сами ничего не придумываем. У нас все зависит от того, как нам ТВЭЛ, какую презентацию пришлет на ту презентацию рисуем. Понятно. Одна учетная политика. Ведь у вас есть положение по бизнес планирование есть пока положение по калькулировать есть описание процессов, приказы о бизнес-планирования. Они тоже. Наверное, есть уже по крайней мере там с осени остались с прошлого года. Если нет свежим учетной политики на двадцатый. Я знаю, что никогда вовремя на нее руки не доходят хотя бы за девятнадцатый год. Ну, они же уже есть это конечно, что-то есть. Но вот это тоже. Это все как бы надо идти, и где-то искать на это тоже надо время, то есть где-то искать, то есть они не лежат у меня в какой-то папке, которая называлась бы там нормативные. Там какие-нибудь документы да, то есть. Это одна, например, учетная политика где-то в бухгалтерии, да приказы наш ну, с приказами проще, то есть с теми документами, которые выпускала наша служба. Но конкретно планово экономический отдел с этим проще, потому что они у нас есть да. А вот ещё что-то. Это надо где-то вот идти искать по подразделениям. У нас такая ситуация. Но, может быть, тогда нужно напрямую запрос главному бухгалтеру нам направить или вы дайте контактный лица. Кто может пошарить там я не знаю по почтовым ящикам по людям походить. Я не знаю, как это можно сделать ну, это равносильно тому же, что сейчас вспомнить людей это вспомнить, где какие приказы да ну, то есть, чтоб понимаю понимать, как чью дать, так сказать контактную информацию нужно понимать. Какой документ ну, то есть. Это нужно вспомнить. Для начала документ. Ну, то есть это все равно я говорю, требует время это ну во-первых, ну, я, конечно, как бы тут вот сейчас не оправдывает. Ну, я просто хочу писать нашу ситуацию конкретные закуску. Во-первых, у нас произошло уменьшение людей в отделе. Так скажем, да в связи с увольнениями у нас ещё ситуация. Я это говорила, когда мы к этому прототип тестировали. Да что у нас очень сложной ситуации в связи с тем, что количество людей уменьшилась. Работы не уменьшилось, то есть мы сейчас передаем работу. Опять же я говорю вот это текущие отчетность, все такое прочее, и ещё. Вот это навалилось, то есть у нас вот покойной. За какая ситуация и занимается этим фактически один человек. Вот то есть это физически это. Ну, физически, просто должны. Поймите да двадцать четыре часа. В сутках это не всегда. Возможно. Понятно. Я правильно понимаю, что мы со своей стороны. Наверное, не можем вам чем-то помочь или у нас есть какие-то возможности нет, вы со своей не можете помочь. Просто я говорю, что у нас ситуация именно связанные с тем, что у нас вот короткое время в шутку Юлия Владимировна. А скажите, а может быть в ту часть документов, которые более-менее легко может быть просто хотя бы первую часть отдать, чтобы коллеги могли работать, но как бы по частям этот запрос отработать ну что-то я вам говорю, что что-то есть что-то подобрана, но это процентов пять можно ее. Конечно. Да отдать. Мне кажется, лучше отдать все равно, чтобы коллеги уже могли начале накопится. Хорошо, я поняла. Да, это мы выложим туда Наиб. Да куда вы, сука да, да, да вот на внутренние ресурсы, а мы его синхронизируем уже с этой М одиннадцать внешне или Владимировна у меня ещё тоже предложение давайте, может быть, мы подскажите, насколько это скажем, так творческий процесс, очистка данных от\"}\";}','',1),(85,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:13942:\"{\"score\":\"58.32\",\"text\":\"Факта. Вот это вот этого файла от фактических данных можно какого-то неквалифицированного кого-то попросить. Вот вы сможете как-то быстро объяснить. Вот что нужно делать. Я понимаю, что процесс не сможете. Да там понимаете, это файлы, и все мои. Ну, то есть это вот как вот мне сейчас прислали какой-то свой рабочий файлы, попросили бы его очистить. Да, то есть я туда зашла, что чистить, что там хранится. Что за информацию, то есть там понимаете, они вот эти документы наши рабочие файлы. Они созданы. Ну как бы под каждого конкретного. Вот я садилась, да и с учетом той задачи, которую бы я хотела я это реализовано, так, как я это вижу и другой человек, который вот приходит он, может быть. Ну и не поймет того, чего там содержится ну, понятно. Ну, то есть так не получится привлечь какого-то неквалифицированного исполнителя условно мы могли бы там где-то найти человечка. Там я не знаю гранатами. Где-то в филиале. Вы думаете, что вряд ли. Да получит. Видите, как я же хочу удалить только ту информацию. Ну, например, какие-то, то есть, чтобы там остались связи ссылки формулы. Да чтобы вот ты М. Один было проще понять, зачем это данную формула прописана, да чтобы они поняли, для чего это нужно да, да формулу лучше не удалять. Она нам побольше тройку понять. Да мы посадим человека, который неквалифицированный, что произойдет, он просто оттуда все снесет вместе с формулами, суками, то есть я вот, предполагая такое, то есть, то только я знаю, где в моем файле содержатся данные, которые можно да, то есть что можно удалить. А что можно оставить Юлия Владимировна, а мы с вами обсуждали, что эту чистку файлов необходимо произвести потому что там данные, которые ДСП правильно. Ну да, там всякие данные, то есть. И вот с точки зрения. Ну, если, например, говорить о фактических данных. Да, то это просто выгрузка из этапов. Массив ватсапа. Да вот из там содержаться. Может, все что угодно вопроса. Может быть, мы просто организуем тогда передачу. Именно через ТВЭЛ. Конечно, через Андрея Герасимова передачу этого полного файла с Котэ ДСП в твоем отдела. Может быть, это будет быстрее и удобнее образом. А каким образом, например, по по как мы это по электронной почте. Нет, нет. Но у вас есть внутренний каналов ТВ или как вы можете. Этот файл передать Андрея Герасимова. Да, есть почта. Да почта специальный защищенный канал. Защищенная почта. Дальше. ТМ один делает запрос на этот документ официальный и официально его получает от твоего да, со всеми на на флешке. Да с со всеми там пометками о том, что им передано такая-то документация, Котэ ДСП договор о неразглашении. У них есть, то есть я поняла нет, я поняла. Теперь дальше технический вопрос. У меня файл двадцать три мегабайта пятьдесят три мегабайта. Это я, как передам по электронной почте, а то есть по. По. По защищенной почте. Это тоже нельзя, так. Конечно, они не передаю. Ну, почту, электронную, но это же можно, можно же заархивировать и разбить на тома. Это не проблема. Ну, то есть Павел там по десять мегабайт. Он нарезается архиватор. Хорошо, если чистка, если у меня чистка занимает три часа в день я не знаю сколько у меня будет занимать архивирования коллеги, а можно к вам присоединюсь. Смотрите у нас есть и давайте через эту информацию передавать, а мы уже всем один передадим через письмо, которое ну, то есть. Ноги тоже пойдем с данными, то есть. Да ну, не знаю. Если это если это можно мы Наиб создали специальный раздел, который есть там автоматизации. Давайте через него передавать информацию чисто спаивает и по это просто проектные. Область на портале Шариповым, то он у нас сертифицирован, в том числе по СП и приказом введен таким образом, что там коты, то есть, то можно обрабатывать в целом это в да вариант тоже передачи. Скажем так легальной информации нет. Если это можно так ну, давайте, конечно, не будем тратить время на чистку ещё раз я ей мы сейчас понимаем. Вот этот проектный портал, на котором сейчас все выкладываем или или ещё какой-то денег есть отдельный портал под названием единое информационное пространство Пэм финансово-экономического блока. Это вот коллеги. Все знают это не наш проектный портал ни в коем случае это отдельный отдельное. Проектная область там коллеги. Вот они его под названием и знаю. А хорошо, хорошо. Да ну туда, куда мы кладем прогнозы, планы там и так далее даже да ну, тогда там нужно какую-то папку. Для этого создать отдельную. Наверное, которая бы нажралась материала для Андрей Валерьевич сможете создать там разделы именно для обмена документами, содержащими кота ДСП велик, потому что там сейчас нету такого раздела это нужно будет для каждого общество создать, потому что у них отдельные папки. Насколько я понимаю, там, которым ТВЭЛ ко всем имеет доступа предприятие друг другу не имеет доступ. Но это у меня туда тоже доступа. Нет. Это надо, чтобы нам Андрей Герасимов, либо попросил кого-то либо как-то там Андрюх, ты сможешь. Коллеги, я сделаю рассылку. Сегодня там папка создано предприятие там есть, то есть доступ будет. Давайте туда выкладывать информацию. И все. Хорошо, хорошо. Единственное уточняю, что я, но как бы я из Ренатом не смогу. Нет. Поступление туда информации, то есть это, должно быть, где-то на вас нет, а вся информация будет передаваться отдельным письмом, грифом КП. Да и все то есть никакие не наши файлообменник и все остальное понятно, то есть информация. Тогда мы вот ноги, выкладываем информацию именно или вот с, которая содержит Котэ ДСП данные информацию, которая не содержит, который ДСП прошу передавать через проектной портал, потому что это будет быстрее. Да, я быстрее ее смогу передать, что М один хорошо, коллеги. А вот вариант с диском кота ДСП там организовать там курьерскую доставку под роспись там доверенных лиц, может, так быстрее всего не поедете. Сейчас по всем предприятиям Сибири. Там за разными дисками. Это будет лучше ее собрать сейчас твоего Андрея Герасимова и Максима и будет диск вам мужики с передачей информации ещё раз всю информацию. А ну да, да, да отлично. Да. Договорились коллеги из цифр три. Может быть, еще какие-то есть. Сложности, вопросы. Давайте обсудим, подскажите, а будет официальное письмо на предприятие на генеральных директоров, что у нас такой проект начальство, чтобы все подразделения предприятий смежные, которые должны будут предоставлять информацию и так далее тоже были в курсе. Подождите. Был. Был приказ осенью о том, что проект начинался. Ну вот мы его что-то не лицезрели. Давайте я ещё раз, раз сделаю в рассылку приказа пометил. Был. Был приказ осенью о том, что начался проект в рамках приказа были, был сформирован. Собственно, все наши управляющие органы по проекту рабочей группы по проекту и было поручение обеспечить работу сотрудникам проект продублируйте. Пожалуйста. Ещё хорошо. Добрый день, а будьте добры, скажите, пожалуйста, как рассчитан процент по статусу предоставления информации, потому что мы вот, допустим, по всем пунктам практически предоставили информацию. Процент стоит очень маленький. Там ХК Обухова беспокоит. Коллеги из 1С к вам вопрос вы его рассчитывали у нас просто дело в том, что вот в части учетной политики свой регламентов. Документы были отправлены через ЮЗАО, потому что у нас отдел по интеллектуальной собственности, запретил нам передавать напрямую там по там каналам от Лука или там выкладывание, какие-то ресурсы вот этих вот документов, потому что они имеют статус. Ну, так, скажем, интеллектуальной собственности, а на кого они были переданы приезду на Андрея Валерьевича. А, понятно. Значит, мы. Мы видимо, не успели их обработать с Андреем Валерьевичем. Спасибо коллеги. Добрый день вводимых рад за методолог. А как считался процент. Расскажу. У нас есть кем-то запрос у которого по разным блоком. Это запрос разных дата предоставления, но\"}\";}','',1),(86,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:14738:\"{\"score\":\"69.33\",\"text\":\"Все они уже наступили соответственно считался по пунктам и по запросы, которые покрываются теми документами, которые были предоставлены коллегами и которые мы успели увидеть по состоянию на вечер вчерашнего дня. Да. Но вот они отработали документы и в из которые передавались поделилась до мы этих попробуем сегодня с этим разобраться. А можно вопросик задать по внешнему, с кем можно связаться каких документах не хватает, может быть не хватает учетной политики. Я ее не предоставляла, может, ещё что-то им можно связаться. Я думаю, лучше будет вам сообщить мне удобнее для а смотрите вы можете, либо напрямую позвонить. Там было. Были в рассылке телефон вводимым Махарадзе или Ирины. Либо мы можем просто назначить встречу в удобное для вас время. Просто сообщите мне его, где пройдемся по всему списку документов. А в понедельник и свободное время, просто у вас там встреча назначена уже, а нет на счету денег. Есть свободное время. Да просто напишите мне удобное удобное время для вас сейчас я смотрю, да понедельник нас, пока весь свободен. Хорошо, спасибо денег продолжить, и эхо там шикарно. Ну наши, а их, каковы поставим наверно, на самое утро да часов на девять. Опять же цитата и так по ты сразу за ними. Видимо, можно задать в понедельник подскажите назначается о чем разговор, то ведут сейчас на данном этапе какие предоставлены документы, каких не хватает или что-то глобальное, уже дальше идет. Давайте отвечу на этот вопрос. Вот в. Начинаются обычно встречи с обсуждения. Ну, то есть нам задают уточняющие вопросы по запросу, то есть там, в каком виде предоставить информацию в какой детализации и так далее с. С некоторыми предприятиями мы напрямую не общались. Ну, так, скажем, в тесном режиме на в ходе первого этапа по этому фактически знакомство происходит у нас есть чек лист, по которому мы идем и проверяем полноту предоставления информации детализация из того, что предоставлена, то есть там задаем, уточняющие вопросы по предоставленной информации. Ну и задаем вопросы, например, по процессу, если у предприятия нет описание процесса планирования. Мы задаем вопросы кто кому что предоставляет точно ли вот этот вот формат там таблицы. Вот он финальный. Это сводные таблицы, либо это рабочий файл. Если это сводная таблица. Есть ли рабочий файл предоставьте пожалуйста. Ну и так далее, то есть. Вот такая первая встреча на понимание полноты объемы информации, потому что мы сейчас производим обследование. Сначала нам нужно для того, чтобы вас не дергать по вопросам. Расскажите, как вы тут планируете да, мы фактически вот запрашиваем такой большой объем информации с тем, чтобы не отвлекаю вас его проанализировать, составить какую-то картину и задать уже вам предметные точечные вопросы на понимание. Естественно встречи такая будет не одна, то есть задача номер один наша понять ваши процессы бизнес-планирования с точки зрения процесса, взаимодействие информационных систем детализации идентифицировать объекты бронирования. В первую очередь калькулировать реализации закупок инвестиционного планирования и так далее. Именно ваши объекты не то, как это собирается наверх, а то, как вы это у себя при планировании вашей деятельности осуществляете с учетом особенностей каждого отдельного предприятия, если мы на первом этапе по ней разрабатывали, понимали общую схему понимали, как бы конструкцию инструмента. Да, который мы разрабатываем Максима акроса, как он будет устроены. Подходит ли он вам сейчас мы уже идем на следующий шаг с пониманием особенности каждого отдельного предприятия с тем, чтобы их настроить в системе, потом соответственно. Вот первая итерация это понимание полноты предоставления информации. Следующая итерация будет на на согласование с вами описание существующих процессов. Там мы будем предлагать вам презентацию. Рабочие материалы, с тем, чтобы с вами их согласовать, то есть, мы это все формализуем. Соберем в кучку и будем вам показывать и спрашивать мы правильно. Вас поняли вот. Ну, то есть как минимум две встречи с каждым предприятием пройдет в течение в течение марта месяца это должно было быть у нас в феврале, но у нас из-за вот этих сдвигов по предоставлению информации у нас это все. Вот сейчас вылезает на март. Просто мы предоставили информацию, которую владей мы, а и смежных функций. Мы такую информацию не запрашивали и не знаем, что запросить, если условно закупки, что я конкретно должна у него спросить какую информацию для вас или там у МТО. Ну вот не знаю, что хотел бы у них узнать какой документ. Но для этого для этого нам и нужна встреча с вами там обсудим и в телефонном формате. Но лучше. Конечно, с возможностью по видео показать, да чтоб сразу. Ну какие-то вещи объяснить там показать наших лиц. Чек лист. Мы делаем по каждому предприятию. Мы как бы его, по мере обработки информации, всем отправляем и соответственно, уже общаемся. Вот, вот. А у таких деталях, которые вы задаете, а нет нигде такого образца, которые уже к примеру, сделали все, и мы бы хотя бы конкретно посмотрели, а это вот этот документ вам нужен ну, смотрите, мы вам название документа мы вам не можем сказать. Мы не телепаты. Мы не знаем, как он у вас называется, понимаете. Поэтому специфика этого документа, например предприятий какой-то уже сделаю условно о закупках. Что там вы хотите увидеть, и мы тогда найдем. Но вот, например, мы запрашивали в первом запросе. У нас есть строчка запроса. Положение о закупках или аналогичный документ либо положение о калькулировать или бронирования себестоимости или аналогичный документ, например, предприятие нам его не предоставила. Мы начинаем задавать вопросы. А у вас его точно нет. Может быть, у вас есть. Инструкция по назвал под названием планирование, если его нет формального документа, то кто знает, как планируется производство имеется ввиду физики, например, потому что понятно, что там у вас это соединяется информации с бюджетами, но какой-то физическое же планированиями. Этому предшествует, какую часть увидете в сапе, какую часть введете в экселе или в каких-то ещё дам системах. Если у вас нет, формализованного документы. Нам придется вас в деталях опрашивать голосом и записать под диктовку все как у вас осуществляется бронирование. Если это не знаете. Вы лично, то мы попросим либо пригласить на встрече либо дать контакты человека, кто это знает, либо попросим вас с этим человеком пообщаться внутри себя. Если, например, его как бы с ним нельзя нам пообщаться напрямую. То есть это вот как раз особенности каждого предприятия. Но вот честно скажу коллеги. Вот хорошо, что мы все здесь собрались ответ мы не предоставили информацию по данному пункту, потому что мы не знаем. Ну, а он нас ставят в тупик. На самом деле. Тогда мы будем спрашивать, а кто знает понятно спасибо, да и вполне это мне кажется нормальная ситуация. Да, то есть, если вам предоставляет уже какую-то готовы информацию в каких-то форумах. Да мы вопрос скажите, откуда эта информация попадает и мы можем связаться уже с теми, кто осуществляет это планировании нам в рамках проекта тоже очень важно. Правильно выстроить границу, что какие процессы планирования будут осуществляться внутри кросса. А какие в ней его да потому что мы сейчас обсуждаем, что ряд по производственного планированию. Да там, где используется сахар их целесообразно оставить в сапе по планированию и чартам тоже есть очень много своих особенностей взаимной обсуждаемых изучаем сейчас форма, как планируется HR, то есть это. Это сейчас это диалог. Да, сейчас важно разобраться. И правильно выстроить описание границы проекта, а там она все же будет, если у нас планирование производства. Оно в секретен. Все нормы стилем тоннаж то что делать то у меня какой-то будет ещё. Но если это все в секрете. Да, то тогда мы должны будем просто хорошо, пусть это то есть это. Это КТСП. Это будет за пределами за пределами нашей прототипами. Что это это тогда, но оптимально раз к гостайне. Он то есть на гостайну, точно не будет сертифицирован. Да, поэтому видимо будет просто передача данных. Но, может быть где-то оставим экселевском реформы передачи данных, но это. Это нужно просто обсудить. Да коллеги ещё вопросы просим НПО зарезервировать встреч\"}\";}','',1),(87,0,1629551371,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:5314:\"{\"score\":\"48.41\",\"text\":\"На понедельник на послеобеденное время. Ну, желательно, чтобы это было тринадцать ноль ноль якобы, если возможно хорошо в понедельник тринадцать ноль ноль. Я пришлю сегодня встречу. А в Нины пожалуйста, если можно на пятнадцать ноль ноль записал, а подождите, я услышала тринадцать часов это екатеринбургского времени я правильно поняла правильно, то есть это у нас одиннадцать, но у нас же на одиннадцать. Какая-то встреча уже. А это да еще раз по московскому времени одиннадцать да, получается так у нас у нас встреча Собчака девять, но с девяти до одиннадцати, я думаю, закончу у нас ЦКП и потом, после с РПЦ и давайте сдвинем чуть-чуть попозже только на если, может двенадцать Москвы. Давайте вы закончите на за час. Но я думаю, да потому что у нас уже первая встреча прошла у нас продал на продолжение встречи хорошо, то есть на два часа Екатеринбурга, то есть будет. Да у нас, а подскажите. Если мы, например, в понедельник вторник и с той, пройдемте по всему перечню и вам отправим документы. Вам сколько нужно с ним ознакомиться сколько времени, чтобы назначить следующий. Встретимся на уме день сутки, точно нужно. Желательно два рабочих дня, потому что я чувствую, что нам в понедельник. Все, все, все пришлют. Кто вот кто не прислал для того, чтобы мы уже который уже отработано. Да, да, да, согласна. Но нам два дня за свое время напишем, какой мы бы хотели, да, хорошо, а будьте тогда добры, скажите ПАО ГК, может быть, нам нет смысла сегодня встречаться. Если документы не обработаны. Коллеги поехать там мы уже смотрели ваши документы и подготовили чек лист вчера администратор проекта направил новацию заполнены нами чек лист. А ну, то есть он есть, что обсудить да, да, да как точно есть, просто молча. А, здравствуйте, важна вот беспокоит. А скажите пожалуйста, на вторник можно зарезервировать время навстречу. В девять часов ориентировочно записал, да. И вот вопрос по чек листу по нам. Мы вот разговаривали с Белоусова Федором Петром. Он обещал нам тоже вопросы прислать какие панам есть будет какая-то обратная связь коллеги да по МЦД у нас уже подготовлен чек, лист мы его направим сегодня угу. Спасибо. Большое спасибо. Нам хорошо. Я тогда предлагаю завершить сегодняшнюю встречу на это позитивно решение мое, то есть в понедельник в начале следующей недели запланировали много встреч с теми, кто не запланированы свяжемся ещё в рабочем порядке, для того, чтобы при провести все об обследовании. Вот и я очень рассчитываю, что мы все-таки вложимся сроки и предпроектного обследования и сделаем вовремя техническое задание на систему. Поэтому, если вопросов больше нет, предлагаю завершится и приступить к другим обязанностям. Обратите. Пожалуйста, внимание там, в чате есть сообщение о чем же я записал да третьего числа. Спасибо большое до двенадцати часов Андрей Герасимов, можно с тобой ещё задержаться на небольшое время. Вот коллеги. Большое спасибо, спасибо. До свидания. До свидания, всего доброго,\"}\";}','',1),(88,1,1629551690,'users','N','session','','a:5:{s:4:\"user\";s:65:\"Администратор Главный; skater4@yandex.ru (#1)\";s:2:\"id\";s:1:\"1\";s:10:\"ip_address\";s:15:\"109.195.200.165\";s:13:\"loggedin_time\";s:10:\"3 |hours| \";s:7:\"timeout\";b:1;}','',0),(89,1,1629551691,'requests','N','http','','a:3:{s:3:\"url\";s:37:\"https://updates.cs-cart.com/index.php\";s:7:\"request\";s:899:\"\'dispatch=product_updates.check_available&request=%3C%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%3E%3CRequest+action%3D%22check_license%22+api%3D%223%22%3E%3Ctoken%3E2483604771%3C%2Ftoken%3E%3Cstore_key%3E2749512053%3B185.233.37.254%2F%3C%2Fstore_key%3E%3Cdomains%3E185.233.37.254%3C%2Fdomains%3E%3Clicense_number%3ECS-UE-GHKA-57DO-4X6M-0XBS%3C%2Flicense_number%3E%3Cver%3E4.13.2.SP2%3C%2Fver%3E%3Cproduct_status%3E%3C%2Fproduct_status%3E%3Cproduct_build%3ERU%3C%2Fproduct_build%3E%3Cedition%3EULTIMATE%3C%2Fedition%3E%3Clang%3ERU%3C%2Flang%3E%3Cstore_uri%3Ehttp%3A%2F%2F185.233.37.254%2F%3C%2Fstore_uri%3E%3Csecure_store_uri%3Ehttps%3A%2F%2F185.233.37.254%2F%3C%2Fsecure_store_uri%3E%3Chttps_enabled%3EN%3C%2Fhttps_enabled%3E%3Cadmin_uri%3Ehttp%3A%2F%2F185.233.37.254%2F%2F%3C%2Fadmin_uri%3E%3Cstore_ip%3E109.195.200.165%3C%2Fstore_ip%3E%3Cstore_mode%3E%3C%2Fstore_mode%3E%3C%2FRequest%3E\'\";s:8:\"response\";s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";}','',0),(90,0,1629551796,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"6fb5edc4-56d4-4d8a-a7e6-bcf18ecf874f\"}\";}','',1),(91,0,1629551802,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"a06eb867-faa7-4e7c-bbf8-4268acde37fc\"}\";}','',1),(92,0,1629551807,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"d09ec123-2f0a-4825-9f7b-fd98cdf63310\"}\";}','',1),(93,0,1629551840,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"78ea56da-e3ac-4103-92be-de2cae06dd44\"}\";}','',1),(94,0,1629551853,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"7a217dd5-76b8-417c-ae26-464c586fa781\"}\";}','',1),(95,0,1629552082,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"5870ee1a-169f-4f92-a868-c4f3096807ce\"}\";}','',1),(96,0,1629552082,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(97,0,1629552082,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(98,0,1629555476,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"f21fcf59-f058-41a4-908d-57e82518eb24\"}\";}','',1),(99,0,1629555476,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(100,0,1629555476,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(101,0,1629555601,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"5ae9a7e3-20bb-4f94-991c-9a6fc3e62a00\"}\";}','',1),(102,0,1629555610,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"4a069cb3-d14e-4874-8cd5-eac0078a829f\"}\";}','',1),(103,0,1629555601,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(104,0,1629555601,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(105,0,1629555610,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(106,0,1629555610,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:152:\"\'{\"model_id\":\"FarFieldRus10:offline\",\"audio\":{\"data\":\"\",\"mime\":\"WAV\"},\"recognition_config\":{\"additional_words\":[\"string\"],\"vocabulary_ids\":[\"string\"]}}\'\";s:8:\"response\";s:72:\"{\"reason\":\"ILLEGAL_ARGUMENT\",\"message\":\"Argument data cannot be empty.\"}\";}','',1),(107,0,1629555862,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"eaf67d70-7591-4ff4-804f-ba0137248008\"}\";}','',1),(108,0,1629556123,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"8905d34c-d016-4b7b-86e1-fe9d82ee5c39\"}\";}','',1),(109,0,1629556123,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(110,0,1629556123,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(111,0,1629556570,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"3e538751-0f5c-48b9-b7f5-ba86122da2e4\"}\";}','',1),(112,0,1629556570,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(113,0,1629556570,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(114,0,1629558280,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"34c451d5-f731-4bda-a6db-cc67428f8bf6\"}\";}','',1),(115,0,1629558280,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(116,0,1629558280,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(117,0,1629559515,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"da99738c-5e3c-4f97-a296-8f39e4a6e9ee\"}\";}','',1),(118,0,1629559515,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(119,0,1629559515,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(120,0,1629560491,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"1f93bbb0-de4a-4e13-bca0-92d9df6cf0b2\"}\";}','',1),(121,0,1629560491,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(122,0,1629560491,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(123,0,1629560749,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"b50b0453-0eca-4de7-8012-8bcc66eff8ec\"}\";}','',1),(124,0,1629560749,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(125,0,1629560749,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(126,0,1629560837,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"d6eec679-c4e2-4180-9e2c-9d57a8566a61\"}\";}','',1),(127,0,1629560837,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(128,0,1629560837,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(129,0,1629562397,'requests','N','http','','a:3:{s:3:\"url\";s:50:\"https://cloud.speechpro.com/vksession/rest/session\";s:7:\"request\";s:77:\"\'{\"domain_id\":\"4989\",\"username\":\"skater4@yandex.ru\",\"password\":\"Uc665G$gLr\"}\'\";s:8:\"response\";s:53:\"{\"session_id\":\"a98b66af-fdf5-4af5-ab2a-7f0d662dea10\"}\";}','',1),(130,0,1629562397,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:15665:\"{\"score\":\"47.23\",\"text\":\"И по сути, мы хотели бы просто, что услышать, то есть мы понимаем. Там примерно как работы там лаборатория там, на основе каких документов понимаем, как работы, разработчик и хотели бы просто, слышь, консолидированное мнение. Вот сотрудников лаборатории в плане того, какие документы там Бурки по уже предоставлены к ним или предоставить в какие сроки, то есть вот там Билайн сертификации и с чем можно начинать уже работы сейчас, потому что вот в отрасли мы там с интернетом защитным форм. Нашу мораторий работаем. Именно в таком ключе, то есть мы можем даже раньше отдавать данные для начала там анализа продукта. Вот как устроена сейчас, вот у вас можете рассказать и подвинуться ага. Ну вопрос понятен. Расскажу. Да не знаю Казанцева, сели на очень хорошо. А ваши специалисты правильно, ребята делать все то есть смотрите, а в настоящее время нам передано так сон, документация, которая есть на продукт для того, чтобы можно было ознакомиться и доработать ее в соответствии с требованиями семьдесят шестого приказа по уровням. Доверие, доступ стенду тоже Казахстана. Мы начинаем писать. Мы сейчас заканчиваем писать технические условия. Формуляр людям их в соответствие и в конце месяца они уйдут во всех вместе заявку для того, чтобы в течение месяцев стек выдал решение. Тот месяц, который будет стяг выдавать решение. Мы терять время не будем понятно. Официально безусловно работать нельзя. Положение сертификации, черным по белому прописано, что работы по сертификации проводится после получения решения, но а мы будем заниматься проведением документации в соответствии с требованиями семьдесят шестого приказа, то есть будет разработана, описание архитектуру функциональная спецификация эскизные. Технический проект, описание всех интерфейс руководство администратора пользователи. Ну, в общем, все что требуется для на уровне доверия, соответствующим после того, как будет получено решение. Лаборатория тут же начнет работать с документацией и готовить, готовить программу, методику испытаний. Ну, то есть. Положение у нас, а документация после того, как подписанный протокол для ознакомления они делают вывод о том, что можно сертифицировать. Ребята вчетвером в соответствии с той документации, которую предоставлен у нас документация. Но практика говорит о том, и мы так работает с органов по сертификации там образа, что и документация заявителя и программа. Методика испытаний даются в орган по сертификации одновременно, то есть мы доделываем документацию. Делаем программу, методику. Ну, триста два, два с половиной после подачи подачи заявки. Ну, то есть через месяц полтора после там, ну два после того, как получили решение, а программа методика испытаний плюс необходимая документация, программно-технический уйдет в орган орган знакомиться в течении. Да, да, да, да, да, возможно, сорок пять. Да у нас стандартный срок сорок пять дней. Да все верно. Ну, у нас есть и как бы с ними отношения уже опыт работы практика. Ну, мы сможем с ним поговорить, чтобы они побыстрее посмотрели наши материалы и выдали свое заключение после того, как будет получено решение не решение на согласованной программы. Методика испытаний мы подписываем заявителем, а столбом образца фиксируем контрольную сумму того продуктов, которые собственно вы будете использовать, который будет сертификате прописаны сейчас контрольная сумма будет прописано в тылу формуляре они сертификате, да и материалы. Уходит сразу проводятся испытания. При этом пока при этом, пока материалы будут находиться на рассмотрении в органе по сертификации. Лаборатория будет проводить испытания, связанные с анализом уязвимостей. Ну, то есть то что можно провести без а большого ущерба для времени. Ну, то есть те испытания, которые высокой степени вероятности, по нашему опыту не претерпевает сильно существенных изменений и замечаний в рамках согласование методики. Ну, потому что могут методики высказать замечания там по данному тестирование, например. Да и нужно все передел. Поэтому ну понятно понятно по функциональность, продукты могут дать указание внутри что-нибудь подпись. А всякие там уязвимость и прочие вещи. Они не связано. Никак с мыслями, как бы, да, они как бы они либо есть продукте, либо нет. Мы понятно. Слушай, ну, я и да вот коллеги. Спасибо. Это прям. Вижу глубокое погружение. Честно прямо глубокое. Смотрите. Видимо, для гаранина. Там Евгений Сергеевич, нужно как-то просто есть нормальный план. Да, то есть тот, который прямо реальный план сертификации, по и видимо, нужно дать ему какой-то оптимистичный план, хотя о том, с пометкой что он там тяжело выполним. Вот наверное, только и все то есть я так вижу, что вы там затроллили выйти работы, которые можно проводите испытание. Те, которые возможность сейчас. Ну, в принципе, тогда да там Константин. Там Смирнов. Я вот здесь тогда, когда я даже не знаю. Там чем помочь, то есть коллеги все сами знают глубоко погружены высокопрофессиональная. Да, Сергей Петрович. Я согласен. У меня слышно. Да, да, да, да, отлично слышно. Ага, ага. Ну, я согласен. Нужно показать оптимистичный план график сертификации, то есть. Сейчас год он. Ну год не устраивает. Пока давайте на оптимистичный. Ну, мы же мы же все да, Константин уже все с вами понимаем, что год это как раз та самая цифра, которая действительно ну реально, это опыт и у нас. Да, но если есть варианты где-то оптимизироваться в сроках, то да, давайте покажем. Пусть тяжело, но покажем. Ну, будем стремиться ну, то есть, да давай, давай действительно там со звездочкой, что этот план сложно выполнял он ним всё равно, то есть при таком подходе ну да угу. Может сможем. Такой вот подготовить план оптимистичный коллеги сможет в понедельник до обеда угу. Ну, то есть вам понять, что вряд ли там все по нему подпишется там стопроцентно. Но чтобы коллег было сроки отслеживать по нему надо бы видимо подготовить Константин плюс пессимистично и как бы все прекрасно понимать. А ну, оптимистичный, реальный, пессимистично. Не будем делать ну, в смысле реальные там реалистично, и тот, который, как бы безопасный для исполнителя. Вот так, скажем так да, да, да из положения под по сертификации все сроки, предельная и как бы там двести семьдесят рабочих дней, как и все и куда никуда не ходи. Вот минимум. Это удобно для всех. Угу. Именно так. Ну, собственно, наверное, все. А Константин все у нас да все. Только надо понимать, от кого и кому придет вот этот вот новый план коллеги. Здесь немножко подскажу плана, я предоставлю Андрея Василенко, но тоже хочется рассказать такой момент что. Но вот мы с вами прекрасно понимаем подать критично мой планам, если его видел лаборатория, то она придет просто ужас как бы мы должны понимать, что этот документ, а внутренний б под ним мы само собой нарисуем звездочки и напишем, что возможно, риски Артём смотрите, смотрите. Вот как я себе извините, что перебиваю, как я вижу вот этот оптимистичен он нужно исключительно для того, чтобы верхнего руководства видел перед глазами и просто у себя. Ну, то есть в момент какой-то возникновении того или иного этапу спрашивала мы в этом графике или нет если нет, оно понимала, как в реалистично. Тогда мы, графики, идем. Вот и все. Ну вот это я себе, так вижу. Понятно, что это внутренний наш исключительно документ. Понятно, что испытать лаборатории нельзя подписывать под там ускоренной сроки. Ну нельзя этого делать конечно, да принято плавно сделаем, но просто параллельно тоже предлагаю не забывать про то, о чем мы договорились на прошлой встрече, если вдруг всё-таки мы не влезаем в месячный план. Я вот, повторюсь, всё-таки, я думаю, нам нужно иметь запасной вариант Б, по которому мы сможем успеть по этапности в рамках сроков, который в этом такие предложения у нас тоже есть как бы тоже предлагаю, чтобы они у нас, если что заранее лежали проработанная, так что все, все верно. Мы ждем от вас предложение, потом, потому как что мы будем делать со сроками проекта Сергей Петрович, я ещё хотел на всякий случай уточнить ведь я правильно понимаю, что мы свою аттестацию сможем провести аттестацию системы сможем провести только после получения сертификатов степи. Ну конечно, потому, что вы же понимаете, функции безопасности, так много у него завязано на этот продукт, и если они там никак не мог мерам не решать, то я как аттестую. Система. Ну да, ну, то есть, то есть после сертификации встать по у нас еще будет там месяца полтора, пока мы проведем все аттестацию погружаться, как подготовиться уже, чтобы буквально испытания только принести. Ну смотрите, Константин долго ворот Смирнов Константин. Долгое время занималась консультаций. Он глубоко понимать процесс по факту нам, мы можем ландшафт систему, то весь описать, развернуть ну, потому что\"}\";}','',1),(131,0,1629562397,'requests','N','http','','a:3:{s:3:\"url\";s:59:\"https://cloud.speechpro.com/vkasr/rest/v2/recognizer/simple\";s:7:\"request\";s:0:\"\";s:8:\"response\";s:3301:\"{\"score\":\"76.74\",\"text\":\"Тем более, если уже мы понимаем, какой какой по пойдет на сертификацию. Прямо конкретно контрольной суммы. Да и об этом или контрольную сумму и алло. Алло, Сергей Петрович пропали. Алло, алло. Алло алло слышно я. Я к тому, что мы можем параллельно разворачивать в систему готовить документацию по синтезу записку остальным документам техпроцесс и так далее на базе того по который пойдет на сертификацию с теми контрольными суммы, которая пойдет на сертификацию. Ну вот и, как нам Константин Смирнов глубоко знает процесс. Именно аттестации. Он сможет подсказать как раз по вот процедуре подготовки, то есть мы тоже можем продолжаться. Ну, это, конечно, какой-то разрыв все равно будет небольшой. Я полностью поддерживаю. Предлагаю. Вот если есть возможность за параллели, какие-то работы наркотическим пути. Давайте это делать. Андрей Ростенко. Давай тогда у себя запишем, что когда мы будем подходить к этому моменту, чтобы мы до этого проработали то что необходимо для пятнадцати, чтобы у нас временной лаг было минимальный с нашей стороны, все, что необходимо мы само собой предоставим. Естественно. Да мы будем параллели, то, насколько это возможно, ну и смотрите, если это про проект давайте просто отразим этого детальный план графике проекта. Вот эти наши активности и всё, чтобы они были подконтрольны. Глобальный проект. Ну, тогда мы можем тогда через тебя пожалуйста. Взять вот этим на мероприятие по аттестации. Мы добавим наш график, который мы обсуждали на прошлой встречи и там у нас будут соответственно два варианта по сертификации и по аттестацию, чтобы мы все вместе смотрели дальше данной рассчитывали. Да, конечно, спасибо, все коллеги. Спасибо, тогда не отвечать. Спасибо, спасибо. Всего доброго. До свидания коллеги всего хорошего спасибо, спасибо. До свидания, спасибо. До свидания,\"}\";}','',1),(132,1,1629563026,'users','N','session','','a:3:{s:4:\"user\";s:65:\"Администратор Главный; skater4@yandex.ru (#1)\";s:2:\"id\";s:1:\"1\";s:10:\"ip_address\";s:15:\"109.195.200.165\";}','',0),(133,1,1629563026,'requests','N','http','','a:3:{s:3:\"url\";s:37:\"https://updates.cs-cart.com/index.php\";s:7:\"request\";s:899:\"\'dispatch=product_updates.check_available&request=%3C%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%3E%3CRequest+action%3D%22check_license%22+api%3D%223%22%3E%3Ctoken%3E3374852321%3C%2Ftoken%3E%3Cstore_key%3E2749512053%3B185.233.37.254%2F%3C%2Fstore_key%3E%3Cdomains%3E185.233.37.254%3C%2Fdomains%3E%3Clicense_number%3ECS-UE-GHKA-57DO-4X6M-0XBS%3C%2Flicense_number%3E%3Cver%3E4.13.2.SP2%3C%2Fver%3E%3Cproduct_status%3E%3C%2Fproduct_status%3E%3Cproduct_build%3ERU%3C%2Fproduct_build%3E%3Cedition%3EULTIMATE%3C%2Fedition%3E%3Clang%3ERU%3C%2Flang%3E%3Cstore_uri%3Ehttp%3A%2F%2F185.233.37.254%2F%3C%2Fstore_uri%3E%3Csecure_store_uri%3Ehttps%3A%2F%2F185.233.37.254%2F%3C%2Fsecure_store_uri%3E%3Chttps_enabled%3EN%3C%2Fhttps_enabled%3E%3Cadmin_uri%3Ehttp%3A%2F%2F185.233.37.254%2F%2F%3C%2Fadmin_uri%3E%3Cstore_ip%3E109.195.200.165%3C%2Fstore_ip%3E%3Cstore_mode%3E%3C%2Fstore_mode%3E%3C%2FRequest%3E\'\";s:8:\"response\";s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";}','',0),(134,1,1629563222,'users','N','session','','a:3:{s:4:\"user\";s:65:\"Администратор Главный; skater4@yandex.ru (#1)\";s:2:\"id\";s:1:\"1\";s:10:\"ip_address\";s:15:\"109.195.200.165\";}','',0);
 /*!40000 ALTER TABLE `cscart_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2089,19 +2080,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_mailing_lists`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_mailing_lists` (
-  `list_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `list_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `from_email` varchar(64) NOT NULL DEFAULT '',
   `from_name` varchar(128) NOT NULL DEFAULT '',
   `reply_to` varchar(64) NOT NULL DEFAULT '',
-  `show_on_checkout` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `show_on_registration` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `show_on_checkout` tinyint unsigned NOT NULL DEFAULT '0',
+  `show_on_registration` tinyint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'D',
-  `register_autoresponder` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `register_autoresponder` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`list_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2119,13 +2110,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_menus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_menus` (
-  `menu_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2144,13 +2135,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_menus_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_menus_descriptions` (
-  `menu_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `menu_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`menu_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2169,19 +2160,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_newsletter_batch_recipients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_newsletter_batch_recipients` (
-  `send_list_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `newsletter_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `list_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `subscriber_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `send_list_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `newsletter_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `list_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `subscriber_id` mediumint unsigned NOT NULL DEFAULT '0',
   `email` varchar(128) NOT NULL DEFAULT '',
   `send_key` varchar(128) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`send_list_id`),
   KEY `send_key` (`send_key`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2199,13 +2190,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_newsletter_campaigns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_newsletter_campaigns` (
-  `campaign_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `campaign_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'D',
   PRIMARY KEY (`campaign_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2223,15 +2214,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_newsletter_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_newsletter_descriptions` (
-  `newsletter_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `newsletter_id` mediumint unsigned NOT NULL DEFAULT '0',
   `newsletter` varchar(255) NOT NULL DEFAULT '',
   `newsletter_multiple` text,
   `body_html` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`newsletter_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2249,15 +2240,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_newsletter_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_newsletter_links` (
-  `link_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `campaign_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `newsletter_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `link_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `campaign_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `newsletter_id` mediumint unsigned NOT NULL DEFAULT '0',
   `url` varchar(255) NOT NULL DEFAULT '',
-  `clicks` mediumint(8) unsigned DEFAULT NULL,
+  `clicks` mediumint unsigned DEFAULT NULL,
   PRIMARY KEY (`link_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2275,20 +2266,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_newsletters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_newsletters` (
-  `newsletter_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `campaign_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `sent_date` int(11) unsigned NOT NULL DEFAULT '0',
+  `newsletter_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `campaign_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `sent_date` int unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   `type` char(1) NOT NULL DEFAULT 'N',
   `mailing_lists` varchar(255) NOT NULL DEFAULT '',
   `users` text,
   `abandoned_type` varchar(10) NOT NULL DEFAULT 'both',
-  `abandoned_days` int(11) NOT NULL DEFAULT '0',
-  `abandoned_company_id` int(11) NOT NULL DEFAULT '0',
+  `abandoned_days` int NOT NULL DEFAULT '0',
+  `abandoned_company_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`newsletter_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2306,15 +2297,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_notification_event_receivers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_notification_event_receivers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `event_id` varchar(128) NOT NULL COMMENT 'The notification group ID',
   `method` varchar(64) NOT NULL DEFAULT 'user_id' COMMENT 'Receiver search method: user_id — User ID, usergroup_id — Usergroup ID, email — e-mail',
   `criterion` varchar(128) NOT NULL COMMENT 'Criterion to use with the specified method to search a receiver',
   `receiver` varchar(15) NOT NULL DEFAULT 'A' COMMENT 'Receiver of notification message: C - Customer, A - Administrator, V - Vendor',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2332,15 +2323,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_notification_group_receivers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_notification_group_receivers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `group_id` varchar(128) NOT NULL COMMENT 'Notification group ID',
   `method` varchar(64) NOT NULL DEFAULT 'user_id' COMMENT 'Receiver search method: user_id — User ID, usergroup_id — Usergroup ID, email — e-mail',
   `criterion` varchar(128) NOT NULL COMMENT 'Criterion to use with the specified method to search a receiver',
   `receiver` varchar(15) NOT NULL DEFAULT 'A' COMMENT 'Receiver of notification message: C - Customer, A - Administrator, V - Vendor',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2359,14 +2350,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_notification_settings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_notification_settings` (
   `event_id` varchar(100) NOT NULL,
   `transport_id` varchar(50) NOT NULL,
   `receiver` varchar(15) NOT NULL COMMENT 'Receiver of notification message: C - Customer, A - Administrator, V - Vendor',
-  `is_allowed` tinyint(3) DEFAULT '0' COMMENT '0 - will NOT be sent, 1 - will BE sent',
+  `is_allowed` tinyint DEFAULT '0' COMMENT '0 - will NOT be sent, 1 - will BE sent',
   PRIMARY KEY (`event_id`,`transport_id`,`receiver`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2384,10 +2375,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_notifications` (
-  `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Notification receiver',
+  `notification_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int unsigned NOT NULL DEFAULT '0' COMMENT 'Notification receiver',
   `title` varchar(256) NOT NULL DEFAULT '' COMMENT 'Notification title',
   `message` text NOT NULL COMMENT 'Notification text',
   `severity` char(1) NOT NULL DEFAULT 'N' COMMENT 'Notification severity: E(rror), W(arning), N(otice), I(nfo)',
@@ -2395,14 +2386,14 @@ CREATE TABLE `cscart_notifications` (
   `tag` varchar(32) NOT NULL DEFAULT 'other' COMMENT 'Tag of the notifications',
   `area` char(1) NOT NULL DEFAULT 'A' COMMENT 'Area to display the notification in',
   `action_url` varchar(256) NOT NULL DEFAULT '' COMMENT 'Dispatch to open when clicking on the notification',
-  `is_read` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Whether the notification has been read',
-  `pinned` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Whether the notification has been pinned',
-  `remind` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Determines if a remind notification is needed',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Time when the notification was created',
+  `is_read` tinyint unsigned NOT NULL DEFAULT '0' COMMENT 'Whether the notification has been read',
+  `pinned` tinyint unsigned NOT NULL DEFAULT '0' COMMENT 'Whether the notification has been pinned',
+  `remind` tinyint unsigned NOT NULL DEFAULT '0' COMMENT 'Determines if a remind notification is needed',
+  `timestamp` int unsigned NOT NULL DEFAULT '0' COMMENT 'Time when the notification was created',
   PRIMARY KEY (`notification_id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_user_id_area` (`user_id`,`area`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Stores notifications of the Notifications center';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COMMENT='Stores notifications of the Notifications center';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2420,15 +2411,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_order_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_order_data` (
-  `order_data_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `order_data_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '',
   `data` longblob NOT NULL,
   PRIMARY KEY (`order_data_id`),
   UNIQUE KEY `idx_order_id_type` (`order_id`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2446,18 +2437,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_order_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_order_details` (
-  `item_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `item_id` int unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `product_code` varchar(64) NOT NULL DEFAULT '',
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `amount` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `amount` mediumint unsigned NOT NULL DEFAULT '0',
   `extra` longblob NOT NULL,
   PRIMARY KEY (`item_id`,`order_id`),
   KEY `o_k` (`order_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2475,14 +2466,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_order_docs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_order_docs` (
-  `doc_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `doc_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `type` char(1) NOT NULL DEFAULT 'I',
-  `order_id` mediumint(8) unsigned NOT NULL,
+  `order_id` mediumint unsigned NOT NULL,
   PRIMARY KEY (`doc_id`,`type`),
   KEY `type` (`order_id`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2500,14 +2491,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_order_transactions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_order_transactions` (
-  `payment_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `payment_id` mediumint unsigned NOT NULL DEFAULT '0',
   `transaction_id` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT '',
   `extra` longblob NOT NULL,
   PRIMARY KEY (`payment_id`,`transaction_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2525,14 +2516,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_orders` (
-  `order_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `is_parent_order` char(1) NOT NULL DEFAULT 'N',
-  `parent_order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `issuer_id` mediumint(8) unsigned DEFAULT NULL,
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `parent_order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `issuer_id` mediumint unsigned DEFAULT NULL,
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `total` decimal(12,2) NOT NULL DEFAULT '0.00',
   `subtotal` decimal(12,2) NOT NULL DEFAULT '0.00',
   `discount` decimal(12,2) NOT NULL DEFAULT '0.00',
@@ -2540,7 +2531,7 @@ CREATE TABLE `cscart_orders` (
   `payment_surcharge` decimal(12,2) NOT NULL DEFAULT '0.00',
   `shipping_ids` varchar(255) NOT NULL DEFAULT '',
   `shipping_cost` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'O',
   `notes` text,
   `details` text,
@@ -2574,17 +2565,17 @@ CREATE TABLE `cscart_orders` (
   `fax` varchar(128) NOT NULL DEFAULT '',
   `url` varchar(32) NOT NULL DEFAULT '',
   `email` varchar(128) NOT NULL DEFAULT '',
-  `payment_id` mediumint(8) NOT NULL DEFAULT '0',
+  `payment_id` mediumint NOT NULL DEFAULT '0',
   `tax_exempt` char(1) NOT NULL DEFAULT 'N',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
-  `repaid` int(11) NOT NULL DEFAULT '0',
+  `repaid` int NOT NULL DEFAULT '0',
   `validation_code` varchar(20) NOT NULL DEFAULT '',
-  `localization_id` mediumint(8) NOT NULL,
-  `profile_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `updated_at` int(11) unsigned NOT NULL DEFAULT '0',
-  `yml2_order_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `localization_id` mediumint NOT NULL,
+  `profile_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `updated_at` int unsigned NOT NULL DEFAULT '0',
+  `yml2_order_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`order_id`),
   KEY `timestamp` (`timestamp`),
   KEY `user_id` (`user_id`),
@@ -2593,7 +2584,7 @@ CREATE TABLE `cscart_orders` (
   KEY `shipping_ids` (`shipping_ids`),
   KEY `company_id` (`company_id`),
   KEY `idx_updated_at` (`updated_at`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2611,12 +2602,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_original_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_original_values` (
   `msgctxt` varchar(128) NOT NULL DEFAULT '',
   `msgid` text,
   PRIMARY KEY (`msgctxt`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2635,9 +2626,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_page_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_page_descriptions` (
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `page` varchar(255) DEFAULT '0',
   `description` mediumtext,
@@ -2646,7 +2637,7 @@ CREATE TABLE `cscart_page_descriptions` (
   `page_title` varchar(255) NOT NULL DEFAULT '',
   `link` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`page_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2665,28 +2656,28 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_pages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_pages` (
-  `page_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `id_path` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `page_type` char(1) NOT NULL DEFAULT 'T',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int NOT NULL DEFAULT '0',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
   `localization` varchar(255) NOT NULL DEFAULT '',
-  `new_window` tinyint(3) NOT NULL DEFAULT '0',
+  `new_window` tinyint NOT NULL DEFAULT '0',
   `use_avail_period` char(1) NOT NULL DEFAULT 'N',
-  `avail_from_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `avail_till_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `avail_from_timestamp` int unsigned NOT NULL DEFAULT '0',
+  `avail_till_timestamp` int unsigned NOT NULL DEFAULT '0',
   `facebook_obj_type` varchar(64) NOT NULL,
   PRIMARY KEY (`page_id`),
   KEY `localization` (`localization`),
   KEY `parent_id` (`parent_id`),
   KEY `id_path` (`id_path`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2705,16 +2696,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_payment_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_payment_descriptions` (
-  `payment_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `payment_id` mediumint unsigned NOT NULL DEFAULT '0',
   `payment` varchar(128) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `instructions` mediumtext,
   `surcharge_title` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`payment_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2733,9 +2724,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_payment_processors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_payment_processors` (
-  `processor_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `processor_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `processor` varchar(255) NOT NULL DEFAULT '',
   `processor_script` varchar(255) NOT NULL DEFAULT '',
   `processor_template` varchar(255) NOT NULL DEFAULT '',
@@ -2744,7 +2735,7 @@ CREATE TABLE `cscart_payment_processors` (
   `type` char(1) NOT NULL DEFAULT 'P',
   `addon` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`processor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2763,15 +2754,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_payments` (
-  `payment_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `payment_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   `template` varchar(128) NOT NULL DEFAULT '',
-  `processor_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `processor_id` mediumint unsigned NOT NULL DEFAULT '0',
   `processor_params` text,
   `a_surcharge` decimal(13,3) NOT NULL DEFAULT '0.000',
   `p_surcharge` decimal(13,3) NOT NULL DEFAULT '0.000',
@@ -2782,7 +2773,7 @@ CREATE TABLE `cscart_payments` (
   KEY `c_status` (`usergroup_ids`,`status`),
   KEY `position` (`position`),
   KEY `localization` (`localization`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2801,16 +2792,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_poll_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_poll_descriptions` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'P',
   `description` mediumtext,
   PRIMARY KEY (`object_id`,`lang_code`,`type`),
   KEY `page_id` (`page_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2828,19 +2819,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_poll_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_poll_items` (
-  `item_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `item_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT 'Q',
-  `position` smallint(5) NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   `required` char(1) NOT NULL DEFAULT '',
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`),
   KEY `parent_id` (`parent_id`),
   KEY `type` (`type`),
   KEY `page_id` (`page_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2858,14 +2849,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_polls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_polls` (
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `start_date` int(11) unsigned NOT NULL DEFAULT '0',
-  `end_date` int(11) unsigned NOT NULL DEFAULT '0',
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `start_date` int unsigned NOT NULL DEFAULT '0',
+  `end_date` int unsigned NOT NULL DEFAULT '0',
   `show_results` char(1) NOT NULL DEFAULT 'V',
   PRIMARY KEY (`page_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2883,14 +2874,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_polls_answers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_polls_answers` (
-  `answer_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `vote_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `item_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `answer_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `vote_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `item_id` mediumint unsigned NOT NULL DEFAULT '0',
   `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`answer_id`,`vote_id`,`item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2908,16 +2899,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_polls_votes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_polls_votes` (
-  `vote_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `page_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `vote_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `page_id` mediumint unsigned NOT NULL DEFAULT '0',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `time` int(11) NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `time` int NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '',
   PRIMARY KEY (`vote_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2935,7 +2926,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_privileges`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_privileges` (
   `privilege` varchar(32) NOT NULL DEFAULT '',
   `is_default` char(1) NOT NULL DEFAULT 'N',
@@ -2944,7 +2935,7 @@ CREATE TABLE `cscart_privileges` (
   `is_view` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`privilege`),
   KEY `section_id` (`section_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2963,9 +2954,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_descriptions` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `product` varchar(255) NOT NULL DEFAULT '',
   `shortname` varchar(255) NOT NULL DEFAULT '',
@@ -2979,7 +2970,7 @@ CREATE TABLE `cscart_product_descriptions` (
   `promo_text` mediumtext,
   PRIMARY KEY (`product_id`,`lang_code`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2997,9 +2988,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_feature_variant_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_feature_variant_descriptions` (
-  `variant_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL DEFAULT '0',
   `variant` varchar(255) NOT NULL DEFAULT '',
   `description` mediumtext,
   `page_title` varchar(255) NOT NULL DEFAULT '',
@@ -3009,7 +3000,7 @@ CREATE TABLE `cscart_product_feature_variant_descriptions` (
   `yml2_unit` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`variant_id`,`lang_code`),
   KEY `variant` (`variant`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3027,17 +3018,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_feature_variants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_feature_variants` (
-  `variant_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `feature_id` mediumint unsigned NOT NULL DEFAULT '0',
   `url` varchar(255) NOT NULL DEFAULT '',
   `color` varchar(128) DEFAULT NULL,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`variant_id`),
   KEY `feature_id` (`feature_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3055,30 +3046,30 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_features`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_features` (
-  `feature_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `feature_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `feature_code` varchar(32) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `purpose` varchar(32) NOT NULL DEFAULT '',
   `feature_style` varchar(32) NOT NULL DEFAULT '',
   `filter_style` varchar(32) NOT NULL DEFAULT '',
   `feature_type` char(1) NOT NULL DEFAULT 'T',
   `categories_path` text,
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `display_on_product` char(1) NOT NULL DEFAULT 'Y',
   `display_on_catalog` char(1) NOT NULL DEFAULT 'Y',
   `display_on_header` char(1) NOT NULL DEFAULT 'N',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `comparison` char(1) NOT NULL DEFAULT 'N',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `updated_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `updated_timestamp` int unsigned NOT NULL DEFAULT '0',
   `yml2_exclude_prices` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`feature_id`),
   KEY `status` (`status`),
   KEY `company_id` (`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3096,9 +3087,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_features_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_features_descriptions` (
-  `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `feature_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
   `internal_name` varchar(255) NOT NULL DEFAULT '',
   `full_description` mediumtext,
@@ -3107,7 +3098,7 @@ CREATE TABLE `cscart_product_features_descriptions` (
   `lang_code` char(2) NOT NULL DEFAULT '',
   `yml2_variants_unit` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`feature_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3125,11 +3116,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_features_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_features_values` (
-  `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `variant_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `feature_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL DEFAULT '0',
   `value` varchar(255) NOT NULL DEFAULT '',
   `value_int` double(12,2) DEFAULT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
@@ -3140,7 +3131,7 @@ CREATE TABLE `cscart_product_features_values` (
   KEY `product_id` (`product_id`),
   KEY `fpl` (`feature_id`,`product_id`,`lang_code`),
   KEY `idx_product_feature_variant_id` (`product_id`,`feature_id`,`lang_code`,`variant_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3158,15 +3149,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_file_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_file_descriptions` (
-  `file_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `file_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `file_name` varchar(255) NOT NULL DEFAULT '',
   `license` text,
   `readme` text,
   PRIMARY KEY (`file_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3184,19 +3175,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_file_ekeys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_file_ekeys` (
   `ekey` varchar(32) NOT NULL DEFAULT '',
-  `file_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `downloads` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `file_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `downloads` mediumint unsigned NOT NULL DEFAULT '0',
   `active` char(1) NOT NULL DEFAULT 'N',
-  `ttl` int(11) NOT NULL DEFAULT '0',
+  `ttl` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`file_id`,`order_id`),
   UNIQUE KEY `ekey` (`ekey`),
   KEY `ttl` (`ttl`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3214,13 +3205,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_file_folder_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_file_folder_descriptions` (
-  `folder_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `folder_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `folder_name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`folder_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3238,15 +3229,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_file_folders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_file_folders` (
-  `folder_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) NOT NULL DEFAULT '0',
+  `folder_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`folder_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3264,24 +3255,24 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_files`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_files` (
-  `file_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `folder_id` mediumint(8) unsigned DEFAULT NULL,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `file_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `folder_id` mediumint unsigned DEFAULT NULL,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `file_path` varchar(255) NOT NULL DEFAULT '',
   `preview_path` varchar(255) NOT NULL DEFAULT '',
-  `file_size` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `preview_size` int(11) unsigned NOT NULL DEFAULT '0',
+  `file_size` bigint unsigned NOT NULL DEFAULT '0',
+  `preview_size` int unsigned NOT NULL DEFAULT '0',
   `agreement` char(1) NOT NULL DEFAULT 'N',
-  `max_downloads` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `total_downloads` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `max_downloads` smallint unsigned NOT NULL DEFAULT '0',
+  `total_downloads` smallint unsigned NOT NULL DEFAULT '0',
   `activation_type` char(1) NOT NULL DEFAULT 'M',
-  `position` smallint(5) NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`file_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3299,13 +3290,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_filter_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_filter_descriptions` (
-  `filter_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `filter_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `filter` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`filter_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3323,22 +3314,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_filters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_filters` (
-  `filter_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `filter_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `categories_path` text,
-  `company_id` int(11) unsigned DEFAULT '0',
-  `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned DEFAULT '0',
+  `feature_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `field_type` char(1) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `round_to` varchar(8) NOT NULL DEFAULT '1',
-  `display_count` smallint(5) unsigned NOT NULL DEFAULT '10',
+  `display_count` smallint unsigned NOT NULL DEFAULT '10',
   `display` char(1) NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`filter_id`),
   KEY `feature_id` (`feature_id`),
   KEY `company_id` (`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3356,13 +3347,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_global_option_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_global_option_links` (
-  `option_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `option_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`option_id`,`product_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3380,11 +3371,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_option_variants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_option_variants` (
-  `variant_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `option_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `option_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `modifier` decimal(13,3) NOT NULL DEFAULT '0.000',
   `modifier_type` char(1) NOT NULL DEFAULT 'A',
   `weight_modifier` decimal(12,3) NOT NULL DEFAULT '0.000',
@@ -3398,7 +3389,7 @@ CREATE TABLE `cscart_product_option_variants` (
   KEY `status` (`status`),
   KEY `option_id` (`option_id`,`status`),
   KEY `option_id_2` (`option_id`,`variant_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3416,13 +3407,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_option_variants_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_option_variants_descriptions` (
-  `variant_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `variant_name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`variant_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3440,27 +3431,27 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_options`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_options` (
-  `option_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `option_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `option_type` char(1) NOT NULL DEFAULT 'S',
   `regexp` varchar(255) NOT NULL DEFAULT '',
   `required` char(1) NOT NULL DEFAULT 'N',
   `multiupload` char(1) NOT NULL DEFAULT 'N',
   `allowed_extensions` varchar(255) NOT NULL DEFAULT '',
-  `max_file_size` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `max_file_size` bigint unsigned NOT NULL DEFAULT '0',
   `missing_variants_handling` char(1) NOT NULL DEFAULT 'M',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `value` varchar(255) NOT NULL DEFAULT '',
   `yml2_type_options` char(1) NOT NULL DEFAULT '',
   `yml2_option_param` varchar(16) NOT NULL DEFAULT '',
   PRIMARY KEY (`option_id`),
   KEY `c_status` (`product_id`,`status`),
   KEY `position` (`position`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3478,9 +3469,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_options_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_options_descriptions` (
-  `option_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `option_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `option_name` varchar(64) NOT NULL DEFAULT '',
   `internal_option_name` varchar(64) NOT NULL DEFAULT '',
@@ -3490,7 +3481,7 @@ CREATE TABLE `cscart_product_options_descriptions` (
   `inner_hint` varchar(255) NOT NULL DEFAULT '',
   `incorrect_message` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`option_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3508,14 +3499,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_options_exceptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_options_exceptions` (
-  `exception_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `exception_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `combination` text,
   PRIMARY KEY (`exception_id`),
   KEY `product` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3533,17 +3524,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_point_prices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_point_prices` (
-  `point_price_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `point_price` int(11) unsigned NOT NULL DEFAULT '0',
-  `lower_limit` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `point_price_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `point_price` int unsigned NOT NULL DEFAULT '0',
+  `lower_limit` smallint unsigned NOT NULL DEFAULT '0',
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`point_price_id`),
   UNIQUE KEY `unique_key` (`lower_limit`,`usergroup_id`,`product_id`),
   KEY `src_k` (`product_id`,`lower_limit`,`usergroup_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3561,17 +3552,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_popularity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_popularity` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `viewed` int(11) NOT NULL DEFAULT '0',
-  `added` int(11) NOT NULL DEFAULT '0',
-  `deleted` int(11) NOT NULL DEFAULT '0',
-  `bought` int(11) NOT NULL DEFAULT '0',
-  `total` int(11) NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `viewed` int NOT NULL DEFAULT '0',
+  `added` int NOT NULL DEFAULT '0',
+  `deleted` int NOT NULL DEFAULT '0',
+  `bought` int NOT NULL DEFAULT '0',
+  `total` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`),
   KEY `total` (`product_id`,`total`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3589,18 +3580,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_prices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_prices` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `percentage_discount` int(2) unsigned NOT NULL DEFAULT '0',
-  `lower_limit` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `percentage_discount` int unsigned NOT NULL DEFAULT '0',
+  `lower_limit` mediumint unsigned NOT NULL DEFAULT '0',
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `usergroup` (`product_id`,`usergroup_id`,`lower_limit`),
   KEY `product_id` (`product_id`),
   KEY `lower_limit` (`lower_limit`),
   KEY `usergroup_id` (`usergroup_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3618,12 +3609,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_required_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_required_products` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `required_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `required_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`required_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3641,14 +3632,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_review_prepared_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_review_prepared_data` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   `average_rating` decimal(4,2) DEFAULT NULL,
-  `reviews_count` mediumint(8) unsigned DEFAULT '0',
+  `reviews_count` mediumint unsigned DEFAULT '0',
   PRIMARY KEY (`product_id`,`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3666,15 +3657,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_review_votes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_review_votes` (
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_review_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `value` int(2) NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_review_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `value` int NOT NULL DEFAULT '0',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`,`product_review_id`,`ip_address`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3692,31 +3683,31 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_reviews` (
-  `product_review_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_review_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `advantages` mediumtext,
   `disadvantages` mediumtext,
   `comment` mediumtext,
-  `rating_value` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `rating_value` tinyint unsigned NOT NULL DEFAULT '0',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
   `is_buyer` char(1) NOT NULL DEFAULT 'N',
-  `product_review_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `product_review_timestamp` int unsigned NOT NULL DEFAULT '0',
   `country_code` char(2) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
-  `reply_user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `reply_user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `reply` mediumtext,
-  `reply_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `helpfulness` mediumint(8) NOT NULL DEFAULT '0',
+  `reply_timestamp` int unsigned NOT NULL DEFAULT '0',
+  `helpfulness` mediumint NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'D',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_review_id`),
   KEY `idx_product_id` (`product_id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3734,14 +3725,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_sales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_sales` (
-  `category_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `category_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`category_id`,`product_id`),
   KEY `pa` (`product_id`,`amount`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3759,17 +3750,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_subscriptions` (
-  `subscription_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `subscription_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `email` varchar(128) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned DEFAULT NULL,
+  `company_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`subscription_id`),
   UNIQUE KEY `pec` (`product_id`,`email`,`company_id`),
   KEY `pd` (`product_id`,`user_id`,`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3787,21 +3778,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_tabs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_tabs` (
-  `tab_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `tab_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `tab_type` char(1) NOT NULL DEFAULT 'B',
-  `block_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `block_id` mediumint unsigned NOT NULL DEFAULT '0',
   `template` varchar(255) NOT NULL DEFAULT '',
   `addon` varchar(32) NOT NULL DEFAULT '',
-  `position` int(11) NOT NULL DEFAULT '0',
+  `position` int NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   `is_primary` char(1) NOT NULL DEFAULT 'N',
   `product_ids` text,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `show_in_popup` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`tab_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3820,13 +3811,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_tabs_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_tabs_descriptions` (
-  `tab_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `tab_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`tab_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3845,15 +3836,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_variation_data_identity_map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_variation_data_identity_map` (
   `table_id` varchar(32) NOT NULL DEFAULT '',
   `id` varchar(64) NOT NULL DEFAULT '',
   `parent_id` varchar(64) NOT NULL DEFAULT '',
-  `product_id` mediumint(8) unsigned NOT NULL,
+  `product_id` mediumint unsigned NOT NULL,
   PRIMARY KEY (`table_id`,`id`,`parent_id`),
   KEY `idx_product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3871,14 +3862,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_variation_group_features`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_variation_group_features` (
-  `feature_id` mediumint(8) unsigned NOT NULL,
+  `feature_id` mediumint unsigned NOT NULL,
   `purpose` varchar(32) NOT NULL,
-  `group_id` mediumint(8) unsigned NOT NULL,
+  `group_id` mediumint unsigned NOT NULL,
   PRIMARY KEY (`feature_id`,`group_id`),
   KEY `idx_group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3896,15 +3887,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_variation_group_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_variation_group_products` (
-  `product_id` mediumint(8) unsigned NOT NULL,
-  `parent_product_id` mediumint(8) unsigned NOT NULL,
-  `group_id` mediumint(8) unsigned NOT NULL,
+  `product_id` mediumint unsigned NOT NULL,
+  `parent_product_id` mediumint unsigned NOT NULL,
+  `group_id` mediumint unsigned NOT NULL,
   PRIMARY KEY (`product_id`,`group_id`),
   KEY `idx_group_id` (`group_id`),
   KEY `idx_parent_product_id` (`parent_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3922,15 +3913,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_product_variation_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_product_variation_groups` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(128) DEFAULT NULL,
-  `created_at` int(11) unsigned NOT NULL DEFAULT '0',
-  `updated_at` int(11) unsigned NOT NULL DEFAULT '0',
+  `created_at` int unsigned NOT NULL DEFAULT '0',
+  `updated_at` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_group_code` (`code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3948,23 +3939,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_products` (
-  `product_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `product_code` varchar(64) NOT NULL DEFAULT '',
   `product_type` char(1) NOT NULL DEFAULT 'P',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `list_price` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `amount` mediumint(8) NOT NULL DEFAULT '0',
+  `amount` mediumint NOT NULL DEFAULT '0',
   `weight` decimal(13,3) NOT NULL DEFAULT '0.000',
-  `length` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `width` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `height` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `length` mediumint unsigned NOT NULL DEFAULT '0',
+  `width` mediumint unsigned NOT NULL DEFAULT '0',
+  `height` mediumint unsigned NOT NULL DEFAULT '0',
   `shipping_freight` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `low_avail_limit` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `updated_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `low_avail_limit` mediumint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `updated_timestamp` int unsigned NOT NULL DEFAULT '0',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
   `is_edp` char(1) NOT NULL DEFAULT 'N',
   `edp_shipping` char(1) NOT NULL DEFAULT 'N',
@@ -3976,23 +3967,23 @@ CREATE TABLE `cscart_products` (
   `is_op` char(1) NOT NULL DEFAULT 'N',
   `is_oper` char(1) NOT NULL DEFAULT 'N',
   `is_returnable` char(1) NOT NULL DEFAULT 'Y',
-  `return_period` int(11) unsigned NOT NULL DEFAULT '10',
-  `avail_since` int(11) unsigned NOT NULL DEFAULT '0',
+  `return_period` int unsigned NOT NULL DEFAULT '10',
+  `avail_since` int unsigned NOT NULL DEFAULT '0',
   `out_of_stock_actions` char(1) NOT NULL DEFAULT 'N',
   `localization` varchar(255) NOT NULL DEFAULT '',
-  `min_qty` smallint(5) unsigned DEFAULT NULL,
-  `max_qty` smallint(5) unsigned DEFAULT NULL,
-  `qty_step` smallint(5) unsigned DEFAULT NULL,
-  `list_qty_count` smallint(5) unsigned DEFAULT NULL,
+  `min_qty` smallint unsigned DEFAULT NULL,
+  `max_qty` smallint unsigned DEFAULT NULL,
+  `qty_step` smallint unsigned DEFAULT NULL,
+  `list_qty_count` smallint unsigned DEFAULT NULL,
   `tax_ids` varchar(255) NOT NULL DEFAULT '',
   `age_verification` char(1) NOT NULL DEFAULT 'N',
-  `age_limit` tinyint(4) NOT NULL DEFAULT '0',
+  `age_limit` tinyint NOT NULL DEFAULT '0',
   `options_type` char(1) DEFAULT NULL,
   `exceptions_type` char(1) DEFAULT NULL,
   `details_layout` varchar(50) NOT NULL DEFAULT '',
   `shipping_params` varchar(255) NOT NULL DEFAULT '',
   `facebook_obj_type` varchar(64) NOT NULL,
-  `parent_product_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `parent_product_id` int unsigned NOT NULL DEFAULT '0',
   `yml2_brand` varchar(96) NOT NULL,
   `yml2_origin_country` varchar(64) NOT NULL,
   `yml2_store` char(1) NOT NULL DEFAULT '',
@@ -4000,7 +3991,7 @@ CREATE TABLE `cscart_products` (
   `yml2_delivery` char(1) NOT NULL DEFAULT '',
   `yml2_adult` char(1) NOT NULL DEFAULT 'N',
   `yml2_delivery_options` text,
-  `yml2_bid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `yml2_bid` smallint unsigned NOT NULL DEFAULT '0',
   `yml2_model` varchar(96) NOT NULL DEFAULT '',
   `yml2_sales_notes` varchar(50) NOT NULL DEFAULT '',
   `yml2_type_prefix` varchar(55) NOT NULL DEFAULT '',
@@ -4008,7 +3999,7 @@ CREATE TABLE `cscart_products` (
   `yml2_market_category` varchar(255) NOT NULL DEFAULT '',
   `yml2_manufacturer_warranty` char(1) NOT NULL DEFAULT '',
   `yml2_expiry` varchar(20) NOT NULL DEFAULT '',
-  `yml2_purchase_price` int(11) NOT NULL DEFAULT '0',
+  `yml2_purchase_price` int NOT NULL DEFAULT '0',
   `yml2_description` text,
   `yml2_cpa` char(1) NOT NULL DEFAULT 'Y',
   `buy_now_url` varchar(255) NOT NULL,
@@ -4016,7 +4007,7 @@ CREATE TABLE `cscart_products` (
   KEY `age_verification` (`age_verification`,`age_limit`),
   KEY `status` (`status`),
   KEY `idx_parent_product_id` (`parent_product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4034,17 +4025,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_products_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_products_categories` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `category_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `category_id` mediumint unsigned NOT NULL DEFAULT '0',
   `link_type` char(1) NOT NULL DEFAULT 'M',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `category_position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
+  `category_position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`category_id`,`product_id`),
   KEY `link_type` (`link_type`),
   KEY `pt` (`product_id`,`link_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4062,14 +4053,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_profile_field_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_profile_field_descriptions` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
   `object_type` char(1) NOT NULL DEFAULT 'F',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`object_id`,`object_type`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4088,15 +4079,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_profile_field_sections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_profile_field_sections` (
-  `section_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `section_id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` char(1) NOT NULL,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`section_id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4115,13 +4106,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_profile_field_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_profile_field_values` (
-  `value_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `field_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `value_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `field_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`value_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4139,9 +4130,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_profile_fields`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_profile_fields` (
-  `field_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `field_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `field_name` varchar(32) NOT NULL DEFAULT '',
   `profile_show` char(1) DEFAULT 'N',
   `profile_required` char(1) DEFAULT 'N',
@@ -4152,10 +4143,10 @@ CREATE TABLE `cscart_profile_fields` (
   `storefront_show` char(1) DEFAULT 'Y',
   `field_type` char(1) NOT NULL DEFAULT 'I',
   `profile_type` char(1) NOT NULL DEFAULT 'U',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `is_default` char(1) DEFAULT 'N',
   `section` char(1) DEFAULT 'C',
-  `matching_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `matching_id` mediumint unsigned NOT NULL DEFAULT '0',
   `class` varchar(100) NOT NULL DEFAULT '',
   `wrapper_class` varchar(100) NOT NULL DEFAULT '',
   `autocomplete_type` varchar(100) NOT NULL DEFAULT '',
@@ -4163,7 +4154,7 @@ CREATE TABLE `cscart_profile_fields` (
   KEY `field_name` (`field_name`),
   KEY `checkout_show` (`checkout_show`,`field_type`),
   KEY `profile_show` (`profile_show`,`field_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4182,14 +4173,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_profile_fields_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_profile_fields_data` (
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `object_type` char(1) NOT NULL DEFAULT 'U',
-  `field_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `field_id` mediumint unsigned NOT NULL DEFAULT '0',
   `value` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`object_id`,`object_type`,`field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4207,15 +4198,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_promotion_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_promotion_descriptions` (
-  `promotion_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `promotion_id` mediumint unsigned NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `short_description` text,
   `detailed_description` mediumtext,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`promotion_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4233,14 +4224,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_promotion_images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_promotion_images` (
-  `promotion_image_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `promotion_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `promotion_image_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `promotion_id` int unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`promotion_image_id`),
   UNIQUE KEY `promo` (`promotion_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4258,24 +4249,24 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_promotions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_promotions` (
-  `promotion_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `promotion_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `conditions` text,
   `bonuses` text,
-  `to_date` int(11) unsigned NOT NULL DEFAULT '0',
-  `from_date` int(11) unsigned NOT NULL DEFAULT '0',
-  `priority` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `to_date` int unsigned NOT NULL DEFAULT '0',
+  `from_date` int unsigned NOT NULL DEFAULT '0',
+  `priority` mediumint unsigned NOT NULL DEFAULT '0',
   `stop` char(1) NOT NULL DEFAULT 'N',
   `stop_other_rules` char(1) NOT NULL DEFAULT 'N',
   `zone` enum('cart','catalog') NOT NULL DEFAULT 'catalog',
   `conditions_hash` text,
   `status` char(1) NOT NULL DEFAULT 'A',
-  `number_of_usages` mediumint(8) NOT NULL DEFAULT '0',
+  `number_of_usages` mediumint NOT NULL DEFAULT '0',
   `users_conditions_hash` text,
   PRIMARY KEY (`promotion_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4293,15 +4284,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_quick_menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_quick_menu` (
-  `menu_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL,
+  `menu_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL,
   `url` varchar(255) NOT NULL,
-  `parent_id` mediumint(8) unsigned NOT NULL,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL,
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`menu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4320,16 +4311,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_reward_point_changes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_reward_point_changes` (
-  `change_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` int(11) NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `change_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` int NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `action` char(1) NOT NULL DEFAULT 'A',
   `reason` text,
   PRIMARY KEY (`change_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4347,18 +4338,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_reward_points`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_reward_points` (
-  `reward_point_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` int(11) unsigned NOT NULL DEFAULT '0',
+  `reward_point_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` int unsigned NOT NULL DEFAULT '0',
   `amount_type` char(1) NOT NULL DEFAULT 'A',
   `object_type` char(1) NOT NULL DEFAULT 'P',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`reward_point_id`),
   UNIQUE KEY `unique_key` (`object_id`,`usergroup_id`,`object_type`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4376,17 +4367,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_rma_properties`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_rma_properties` (
-  `property_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `property_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'R',
   `update_totals_and_inventory` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`property_id`),
   KEY `c_status` (`property_id`,`status`),
   KEY `status` (`status`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4405,13 +4396,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_rma_property_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_rma_property_descriptions` (
-  `property_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `property_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `property` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`property_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4430,20 +4421,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_rma_return_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_rma_return_products` (
-  `return_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `item_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `reason` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `return_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `item_id` int unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `reason` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` mediumint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT 'A',
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
   `product_options` text,
   `product` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`return_id`,`item_id`,`type`),
   KEY `reason` (`reason`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4461,15 +4452,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_rma_returns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_rma_returns` (
-  `return_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
-  `action` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `return_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
+  `action` mediumint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'O',
-  `total_amount` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `total_amount` mediumint unsigned NOT NULL DEFAULT '0',
   `comment` text,
   `extra` text,
   PRIMARY KEY (`return_id`),
@@ -4477,7 +4468,7 @@ CREATE TABLE `cscart_rma_returns` (
   KEY `timestamp` (`timestamp`),
   KEY `user_id` (`user_id`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4495,13 +4486,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_robots_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_robots_data` (
-  `robots_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `robots_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   `data` text NOT NULL,
   PRIMARY KEY (`robots_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4520,18 +4511,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_rus_russianpost_status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_rus_russianpost_status` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` mediumint(8) NOT NULL DEFAULT '0',
-  `shipment_id` mediumint(8) NOT NULL DEFAULT '0',
+  `id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` mediumint NOT NULL DEFAULT '0',
+  `shipment_id` mediumint NOT NULL DEFAULT '0',
   `tracking_number` varchar(255) NOT NULL,
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `address` varchar(256) NOT NULL,
   `type_operation` varchar(100) NOT NULL,
   `status` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4549,18 +4540,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports` (
-  `report_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `report_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
   `type` char(1) NOT NULL DEFAULT '',
   `period` char(2) NOT NULL DEFAULT 'A',
-  `time_from` int(11) NOT NULL DEFAULT '0',
-  `time_to` int(11) NOT NULL DEFAULT '0',
+  `time_from` int NOT NULL DEFAULT '0',
+  `time_to` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4579,13 +4570,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_descriptions` (
-  `report_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `report_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`report_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4604,14 +4595,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_elements` (
-  `element_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `element_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(66) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'O',
   `depend_on_it` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`element_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4630,13 +4621,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_intervals`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_intervals` (
-  `interval_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `value` int(11) unsigned NOT NULL DEFAULT '0',
+  `interval_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `value` int unsigned NOT NULL DEFAULT '0',
   `interval_code` varchar(64) NOT NULL DEFAULT '',
   PRIMARY KEY (`interval_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4655,13 +4646,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_table_conditions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_table_conditions` (
-  `table_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `table_id` mediumint unsigned NOT NULL DEFAULT '0',
   `code` varchar(64) NOT NULL DEFAULT '0',
   `sub_element_id` varchar(16) NOT NULL DEFAULT '0',
   PRIMARY KEY (`table_id`,`code`,`sub_element_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4679,13 +4670,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_table_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_table_descriptions` (
-  `table_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `table_id` mediumint unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`table_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4704,14 +4695,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_table_element_conditions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_table_element_conditions` (
-  `table_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `table_id` mediumint unsigned NOT NULL DEFAULT '0',
   `element_hash` varchar(32) NOT NULL DEFAULT '',
   `element_code` varchar(64) NOT NULL DEFAULT '',
   `ids` varchar(16) NOT NULL DEFAULT '',
   PRIMARY KEY (`table_id`,`element_hash`,`ids`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4729,19 +4720,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_table_elements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_table_elements` (
-  `report_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `table_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `element_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `element_hash` int(11) NOT NULL DEFAULT '0',
+  `report_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `table_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `element_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `element_hash` int NOT NULL DEFAULT '0',
   `color` varchar(64) NOT NULL DEFAULT 'blueviolet',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
   `dependence` varchar(64) NOT NULL DEFAULT 'max_p',
-  `limit_auto` mediumint(8) unsigned NOT NULL DEFAULT '5',
+  `limit_auto` mediumint unsigned NOT NULL DEFAULT '5',
   PRIMARY KEY (`report_id`,`table_id`,`element_hash`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4760,17 +4751,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sales_reports_tables`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sales_reports_tables` (
-  `table_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `report_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `table_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `report_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT 'T',
   `display` varchar(64) NOT NULL DEFAULT 'order_amount',
-  `interval_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `interval_id` mediumint unsigned NOT NULL DEFAULT '0',
   `auto` char(1) NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`table_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4789,11 +4780,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_seo_names`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_seo_names` (
   `name` varchar(250) NOT NULL DEFAULT '',
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '',
   `dispatch` varchar(64) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
@@ -4802,7 +4793,7 @@ CREATE TABLE `cscart_seo_names` (
   KEY `name` (`name`,`lang_code`),
   KEY `type` (`name`,`type`,`lang_code`),
   KEY `dispatch` (`dispatch`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4821,18 +4812,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_seo_redirects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_seo_redirects` (
-  `redirect_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `redirect_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `src` varchar(255) NOT NULL DEFAULT '',
   `dest` varchar(255) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 's',
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`redirect_id`),
   KEY `src` (`src`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4850,15 +4841,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sessions` (
   `session_id` varchar(64) NOT NULL DEFAULT '',
-  `expiry` int(11) unsigned NOT NULL DEFAULT '0',
+  `expiry` int unsigned NOT NULL DEFAULT '0',
   `data` mediumblob,
   PRIMARY KEY (`session_id`),
   KEY `src` (`session_id`,`expiry`),
   KEY `expiry` (`expiry`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4867,7 +4858,7 @@ CREATE TABLE `cscart_sessions` (
 
 LOCK TABLES `cscart_sessions` WRITE;
 /*!40000 ALTER TABLE `cscart_sessions` DISABLE KEYS */;
-INSERT INTO `cscart_sessions` VALUES ('c37b4d2573bce768bc7a86277e5636ed-0-A',1629483901,_binary 'settings|a:6:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079427;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079427;}s:26:\"checkout_customer_location\";a:1:{s:5:\"value\";a:6:{s:7:\"country\";s:2:\"RU\";s:5:\"state\";s:3:\"ULY\";s:4:\"city\";s:18:\"Ульяновск\";s:7:\"zipcode\";s:6:\"432000\";s:7:\"address\";s:14:\"Ленина 1\";s:11:\"is_detected\";b:1;}}s:32:\"checkout_customer_destination_id\";a:1:{s:5:\"value\";b:0;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}auth|a:16:{s:4:\"area\";s:1:\"A\";s:7:\"user_id\";i:1;s:9:\"user_type\";s:1:\"A\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:10:\"company_id\";i:0;s:7:\"is_root\";s:1:\"Y\";s:13:\"usergroup_ids\";a:0:{}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629474627;s:7:\"referer\";s:50:\"http://dev.cs-coding.com/rosatom/install/index.php\";s:2:\"ip\";s:15:\"109.195.200.160\";s:13:\"last_activity\";i:1629476676;s:18:\"first_expire_check\";b:0;}embedded|a:1:{s:7:\"enabled\";b:0;}wishlist|N;request_history|a:2:{s:7:\"current\";a:2:{s:8:\"dispatch\";s:21:\"profile_fields.manage\";s:6:\"params\";a:2:{s:8:\"dispatch\";s:21:\"profile_fields.manage\";s:12:\"profile_type\";s:1:\"U\";}}s:4:\"prev\";a:2:{s:8:\"dispatch\";s:21:\"profile_fields.update\";s:6:\"params\";a:3:{s:8:\"dispatch\";s:21:\"profile_fields.update\";s:12:\"profile_type\";s:1:\"U\";s:8:\"field_id\";s:2:\"36\";}}}last_edited_items|a:1:{i:2006356955;a:4:{s:4:\"func\";a:2:{i:0;s:16:\"fn_get_page_name\";i:1;s:2:\"24\";}s:3:\"url\";s:77:\"admin.php?dispatch=pages.update&page_id=24&come_from=&selected_section=blocks\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:4:\"page\";}}security_hash|s:32:\"9b5d5b445578638770f601fae5117e67\";notifications|a:0:{}license_information|s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";last_status|s:6:\"ACTIVE\";status|i:3539;tech_support_chat_widget_id|b:0;cart|a:1:{s:9:\"user_data\";a:8:{s:9:\"s_country\";s:2:\"RU\";s:9:\"b_country\";s:2:\"RU\";s:7:\"s_state\";s:3:\"ULY\";s:7:\"b_state\";s:3:\"ULY\";s:6:\"s_city\";s:18:\"Ульяновск\";s:6:\"b_city\";s:18:\"Ульяновск\";s:9:\"s_zipcode\";s:6:\"432000\";s:9:\"b_zipcode\";s:6:\"432000\";}}saved_post_data|a:0:{}'),('d82fc1aca68d9956b2e8bf252cea3baa-1-C',1629490204,_binary 'auth|a:15:{s:4:\"area\";s:1:\"A\";s:7:\"user_id\";s:1:\"1\";s:9:\"user_type\";s:1:\"A\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"Y\";s:13:\"usergroup_ids\";a:3:{i:0;i:0;i:1;i:2;i:2;i:1;}s:11:\"act_as_user\";b:1;s:10:\"this_login\";i:1629474654;s:7:\"referer\";s:66:\"http://dev.cs-coding.com/rosatom/admin.php?welcome=setup_completed\";s:2:\"ip\";s:15:\"109.195.200.160\";s:13:\"last_activity\";i:1629483005;s:6:\"points\";i:0;}last_status|s:6:\"ACTIVE\";store_access_key|s:0:\"\";cart|a:32:{s:13:\"shipping_cost\";i:0;s:21:\"display_shipping_cost\";i:0;s:12:\"tax_subtotal\";i:0;s:8:\"discount\";i:0;s:5:\"total\";d:0;s:6:\"amount\";i:0;s:17:\"original_subtotal\";i:0;s:16:\"display_subtotal\";d:0;s:8:\"subtotal\";d:0;s:12:\"use_discount\";b:0;s:23:\"company_shipping_failed\";b:0;s:15:\"shipping_failed\";b:0;s:12:\"stored_taxes\";s:1:\"N\";s:7:\"coupons\";a:0:{}s:11:\"recalculate\";b:0;s:18:\"calculate_shipping\";b:0;s:13:\"free_shipping\";a:0:{}s:13:\"options_style\";s:1:\"I\";s:8:\"products\";a:0:{}s:18:\"applied_promotions\";a:0:{}s:17:\"shipping_required\";b:0;s:14:\"product_groups\";a:0:{}s:8:\"shipping\";a:0:{}s:15:\"chosen_shipping\";a:0:{}s:24:\"chosen_shipping_disabled\";b:0;s:11:\"points_info\";a:3:{s:15:\"raw_total_price\";i:0;s:11:\"total_price\";d:0;s:6:\"reward\";i:0;}s:5:\"taxes\";a:0:{}s:11:\"tax_summary\";a:0:{}s:19:\"discounted_subtotal\";d:0;s:11:\"has_coupons\";b:1;s:9:\"user_data\";a:59:{s:7:\"user_id\";s:1:\"1\";s:6:\"status\";s:1:\"A\";s:9:\"user_type\";s:1:\"A\";s:10:\"user_login\";s:5:\"admin\";s:7:\"referer\";s:0:\"\";s:7:\"is_root\";s:1:\"Y\";s:10:\"company_id\";s:1:\"0\";s:13:\"last_activity\";s:10:\"1629474627\";s:9:\"timestamp\";s:10:\"1629474613\";s:8:\"password\";s:60:\"$2y$10$1fm7ZuU1p4uEYIopzq4fVeuy7w2LiGdCsd2sg7RSmi.8nuSePgu4S\";s:4:\"salt\";s:10:\"Hh}>:w:M&D\";s:9:\"firstname\";s:26:\"Администратор\";s:8:\"lastname\";s:14:\"Главный\";s:7:\"company\";s:7:\"Simtech\";s:5:\"email\";s:17:\"skater4@yandex.ru\";s:5:\"phone\";s:15:\"55 55 5555 5555\";s:3:\"fax\";s:0:\"\";s:3:\"url\";s:0:\"\";s:10:\"tax_exempt\";s:1:\"N\";s:9:\"lang_code\";s:2:\"ru\";s:8:\"birthday\";s:0:\"\";s:23:\"purchase_timestamp_from\";s:0:\"\";s:21:\"purchase_timestamp_to\";s:0:\"\";s:17:\"responsible_email\";s:0:\"\";s:25:\"password_change_timestamp\";s:0:\"\";s:7:\"api_key\";s:0:\"\";s:18:\"janrain_identifier\";s:0:\"\";s:10:\"usergroups\";a:0:{}s:10:\"profile_id\";s:1:\"1\";s:12:\"profile_type\";s:1:\"P\";s:11:\"b_firstname\";s:26:\"Администратор\";s:10:\"b_lastname\";s:14:\"Главный\";s:9:\"b_address\";s:14:\"Ленина 1\";s:11:\"b_address_2\";s:21:\"Прогресса, 1\";s:6:\"b_city\";s:18:\"Ульяновск\";s:8:\"b_county\";s:0:\"\";s:7:\"b_state\";s:3:\"ULY\";s:9:\"b_country\";s:2:\"RU\";s:9:\"b_zipcode\";s:6:\"432000\";s:7:\"b_phone\";s:15:\"55 55 5555 5555\";s:11:\"s_firstname\";s:26:\"Администратор\";s:10:\"s_lastname\";s:14:\"Главный\";s:9:\"s_address\";s:14:\"Ленина 1\";s:11:\"s_address_2\";s:21:\"Прогресса, 1\";s:6:\"s_city\";s:18:\"Ульяновск\";s:8:\"s_county\";s:0:\"\";s:7:\"s_state\";s:3:\"ULY\";s:9:\"s_country\";s:2:\"RU\";s:9:\"s_zipcode\";s:6:\"432000\";s:7:\"s_phone\";s:15:\"55 55 5555 5555\";s:14:\"s_address_type\";s:0:\"\";s:12:\"profile_name\";s:4:\"Main\";s:24:\"profile_update_timestamp\";s:10:\"1629474613\";s:6:\"fields\";a:0:{}s:15:\"b_country_descr\";s:12:\"Россия\";s:15:\"s_country_descr\";s:12:\"Россия\";s:13:\"b_state_descr\";s:37:\"Ульяновская область\";s:13:\"s_state_descr\";s:37:\"Ульяновская область\";s:6:\"points\";i:0;}s:13:\"location_hash\";s:32:\"b93bf405f98a605ab2fe0a9f1b08fa79\";}product_notifications|a:2:{s:5:\"email\";s:17:\"skater4@yandex.ru\";s:11:\"product_ids\";a:0:{}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}settings|a:3:{s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630087804;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079454;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079454;}}wishlist|N;recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"adba14ca05bc2253d0e390b3ec79b020\";notifications|a:0:{}'),('a92fbe4cccf8ca85f2e9b846f3491214-1-C',1629488172,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085772;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079492;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079492;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"605f01b1409979f1b4f5151f8eefb28a\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629474692;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"188.130.155.153\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"1c17f979d25905f2007a15a77073ae79\";notifications|a:0:{}last_view|a:1:{s:11:\"lv_products\";a:2:{s:6:\"params\";s:6:\"a:0:{}\";s:12:\"view_results\";s:100:\"a:4:{s:9:\"items_ids\";a:0:{}s:11:\"total_pages\";i:0;s:14:\"items_per_page\";i:0;s:11:\"total_items\";i:0;}\";}}search_params|N;products_layout|a:0:{}excluded_features|a:0:{}'),('11aca36f8ea380d52f7fa43bb3a76575-1-C',1629482352,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630079952;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079935;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079935;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629475135;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.160\";}wishlist|N;cart|a:0:{}'),('479ceff10374ef7fff3b532f4b37f3c9-1-C',1629483965,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630081565;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630081565;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630081565;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"132b9af07038361220d33aa02004efde\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629476765;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"02fb295d1d14199633836acfc11c08af\";notifications|a:0:{}'),('dccc8e63560db792a13cefd7ad2f853b-1-C',1629487826,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085426;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630085426;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630085426;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"3941ddf92f1f50fe8180ec7043c1892d\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629480626;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.164\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"535ab9c30ac99c094a22cb67f22a7951\";notifications|a:0:{}');
+INSERT INTO `cscart_sessions` VALUES ('b70cf9af43fc5451f92d42584364e4af-1-C',1629571346,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168946;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630168946;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630168946;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"fb5ae4c281981ca10a522b6e1bdcd161\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629564146;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:12:\"99.180.70.89\";}wishlist|N;cart|a:0:{}'),('b85ea137789a540bcc86a8f0224cb29c-1-C',1629570080,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167680;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167680;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167680;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562880;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('fedabafd9bfffcd3db7e15ca12cc6c9e-1-C',1629570076,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167676;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167676;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167676;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562876;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('d35d218368c26fd2cea05b3a3eea33c7-1-C',1629570075,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167675;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167675;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167675;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562875;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('650345e4b7abe5a0aff507f41924fbd0-1-C',1629570066,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167666;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167666;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167666;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562866;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('c4e14096868cad3790e81bedd2a8c8d7-1-C',1629570068,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167668;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167668;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167668;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562868;s:7:\"referer\";s:17:\"http://azenv.net/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('c4a8e7189385d88c77fc0329b01a26a3-1-C',1629566341,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630163941;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630163941;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630163941;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"4c9717c179f154741a00df005d8e11d2\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629559141;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:14:\"188.235.133.27\";}wishlist|N;cart|a:0:{}'),('4e1bdf29b3fd08ded85c5924ee8382bb-1-C',1629570070,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167670;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167670;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167670;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562870;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('6310f24bdbfcfac88b3e42cb3d5e9203-1-C',1629570080,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167680;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167680;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167680;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562880;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('569c237ca79d091737e31e92fa3e167f-1-C',1629570140,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167740;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167740;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167740;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"d41d8cd98f00b204e9800998ecf8427e\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562940;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:12:\"185.107.2.45\";}wishlist|N;cart|a:0:{}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"1e82b7fdeabea24ed375901f86ef1b64\";notifications|a:0:{}'),('5101092c993f1ce8fa8600018898e0e3-1-C',1629570162,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167762;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167762;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167762;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562962;s:7:\"referer\";s:38:\"http://185.233.37.254/protocolconvert/\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:0:{}'),('543f811222949a6af17efdb835756f6b-0-A',1629570360,_binary 'settings|a:6:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156482;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156482;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630158270;}s:8:\"descr_sl\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630158270;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:15:{s:4:\"area\";s:1:\"A\";s:7:\"user_id\";s:1:\"1\";s:9:\"user_type\";s:1:\"A\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";s:10:\"1629551690\";s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"Y\";s:13:\"usergroup_ids\";a:0:{}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629563017;s:7:\"referer\";s:78:\"http://185.233.37.254//admin.php?dispatch=auth.login_form&return_url=admin.php\";s:2:\"ip\";s:15:\"109.195.200.165\";s:13:\"last_activity\";i:1629563026;s:18:\"first_expire_check\";b:0;}wishlist|N;cart|a:0:{}request_history|a:2:{s:7:\"current\";a:2:{s:8:\"dispatch\";s:20:\"block_manager.manage\";s:6:\"params\";a:2:{s:8:\"dispatch\";s:20:\"block_manager.manage\";s:17:\"selected_location\";s:1:\"1\";}}s:4:\"prev\";a:2:{s:8:\"dispatch\";s:11:\"index.index\";s:6:\"params\";a:1:{s:8:\"dispatch\";s:11:\"index.index\";}}}last_edited_items|a:2:{i:2006356955;a:4:{s:4:\"func\";a:2:{i:0;s:16:\"fn_get_page_name\";i:1;s:2:\"24\";}s:3:\"url\";s:77:\"admin.php?dispatch=pages.update&page_id=24&come_from=&selected_section=blocks\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:4:\"page\";}i:2853595133;a:4:{s:4:\"func\";a:2:{i:0;s:18:\"fn_get_banner_name\";i:1;s:2:\"23\";}s:3:\"url\";s:46:\"admin.php?dispatch=banners.update&banner_id=23\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:7:\"banners\";}}security_hash|s:32:\"f5bd154dbd0ab3418ffb50a14e0a1ee4\";notifications|a:0:{}log|a:1:{s:12:\"login_log_id\";i:132;}last_status|s:6:\"ACTIVE\";status|i:3539;license_information|s:172:\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><License>ACTIVE</License><Updates></Updates><Messages></Messages><AllowedNumberOfStores>1</AllowedNumberOfStores></Response>\";tech_support_chat_widget_id|b:0;'),('fb18da4c0a4c5d9999329ec551b6b3de-0-A',1629570533,_binary 'settings|a:4:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630168011;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630168011;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:15:{s:4:\"area\";s:1:\"A\";s:7:\"user_id\";s:1:\"1\";s:9:\"user_type\";s:1:\"A\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";s:10:\"1629563026\";s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"Y\";s:13:\"usergroup_ids\";a:0:{}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629563211;s:7:\"referer\";s:135:\"http://185.233.37.254/admin.php?dispatch=auth.login_form&return_url=admin.php%3Fdispatch%3Dblock_manager.manage%26selected_location%3D1\";s:2:\"ip\";s:15:\"109.195.200.165\";s:13:\"last_activity\";i:1629563222;s:18:\"first_expire_check\";b:0;}wishlist|N;cart|a:0:{}notifications|a:0:{}request_history|a:2:{s:7:\"current\";a:2:{s:8:\"dispatch\";s:18:\"static_data.manage\";s:6:\"params\";a:3:{s:8:\"dispatch\";s:18:\"static_data.manage\";s:7:\"section\";s:1:\"A\";s:7:\"menu_id\";s:1:\"2\";}}s:4:\"prev\";a:2:{s:8:\"dispatch\";s:12:\"menus.manage\";s:6:\"params\";a:1:{s:8:\"dispatch\";s:12:\"menus.manage\";}}}last_edited_items|a:2:{i:2006356955;a:4:{s:4:\"func\";a:2:{i:0;s:16:\"fn_get_page_name\";i:1;s:2:\"24\";}s:3:\"url\";s:77:\"admin.php?dispatch=pages.update&page_id=24&come_from=&selected_section=blocks\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:4:\"page\";}i:2853595133;a:4:{s:4:\"func\";a:2:{i:0;s:18:\"fn_get_banner_name\";i:1;s:2:\"23\";}s:3:\"url\";s:46:\"admin.php?dispatch=banners.update&banner_id=23\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:7:\"banners\";}}security_hash|s:32:\"64aa632c6bdd37ed265eba9bcee5b4ac\";log|a:1:{s:12:\"login_log_id\";i:134;}last_status|s:4:\"INIT\";stats|a:1:{i:0;s:106:\"<img src=\"http://185.233.37.254/admin.php?dispatch=helpdesk_connector.auth\" alt=\"\" style=\"display:none\" />\";}status|i:3539;'),('38f2bc5942e9ca19373511f0f849b6fd-0-A',1629569729,_binary 'settings|a:3:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167329;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167329;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:0:{}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562529;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:0:{}'),('44ab182bc25cae40a469cc16620e00b6-1-C',1629570035,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167635;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167635;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167635;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562835;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"51ceeb8e88e27f22b307eda0f1ff1580\";notifications|a:0:{}'),('0e8d9b6cc07d6266af6c3f22f2449875-1-C',1629570538,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168138;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630097926;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630097926;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629530871;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"97d35135fb766c93f2c808dcb3d72035\";notifications|a:0:{}'),('c69f7d8607f1bf43c62c91bebe4cf295-1-C',1629569045,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630166645;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630166645;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630166645;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"f21479cd531ffa73e211aca60a25e909\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629561845;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:14:\"199.19.224.165\";}wishlist|N;cart|a:0:{}'),('8c3d953cc0e8644189c1f65af69501ae-0-A',1629570168,_binary 'settings|a:3:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630143841;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630143841;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"29001f6c89d3cacc822c43f5f637bc1c\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:0:{}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562234;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.165\";}wishlist|N;cart|a:0:{}'),('829de4e3b565818a00872c27bcd53a04-1-C',1629569587,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167187;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167187;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167187;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"02d218ae597401e663f297e3f54a908b\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562387;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:14:\"94.229.111.220\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"9233a10aaffd4ef16eba60aad2a46744\";notifications|a:0:{}'),('37af008954d2f46b053bd1bd3a397797-1-C',1629563876,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161476;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161476;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161476;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629556676;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:13:\"3.226.122.208\";}wishlist|N;cart|a:0:{}'),('bf40dc47c7bb973d9cf82d41d9bcbcdc-1-C',1629569631,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167231;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156457;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156457;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"80e618d591ebdd3ca4ada4c6028f1a30\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629551657;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"109.195.200.161\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"c511fbe87cf8e2a3274423276b8ac826\";notifications|a:0:{}'),('da3467d8de880ae4c5800677d2da087d-1-C',1629563883,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161483;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161483;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161483;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629556683;s:7:\"referer\";s:17:\"http://azenv.net/\";s:2:\"ip\";s:13:\"3.226.122.208\";}wishlist|N;cart|a:0:{}'),('3b23f194929fb49c6d2d3e716bc17e38-1-C',1629563889,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161489;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161489;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161489;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629556689;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:13:\"3.226.122.208\";}wishlist|N;cart|a:0:{}'),('a9af7c5047a10a8e9c31fa3f8415096c-1-C',1629565075,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630162675;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630162675;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630162675;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"fb5ae4c281981ca10a522b6e1bdcd161\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629557875;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:13:\"190.94.135.91\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"d3bc11114a6a06c57581d97e1a625266\";notifications|a:0:{}'),('693c85a62a2036e68572ab32669f2a83-1-C',1629570071,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167671;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167671;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167671;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562871;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('9796d58ca9ee4edf9430a0eb4b73633f-1-C',1629570071,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167671;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167671;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167671;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"b891f5693193610810d7263dceb3a9b8\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629562871;s:7:\"referer\";s:22:\"http://185.233.37.254/\";s:2:\"ip\";s:14:\"20.150.209.191\";}wishlist|N;cart|a:0:{}'),('95fddc132adb3872932742b38a333b4b-1-C',1629570948,_binary 'settings|a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168548;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630141164;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630141164;}}_validator_data|a:1:{s:2:\"ua\";s:32:\"605f01b1409979f1b4f5151f8eefb28a\";}embedded|a:1:{s:7:\"enabled\";b:0;}auth|a:13:{s:4:\"area\";s:1:\"C\";s:7:\"user_id\";i:0;s:9:\"user_type\";s:1:\"C\";s:10:\"tax_exempt\";s:1:\"N\";s:10:\"last_login\";i:0;s:9:\"order_ids\";a:0:{}s:25:\"password_change_timestamp\";i:0;s:7:\"is_root\";s:1:\"N\";s:13:\"usergroup_ids\";a:2:{i:0;i:0;i:1;i:1;}s:11:\"act_as_user\";b:0;s:10:\"this_login\";i:1629554105;s:7:\"referer\";s:0:\"\";s:2:\"ip\";s:15:\"188.130.155.153\";}wishlist|N;cart|a:4:{s:8:\"products\";a:0:{}s:11:\"recalculate\";b:0;s:9:\"user_data\";a:0:{}s:11:\"points_info\";a:1:{s:6:\"reward\";i:0;}}recaptcha|a:1:{s:6:\"driver\";s:9:\"recaptcha\";}security_hash|s:32:\"108890345eeb4663a77119f79de8882c\";notifications|a:0:{}');
 /*!40000 ALTER TABLE `cscart_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4877,15 +4868,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_settings_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_settings_descriptions` (
-  `object_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `object_type` varchar(1) NOT NULL DEFAULT 'O',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `value` text,
   `tooltip` text,
   PRIMARY KEY (`object_id`,`object_type`,`lang_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=5935 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5935 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4904,25 +4895,25 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_settings_objects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_settings_objects` (
-  `object_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `edition_type` set('NONE','ROOT','VENDOR','STOREFRONT','MVE:NONE','MVE:ROOT','MVE:STOREFRONT','ULT:NONE','ULT:ROOT','ULT:VENDOR','ULT:VENDORONLY','ULT:STOREFRONT') NOT NULL DEFAULT 'ROOT',
   `name` varchar(128) NOT NULL DEFAULT '',
-  `section_id` int(11) unsigned NOT NULL,
-  `section_tab_id` int(11) unsigned NOT NULL,
+  `section_id` int unsigned NOT NULL,
+  `section_tab_id` int unsigned NOT NULL,
   `type` char(1) NOT NULL DEFAULT 'I',
   `value` text,
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `is_global` char(1) NOT NULL DEFAULT 'Y',
   `handler` varchar(128) NOT NULL DEFAULT '',
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`object_id`),
   KEY `name` (`name`),
   KEY `is_global` (`is_global`),
   KEY `position` (`position`),
   KEY `section_id` (`section_id`,`section_tab_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5935 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5935 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4931,7 +4922,7 @@ CREATE TABLE `cscart_settings_objects` (
 
 LOCK TABLES `cscart_settings_objects` WRITE;
 /*!40000 ALTER TABLE `cscart_settings_objects` DISABLE KEYS */;
-INSERT INTO `cscart_settings_objects` VALUES (2,'ROOT,STOREFRONT','allow_usergroup_signup',2,0,'C','Y',249,'Y','',0),(3,'ROOT,STOREFRONT','exception_style',2,0,'S','hide',160,'Y','',0),(7,'ROOT','feedback_type',2,0,'S','manual',57,'Y','',0),(8,'ROOT','ftp_hostname',13,0,'I','',30,'N','',0),(9,'ROOT','ftp_username',13,0,'I','',40,'N','',0),(10,'ROOT','ftp_password',13,0,'P','',50,'N','',0),(11,'ROOT','ftp_directory',13,0,'I','',60,'N','',0),(12,'ROOT','license_number',13,0,'I','CS-UE-GHKA-57DO-4X6M-0XBS',10,'N','',0),(14,'ROOT','auto_check_updates',2,0,'C','Y',58,'Y','',0),(15,'ROOT,STOREFRONT','alternative_currency',2,0,'S','use_only_selected',10,'Y','',0),(16,'ROOT,STOREFRONT','weight_symbol',2,0,'I','кг',30,'Y','',0),(17,'ROOT,STOREFRONT','default_address',6,0,'I','Мясницкая',410,'Y','',0),(18,'ROOT,STOREFRONT','default_zipcode',6,0,'I','101000',420,'Y','',0),(19,'ROOT,STOREFRONT','default_city',6,0,'I','Москва',430,'Y','',0),(20,'ROOT,STOREFRONT','default_country',6,0,'X','RU',440,'Y','',0),(21,'ROOT,STOREFRONT','default_state',6,0,'W','MOW',450,'Y','',0),(22,'ROOT,STOREFRONT','products_per_page',4,0,'U','12',100,'Y','',0),(24,'ROOT','admin_elements_per_page',4,0,'U','10',60,'Y','',0),(25,'ROOT,ULT:VENDOR','company_state',5,0,'W','MOW',40,'Y','',0),(26,'ROOT,ULT:VENDOR','company_city',5,0,'I','Москва',20,'Y','',0),(27,'ROOT,ULT:VENDOR','company_address',5,0,'I','ул. Мира, д. 1',10,'Y','',0),(28,'ROOT,ULT:VENDOR','company_phone',5,0,'L','7(800)-000-00-00',60,'Y','',0),(29,'ROOT,ULT:VENDOR','company_phone_2',5,0,'L','7(495)-777-77-77',70,'Y','',0),(31,'ROOT,ULT:VENDOR','company_name',5,0,'I','Simtech',0,'Y','',0),(32,'ROOT,ULT:VENDOR','company_website',5,0,'I','http://www.example.com/',90,'Y','',0),(33,'ROOT,ULT:VENDOR','company_zipcode',5,0,'I','101000',50,'Y','',0),(34,'ROOT,ULT:VENDOR','company_country',5,0,'X','RU',30,'Y','',0),(35,'ROOT,ULT:VENDOR','company_users_department',5,0,'I','skater4@yandex.ru',100,'Y','',0),(36,'ROOT,ULT:VENDOR','company_site_administrator',5,0,'I','skater4@yandex.ru',110,'Y','',0),(37,'ROOT,ULT:VENDOR','company_orders_department',5,0,'I','skater4@yandex.ru',120,'Y','',0),(38,'ROOT,ULT:VENDOR','company_support_department',5,0,'I','skater4@yandex.ru',130,'Y','',0),(39,'ROOT,ULT:VENDOR','company_newsletter_email',5,0,'I','skater4@yandex.ru',140,'Y','',0),(40,'ROOT,ULT:VENDOR','company_start_year',5,0,'I','2004',95,'Y','',0),(41,'ROOT,STOREFRONT','default_phone',6,0,'L','77777777777',460,'Y','',0),(42,'ROOT,STOREFRONT','weight_symbol_grams',2,0,'I','1000',40,'Y','',0),(44,'ROOT','allow_negative_amount',2,0,'C','N',135,'Y','',0),(46,'ROOT,STOREFRONT','orders_per_page',4,0,'U','10',90,'Y','',0),(47,'ROOT,STOREFRONT','elements_per_page',4,0,'U','10',130,'Y','',0),(48,'ROOT','notice_displaying_time',4,0,'I','5',260,'Y','',0),(49,'ROOT','default_wysiwyg_editor',4,0,'S','redactor2',60,'Y','',0),(50,'ROOT','default_image_previewer',4,0,'S','owl',189,'Y','',0),(52,'ROOT','date_format',4,0,'S','%m/%d/%Y',200,'Y','',0),(53,'ROOT,STOREFRONT','frontend_default_language',4,0,'S','ru',80,'Y','',0),(54,'ROOT','backend_default_language',4,0,'S','ru',15,'Y','',0),(55,'ROOT,STOREFRONT','secure_storefront',15,0,'C','N',1,'Y','',0),(56,'ROOT','secure_admin',15,0,'C','N',2,'Y','',0),(58,'ROOT,ULT:VENDOR','inventory_tracking',2,0,'C','Y',130,'Y','',0),(61,'ROOT,ULT:VENDOR','store_access_key',2,0,'O','',51,'Y','fn_get_store_access_key_notice',0),(62,'ROOT','order_start_id',6,0,'I','',340,'Y','',0),(63,'ROOT,STOREFRONT','columns_in_products_list',4,0,'I','3',150,'Y','',0),(64,'ROOT,STOREFRONT','default_products_sorting',4,0,'K','product-asc',198,'Y','',0),(65,'ROOT,ULT:VENDOR','edp_key_ttl',2,0,'I','24',140,'Y','',0),(66,'ROOT','time_format',4,0,'S','%H:%M',210,'Y','',0),(67,'ROOT,STOREFRONT','user_multiple_profiles',2,0,'C','N',240,'Y','',0),(69,'ROOT,STOREFRONT','min_order_amount',6,0,'I','0',360,'Y','',0),(70,'ROOT,STOREFRONT','min_order_amount_type',2,0,'D','only_products',242,'Y','',0),(71,'ROOT,STOREFRONT','allow_anonymous_shopping',6,0,'S','allow_shopping',370,'Y','',0),(72,'ROOT,STOREFRONT','show_products_from_subcategories',2,0,'C','Y',150,'Y','',0),(73,'ROOT,STOREFRONT','disable_anonymous_checkout',6,0,'C','N',244,'Y','',0),(77,'ROOT,ULT:VENDOR','low_stock_threshold',2,0,'I','0',145,'Y','',0),(78,'ROOT,STOREFRONT','approve_user_profiles',2,0,'C','N',250,'Y','',0),(84,'ROOT,ULT:VENDOR','day',10,0,'S','%a, %b %e',20,'Y','',0),(85,'ROOT,ULT:VENDOR','week',10,0,'S','%U, %b',30,'Y','',0),(86,'ROOT,ULT:VENDOR','month',10,0,'S','%B',40,'Y','',0),(87,'ROOT,ULT:VENDOR','year',10,0,'S','%Y',50,'Y','',0),(89,'ROOT','jpeg_quality',9,0,'U','80',90,'Y','',0),(90,'ROOT','convert_to',9,0,'S','original',80,'Y','',0),(91,'ROOT,STOREFRONT','thumbnail_background_color',9,0,'I','#ffffff',70,'Y','',0),(93,'ROOT,STOREFRONT','display_options_modifiers',2,0,'C','Y',155,'Y','',0),(94,'ROOT,STOREFRONT','show_out_of_stock_products',2,0,'C','Y',180,'Y','',0),(98,'ROOT,STOREFRONT','use_single_coupon',2,0,'C','Y',225,'Y','',0),(100,'ROOT,STOREFRONT','agree_terms_conditions',6,0,'D','N',270,'Y','',0),(105,'ROOT,STOREFRONT','show_cats',8,0,'C','Y',10,'N','',0),(106,'ROOT,STOREFRONT','show_rootcats_only',8,0,'C','N',20,'N','',0),(107,'ROOT,STOREFRONT','show_site_info',8,0,'C','Y',35,'N','',0),(108,'ROOT','mailer_send_method',1,0,'S','mail',10,'N','',0),(109,'ROOT,ULT:VENDOR','mailer_smtp_host',1,0,'I','',30,'N','',0),(110,'ROOT,ULT:VENDOR','mailer_smtp_auth',1,0,'C','N',60,'N','',0),(111,'ROOT,ULT:VENDOR','mailer_smtp_username',1,0,'I','',40,'N','',0),(112,'ROOT,ULT:VENDOR','mailer_smtp_password',1,0,'P','',50,'N','',0),(295,'ROOT,ULT:VENDOR','mailer_smtp_ecrypted_connection',1,0,'S','',55,'N','',0),(113,'ROOT','mailer_sendmail_path',1,0,'I','/usr/sbin/sendmail',80,'N','',0),(116,'ROOT,STOREFRONT','show_prices_taxed_clean',4,0,'C','N',184,'Y','',0),(117,'ROOT,STOREFRONT','height',11,0,'D','30',20,'N','',0),(118,'ROOT,STOREFRONT','string_length',11,0,'D','5',30,'N','',0),(119,'ROOT,STOREFRONT','min_font_size',11,0,'D','14',40,'N','',0),(120,'ROOT,STOREFRONT','max_font_size',11,0,'D','16',50,'N','',0),(121,'ROOT,STOREFRONT','string_type',11,0,'D','mixed',60,'N','',0),(122,'ROOT,STOREFRONT','char_shadow',11,0,'D','N',65,'N','',0),(123,'ROOT,STOREFRONT','colour',11,0,'D','N',70,'N','',0),(124,'ROOT,STOREFRONT','background_image',11,0,'D','',80,'N','',0),(125,'ROOT,STOREFRONT','lines_number',11,0,'D','20',35,'N','',0),(126,'ROOT,STOREFRONT','grid_color',11,0,'D','cccccc',36,'N','',0),(133,'ROOT,STOREFRONT','width',11,0,'D','110',10,'N','',0),(134,'ROOT,STOREFRONT','hide_if_logged',11,0,'C','Y',85,'Y','',0),(138,'ROOT,STOREFRONT','use_for',11,0,'N','#M#register=Y&form_builder=Y&email_share=Y&discussion=Y&checkout=Y&polls=Y&gift_certificates=Y',5,'Y','',0),(139,'ROOT','timezone',4,0,'S','Europe/Moscow',220,'Y','',0),(140,'ROOT,STOREFRONT','estimate_shipping_cost',6,0,'C','Y',390,'Y','',0),(141,'ROOT,STOREFRONT','allow_create_account_after_order',6,0,'C','Y',305,'Y','',0),(143,'ROOT','init_addons',0,0,'C','',0,'Y','',0),(145,'ROOT,STOREFRONT','cart_prices_w_taxes',4,0,'C','N',185,'Y','',0),(146,'ROOT,STOREFRONT','in_stock_field',4,0,'C','N',186,'Y','',0),(147,'ROOT,STOREFRONT','thumbnails_gallery',4,0,'C','N',186,'Y','',0),(148,'ROOT,STOREFRONT','quantity_changer',4,0,'C','Y',186,'Y','',0),(149,'ROOT,STOREFRONT','top_pagination',4,0,'C','N',187,'Y','',0),(150,'ROOT,STOREFRONT','taxes_using_default_address',4,0,'C','N',183,'Y','',0),(151,'ROOT','proxy_host',2,0,'I','',320,'Y','',0),(152,'ROOT','proxy_port',2,0,'I','',330,'Y','',0),(153,'ROOT','proxy_user',2,0,'I','',340,'Y','',0),(154,'ROOT','proxy_password',2,0,'P','',350,'Y','',0),(156,'ROOT,STOREFRONT','search_objects',2,0,'N','',1010,'Y','',0),(158,'ROOT,ULT:VENDOR','log_type_orders',12,0,'N','#M#create=Y&delete=Y&update=Y&status=Y',10,'Y','',0),(159,'ROOT,ULT:VENDOR','log_type_users',12,0,'N','#M#create=Y&delete=Y&update=Y&session=Y&failed_login=Y',10,'Y','',0),(160,'ROOT,ULT:VENDOR','log_type_products',12,0,'N','#M#create=Y&delete=Y&update=Y&low_stock=Y',10,'Y','',0),(161,'ROOT,ULT:VENDOR','log_type_categories',12,0,'N','#M#create=Y&delete=Y&update=Y',10,'Y','',0),(162,'ROOT,ULT:VENDOR','log_type_database',12,0,'N','#M#restore=Y&backup=Y&optimize=Y&error=Y',10,'Y','',0),(163,'ROOT,ULT:VENDOR','log_type_requests',12,0,'N','#M#http=Y&shipping=Y',10,'Y','',0),(165,'ROOT,STOREFRONT','hide_after_validation',11,0,'C','Y',87,'Y','',0),(166,'ROOT','calendar_date_format',4,0,'S','month_first',230,'Y','',0),(167,'ROOT','calendar_week_format',4,0,'S','monday_first',240,'Y','',0),(168,'ROOT,ULT:VENDOR','store_mode',2,0,'O','N',50,'Y','fn_get_store_mode_notice',0),(169,'ROOT,STOREFRONT','default_products_view',4,0,'K','products_multicolumns',195,'Y','',0),(170,'ROOT,STOREFRONT','save_selected_view',4,0,'C','Y',196,'Y','',0),(171,'ROOT,STOREFRONT','default_products_view_templates',4,0,'G','#M#products_multicolumns=Y&products_without_options=Y&short_list=Y',194,'Y','',0),(173,'ROOT,STOREFRONT','checkout_redirect',6,0,'C','N',380,'Y','',0),(174,'ROOT','min_account_password_length',15,0,'I','5',10,'Y','',0),(175,'ROOT','account_passwords_must_contain_mix',15,0,'C','N',20,'Y','',0),(176,'ROOT','change_admin_password_on_first_login',15,0,'C','N',30,'Y','',0),(177,'ROOT','account_password_expiration_period',15,0,'I','0',40,'Y','',0),(178,'ROOT','cron_password',15,0,'I','MYPASS',50,'Y','',0),(179,'ROOT','tax_calculation',6,0,'S','subtotal',350,'Y','',0),(180,'ROOT,STOREFRONT','default_product_details_view',4,0,'S','default_template',191,'Y','',0),(333,'ROOT,STOREFRONT','global_product_details_view',4,0,'S',NULL,191,'Y','',0),(288,'ROOT,STOREFRONT','product_details_in_tab',4,0,'C','Y',191,'Y','',0),(182,'ROOT,STOREFRONT','address_position',6,0,'D','shipping_first',250,'Y','',0),(183,'ROOT','changes_warning',4,0,'C','Y',250,'Y','',0),(184,'ROOT,STOREFRONT','product_lists_thumbnail_width',9,0,'U','150',100,'Y','',0),(185,'ROOT,STOREFRONT','product_lists_thumbnail_height',9,0,'U','150',110,'Y','',0),(186,'ROOT,STOREFRONT','product_details_thumbnail_width',9,0,'U','280',120,'Y','',0),(187,'ROOT,STOREFRONT','product_details_thumbnail_height',9,0,'U','',130,'Y','',0),(190,'ROOT,STOREFRONT','product_cart_thumbnail_width',9,0,'U','120',160,'Y','',0),(191,'ROOT,STOREFRONT','product_cart_thumbnail_height',9,0,'U','',170,'Y','',0),(192,'ROOT,STOREFRONT','category_lists_thumbnail_width',9,0,'U','60',180,'Y','',0),(193,'ROOT,STOREFRONT','category_lists_thumbnail_height',9,0,'U','',190,'Y','',0),(194,'ROOT,STOREFRONT','category_details_thumbnail_width',9,0,'U','120',200,'Y','',0),(195,'ROOT,STOREFRONT','category_details_thumbnail_height',9,0,'U','',210,'Y','',0),(196,'ROOT,STOREFRONT','category_detailed_image_width',9,0,'U','',220,'Y','',0),(197,'ROOT,STOREFRONT','category_detailed_image_height',9,0,'U','',230,'Y','',0),(199,'ROOT','show_menu_descriptions',4,0,'C','Y',255,'Y','',0),(201,'ROOT','store_key',0,0,'I','',0,'Y','',0),(203,'ROOT','header_1',4,0,'H','',10,'N','',0),(5678,'ROOT','current_timestamp',0,0,'T','1629404005',10,'Y','',0),(204,'ROOT,ULT:VENDOR','header_7010',10,0,'H','',10,'N','',0),(206,'ROOT,ULT:VENDOR','header_10003',1,0,'H','',20,'N','',0),(207,'ROOT,STOREFRONT','header_7003',6,0,'H','',400,'N','',0),(208,'ROOT,STOREFRONT','header_2',4,0,'H','',70,'N','',0),(209,'ROOT','header_10004',1,0,'H','',70,'N','',0),(210,'ROOT,STOREFRONT','header_7004',2,0,'H','',125,'N','',0),(211,'ROOT','header_10080',4,0,'H','',199,'N','',0),(212,'ROOT,STOREFRONT','header_7024',2,0,'H','',215,'N','',0),(213,'ROOT,STOREFRONT','header_7005',2,0,'H','',235,'N','',0),(216,'ROOT','header_8057',2,0,'H','',310,'N','',0),(217,'ROOT,STOREFRONT','header_15000',2,0,'H','',1000,'N','',0),(219,'ROOT','header_8158',13,0,'H','',20,'N','',0),(221,'ROOT,STOREFRONT','header_10070',4,0,'H','',192,'N','',0),(2000,'ROOT','share_users',17,0,'C','N',10,'Y','',0),(223,'ROOT,STOREFRONT','disregard_options_for_discounts',2,0,'C','N',190,'Y','',0),(272,'ROOT','display_track_orders',4,0,'C','Y',191,'Y','',0),(274,'ROOT,ULT:VENDOR','log_type_general',12,0,'N','#M#runtime=Y&deprecated=Y&',10,'Y','',0),(275,'ROOT,STOREFRONT','quick_registration',2,0,'C','Y',260,'Y','',0),(289,'ROOT,STOREFRONT','available_product_list_sortings',4,0,'G','#M#timestamp-desc=Y&product-asc=Y&product-desc=Y&price-asc=Y&price-desc=Y&popularity-desc=Y',197,'Y','',0),(290,'ROOT,STOREFRONT','enable_quick_view',4,0,'C','Y',198,'Y','',0),(291,'ROOT','storage',0,0,'I','a:1:{s:7:\"storage\";s:4:\"file\";}',10,'N','',0),(292,'ROOT,STOREFRONT','product_quick_view_thumbnail_width',9,0,'U','220',135,'Y','',0),(293,'ROOT,STOREFRONT','product_quick_view_thumbnail_height',9,0,'U','',136,'Y','',0),(294,'ROOT','cdn',0,0,'I','',10,'N','',0),(300,'ROOT,STOREFRONT','configure_sign_in_step',6,0,'D','returning_customer_first',310,'Y','',0),(301,'ULT:ROOT,ULT:STOREFRONT','display_shipping_step',6,0,'D','Y',320,'Y','',0),(302,'ROOT,STOREFRONT','display_payment_step',6,0,'D','Y',330,'Y','',0),(305,'ROOT,STOREFRONT','sign_in_default_action',6,0,'D','register',315,'Y','',0),(306,'ROOT,ULT:VENDOR','enable_edp',2,0,'C','N',135,'Y','',0),(307,'ROOT,STOREFRONT','enable_compare_products',2,0,'C','Y',130,'Y','',0),(308,'ROOT','email_templates',4,0,'S','new',400,'Y','',0),(309,'ROOT','product_admin_mini_icon_width',9,0,'U','50',300,'Y','',0),(310,'ROOT','product_admin_mini_icon_height',9,0,'U','',310,'Y','',0),(311,'ROOT','monitor_core_changes',2,0,'C','Y',59,'Y','',0),(312,'ROOT','log_lifetime',12,0,'I','90',5,'Y','',0),(313,'ROOT','phone_validation_mode',4,0,'S','international_format',450,'Y','',0),(314,'ROOT,STOREFRONT','show_unavailable_shipping_methods',6,0,'C','N',390,'Y','',0),(315,'ROOT,STOREFRONT','product_variant_mini_icon_width',9,0,'U','70',171,'Y','',0),(316,'ROOT,STOREFRONT','product_variant_mini_icon_height',9,0,'U','70',172,'Y','',0),(317,'ROOT','default_options_type',2,0,'S','P',157,'Y','',0),(318,'ROOT','global_options_type',2,0,'S',NULL,157,'Y','',0),(319,'ROOT','default_exceptions_type',2,0,'S','F',158,'Y','',0),(320,'ROOT','global_exceptions_type',2,0,'S',NULL,158,'Y','',0),(321,'ROOT','default_zero_price_action',6,0,'S','R',341,'Y','',0),(322,'ROOT','global_zero_price_action',6,0,'S',NULL,341,'Y','',0),(323,'ROOT','default_min_qty',6,0,'I','0',342,'Y','',0),(324,'ROOT','global_min_qty',6,0,'I',NULL,342,'Y','',0),(325,'ROOT','default_max_qty',6,0,'I','0',343,'Y','',0),(326,'ROOT','global_max_qty',6,0,'I',NULL,343,'Y','',0),(327,'ROOT','default_qty_step',6,0,'I','0',344,'Y','',0),(328,'ROOT','global_qty_step',6,0,'I',NULL,344,'Y','',0),(329,'ROOT','default_list_qty_count',6,0,'I','0',345,'Y','',0),(330,'ROOT','global_list_qty_count',6,0,'I',NULL,345,'Y','',0),(331,'ROOT,ULT:VENDOR','default_tracking',2,0,'C','B',130,'Y','',0),(332,'ROOT,ULT:VENDOR','global_tracking',2,0,'C',NULL,130,'Y','',0),(2001,'ROOT','default_state_update_for_all',17,0,'S','not_active',20,'Y','',0),(5679,'ROOT','default_upload_high_res_image',18,19,'C','N',0,'N','',0),(5680,'ROOT,STOREFRONT','twitter_enable',20,21,'C','Y',0,'N','',0),(5681,'ROOT,STOREFRONT','twitter_via',20,21,'I','',10,'N','',0),(5682,'ROOT,STOREFRONT','twitter_size',20,21,'S','medium',20,'N','',0),(5683,'ROOT,STOREFRONT','twitter_display_count',20,21,'S','horizontal',30,'N','',0),(5684,'ROOT,STOREFRONT','twitter_display_on',20,21,'N','#M#products=Y',40,'N','',0),(5685,'ROOT,STOREFRONT','facebook_enable',20,22,'C','Y',0,'N','',0),(5686,'ROOT,STOREFRONT','facebook_app_id',20,22,'I','',10,'N','',0),(5687,'ROOT,STOREFRONT','facebook_href',20,22,'I','',20,'N','',0),(5688,'ROOT,STOREFRONT','facebook_send',20,22,'C','Y',30,'N','',0),(5689,'ROOT,STOREFRONT','facebook_width',20,22,'I','450',40,'N','',0),(5690,'ROOT,STOREFRONT','facebook_layout',20,22,'S','button_count',50,'N','',0),(5691,'ROOT,STOREFRONT','facebook_show_faces',20,22,'C','N',60,'N','',0),(5692,'ROOT,STOREFRONT','facebook_action',20,22,'S','like',70,'N','',0),(5693,'ROOT,STOREFRONT','facebook_lang',20,22,'S','en_US',80,'N','',0),(5694,'ROOT,STOREFRONT','facebook_action_font',20,22,'S','arial',90,'N','',0),(5695,'ROOT,STOREFRONT','facebook_colorscheme',20,22,'S','light',100,'N','',0),(5696,'ROOT,STOREFRONT','facebook_display_on',20,22,'N','#M#products=Y',110,'N','',0),(5697,'ROOT,STOREFRONT','vkontakte_enable',20,23,'C','',0,'N','',0),(5698,'ROOT,STOREFRONT','vkontakte_appid',20,23,'I','',10,'N','',0),(5699,'ROOT,STOREFRONT','vkontakte_button_style',20,23,'S','mini',20,'N','',0),(5700,'ROOT,STOREFRONT','vkontakte_height',20,23,'I','22',30,'N','',0),(5701,'ROOT,STOREFRONT','vkontakte_width',20,23,'I','350',40,'N','',0),(5702,'ROOT,STOREFRONT','vkontakte_buttons_name',20,23,'S','like',50,'N','',0),(5703,'ROOT,STOREFRONT','vkontakte_display_on',20,23,'N','',60,'N','',0),(5704,'ROOT,STOREFRONT','yandex_enable',20,24,'C','Y',0,'N','',0),(5705,'ROOT,STOREFRONT','yandex_share_code',20,24,'T','<script src=\"//yastatic.net/es5-shims/0.0.2/es5-shims.min.js\"></script><script src=\"//yastatic.net/share2/share.js\"></script><div class=\"ya-share2\" data-services=\"collections,vkontakte,facebook,twitter,odnoklassniki,moimir\"></div>',10,'N','',0),(5706,'ROOT,STOREFRONT','yandex_display_on',20,24,'N','products,pages',20,'N','',0),(5707,'ROOT,STOREFRONT','pinterest_enable',20,25,'C','Y',0,'N','',0),(5708,'ROOT,STOREFRONT','pinterest_size',20,25,'S','20',10,'N','',0),(5709,'ROOT,STOREFRONT','pinterest_shape',20,25,'S','rect',20,'N','',0),(5710,'ROOT,STOREFRONT','pinterest_display_on',20,25,'N','#M#products=Y',30,'N','',0),(5711,'ROOT,ULT:VENDOR','paypal_ipn_settings',26,27,'H','',0,'N','',0),(5712,'ROOT,ULT:VENDOR','override_customer_info',26,27,'C','N',10,'N','',0),(5713,'ROOT,ULT:VENDOR','paypal_status_map',26,27,'H','',20,'N','',0),(5714,'ROOT,ULT:VENDOR','paypal_status_map_settings',26,27,'E','statuses_map.tpl',30,'N','',0),(5715,'ROOT,ULT:VENDOR','paypal_partial_refund_action',26,27,'H','',40,'N','',0),(5716,'ROOT,ULT:VENDOR','paypal_partial_refund_action_settings',26,27,'E','partial_refund_action.tpl',50,'N','',0),(5717,'ROOT,STOREFRONT','paypal_logo_uploader',26,27,'H','',60,'N','',0),(5718,'ROOT,STOREFRONT','paypal_logo_uploader_settings',26,27,'E','logo_uploader.tpl',70,'N','',0),(5719,'ROOT,ULT:VENDOR','pp_statuses',26,27,'D','a:10:{s:8:\"refunded\";s:1:\"I\";s:9:\"completed\";s:1:\"P\";s:7:\"pending\";s:1:\"O\";s:17:\"canceled_reversal\";s:1:\"I\";s:7:\"created\";s:1:\"O\";s:6:\"denied\";s:1:\"I\";s:7:\"expired\";s:1:\"F\";s:8:\"reversed\";s:1:\"I\";s:9:\"processed\";s:1:\"P\";s:6:\"voided\";s:1:\"P\";}',80,'N','',0),(5720,'ROOT,ULT:VENDOR','partial_refund_action',26,27,'D','ignore',90,'N','',0),(5721,'ROOT,ULT:VENDOR','tags_for_products',28,29,'C','Y',0,'N','',0),(5722,'ROOT,ULT:VENDOR','tags_for_pages',28,29,'C','Y',10,'N','',0),(5723,'ROOT','managing_editor',30,31,'I','',0,'N','',0),(5724,'ROOT','display_rss_feed_in_category',30,31,'C','N',10,'N','',0),(5725,'ROOT','category_max_products_items',30,31,'I','5',20,'N','',0),(5726,'ROOT,STOREFRONT','em_show_on_checkout',32,33,'C','N',0,'N','',0),(5727,'ROOT,STOREFRONT','em_checkout_enabled',32,33,'C','N',10,'N','',5726),(5728,'ROOT,STOREFRONT','em_double_opt_in',32,33,'C','N',20,'N','',0),(5729,'ROOT,STOREFRONT','em_welcome_letter',32,33,'C','N',30,'N','',0),(5730,'ROOT,STOREFRONT','em_service',32,33,'S','dummy',40,'N','',0),(5731,'ROOT,STOREFRONT','em_token',32,33,'D','cd21f50f86e5861e4c1cf8773748f977',50,'N','',0),(5732,'ROOT,STOREFRONT','em_lastsync',32,33,'D','1629474621',60,'N','',0),(5733,'ROOT,STOREFRONT','em_mailchimp_api_key',32,34,'I','',0,'N','',0),(5734,'ROOT,STOREFRONT','em_mailchimp_list',32,34,'S','',10,'N','',0),(5735,'ROOT,STOREFRONT','em_madmimi_username',32,35,'I','',0,'N','',0),(5736,'ROOT,STOREFRONT','em_madmimi_api_key',32,35,'I','',10,'N','',0),(5737,'ROOT,STOREFRONT','em_madmimi_list',32,35,'S','',20,'N','',0),(5738,'ROOT','newsletters_per_pass',36,37,'I','10',0,'N','',0),(5739,'ROOT','elm_advanced_mailing_server_options',36,37,'H','',10,'N','',0),(5740,'ROOT','mailer_send_method',36,37,'S','default',20,'N','',0),(5741,'ROOT','elm_smtp_server_settings',36,37,'H','',30,'N','',0),(5742,'ROOT','mailer_smtp_host',36,37,'I','',40,'N','',0),(5743,'ROOT','mailer_smtp_username',36,37,'I','',50,'N','',0),(5744,'ROOT','mailer_smtp_password',36,37,'I','',60,'N','',0),(5745,'ROOT','mailer_smtp_ecrypted_connection',36,37,'S','none',70,'N','',0),(5746,'ROOT','mailer_smtp_auth',36,37,'C','N',80,'N','',0),(5747,'ROOT','coupon',36,38,'S','',0,'N','',0),(5748,'ROOT','allow_save_attachments_to_server',39,40,'C','N',0,'N','',0),(5749,'ROOT,STOREFRONT','show_on_product',41,42,'C','Y',0,'N','',0),(5750,'ULT:VENDOR','show_on_messages',41,42,'C','Y',20,'N','',0),(5751,'ROOT,STOREFRONT','show_on_order',41,42,'C','Y',30,'N','',0),(5752,'ROOT','provider',43,44,'S','yandex',0,'N','',0),(5753,'ROOT','show_shippings_on_product',43,44,'C','N',10,'N','',0),(5754,'ROOT','yandex_api_key',43,45,'I','',0,'N','',0),(5755,'ROOT','yandex_commercial',43,45,'C','',10,'N','',0),(5756,'ROOT','google_api_notice',43,46,'O','',0,'N','fn_geo_maps_settings_google_api_notice_handler',0),(5757,'ROOT','google_api_key',43,46,'I','',10,'N','',0),(5758,'ROOT','min_amount',47,48,'I','50',0,'N','',0),(5759,'ROOT','max_amount',47,48,'I','1500',10,'N','',0),(5760,'ROOT','code_prefix',47,48,'I','GC',20,'N','',0),(5761,'ROOT','cert_per_page',47,48,'I','10',30,'N','',0),(5762,'ROOT','free_products_allow',47,48,'C','Y',40,'N','',0),(5763,'ROOT','redeem_shipping_cost',47,48,'C','Y',50,'N','',0),(5764,'ROOT,STOREFRONT','print_map',49,50,'C','Y',0,'N','',0),(5765,'ROOT,STOREFRONT','show_locations_at_geolocator',49,50,'C','N',10,'N','',0),(5766,'ROOT','variations_allow_own_images',51,52,'C','Y',0,'N','',0),(5767,'ROOT','variations_allow_own_features',51,52,'C','N',10,'N','',0),(5768,'ROOT','variations_allow_auto_change_default_variation',51,52,'C','Y',20,'N','',0),(5769,'ROOT,STOREFRONT','variations_show_all_possible_feature_variants',51,52,'C','Y',30,'N','',0),(5770,'ROOT','access_key',53,54,'I','0afeaed58fe930b746b5c312c232eebb',0,'N','',0),(5771,'ROOT','notice',55,56,'O','',0,'N','fn_recaptcha_settings_notice_handler',0),(5772,'ROOT,STOREFRONT','recaptcha_v2_settings',55,56,'H','',10,'N','',0),(5773,'ROOT','recaptcha_site_key',55,56,'I','',20,'N','',0),(5774,'ROOT','recaptcha_secret',55,56,'I','',30,'N','',0),(5775,'ROOT,STOREFRONT','recaptcha_theme',55,56,'S','light',40,'N','',0),(5776,'ROOT,STOREFRONT','recaptcha_size',55,56,'S','normal',50,'N','',0),(5777,'ROOT,STOREFRONT','recaptcha_type',55,56,'S','image',60,'N','',0),(5778,'ROOT','recaptcha_v3_settings',55,56,'H','',70,'N','',0),(5779,'ROOT','recaptcha_v3_site_key',55,56,'I','',80,'N','',0),(5780,'ROOT','recaptcha_v3_secret',55,56,'I','',90,'N','',0),(5781,'ROOT','recaptcha_v3_success_score',55,56,'S','0.5',100,'N','',0),(5782,'ROOT,STOREFRONT','use_for_settings',55,56,'H','',110,'N','',0),(5783,'ROOT,STOREFRONT','recaptcha_use_for_value',55,56,'D','',120,'N','',0),(5784,'ROOT,STOREFRONT','recaptcha_use_for',55,56,'E','use_for_settings.tpl',130,'N','',0),(5785,'ROOT,STOREFRONT','settings_proxy',55,56,'O','',140,'N','fn_recaptcha_image_verification_settings_proxy',0),(5786,'ROOT','forbidden_countries_notice',55,57,'O','',0,'N','fn_recaptcha_forbidden_countries_notice_handler',0),(5787,'ROOT','forbidden_countries',55,57,'B','#M#CN=Y&CG=Y&IR=Y',10,'N','',0),(5788,'ROOT','display_product_return_period',58,59,'C','Y',0,'N','',0),(5789,'ROOT','dont_take_weekends_into_account',58,59,'C','Y',10,'N','',0),(5790,'ROOT,STOREFRONT','final_sale_from',60,61,'I','40',0,'N','',0),(5791,'ROOT,STOREFRONT','sales_amount_from',60,61,'I','1',10,'N','',0),(5792,'ROOT,STOREFRONT','period',60,62,'S','all',0,'N','',0),(5793,'ROOT,STOREFRONT','last_days',60,62,'I','3',10,'N','',0),(5794,'ROOT,ULT:VENDOR','seo_product_type',63,64,'S','product_category_nohtml',0,'N','',0),(5795,'ROOT,ULT:VENDOR','seo_category_type',63,64,'S','category_nohtml',10,'N','',0),(5796,'ROOT,ULT:VENDOR','seo_page_type',63,64,'S','page_nohtml',20,'N','',0),(5797,'ROOT,ULT:VENDOR','seo_other_type',63,64,'S','directory',30,'N','',0),(5798,'ROOT,ULT:VENDOR','seo_language',63,64,'C','N',40,'N','',0),(5799,'ROOT,ULT:VENDOR','single_url',63,64,'C','Y',50,'N','',0),(5800,'ROOT,ULT:VENDOR','non_latin_symbols',63,64,'C','N',60,'N','',0),(5801,'ROOT,ULT:VENDOR','point_rate',65,66,'I','1',0,'N','',0),(5802,'ROOT,ULT:VENDOR','auto_price_in_points',65,66,'C','Y',10,'N','',0),(5803,'ROOT,ULT:VENDOR','price_in_points_with_discounts',65,66,'C','Y',20,'N','',0),(5804,'ROOT,ULT:VENDOR','points_with_discounts',65,66,'C','Y',30,'N','',0),(5805,'ROOT,ULT:VENDOR','price_in_points_order_discount',65,66,'C','Y',40,'N','',0),(5806,'ROOT,ULT:VENDOR','reward_points_order_discount',65,66,'C','Y',50,'N','',0),(5807,'ROOT,ULT:VENDOR','higher_level_extract',65,66,'C','Y',60,'N','',0),(5808,'ROOT,ULT:VENDOR','several_points_action',65,66,'S','minimal_absolute',70,'N','',0),(5809,'ROOT,ULT:VENDOR','consider_zero_values',65,66,'C','N',80,'N','',0),(5810,'ROOT,ULT:VENDOR','log_per_page',65,66,'I','10',90,'N','',0),(5811,'ROOT,STOREFRONT','tracking_code',67,68,'I','',0,'N','',0),(5812,'ROOT,STOREFRONT','track_ecommerce',67,68,'C','Y',10,'N','',0),(5813,'ROOT,STOREFRONT','pixel_id',69,70,'I','',0,'N','',0),(5814,'ROOT,STOREFRONT','track_all_page_views',69,70,'C','Y',10,'N','',0),(5815,'ROOT,STOREFRONT','track_add_to_cart',69,70,'C','N',20,'N','',0),(5816,'ROOT,STOREFRONT','track_order_placed',69,70,'C','N',30,'N','',0),(5817,'ROOT,STOREFRONT','general',71,72,'H','',0,'N','',0),(5818,'ROOT,STOREFRONT','info',71,72,'O','',10,'N','fn_call_requests_info',0),(5819,'ROOT,STOREFRONT','phone',71,72,'I','',20,'N','',0),(5820,'ROOT,STOREFRONT','phone_prefix_length',71,72,'I','7',30,'N','',0),(5821,'ROOT,STOREFRONT','phone_mask',71,72,'I','',40,'N','',0),(5822,'ROOT,STOREFRONT','buy_now_with_one_click',71,72,'C','Y',50,'N','',0),(5823,'ROOT,ULT:VENDOR','order_status',71,72,'S','Y',70,'N','',0),(5824,'ROOT,ULT:VENDOR','log_type_yml_export',12,0,'N',NULL,10,'N','',0),(5825,'ROOT','search_form_code',73,74,'T','',0,'N','',0),(5826,'ROOT','search_results_code',73,74,'T','',10,'N','',0),(5827,'ROOT','elm_image',75,76,'H','',0,'N','',0),(5828,'ROOT','elm_image_info',75,76,'O','',10,'N','fn_get_barcode_image',0),(5829,'ROOT','elm_configs',75,76,'H','',20,'N','',0),(5830,'ROOT','type',75,76,'S','C128B',30,'N','',0),(5831,'ROOT','output',75,76,'S','png',40,'N','',0),(5832,'ROOT','text',75,76,'S','Y',50,'N','',0),(5833,'ROOT','height',75,76,'I','60',60,'N','',0),(5834,'ROOT','width',75,76,'I','250',70,'N','',0),(5835,'ROOT','prefix',75,76,'I','FF45CR99',80,'N','',0),(5836,'ROOT','elm_specification',75,76,'H','',90,'N','',0),(5837,'ROOT','elm_spec_descr',75,76,'O','',100,'N','fn_get_barcode_specification',0),(5838,'ROOT','polls_votes_on_page',77,78,'I','20',0,'N','',0),(5839,'ROOT','polls_comments_on_page',77,78,'I','20',10,'N','',0),(5840,'ROOT','elm_administrator_area_settings',79,80,'H','',0,'N','',0),(5841,'ROOT','admin_reverse_ip_access',79,80,'C','',10,'N','',0),(5842,'ROOT','unsuccessful_attempts_login',79,80,'C','',20,'N','',0),(5843,'ROOT','number_unsuccessful_attempts',79,80,'I','5',30,'N','',0),(5844,'ROOT','login_intervals',79,80,'I','60',40,'N','',0),(5845,'ROOT','time_block',79,80,'I','24',50,'N','',0),(5846,'ROOT','elm_customer_and_affiliate_area_settings',79,80,'H','',60,'N','',0),(5847,'ROOT','unsuccessful_attempts_login_customer',79,80,'C','',70,'N','',0),(5848,'ROOT','number_unsuccessful_attempts_customer',79,80,'I','5',80,'N','',0),(5849,'ROOT','login_intervals_customer',79,80,'I','60',90,'N','',0),(5850,'ROOT','time_block_customer',79,80,'I','24',100,'N','',0),(5851,'ROOT','banner_multilang',81,82,'C','Y',0,'N','',0),(5852,'ROOT,STOREFRONT','notice',83,84,'O','',0,'N','fn_product_reviews_copy_old_reviews_notice',0),(5853,'ROOT,STOREFRONT','reviews_per_page',83,84,'I','10',10,'N','',0),(5854,'ROOT,STOREFRONT','review_approval',83,84,'S','any',20,'N','',0),(5855,'ROOT,STOREFRONT','review_ip_check',83,84,'C','N',30,'N','',0),(5856,'ROOT,ULT:VENDOR','review_fields',83,84,'S','advanced',40,'N','',0),(5857,'ROOT,STOREFRONT','review_after_purchase',83,84,'C','N',50,'N','',0),(5858,'ROOT,STOREFRONT','review_ask_for_customer_location',83,84,'S','none',60,'N','',0),(5859,'ROOT','split_reviews_by_storefronts',83,84,'C','N',70,'N','',0),(5860,'ROOT,STOREFRONT','images_upload_allowed',83,84,'D','Y',80,'N','',0),(5861,'ROOT,ULT:VENDOR','watermark',85,86,'H','',0,'N','',0),(5862,'ROOT,ULT:VENDOR','watermark_settings',85,86,'E','watermark.tpl',10,'N','',0),(5863,'ROOT,ULT:VENDOR','apply_to_product',85,86,'H','',20,'N','',0),(5864,'ROOT,ULT:VENDOR','use_for_product_icons',85,86,'C','N',30,'N','',0),(5865,'ROOT,ULT:VENDOR','use_for_product_detailed',85,86,'C','N',40,'N','',0),(5866,'ROOT,ULT:VENDOR','apply_to_categories',85,86,'H','',50,'N','',0),(5867,'ROOT,ULT:VENDOR','use_for_category_icons',85,86,'C','N',60,'N','',0),(5868,'ROOT,ULT:VENDOR','use_for_category_detailed',85,86,'C','N',70,'N','',0),(5869,'ROOT,ULT:VENDOR','images_access_info',85,86,'O','',80,'N','fn_watermarks_images_access_info',0),(5870,'ROOT,STOREFRONT','product_posts_per_page',87,88,'I','10',0,'N','',0),(5871,'ROOT,ULT:VENDOR','product_post_approval',87,88,'S','any',10,'N','',0),(5872,'ROOT,ULT:VENDOR','product_post_ip_check',87,88,'C','N',20,'N','',0),(5873,'ROOT,ULT:VENDOR','product_discussion_type',87,88,'S','D',30,'N','',0),(5874,'ULT:ROOT','product_share_discussion',87,88,'C','N',40,'N','',0),(5875,'ROOT,ULT:VENDOR','product_review_after_purchase',87,88,'C','N',50,'N','',0),(5876,'ROOT,STOREFRONT','category_posts_per_page',87,89,'I','10',0,'N','',0),(5877,'ROOT,ULT:VENDOR','category_post_approval',87,89,'S','any',10,'N','',0),(5878,'ROOT,ULT:VENDOR','category_post_ip_check',87,89,'C','N',20,'N','',0),(5879,'ROOT,ULT:VENDOR','category_discussion_type',87,89,'S','D',30,'N','',0),(5880,'ROOT,STOREFRONT','order_posts_per_page',87,90,'I','10',0,'N','',0),(5881,'ROOT,STOREFRONT','order_initiate',87,90,'C','Y',10,'N','',0),(5882,'ROOT,STOREFRONT','page_posts_per_page',87,91,'I','10',0,'N','',0),(5883,'ROOT,ULT:VENDOR','page_post_approval',87,91,'S','disabled',10,'N','',0),(5884,'ROOT,ULT:VENDOR','page_post_ip_check',87,91,'C','N',20,'N','',0),(5885,'ROOT,ULT:VENDOR','page_discussion_type',87,91,'S','D',30,'N','',0),(5886,'ULT:ROOT','page_share_discussion',87,91,'C','N',40,'N','',0),(5887,'ROOT,STOREFRONT','home_page_posts_per_page',87,92,'I','10',0,'N','',0),(5888,'ROOT,ULT:VENDOR','home_page_post_approval',87,92,'S','any',10,'N','',0),(5889,'ROOT,ULT:VENDOR','home_page_post_ip_check',87,92,'C','Y',20,'N','',0),(5890,'ROOT,ULT:VENDOR','home_page_testimonials',87,92,'S','B',30,'N','',0),(5891,'ULT:ROOT','testimonials_from_all_stores',87,92,'C','N',40,'N','',0),(5892,'ROOT,STOREFRONT','cz_animation_time',93,94,'I','200',0,'N','',0),(5893,'ROOT,STOREFRONT','cz_zoom_position',93,94,'S','3',10,'N','',0),(5894,'ROOT,STOREFRONT','information',95,96,'H','',0,'N','',0),(5895,'ROOT,STOREFRONT','clear_url',95,96,'O','',10,'N','fn_google_sitemap_clear_url_info',0),(5896,'ROOT,STOREFRONT','site_setting',95,96,'H','',20,'N','',0),(5897,'ROOT,STOREFRONT','site_change',95,96,'S','daily',30,'N','',0),(5898,'ROOT,STOREFRONT','site_priority',95,96,'S','1',40,'N','',0),(5899,'ROOT,STOREFRONT','products_setting',95,96,'H','',50,'N','',0),(5900,'ROOT,STOREFRONT','include_products',95,96,'C','Y',60,'N','',0),(5901,'ROOT,STOREFRONT','products_change',95,96,'S','daily',70,'N','',0),(5902,'ROOT,STOREFRONT','products_priority',95,96,'S','0.5',80,'N','',0),(5903,'ROOT,STOREFRONT','categories_setting',95,96,'H','',90,'N','',0),(5904,'ROOT,STOREFRONT','include_categories',95,96,'C','Y',100,'N','',0),(5905,'ROOT,STOREFRONT','categories_change',95,96,'S','daily',110,'N','',0),(5906,'ROOT,STOREFRONT','categories_priority',95,96,'S','0.5',120,'N','',0),(5907,'ROOT,STOREFRONT','pages_setting',95,96,'H','',130,'N','',0),(5908,'ROOT,STOREFRONT','include_pages',95,96,'C','Y',140,'N','',0),(5909,'ROOT,STOREFRONT','pages_change',95,96,'S','daily',150,'N','',0),(5910,'ROOT,STOREFRONT','pages_priority',95,96,'S','0.5',160,'N','',0),(5911,'ROOT,STOREFRONT','extended_setting',95,96,'H','',170,'N','',0),(5912,'ROOT,STOREFRONT','include_extended',95,96,'C','Y',180,'N','',0),(5913,'ROOT,STOREFRONT','extended_change',95,96,'S','daily',190,'N','',0),(5914,'ROOT,STOREFRONT','extended_priority',95,96,'S','0.5',200,'N','',0),(5915,'ROOT','cron_password',97,98,'I','MYPASS',0,'N','',0),(5916,'ROOT,STOREFRONT','price_list_info',99,100,'O','',0,'N','fn_price_list_info',0),(5917,'ROOT,ULT:VENDOR','price_list_fields',99,100,'B','#M#product_code=Y&product=Y&amount=Y&price=Y',10,'N','',0),(5918,'ROOT,ULT:VENDOR','price_list_sorting',99,100,'S','product_code',20,'N','',0),(5919,'ROOT,ULT:VENDOR','group_by_category',99,100,'C','Y',30,'N','',0),(5920,'ROOT,ULT:VENDOR','include_options',99,100,'C','N',40,'N','',0),(5921,'ROOT','general_info',101,102,'O','',0,'N','fn_janrain_generate_info',0),(5922,'ROOT','apikey',101,102,'I','',10,'N','',0),(5923,'ROOT','appdomain',101,102,'I','',20,'N','',0),(5924,'ROOT,STOREFRONT','icons_pack',103,104,'S','flat_32x32',0,'N','',0),(5925,'ROOT','autogen_email',103,104,'C','N',10,'N','',0),(5926,'ROOT,STOREFRONT','main_store_mode',105,106,'R','catalog',0,'N','',0),(5927,'ROOT,STOREFRONT','add_to_cart_empty_buy_now_url',105,106,'C','N',10,'N','',0),(5928,'ROOT','settings',107,108,'E','settings.tpl',0,'N','',0),(5929,'ROOT','cron_key',107,108,'D','U0HUOsAHgF36RAko',10,'N','',0),(5930,'ROOT,STOREFRONT','information',109,110,'H','',0,'N','',0),(5931,'ROOT,STOREFRONT','personal_information',109,110,'O','',10,'N','fn_rus_personal_data_processing_information',0),(5932,'ROOT,STOREFRONT','settings',109,110,'H','',20,'N','',0),(5933,'ROOT,STOREFRONT','subscribe_confidentiality',109,110,'C','Y',30,'N','',0),(5934,'ROOT,STOREFRONT','request_active_consent',109,110,'C','Y',40,'N','',0);
+INSERT INTO `cscart_settings_objects` VALUES (2,'ROOT,STOREFRONT','allow_usergroup_signup',2,0,'C','Y',249,'Y','',0),(3,'ROOT,STOREFRONT','exception_style',2,0,'S','hide',160,'Y','',0),(7,'ROOT','feedback_type',2,0,'S','manual',57,'Y','',0),(8,'ROOT','ftp_hostname',13,0,'I','',30,'N','',0),(9,'ROOT','ftp_username',13,0,'I','',40,'N','',0),(10,'ROOT','ftp_password',13,0,'P','',50,'N','',0),(11,'ROOT','ftp_directory',13,0,'I','',60,'N','',0),(12,'ROOT','license_number',13,0,'I','CS-UE-GHKA-57DO-4X6M-0XBS',10,'N','',0),(14,'ROOT','auto_check_updates',2,0,'C','Y',58,'Y','',0),(15,'ROOT,STOREFRONT','alternative_currency',2,0,'S','use_only_selected',10,'Y','',0),(16,'ROOT,STOREFRONT','weight_symbol',2,0,'I','кг',30,'Y','',0),(17,'ROOT,STOREFRONT','default_address',6,0,'I','Мясницкая',410,'Y','',0),(18,'ROOT,STOREFRONT','default_zipcode',6,0,'I','101000',420,'Y','',0),(19,'ROOT,STOREFRONT','default_city',6,0,'I','Москва',430,'Y','',0),(20,'ROOT,STOREFRONT','default_country',6,0,'X','RU',440,'Y','',0),(21,'ROOT,STOREFRONT','default_state',6,0,'W','MOW',450,'Y','',0),(22,'ROOT,STOREFRONT','products_per_page',4,0,'U','12',100,'Y','',0),(24,'ROOT','admin_elements_per_page',4,0,'U','10',60,'Y','',0),(25,'ROOT,ULT:VENDOR','company_state',5,0,'W','MOW',40,'Y','',0),(26,'ROOT,ULT:VENDOR','company_city',5,0,'I','Москва',20,'Y','',0),(27,'ROOT,ULT:VENDOR','company_address',5,0,'I','ул. Мира, д. 1',10,'Y','',0),(28,'ROOT,ULT:VENDOR','company_phone',5,0,'L','7(800)-000-00-00',60,'Y','',0),(29,'ROOT,ULT:VENDOR','company_phone_2',5,0,'L','7(495)-777-77-77',70,'Y','',0),(31,'ROOT,ULT:VENDOR','company_name',5,0,'I','Simtech',0,'Y','',0),(32,'ROOT,ULT:VENDOR','company_website',5,0,'I','http://www.example.com/',90,'Y','',0),(33,'ROOT,ULT:VENDOR','company_zipcode',5,0,'I','101000',50,'Y','',0),(34,'ROOT,ULT:VENDOR','company_country',5,0,'X','RU',30,'Y','',0),(35,'ROOT,ULT:VENDOR','company_users_department',5,0,'I','skater4@yandex.ru',100,'Y','',0),(36,'ROOT,ULT:VENDOR','company_site_administrator',5,0,'I','skater4@yandex.ru',110,'Y','',0),(37,'ROOT,ULT:VENDOR','company_orders_department',5,0,'I','skater4@yandex.ru',120,'Y','',0),(38,'ROOT,ULT:VENDOR','company_support_department',5,0,'I','skater4@yandex.ru',130,'Y','',0),(39,'ROOT,ULT:VENDOR','company_newsletter_email',5,0,'I','skater4@yandex.ru',140,'Y','',0),(40,'ROOT,ULT:VENDOR','company_start_year',5,0,'I','2004',95,'Y','',0),(41,'ROOT,STOREFRONT','default_phone',6,0,'L','77777777777',460,'Y','',0),(42,'ROOT,STOREFRONT','weight_symbol_grams',2,0,'I','1000',40,'Y','',0),(44,'ROOT','allow_negative_amount',2,0,'C','N',135,'Y','',0),(46,'ROOT,STOREFRONT','orders_per_page',4,0,'U','10',90,'Y','',0),(47,'ROOT,STOREFRONT','elements_per_page',4,0,'U','10',130,'Y','',0),(48,'ROOT','notice_displaying_time',4,0,'I','5',260,'Y','',0),(49,'ROOT','default_wysiwyg_editor',4,0,'S','redactor2',60,'Y','',0),(50,'ROOT','default_image_previewer',4,0,'S','owl',189,'Y','',0),(52,'ROOT','date_format',4,0,'S','%m/%d/%Y',200,'Y','',0),(53,'ROOT,STOREFRONT','frontend_default_language',4,0,'S','ru',80,'Y','',0),(54,'ROOT','backend_default_language',4,0,'S','ru',15,'Y','',0),(55,'ROOT,STOREFRONT','secure_storefront',15,0,'C','N',1,'Y','',0),(56,'ROOT','secure_admin',15,0,'C','N',2,'Y','',0),(58,'ROOT,ULT:VENDOR','inventory_tracking',2,0,'C','Y',130,'Y','',0),(61,'ROOT,ULT:VENDOR','store_access_key',2,0,'O','',51,'Y','fn_get_store_access_key_notice',0),(62,'ROOT','order_start_id',6,0,'I','',340,'Y','',0),(63,'ROOT,STOREFRONT','columns_in_products_list',4,0,'I','3',150,'Y','',0),(64,'ROOT,STOREFRONT','default_products_sorting',4,0,'K','product-asc',198,'Y','',0),(65,'ROOT,ULT:VENDOR','edp_key_ttl',2,0,'I','24',140,'Y','',0),(66,'ROOT','time_format',4,0,'S','%H:%M',210,'Y','',0),(67,'ROOT,STOREFRONT','user_multiple_profiles',2,0,'C','N',240,'Y','',0),(69,'ROOT,STOREFRONT','min_order_amount',6,0,'I','0',360,'Y','',0),(70,'ROOT,STOREFRONT','min_order_amount_type',2,0,'D','only_products',242,'Y','',0),(71,'ROOT,STOREFRONT','allow_anonymous_shopping',6,0,'S','allow_shopping',370,'Y','',0),(72,'ROOT,STOREFRONT','show_products_from_subcategories',2,0,'C','Y',150,'Y','',0),(73,'ROOT,STOREFRONT','disable_anonymous_checkout',6,0,'C','N',244,'Y','',0),(77,'ROOT,ULT:VENDOR','low_stock_threshold',2,0,'I','0',145,'Y','',0),(78,'ROOT,STOREFRONT','approve_user_profiles',2,0,'C','N',250,'Y','',0),(84,'ROOT,ULT:VENDOR','day',10,0,'S','%a, %b %e',20,'Y','',0),(85,'ROOT,ULT:VENDOR','week',10,0,'S','%U, %b',30,'Y','',0),(86,'ROOT,ULT:VENDOR','month',10,0,'S','%B',40,'Y','',0),(87,'ROOT,ULT:VENDOR','year',10,0,'S','%Y',50,'Y','',0),(89,'ROOT','jpeg_quality',9,0,'U','80',90,'Y','',0),(90,'ROOT','convert_to',9,0,'S','original',80,'Y','',0),(91,'ROOT,STOREFRONT','thumbnail_background_color',9,0,'I','#ffffff',70,'Y','',0),(93,'ROOT,STOREFRONT','display_options_modifiers',2,0,'C','Y',155,'Y','',0),(94,'ROOT,STOREFRONT','show_out_of_stock_products',2,0,'C','Y',180,'Y','',0),(98,'ROOT,STOREFRONT','use_single_coupon',2,0,'C','Y',225,'Y','',0),(100,'ROOT,STOREFRONT','agree_terms_conditions',6,0,'D','N',270,'Y','',0),(105,'ROOT,STOREFRONT','show_cats',8,0,'C','Y',10,'N','',0),(106,'ROOT,STOREFRONT','show_rootcats_only',8,0,'C','N',20,'N','',0),(107,'ROOT,STOREFRONT','show_site_info',8,0,'C','Y',35,'N','',0),(108,'ROOT','mailer_send_method',1,0,'S','mail',10,'N','',0),(109,'ROOT,ULT:VENDOR','mailer_smtp_host',1,0,'I','',30,'N','',0),(110,'ROOT,ULT:VENDOR','mailer_smtp_auth',1,0,'C','N',60,'N','',0),(111,'ROOT,ULT:VENDOR','mailer_smtp_username',1,0,'I','',40,'N','',0),(112,'ROOT,ULT:VENDOR','mailer_smtp_password',1,0,'P','',50,'N','',0),(295,'ROOT,ULT:VENDOR','mailer_smtp_ecrypted_connection',1,0,'S','',55,'N','',0),(113,'ROOT','mailer_sendmail_path',1,0,'I','/usr/sbin/sendmail',80,'N','',0),(116,'ROOT,STOREFRONT','show_prices_taxed_clean',4,0,'C','N',184,'Y','',0),(117,'ROOT,STOREFRONT','height',11,0,'D','30',20,'N','',0),(118,'ROOT,STOREFRONT','string_length',11,0,'D','5',30,'N','',0),(119,'ROOT,STOREFRONT','min_font_size',11,0,'D','14',40,'N','',0),(120,'ROOT,STOREFRONT','max_font_size',11,0,'D','16',50,'N','',0),(121,'ROOT,STOREFRONT','string_type',11,0,'D','mixed',60,'N','',0),(122,'ROOT,STOREFRONT','char_shadow',11,0,'D','N',65,'N','',0),(123,'ROOT,STOREFRONT','colour',11,0,'D','N',70,'N','',0),(124,'ROOT,STOREFRONT','background_image',11,0,'D','',80,'N','',0),(125,'ROOT,STOREFRONT','lines_number',11,0,'D','20',35,'N','',0),(126,'ROOT,STOREFRONT','grid_color',11,0,'D','cccccc',36,'N','',0),(133,'ROOT,STOREFRONT','width',11,0,'D','110',10,'N','',0),(134,'ROOT,STOREFRONT','hide_if_logged',11,0,'C','Y',85,'Y','',0),(138,'ROOT,STOREFRONT','use_for',11,0,'N','#M#register=Y&form_builder=Y&email_share=Y&discussion=Y&checkout=Y&polls=Y&gift_certificates=Y',5,'Y','',0),(139,'ROOT','timezone',4,0,'S','Europe/Moscow',220,'Y','',0),(140,'ROOT,STOREFRONT','estimate_shipping_cost',6,0,'C','Y',390,'Y','',0),(141,'ROOT,STOREFRONT','allow_create_account_after_order',6,0,'C','Y',305,'Y','',0),(143,'ROOT','init_addons',0,0,'C','',0,'Y','',0),(145,'ROOT,STOREFRONT','cart_prices_w_taxes',4,0,'C','N',185,'Y','',0),(146,'ROOT,STOREFRONT','in_stock_field',4,0,'C','N',186,'Y','',0),(147,'ROOT,STOREFRONT','thumbnails_gallery',4,0,'C','N',186,'Y','',0),(148,'ROOT,STOREFRONT','quantity_changer',4,0,'C','Y',186,'Y','',0),(149,'ROOT,STOREFRONT','top_pagination',4,0,'C','N',187,'Y','',0),(150,'ROOT,STOREFRONT','taxes_using_default_address',4,0,'C','N',183,'Y','',0),(151,'ROOT','proxy_host',2,0,'I','',320,'Y','',0),(152,'ROOT','proxy_port',2,0,'I','',330,'Y','',0),(153,'ROOT','proxy_user',2,0,'I','',340,'Y','',0),(154,'ROOT','proxy_password',2,0,'P','',350,'Y','',0),(156,'ROOT,STOREFRONT','search_objects',2,0,'N','',1010,'Y','',0),(158,'ROOT,ULT:VENDOR','log_type_orders',12,0,'N','#M#create=Y&delete=Y&update=Y&status=Y',10,'Y','',0),(159,'ROOT,ULT:VENDOR','log_type_users',12,0,'N','#M#create=Y&delete=Y&update=Y&session=Y&failed_login=Y',10,'Y','',0),(160,'ROOT,ULT:VENDOR','log_type_products',12,0,'N','#M#create=Y&delete=Y&update=Y&low_stock=Y',10,'Y','',0),(161,'ROOT,ULT:VENDOR','log_type_categories',12,0,'N','#M#create=Y&delete=Y&update=Y',10,'Y','',0),(162,'ROOT,ULT:VENDOR','log_type_database',12,0,'N','#M#restore=Y&backup=Y&optimize=Y&error=Y',10,'Y','',0),(163,'ROOT,ULT:VENDOR','log_type_requests',12,0,'N','#M#http=Y&shipping=Y',10,'Y','',0),(165,'ROOT,STOREFRONT','hide_after_validation',11,0,'C','Y',87,'Y','',0),(166,'ROOT','calendar_date_format',4,0,'S','month_first',230,'Y','',0),(167,'ROOT','calendar_week_format',4,0,'S','monday_first',240,'Y','',0),(168,'ROOT,ULT:VENDOR','store_mode',2,0,'O','N',50,'Y','fn_get_store_mode_notice',0),(169,'ROOT,STOREFRONT','default_products_view',4,0,'K','products_multicolumns',195,'Y','',0),(170,'ROOT,STOREFRONT','save_selected_view',4,0,'C','Y',196,'Y','',0),(171,'ROOT,STOREFRONT','default_products_view_templates',4,0,'G','#M#products_multicolumns=Y&products_without_options=Y&short_list=Y',194,'Y','',0),(173,'ROOT,STOREFRONT','checkout_redirect',6,0,'C','N',380,'Y','',0),(174,'ROOT','min_account_password_length',15,0,'I','5',10,'Y','',0),(175,'ROOT','account_passwords_must_contain_mix',15,0,'C','N',20,'Y','',0),(176,'ROOT','change_admin_password_on_first_login',15,0,'C','N',30,'Y','',0),(177,'ROOT','account_password_expiration_period',15,0,'I','0',40,'Y','',0),(178,'ROOT','cron_password',15,0,'I','MYPASS',50,'Y','',0),(179,'ROOT','tax_calculation',6,0,'S','subtotal',350,'Y','',0),(180,'ROOT,STOREFRONT','default_product_details_view',4,0,'S','default_template',191,'Y','',0),(333,'ROOT,STOREFRONT','global_product_details_view',4,0,'S',NULL,191,'Y','',0),(288,'ROOT,STOREFRONT','product_details_in_tab',4,0,'C','Y',191,'Y','',0),(182,'ROOT,STOREFRONT','address_position',6,0,'D','shipping_first',250,'Y','',0),(183,'ROOT','changes_warning',4,0,'C','Y',250,'Y','',0),(184,'ROOT,STOREFRONT','product_lists_thumbnail_width',9,0,'U','150',100,'Y','',0),(185,'ROOT,STOREFRONT','product_lists_thumbnail_height',9,0,'U','150',110,'Y','',0),(186,'ROOT,STOREFRONT','product_details_thumbnail_width',9,0,'U','280',120,'Y','',0),(187,'ROOT,STOREFRONT','product_details_thumbnail_height',9,0,'U','',130,'Y','',0),(190,'ROOT,STOREFRONT','product_cart_thumbnail_width',9,0,'U','120',160,'Y','',0),(191,'ROOT,STOREFRONT','product_cart_thumbnail_height',9,0,'U','',170,'Y','',0),(192,'ROOT,STOREFRONT','category_lists_thumbnail_width',9,0,'U','60',180,'Y','',0),(193,'ROOT,STOREFRONT','category_lists_thumbnail_height',9,0,'U','',190,'Y','',0),(194,'ROOT,STOREFRONT','category_details_thumbnail_width',9,0,'U','120',200,'Y','',0),(195,'ROOT,STOREFRONT','category_details_thumbnail_height',9,0,'U','',210,'Y','',0),(196,'ROOT,STOREFRONT','category_detailed_image_width',9,0,'U','',220,'Y','',0),(197,'ROOT,STOREFRONT','category_detailed_image_height',9,0,'U','',230,'Y','',0),(199,'ROOT','show_menu_descriptions',4,0,'C','Y',255,'Y','',0),(201,'ROOT','store_key',0,0,'I','2749512053;185.233.37.254/',0,'Y','',0),(203,'ROOT','header_1',4,0,'H','',10,'N','',0),(5678,'ROOT','current_timestamp',0,0,'T','1629404005',10,'Y','',0),(204,'ROOT,ULT:VENDOR','header_7010',10,0,'H','',10,'N','',0),(206,'ROOT,ULT:VENDOR','header_10003',1,0,'H','',20,'N','',0),(207,'ROOT,STOREFRONT','header_7003',6,0,'H','',400,'N','',0),(208,'ROOT,STOREFRONT','header_2',4,0,'H','',70,'N','',0),(209,'ROOT','header_10004',1,0,'H','',70,'N','',0),(210,'ROOT,STOREFRONT','header_7004',2,0,'H','',125,'N','',0),(211,'ROOT','header_10080',4,0,'H','',199,'N','',0),(212,'ROOT,STOREFRONT','header_7024',2,0,'H','',215,'N','',0),(213,'ROOT,STOREFRONT','header_7005',2,0,'H','',235,'N','',0),(216,'ROOT','header_8057',2,0,'H','',310,'N','',0),(217,'ROOT,STOREFRONT','header_15000',2,0,'H','',1000,'N','',0),(219,'ROOT','header_8158',13,0,'H','',20,'N','',0),(221,'ROOT,STOREFRONT','header_10070',4,0,'H','',192,'N','',0),(2000,'ROOT','share_users',17,0,'C','N',10,'Y','',0),(223,'ROOT,STOREFRONT','disregard_options_for_discounts',2,0,'C','N',190,'Y','',0),(272,'ROOT','display_track_orders',4,0,'C','Y',191,'Y','',0),(274,'ROOT,ULT:VENDOR','log_type_general',12,0,'N','#M#runtime=Y&deprecated=Y&',10,'Y','',0),(275,'ROOT,STOREFRONT','quick_registration',2,0,'C','Y',260,'Y','',0),(289,'ROOT,STOREFRONT','available_product_list_sortings',4,0,'G','#M#timestamp-desc=Y&product-asc=Y&product-desc=Y&price-asc=Y&price-desc=Y&popularity-desc=Y',197,'Y','',0),(290,'ROOT,STOREFRONT','enable_quick_view',4,0,'C','Y',198,'Y','',0),(291,'ROOT','storage',0,0,'I','a:1:{s:7:\"storage\";s:4:\"file\";}',10,'N','',0),(292,'ROOT,STOREFRONT','product_quick_view_thumbnail_width',9,0,'U','220',135,'Y','',0),(293,'ROOT,STOREFRONT','product_quick_view_thumbnail_height',9,0,'U','',136,'Y','',0),(294,'ROOT','cdn',0,0,'I','',10,'N','',0),(300,'ROOT,STOREFRONT','configure_sign_in_step',6,0,'D','returning_customer_first',310,'Y','',0),(301,'ULT:ROOT,ULT:STOREFRONT','display_shipping_step',6,0,'D','Y',320,'Y','',0),(302,'ROOT,STOREFRONT','display_payment_step',6,0,'D','Y',330,'Y','',0),(305,'ROOT,STOREFRONT','sign_in_default_action',6,0,'D','register',315,'Y','',0),(306,'ROOT,ULT:VENDOR','enable_edp',2,0,'C','N',135,'Y','',0),(307,'ROOT,STOREFRONT','enable_compare_products',2,0,'C','Y',130,'Y','',0),(308,'ROOT','email_templates',4,0,'S','new',400,'Y','',0),(309,'ROOT','product_admin_mini_icon_width',9,0,'U','50',300,'Y','',0),(310,'ROOT','product_admin_mini_icon_height',9,0,'U','',310,'Y','',0),(311,'ROOT','monitor_core_changes',2,0,'C','Y',59,'Y','',0),(312,'ROOT','log_lifetime',12,0,'I','90',5,'Y','',0),(313,'ROOT','phone_validation_mode',4,0,'S','international_format',450,'Y','',0),(314,'ROOT,STOREFRONT','show_unavailable_shipping_methods',6,0,'C','N',390,'Y','',0),(315,'ROOT,STOREFRONT','product_variant_mini_icon_width',9,0,'U','70',171,'Y','',0),(316,'ROOT,STOREFRONT','product_variant_mini_icon_height',9,0,'U','70',172,'Y','',0),(317,'ROOT','default_options_type',2,0,'S','P',157,'Y','',0),(318,'ROOT','global_options_type',2,0,'S',NULL,157,'Y','',0),(319,'ROOT','default_exceptions_type',2,0,'S','F',158,'Y','',0),(320,'ROOT','global_exceptions_type',2,0,'S',NULL,158,'Y','',0),(321,'ROOT','default_zero_price_action',6,0,'S','R',341,'Y','',0),(322,'ROOT','global_zero_price_action',6,0,'S',NULL,341,'Y','',0),(323,'ROOT','default_min_qty',6,0,'I','0',342,'Y','',0),(324,'ROOT','global_min_qty',6,0,'I',NULL,342,'Y','',0),(325,'ROOT','default_max_qty',6,0,'I','0',343,'Y','',0),(326,'ROOT','global_max_qty',6,0,'I',NULL,343,'Y','',0),(327,'ROOT','default_qty_step',6,0,'I','0',344,'Y','',0),(328,'ROOT','global_qty_step',6,0,'I',NULL,344,'Y','',0),(329,'ROOT','default_list_qty_count',6,0,'I','0',345,'Y','',0),(330,'ROOT','global_list_qty_count',6,0,'I',NULL,345,'Y','',0),(331,'ROOT,ULT:VENDOR','default_tracking',2,0,'C','B',130,'Y','',0),(332,'ROOT,ULT:VENDOR','global_tracking',2,0,'C',NULL,130,'Y','',0),(2001,'ROOT','default_state_update_for_all',17,0,'S','not_active',20,'Y','',0),(5679,'ROOT','default_upload_high_res_image',18,19,'C','N',0,'N','',0),(5680,'ROOT,STOREFRONT','twitter_enable',20,21,'C','Y',0,'N','',0),(5681,'ROOT,STOREFRONT','twitter_via',20,21,'I','',10,'N','',0),(5682,'ROOT,STOREFRONT','twitter_size',20,21,'S','medium',20,'N','',0),(5683,'ROOT,STOREFRONT','twitter_display_count',20,21,'S','horizontal',30,'N','',0),(5684,'ROOT,STOREFRONT','twitter_display_on',20,21,'N','#M#products=Y',40,'N','',0),(5685,'ROOT,STOREFRONT','facebook_enable',20,22,'C','Y',0,'N','',0),(5686,'ROOT,STOREFRONT','facebook_app_id',20,22,'I','',10,'N','',0),(5687,'ROOT,STOREFRONT','facebook_href',20,22,'I','',20,'N','',0),(5688,'ROOT,STOREFRONT','facebook_send',20,22,'C','Y',30,'N','',0),(5689,'ROOT,STOREFRONT','facebook_width',20,22,'I','450',40,'N','',0),(5690,'ROOT,STOREFRONT','facebook_layout',20,22,'S','button_count',50,'N','',0),(5691,'ROOT,STOREFRONT','facebook_show_faces',20,22,'C','N',60,'N','',0),(5692,'ROOT,STOREFRONT','facebook_action',20,22,'S','like',70,'N','',0),(5693,'ROOT,STOREFRONT','facebook_lang',20,22,'S','en_US',80,'N','',0),(5694,'ROOT,STOREFRONT','facebook_action_font',20,22,'S','arial',90,'N','',0),(5695,'ROOT,STOREFRONT','facebook_colorscheme',20,22,'S','light',100,'N','',0),(5696,'ROOT,STOREFRONT','facebook_display_on',20,22,'N','#M#products=Y',110,'N','',0),(5697,'ROOT,STOREFRONT','vkontakte_enable',20,23,'C','',0,'N','',0),(5698,'ROOT,STOREFRONT','vkontakte_appid',20,23,'I','',10,'N','',0),(5699,'ROOT,STOREFRONT','vkontakte_button_style',20,23,'S','mini',20,'N','',0),(5700,'ROOT,STOREFRONT','vkontakte_height',20,23,'I','22',30,'N','',0),(5701,'ROOT,STOREFRONT','vkontakte_width',20,23,'I','350',40,'N','',0),(5702,'ROOT,STOREFRONT','vkontakte_buttons_name',20,23,'S','like',50,'N','',0),(5703,'ROOT,STOREFRONT','vkontakte_display_on',20,23,'N','',60,'N','',0),(5704,'ROOT,STOREFRONT','yandex_enable',20,24,'C','Y',0,'N','',0),(5705,'ROOT,STOREFRONT','yandex_share_code',20,24,'T','<script src=\"//yastatic.net/es5-shims/0.0.2/es5-shims.min.js\"></script><script src=\"//yastatic.net/share2/share.js\"></script><div class=\"ya-share2\" data-services=\"collections,vkontakte,facebook,twitter,odnoklassniki,moimir\"></div>',10,'N','',0),(5706,'ROOT,STOREFRONT','yandex_display_on',20,24,'N','products,pages',20,'N','',0),(5707,'ROOT,STOREFRONT','pinterest_enable',20,25,'C','Y',0,'N','',0),(5708,'ROOT,STOREFRONT','pinterest_size',20,25,'S','20',10,'N','',0),(5709,'ROOT,STOREFRONT','pinterest_shape',20,25,'S','rect',20,'N','',0),(5710,'ROOT,STOREFRONT','pinterest_display_on',20,25,'N','#M#products=Y',30,'N','',0),(5711,'ROOT,ULT:VENDOR','paypal_ipn_settings',26,27,'H','',0,'N','',0),(5712,'ROOT,ULT:VENDOR','override_customer_info',26,27,'C','N',10,'N','',0),(5713,'ROOT,ULT:VENDOR','paypal_status_map',26,27,'H','',20,'N','',0),(5714,'ROOT,ULT:VENDOR','paypal_status_map_settings',26,27,'E','statuses_map.tpl',30,'N','',0),(5715,'ROOT,ULT:VENDOR','paypal_partial_refund_action',26,27,'H','',40,'N','',0),(5716,'ROOT,ULT:VENDOR','paypal_partial_refund_action_settings',26,27,'E','partial_refund_action.tpl',50,'N','',0),(5717,'ROOT,STOREFRONT','paypal_logo_uploader',26,27,'H','',60,'N','',0),(5718,'ROOT,STOREFRONT','paypal_logo_uploader_settings',26,27,'E','logo_uploader.tpl',70,'N','',0),(5719,'ROOT,ULT:VENDOR','pp_statuses',26,27,'D','a:10:{s:8:\"refunded\";s:1:\"I\";s:9:\"completed\";s:1:\"P\";s:7:\"pending\";s:1:\"O\";s:17:\"canceled_reversal\";s:1:\"I\";s:7:\"created\";s:1:\"O\";s:6:\"denied\";s:1:\"I\";s:7:\"expired\";s:1:\"F\";s:8:\"reversed\";s:1:\"I\";s:9:\"processed\";s:1:\"P\";s:6:\"voided\";s:1:\"P\";}',80,'N','',0),(5720,'ROOT,ULT:VENDOR','partial_refund_action',26,27,'D','ignore',90,'N','',0),(5721,'ROOT,ULT:VENDOR','tags_for_products',28,29,'C','Y',0,'N','',0),(5722,'ROOT,ULT:VENDOR','tags_for_pages',28,29,'C','Y',10,'N','',0),(5723,'ROOT','managing_editor',30,31,'I','',0,'N','',0),(5724,'ROOT','display_rss_feed_in_category',30,31,'C','N',10,'N','',0),(5725,'ROOT','category_max_products_items',30,31,'I','5',20,'N','',0),(5726,'ROOT,STOREFRONT','em_show_on_checkout',32,33,'C','N',0,'N','',0),(5727,'ROOT,STOREFRONT','em_checkout_enabled',32,33,'C','N',10,'N','',5726),(5728,'ROOT,STOREFRONT','em_double_opt_in',32,33,'C','N',20,'N','',0),(5729,'ROOT,STOREFRONT','em_welcome_letter',32,33,'C','N',30,'N','',0),(5730,'ROOT,STOREFRONT','em_service',32,33,'S','dummy',40,'N','',0),(5731,'ROOT,STOREFRONT','em_token',32,33,'D','cd21f50f86e5861e4c1cf8773748f977',50,'N','',0),(5732,'ROOT,STOREFRONT','em_lastsync',32,33,'D','1629474621',60,'N','',0),(5733,'ROOT,STOREFRONT','em_mailchimp_api_key',32,34,'I','',0,'N','',0),(5734,'ROOT,STOREFRONT','em_mailchimp_list',32,34,'S','',10,'N','',0),(5735,'ROOT,STOREFRONT','em_madmimi_username',32,35,'I','',0,'N','',0),(5736,'ROOT,STOREFRONT','em_madmimi_api_key',32,35,'I','',10,'N','',0),(5737,'ROOT,STOREFRONT','em_madmimi_list',32,35,'S','',20,'N','',0),(5738,'ROOT','newsletters_per_pass',36,37,'I','10',0,'N','',0),(5739,'ROOT','elm_advanced_mailing_server_options',36,37,'H','',10,'N','',0),(5740,'ROOT','mailer_send_method',36,37,'S','default',20,'N','',0),(5741,'ROOT','elm_smtp_server_settings',36,37,'H','',30,'N','',0),(5742,'ROOT','mailer_smtp_host',36,37,'I','',40,'N','',0),(5743,'ROOT','mailer_smtp_username',36,37,'I','',50,'N','',0),(5744,'ROOT','mailer_smtp_password',36,37,'I','',60,'N','',0),(5745,'ROOT','mailer_smtp_ecrypted_connection',36,37,'S','none',70,'N','',0),(5746,'ROOT','mailer_smtp_auth',36,37,'C','N',80,'N','',0),(5747,'ROOT','coupon',36,38,'S','',0,'N','',0),(5748,'ROOT','allow_save_attachments_to_server',39,40,'C','N',0,'N','',0),(5749,'ROOT,STOREFRONT','show_on_product',41,42,'C','Y',0,'N','',0),(5750,'ULT:VENDOR','show_on_messages',41,42,'C','Y',20,'N','',0),(5751,'ROOT,STOREFRONT','show_on_order',41,42,'C','Y',30,'N','',0),(5752,'ROOT','provider',43,44,'S','yandex',0,'N','',0),(5753,'ROOT','show_shippings_on_product',43,44,'C','N',10,'N','',0),(5754,'ROOT','yandex_api_key',43,45,'I','',0,'N','',0),(5755,'ROOT','yandex_commercial',43,45,'C','',10,'N','',0),(5756,'ROOT','google_api_notice',43,46,'O','',0,'N','fn_geo_maps_settings_google_api_notice_handler',0),(5757,'ROOT','google_api_key',43,46,'I','',10,'N','',0),(5758,'ROOT','min_amount',47,48,'I','50',0,'N','',0),(5759,'ROOT','max_amount',47,48,'I','1500',10,'N','',0),(5760,'ROOT','code_prefix',47,48,'I','GC',20,'N','',0),(5761,'ROOT','cert_per_page',47,48,'I','10',30,'N','',0),(5762,'ROOT','free_products_allow',47,48,'C','Y',40,'N','',0),(5763,'ROOT','redeem_shipping_cost',47,48,'C','Y',50,'N','',0),(5764,'ROOT,STOREFRONT','print_map',49,50,'C','Y',0,'N','',0),(5765,'ROOT,STOREFRONT','show_locations_at_geolocator',49,50,'C','N',10,'N','',0),(5766,'ROOT','variations_allow_own_images',51,52,'C','Y',0,'N','',0),(5767,'ROOT','variations_allow_own_features',51,52,'C','N',10,'N','',0),(5768,'ROOT','variations_allow_auto_change_default_variation',51,52,'C','Y',20,'N','',0),(5769,'ROOT,STOREFRONT','variations_show_all_possible_feature_variants',51,52,'C','Y',30,'N','',0),(5770,'ROOT','access_key',53,54,'I','0afeaed58fe930b746b5c312c232eebb',0,'N','',0),(5771,'ROOT','notice',55,56,'O','',0,'N','fn_recaptcha_settings_notice_handler',0),(5772,'ROOT,STOREFRONT','recaptcha_v2_settings',55,56,'H','',10,'N','',0),(5773,'ROOT','recaptcha_site_key',55,56,'I','',20,'N','',0),(5774,'ROOT','recaptcha_secret',55,56,'I','',30,'N','',0),(5775,'ROOT,STOREFRONT','recaptcha_theme',55,56,'S','light',40,'N','',0),(5776,'ROOT,STOREFRONT','recaptcha_size',55,56,'S','normal',50,'N','',0),(5777,'ROOT,STOREFRONT','recaptcha_type',55,56,'S','image',60,'N','',0),(5778,'ROOT','recaptcha_v3_settings',55,56,'H','',70,'N','',0),(5779,'ROOT','recaptcha_v3_site_key',55,56,'I','',80,'N','',0),(5780,'ROOT','recaptcha_v3_secret',55,56,'I','',90,'N','',0),(5781,'ROOT','recaptcha_v3_success_score',55,56,'S','0.5',100,'N','',0),(5782,'ROOT,STOREFRONT','use_for_settings',55,56,'H','',110,'N','',0),(5783,'ROOT,STOREFRONT','recaptcha_use_for_value',55,56,'D','',120,'N','',0),(5784,'ROOT,STOREFRONT','recaptcha_use_for',55,56,'E','use_for_settings.tpl',130,'N','',0),(5785,'ROOT,STOREFRONT','settings_proxy',55,56,'O','',140,'N','fn_recaptcha_image_verification_settings_proxy',0),(5786,'ROOT','forbidden_countries_notice',55,57,'O','',0,'N','fn_recaptcha_forbidden_countries_notice_handler',0),(5787,'ROOT','forbidden_countries',55,57,'B','#M#CN=Y&CG=Y&IR=Y',10,'N','',0),(5788,'ROOT','display_product_return_period',58,59,'C','Y',0,'N','',0),(5789,'ROOT','dont_take_weekends_into_account',58,59,'C','Y',10,'N','',0),(5790,'ROOT,STOREFRONT','final_sale_from',60,61,'I','40',0,'N','',0),(5791,'ROOT,STOREFRONT','sales_amount_from',60,61,'I','1',10,'N','',0),(5792,'ROOT,STOREFRONT','period',60,62,'S','all',0,'N','',0),(5793,'ROOT,STOREFRONT','last_days',60,62,'I','3',10,'N','',0),(5794,'ROOT,ULT:VENDOR','seo_product_type',63,64,'S','product_category_nohtml',0,'N','',0),(5795,'ROOT,ULT:VENDOR','seo_category_type',63,64,'S','category_nohtml',10,'N','',0),(5796,'ROOT,ULT:VENDOR','seo_page_type',63,64,'S','page_nohtml',20,'N','',0),(5797,'ROOT,ULT:VENDOR','seo_other_type',63,64,'S','directory',30,'N','',0),(5798,'ROOT,ULT:VENDOR','seo_language',63,64,'C','N',40,'N','',0),(5799,'ROOT,ULT:VENDOR','single_url',63,64,'C','Y',50,'N','',0),(5800,'ROOT,ULT:VENDOR','non_latin_symbols',63,64,'C','N',60,'N','',0),(5801,'ROOT,ULT:VENDOR','point_rate',65,66,'I','1',0,'N','',0),(5802,'ROOT,ULT:VENDOR','auto_price_in_points',65,66,'C','Y',10,'N','',0),(5803,'ROOT,ULT:VENDOR','price_in_points_with_discounts',65,66,'C','Y',20,'N','',0),(5804,'ROOT,ULT:VENDOR','points_with_discounts',65,66,'C','Y',30,'N','',0),(5805,'ROOT,ULT:VENDOR','price_in_points_order_discount',65,66,'C','Y',40,'N','',0),(5806,'ROOT,ULT:VENDOR','reward_points_order_discount',65,66,'C','Y',50,'N','',0),(5807,'ROOT,ULT:VENDOR','higher_level_extract',65,66,'C','Y',60,'N','',0),(5808,'ROOT,ULT:VENDOR','several_points_action',65,66,'S','minimal_absolute',70,'N','',0),(5809,'ROOT,ULT:VENDOR','consider_zero_values',65,66,'C','N',80,'N','',0),(5810,'ROOT,ULT:VENDOR','log_per_page',65,66,'I','10',90,'N','',0),(5811,'ROOT,STOREFRONT','tracking_code',67,68,'I','',0,'N','',0),(5812,'ROOT,STOREFRONT','track_ecommerce',67,68,'C','Y',10,'N','',0),(5813,'ROOT,STOREFRONT','pixel_id',69,70,'I','',0,'N','',0),(5814,'ROOT,STOREFRONT','track_all_page_views',69,70,'C','Y',10,'N','',0),(5815,'ROOT,STOREFRONT','track_add_to_cart',69,70,'C','N',20,'N','',0),(5816,'ROOT,STOREFRONT','track_order_placed',69,70,'C','N',30,'N','',0),(5817,'ROOT,STOREFRONT','general',71,72,'H','',0,'N','',0),(5818,'ROOT,STOREFRONT','info',71,72,'O','',10,'N','fn_call_requests_info',0),(5819,'ROOT,STOREFRONT','phone',71,72,'I','',20,'N','',0),(5820,'ROOT,STOREFRONT','phone_prefix_length',71,72,'I','7',30,'N','',0),(5821,'ROOT,STOREFRONT','phone_mask',71,72,'I','',40,'N','',0),(5822,'ROOT,STOREFRONT','buy_now_with_one_click',71,72,'C','Y',50,'N','',0),(5823,'ROOT,ULT:VENDOR','order_status',71,72,'S','Y',70,'N','',0),(5824,'ROOT,ULT:VENDOR','log_type_yml_export',12,0,'N',NULL,10,'N','',0),(5825,'ROOT','search_form_code',73,74,'T','',0,'N','',0),(5826,'ROOT','search_results_code',73,74,'T','',10,'N','',0),(5827,'ROOT','elm_image',75,76,'H','',0,'N','',0),(5828,'ROOT','elm_image_info',75,76,'O','',10,'N','fn_get_barcode_image',0),(5829,'ROOT','elm_configs',75,76,'H','',20,'N','',0),(5830,'ROOT','type',75,76,'S','C128B',30,'N','',0),(5831,'ROOT','output',75,76,'S','png',40,'N','',0),(5832,'ROOT','text',75,76,'S','Y',50,'N','',0),(5833,'ROOT','height',75,76,'I','60',60,'N','',0),(5834,'ROOT','width',75,76,'I','250',70,'N','',0),(5835,'ROOT','prefix',75,76,'I','FF45CR99',80,'N','',0),(5836,'ROOT','elm_specification',75,76,'H','',90,'N','',0),(5837,'ROOT','elm_spec_descr',75,76,'O','',100,'N','fn_get_barcode_specification',0),(5838,'ROOT','polls_votes_on_page',77,78,'I','20',0,'N','',0),(5839,'ROOT','polls_comments_on_page',77,78,'I','20',10,'N','',0),(5840,'ROOT','elm_administrator_area_settings',79,80,'H','',0,'N','',0),(5841,'ROOT','admin_reverse_ip_access',79,80,'C','',10,'N','',0),(5842,'ROOT','unsuccessful_attempts_login',79,80,'C','',20,'N','',0),(5843,'ROOT','number_unsuccessful_attempts',79,80,'I','5',30,'N','',0),(5844,'ROOT','login_intervals',79,80,'I','60',40,'N','',0),(5845,'ROOT','time_block',79,80,'I','24',50,'N','',0),(5846,'ROOT','elm_customer_and_affiliate_area_settings',79,80,'H','',60,'N','',0),(5847,'ROOT','unsuccessful_attempts_login_customer',79,80,'C','',70,'N','',0),(5848,'ROOT','number_unsuccessful_attempts_customer',79,80,'I','5',80,'N','',0),(5849,'ROOT','login_intervals_customer',79,80,'I','60',90,'N','',0),(5850,'ROOT','time_block_customer',79,80,'I','24',100,'N','',0),(5851,'ROOT','banner_multilang',81,82,'C','Y',0,'N','',0),(5852,'ROOT,STOREFRONT','notice',83,84,'O','',0,'N','fn_product_reviews_copy_old_reviews_notice',0),(5853,'ROOT,STOREFRONT','reviews_per_page',83,84,'I','10',10,'N','',0),(5854,'ROOT,STOREFRONT','review_approval',83,84,'S','any',20,'N','',0),(5855,'ROOT,STOREFRONT','review_ip_check',83,84,'C','N',30,'N','',0),(5856,'ROOT,ULT:VENDOR','review_fields',83,84,'S','advanced',40,'N','',0),(5857,'ROOT,STOREFRONT','review_after_purchase',83,84,'C','N',50,'N','',0),(5858,'ROOT,STOREFRONT','review_ask_for_customer_location',83,84,'S','none',60,'N','',0),(5859,'ROOT','split_reviews_by_storefronts',83,84,'C','N',70,'N','',0),(5860,'ROOT,STOREFRONT','images_upload_allowed',83,84,'D','Y',80,'N','',0),(5861,'ROOT,ULT:VENDOR','watermark',85,86,'H','',0,'N','',0),(5862,'ROOT,ULT:VENDOR','watermark_settings',85,86,'E','watermark.tpl',10,'N','',0),(5863,'ROOT,ULT:VENDOR','apply_to_product',85,86,'H','',20,'N','',0),(5864,'ROOT,ULT:VENDOR','use_for_product_icons',85,86,'C','N',30,'N','',0),(5865,'ROOT,ULT:VENDOR','use_for_product_detailed',85,86,'C','N',40,'N','',0),(5866,'ROOT,ULT:VENDOR','apply_to_categories',85,86,'H','',50,'N','',0),(5867,'ROOT,ULT:VENDOR','use_for_category_icons',85,86,'C','N',60,'N','',0),(5868,'ROOT,ULT:VENDOR','use_for_category_detailed',85,86,'C','N',70,'N','',0),(5869,'ROOT,ULT:VENDOR','images_access_info',85,86,'O','',80,'N','fn_watermarks_images_access_info',0),(5870,'ROOT,STOREFRONT','product_posts_per_page',87,88,'I','10',0,'N','',0),(5871,'ROOT,ULT:VENDOR','product_post_approval',87,88,'S','any',10,'N','',0),(5872,'ROOT,ULT:VENDOR','product_post_ip_check',87,88,'C','N',20,'N','',0),(5873,'ROOT,ULT:VENDOR','product_discussion_type',87,88,'S','D',30,'N','',0),(5874,'ULT:ROOT','product_share_discussion',87,88,'C','N',40,'N','',0),(5875,'ROOT,ULT:VENDOR','product_review_after_purchase',87,88,'C','N',50,'N','',0),(5876,'ROOT,STOREFRONT','category_posts_per_page',87,89,'I','10',0,'N','',0),(5877,'ROOT,ULT:VENDOR','category_post_approval',87,89,'S','any',10,'N','',0),(5878,'ROOT,ULT:VENDOR','category_post_ip_check',87,89,'C','N',20,'N','',0),(5879,'ROOT,ULT:VENDOR','category_discussion_type',87,89,'S','D',30,'N','',0),(5880,'ROOT,STOREFRONT','order_posts_per_page',87,90,'I','10',0,'N','',0),(5881,'ROOT,STOREFRONT','order_initiate',87,90,'C','Y',10,'N','',0),(5882,'ROOT,STOREFRONT','page_posts_per_page',87,91,'I','10',0,'N','',0),(5883,'ROOT,ULT:VENDOR','page_post_approval',87,91,'S','disabled',10,'N','',0),(5884,'ROOT,ULT:VENDOR','page_post_ip_check',87,91,'C','N',20,'N','',0),(5885,'ROOT,ULT:VENDOR','page_discussion_type',87,91,'S','D',30,'N','',0),(5886,'ULT:ROOT','page_share_discussion',87,91,'C','N',40,'N','',0),(5887,'ROOT,STOREFRONT','home_page_posts_per_page',87,92,'I','10',0,'N','',0),(5888,'ROOT,ULT:VENDOR','home_page_post_approval',87,92,'S','any',10,'N','',0),(5889,'ROOT,ULT:VENDOR','home_page_post_ip_check',87,92,'C','Y',20,'N','',0),(5890,'ROOT,ULT:VENDOR','home_page_testimonials',87,92,'S','B',30,'N','',0),(5891,'ULT:ROOT','testimonials_from_all_stores',87,92,'C','N',40,'N','',0),(5892,'ROOT,STOREFRONT','cz_animation_time',93,94,'I','200',0,'N','',0),(5893,'ROOT,STOREFRONT','cz_zoom_position',93,94,'S','3',10,'N','',0),(5894,'ROOT,STOREFRONT','information',95,96,'H','',0,'N','',0),(5895,'ROOT,STOREFRONT','clear_url',95,96,'O','',10,'N','fn_google_sitemap_clear_url_info',0),(5896,'ROOT,STOREFRONT','site_setting',95,96,'H','',20,'N','',0),(5897,'ROOT,STOREFRONT','site_change',95,96,'S','daily',30,'N','',0),(5898,'ROOT,STOREFRONT','site_priority',95,96,'S','1',40,'N','',0),(5899,'ROOT,STOREFRONT','products_setting',95,96,'H','',50,'N','',0),(5900,'ROOT,STOREFRONT','include_products',95,96,'C','Y',60,'N','',0),(5901,'ROOT,STOREFRONT','products_change',95,96,'S','daily',70,'N','',0),(5902,'ROOT,STOREFRONT','products_priority',95,96,'S','0.5',80,'N','',0),(5903,'ROOT,STOREFRONT','categories_setting',95,96,'H','',90,'N','',0),(5904,'ROOT,STOREFRONT','include_categories',95,96,'C','Y',100,'N','',0),(5905,'ROOT,STOREFRONT','categories_change',95,96,'S','daily',110,'N','',0),(5906,'ROOT,STOREFRONT','categories_priority',95,96,'S','0.5',120,'N','',0),(5907,'ROOT,STOREFRONT','pages_setting',95,96,'H','',130,'N','',0),(5908,'ROOT,STOREFRONT','include_pages',95,96,'C','Y',140,'N','',0),(5909,'ROOT,STOREFRONT','pages_change',95,96,'S','daily',150,'N','',0),(5910,'ROOT,STOREFRONT','pages_priority',95,96,'S','0.5',160,'N','',0),(5911,'ROOT,STOREFRONT','extended_setting',95,96,'H','',170,'N','',0),(5912,'ROOT,STOREFRONT','include_extended',95,96,'C','Y',180,'N','',0),(5913,'ROOT,STOREFRONT','extended_change',95,96,'S','daily',190,'N','',0),(5914,'ROOT,STOREFRONT','extended_priority',95,96,'S','0.5',200,'N','',0),(5915,'ROOT','cron_password',97,98,'I','MYPASS',0,'N','',0),(5916,'ROOT,STOREFRONT','price_list_info',99,100,'O','',0,'N','fn_price_list_info',0),(5917,'ROOT,ULT:VENDOR','price_list_fields',99,100,'B','#M#product_code=Y&product=Y&amount=Y&price=Y',10,'N','',0),(5918,'ROOT,ULT:VENDOR','price_list_sorting',99,100,'S','product_code',20,'N','',0),(5919,'ROOT,ULT:VENDOR','group_by_category',99,100,'C','Y',30,'N','',0),(5920,'ROOT,ULT:VENDOR','include_options',99,100,'C','N',40,'N','',0),(5921,'ROOT','general_info',101,102,'O','',0,'N','fn_janrain_generate_info',0),(5922,'ROOT','apikey',101,102,'I','',10,'N','',0),(5923,'ROOT','appdomain',101,102,'I','',20,'N','',0),(5924,'ROOT,STOREFRONT','icons_pack',103,104,'S','flat_32x32',0,'N','',0),(5925,'ROOT','autogen_email',103,104,'C','N',10,'N','',0),(5926,'ROOT,STOREFRONT','main_store_mode',105,106,'R','catalog',0,'N','',0),(5927,'ROOT,STOREFRONT','add_to_cart_empty_buy_now_url',105,106,'C','N',10,'N','',0),(5928,'ROOT','settings',107,108,'E','settings.tpl',0,'N','',0),(5929,'ROOT','cron_key',107,108,'D','U0HUOsAHgF36RAko',10,'N','',0),(5930,'ROOT,STOREFRONT','information',109,110,'H','',0,'N','',0),(5931,'ROOT,STOREFRONT','personal_information',109,110,'O','',10,'N','fn_rus_personal_data_processing_information',0),(5932,'ROOT,STOREFRONT','settings',109,110,'H','',20,'N','',0),(5933,'ROOT,STOREFRONT','subscribe_confidentiality',109,110,'C','Y',30,'N','',0),(5934,'ROOT,STOREFRONT','request_active_consent',109,110,'C','Y',40,'N','',0);
 /*!40000 ALTER TABLE `cscart_settings_objects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4941,16 +4932,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_settings_sections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_settings_sections` (
-  `section_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) unsigned NOT NULL,
+  `section_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int unsigned NOT NULL,
   `edition_type` set('NONE','ROOT','VENDOR','STOREFRONT','MVE:NONE','MVE:ROOT','MVE:STOREFRONT','ULT:NONE','ULT:ROOT','ULT:VENDOR','ULT:VENDORONLY','ULT:STOREFRONT') NOT NULL DEFAULT 'ROOT',
   `name` varchar(128) NOT NULL DEFAULT '',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `type` enum('CORE','ADDON','TAB','SEPARATE_TAB') NOT NULL DEFAULT 'CORE',
   PRIMARY KEY (`section_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=111 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4969,14 +4960,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_settings_variants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_settings_variants` (
-  `variant_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `object_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `variant_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `object_id` mediumint unsigned NOT NULL DEFAULT '0',
   `name` varchar(64) NOT NULL DEFAULT '',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`variant_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2200 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2200 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4995,16 +4986,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_settings_vendor_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_settings_vendor_values` (
-  `object_id` mediumint(8) unsigned NOT NULL,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `object_id` mediumint unsigned NOT NULL,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   `value` text,
   PRIMARY KEY (`object_id`,`company_id`,`storefront_id`),
   KEY `storefront_id` (`storefront_id`),
   KEY `company_id` (`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5022,16 +5013,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipment_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipment_items` (
-  `item_id` int(11) unsigned NOT NULL,
-  `shipment_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` int(11) unsigned NOT NULL DEFAULT '0',
+  `item_id` int unsigned NOT NULL,
+  `shipment_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`,`shipment_id`),
   KEY `shipment_id` (`shipment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5049,18 +5040,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipments` (
-  `shipment_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `shipping_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `shipment_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `shipping_id` mediumint unsigned NOT NULL DEFAULT '0',
   `tracking_number` varchar(255) NOT NULL DEFAULT '',
   `carrier` varchar(255) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `comments` mediumtext,
   `status` char(1) NOT NULL DEFAULT 'P',
   PRIMARY KEY (`shipment_id`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5078,15 +5069,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipping_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipping_descriptions` (
-  `shipping_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `shipping_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `shipping` varchar(255) NOT NULL DEFAULT '',
   `delivery_time` varchar(64) NOT NULL DEFAULT '',
   `description` mediumtext,
   PRIMARY KEY (`shipping_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5105,16 +5096,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipping_rates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipping_rates` (
-  `rate_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `shipping_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `destination_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `rate_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `shipping_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `destination_id` mediumint unsigned NOT NULL DEFAULT '0',
   `base_rate` decimal(12,2) unsigned NOT NULL DEFAULT '0.00',
   `rate_value` text,
   PRIMARY KEY (`rate_id`),
   UNIQUE KEY `shipping_rate` (`shipping_id`,`destination_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=144 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5133,13 +5124,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipping_service_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipping_service_descriptions` (
-  `service_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `service_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL DEFAULT '',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`service_id`,`lang_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=510 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=510 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5158,16 +5149,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipping_services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipping_services` (
-  `service_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `service_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
   `module` varchar(32) NOT NULL DEFAULT '',
   `code` varchar(64) NOT NULL DEFAULT '',
   `sp_file` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`service_id`),
   KEY `sa` (`service_id`,`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=510 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=510 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5186,14 +5177,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shipping_time_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shipping_time_descriptions` (
-  `shipping_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `destination_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `shipping_id` int unsigned NOT NULL DEFAULT '0',
+  `destination_id` int unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `delivery_time` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`shipping_id`,`destination_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5211,20 +5202,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_shippings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_shippings` (
-  `shipping_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `shipping_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `destination` char(1) NOT NULL DEFAULT 'I',
   `min_weight` decimal(13,3) NOT NULL DEFAULT '0.000',
   `max_weight` decimal(13,3) NOT NULL DEFAULT '0.000',
   `usergroup_ids` varchar(255) NOT NULL DEFAULT '0',
   `rate_calculation` char(1) NOT NULL DEFAULT 'M',
-  `service_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `service_id` mediumint unsigned NOT NULL DEFAULT '0',
   `service_params` text,
   `localization` varchar(255) NOT NULL DEFAULT '',
   `tax_ids` varchar(255) NOT NULL DEFAULT '',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'D',
   `free_shipping` char(1) NOT NULL DEFAULT 'N',
   `is_address_required` char(1) NOT NULL DEFAULT 'Y',
@@ -5232,7 +5223,7 @@ CREATE TABLE `cscart_shippings` (
   KEY `position` (`position`),
   KEY `localization` (`localization`),
   KEY `c_status` (`usergroup_ids`,`min_weight`,`max_weight`,`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5251,17 +5242,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sitemap_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sitemap_links` (
-  `link_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `link_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `link_href` varchar(255) NOT NULL DEFAULT '',
-  `section_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `section_id` mediumint unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `link_type` varchar(255) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`link_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5280,15 +5271,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sitemap_sections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sitemap_sections` (
-  `section_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `section_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
   `section_type` varchar(255) NOT NULL DEFAULT '1',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`section_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5307,13 +5298,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_state_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_state_descriptions` (
-  `state_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `state_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `state` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`state_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5332,9 +5323,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_states`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_states` (
-  `state_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `state_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `country_code` varchar(2) NOT NULL DEFAULT '',
   `code` varchar(32) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
@@ -5342,7 +5333,7 @@ CREATE TABLE `cscart_states` (
   UNIQUE KEY `cs` (`country_code`,`code`),
   KEY `code` (`code`),
   KEY `country_code` (`country_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=820 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=820 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5361,9 +5352,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_static_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_static_data` (
-  `param_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `param_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `param` varchar(255) NOT NULL DEFAULT '',
   `param_2` varchar(255) NOT NULL DEFAULT '',
   `param_3` varchar(255) NOT NULL DEFAULT '',
@@ -5373,15 +5364,15 @@ CREATE TABLE `cscart_static_data` (
   `class` varchar(128) NOT NULL DEFAULT '',
   `section` char(1) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `position` smallint(5) NOT NULL DEFAULT '0',
-  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
+  `parent_id` mediumint unsigned NOT NULL DEFAULT '0',
   `id_path` varchar(255) NOT NULL DEFAULT '',
   `localization` varchar(255) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`param_id`),
   KEY `section` (`section`,`status`,`localization`),
   KEY `position` (`position`)
-) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5390,7 +5381,7 @@ CREATE TABLE `cscart_static_data` (
 
 LOCK TABLES `cscart_static_data` WRITE;
 /*!40000 ALTER TABLE `cscart_static_data` DISABLE KEYS */;
-INSERT INTO `cscart_static_data` VALUES (152,'','','C:223:Y','','2','','ty-menu-item__apparel','A','A',10,0,'152','',1),(153,'','','C:166:Y','','2','','ty-menu-item__electronics','A','A',20,0,'153','',1),(154,'','','C:203:Y','','2','','ty-menu-item__sport','A','A',30,0,'154','',1),(155,'','','C:250:Y','','2','','ty-menu-item__office','A','A',40,0,'155','',1),(158,'promotions.list','','','','2','','ty-menu-item__promotions','A','A',120,0,'158','',1),(159,'product_features.view_all&filter_id=10','','','','2','','ty-menu-item__brands','A','A',80,0,'159','',1),(160,'products.newest','','','','2','','ty-menu-item__newest','A','A',90,0,'160','',1),(161,'products.bestsellers','','','','2','','ty-menu-item__hits','A','A',100,0,'161','',1),(162,'products.on_sale','','','','2','','ty-menu-item__sale','A','A',110,0,'162','',1),(163,'index.php?dispatch=pages.view&page_id=19','','','','1','','ty-quick-menu-item__gift','A','A',10,183,'183/163','',1),(165,'index.php?dispatch=pages.view&page_id=22','','','','1','','ty-quick-menu__delivery','A','A',30,0,'165','',1),(167,'index.php?dispatch=store_locator.search','','','','1','','ty-quick-menu__pickup','A','A',50,0,'167','',1),(168,'index.php?dispatch=pages.view&page_id=20','','','','1','','ty-quick-menu__contacts','A','A',0,183,'183/168','',1),(169,'index.php?dispatch=pages.view&page_id=2','','','','3','','','A','A',0,0,'169','',1),(170,'index.php?dispatch=pages.view&page_id=7','','','','3','','','A','A',0,0,'170','',1),(171,'index.php?dispatch=discussion.view&thread_id=26','','','','3','','','A','A',0,0,'171','',1),(172,'index.php?dispatch=pages.view&page_id=23','','','','3','','','A','A',0,0,'172','',1),(173,'index.php?dispatch=pages.view&page_id=19','','','','3','','','A','A',0,0,'173','',1),(174,'sitemap.view','','','','3','','','A','A',0,0,'174','',1),(175,'index.php?dispatch=pages.view&page_id=22','','','','4','','','A','A',0,0,'175','',1),(176,'index.php?dispatch=pages.view&page_id=21','','','','4','','','A','A',0,0,'176','',1),(177,'index.php?dispatch=store_locator.search','','','','4','','','A','A',0,0,'177','',1),(178,'','','C:264:Y','','2','','ty-menu-item__media','A','A',45,0,'178','',1),(182,'','','C:0:N','','2','','ty-menu-item__products','A','A',0,0,'182','',1),(184,'index.php?dispatch=pages.view&page_id=21','','','','1','','','A','A',30,183,'183/184','',1),(183,'','','','','1','','ty-quick-menu-item__place-order','A','A',70,0,'183','',1),(189,'index.php?dispatch=pages.view&page_id=23','','','','1','','','A','A',0,188,'188/189','',1),(190,'index.php?dispatch=pages.view&page_id=19','','','','1','','','A','A',0,188,'188/190','',1),(164,'index.php?dispatch=pages.view&page_id=23','','','','1','','ty-quick-menu-item__points','A','A',10,0,'164','',1);
+INSERT INTO `cscart_static_data` VALUES (191,'protocol.convert','','','','2','N','','A','A',10,0,'191','',1),(192,'index.index','','','','2','N','','A','A',0,0,'192','',1),(163,'index.php?dispatch=pages.view&page_id=19','','','','1','','ty-quick-menu-item__gift','A','A',10,183,'183/163','',1),(165,'index.php?dispatch=pages.view&page_id=22','','','','1','','ty-quick-menu__delivery','A','A',30,0,'165','',1),(167,'index.php?dispatch=store_locator.search','','','','1','','ty-quick-menu__pickup','A','A',50,0,'167','',1),(168,'index.php?dispatch=pages.view&page_id=20','','','','1','','ty-quick-menu__contacts','A','A',0,183,'183/168','',1),(169,'index.php?dispatch=pages.view&page_id=2','','','','3','','','A','A',0,0,'169','',1),(170,'index.php?dispatch=pages.view&page_id=7','','','','3','','','A','A',0,0,'170','',1),(171,'index.php?dispatch=discussion.view&thread_id=26','','','','3','','','A','A',0,0,'171','',1),(172,'index.php?dispatch=pages.view&page_id=23','','','','3','','','A','A',0,0,'172','',1),(173,'index.php?dispatch=pages.view&page_id=19','','','','3','','','A','A',0,0,'173','',1),(174,'sitemap.view','','','','3','','','A','A',0,0,'174','',1),(175,'index.php?dispatch=pages.view&page_id=22','','','','4','','','A','A',0,0,'175','',1),(176,'index.php?dispatch=pages.view&page_id=21','','','','4','','','A','A',0,0,'176','',1),(177,'index.php?dispatch=store_locator.search','','','','4','','','A','A',0,0,'177','',1),(184,'index.php?dispatch=pages.view&page_id=21','','','','1','','','A','A',30,183,'183/184','',1),(183,'','','','','1','','ty-quick-menu-item__place-order','A','A',70,0,'183','',1),(189,'index.php?dispatch=pages.view&page_id=23','','','','1','','','A','A',0,188,'188/189','',1),(190,'index.php?dispatch=pages.view&page_id=19','','','','1','','','A','A',0,188,'188/190','',1),(164,'index.php?dispatch=pages.view&page_id=23','','','','1','','ty-quick-menu-item__points','A','A',10,0,'164','',1);
 /*!40000 ALTER TABLE `cscart_static_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5400,13 +5391,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_static_data_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_static_data_descriptions` (
-  `param_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `param_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `descr` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`param_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5415,7 +5406,7 @@ CREATE TABLE `cscart_static_data_descriptions` (
 
 LOCK TABLES `cscart_static_data_descriptions` WRITE;
 /*!40000 ALTER TABLE `cscart_static_data_descriptions` DISABLE KEYS */;
-INSERT INTO `cscart_static_data_descriptions` VALUES (152,'ru','Одежда'),(153,'ru','Электроника'),(154,'ru','Спорт и отдых'),(155,'ru','Канцелярские товары'),(158,'ru','Акции'),(159,'ru','Бренды'),(160,'ru','Новинки'),(161,'ru','Хиты продаж'),(162,'ru','Скидки'),(163,'ru','Подарочные сертификаты'),(164,'ru','Бонусные баллы'),(165,'ru','Доставка и оплата'),(167,'ru','Пункты самовывоза'),(166,'ru','Возврат'),(168,'ru','Контакты'),(169,'ru','О компании'),(170,'ru','Блог магазина'),(171,'ru','Отзывы покупателей'),(172,'ru','Бонусные баллы'),(173,'ru','Подарочные сертификаты'),(174,'ru','Карта сайта'),(175,'ru','Доставка и оплата'),(176,'ru','Возврат'),(177,'ru','Store locator'),(178,'ru','Видеоигры'),(182,'ru','Все товары'),(183,'ru','Информация'),(184,'ru','Возврат'),(185,'ru','Доставка и оплата'),(186,'ru','Пункты самовывоза'),(187,'ru','Контакты'),(188,'ru','Подарки'),(189,'ru','Бонусные баллы'),(190,'ru','Подарочные сертификаты'),(192,'ru','Фильмы'),(191,'ru','Музыка'),(150,'ru','Подарочные сертификаты'),(151,'ru','Торговые марки'),(195,'ru','Новинки'),(196,'ru','Хиты продаж'),(194,'ru','Одежда'),(140,'ru','Подарочные сертификаты'),(193,'ru','напишите нам'),(152,'en','Apparel'),(153,'en','Electronics'),(154,'en','Sports & Outdoors'),(155,'en','Office Supplies'),(158,'en','Promotions'),(159,'en','Brands'),(160,'en','Newest'),(161,'en','Bestsellers'),(162,'en','Sales'),(163,'en','Gift certificates'),(164,'en','Reward points'),(165,'en','Delivery and payment'),(167,'en','Store locator'),(166,'en','Returns'),(168,'en','Contacts'),(169,'en','About us'),(170,'en','Blog'),(171,'en','Reviews'),(172,'en','Reward points'),(173,'en','Gift certificates'),(174,'en','Sitemap'),(175,'en','Delivery and payment'),(176,'en','Returns'),(177,'en','Store locator'),(178,'en','Media'),(182,'en','Catalog'),(183,'en','Information'),(184,'en','Returns'),(185,'en','Delivery and payment'),(186,'en','Store locator'),(187,'en','Contacts'),(188,'en','Gifts'),(189,'en','Reward points'),(190,'en','Gift certificates'),(192,'en','Cinema'),(191,'en','Music'),(150,'en','Подарочные сертификаты'),(151,'en','Торговые марки'),(195,'en','Новинки'),(196,'en','Хиты продаж'),(194,'en','Одежда'),(140,'en','Подарочные сертификаты'),(193,'en','напишите нам');
+INSERT INTO `cscart_static_data_descriptions` VALUES (163,'ru','Подарочные сертификаты'),(164,'ru','Бонусные баллы'),(165,'ru','Доставка и оплата'),(167,'ru','Пункты самовывоза'),(166,'ru','Возврат'),(168,'ru','Контакты'),(169,'ru','О компании'),(170,'ru','Блог магазина'),(171,'ru','Отзывы покупателей'),(172,'ru','Бонусные баллы'),(173,'ru','Подарочные сертификаты'),(174,'ru','Карта сайта'),(175,'ru','Доставка и оплата'),(176,'ru','Возврат'),(177,'ru','Store locator'),(183,'ru','Информация'),(184,'ru','Возврат'),(185,'ru','Доставка и оплата'),(186,'ru','Пункты самовывоза'),(187,'ru','Контакты'),(188,'ru','Подарки'),(189,'ru','Бонусные баллы'),(190,'ru','Подарочные сертификаты'),(192,'ru','Главная'),(191,'ru','Конвертация в протокол'),(150,'ru','Подарочные сертификаты'),(151,'ru','Торговые марки'),(195,'ru','Новинки'),(196,'ru','Хиты продаж'),(194,'ru','Одежда'),(140,'ru','Подарочные сертификаты'),(193,'ru','напишите нам'),(163,'en','Gift certificates'),(164,'en','Reward points'),(165,'en','Delivery and payment'),(167,'en','Store locator'),(166,'en','Returns'),(168,'en','Contacts'),(169,'en','About us'),(170,'en','Blog'),(171,'en','Reviews'),(172,'en','Reward points'),(173,'en','Gift certificates'),(174,'en','Sitemap'),(175,'en','Delivery and payment'),(176,'en','Returns'),(177,'en','Store locator'),(183,'en','Information'),(184,'en','Returns'),(185,'en','Delivery and payment'),(186,'en','Store locator'),(187,'en','Contacts'),(188,'en','Gifts'),(189,'en','Reward points'),(190,'en','Gift certificates'),(192,'en','Главная'),(191,'en','Конвертация в протокол'),(150,'en','Подарочные сертификаты'),(151,'en','Торговые марки'),(195,'en','Новинки'),(196,'en','Хиты продаж'),(194,'en','Одежда'),(140,'en','Подарочные сертификаты'),(193,'en','напишите нам');
 /*!40000 ALTER TABLE `cscart_static_data_descriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5425,14 +5416,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_status_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_status_data` (
-  `status_id` mediumint(8) unsigned NOT NULL,
+  `status_id` mediumint unsigned NOT NULL,
   `param` char(255) NOT NULL DEFAULT '',
   `value` char(255) NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`status_id`,`param`),
   KEY `inventory` (`value`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5451,15 +5442,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_status_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_status_descriptions` (
-  `status_id` mediumint(8) unsigned NOT NULL,
+  `status_id` mediumint unsigned NOT NULL,
   `description` varchar(255) NOT NULL DEFAULT '',
   `email_subj` varchar(255) NOT NULL DEFAULT '',
   `email_header` text,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`status_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5478,17 +5469,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_statuses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_statuses` (
-  `status_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `status_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'O',
   `is_default` char(1) NOT NULL DEFAULT 'N',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`status_id`),
   UNIQUE KEY `status` (`status`,`type`),
   KEY `position` (`position`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5507,12 +5498,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storage_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storage_data` (
   `data_key` varchar(255) NOT NULL DEFAULT '',
   `data` mediumblob,
   PRIMARY KEY (`data_key`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5521,7 +5512,7 @@ CREATE TABLE `cscart_storage_data` (
 
 LOCK TABLES `cscart_storage_data` WRITE;
 /*!40000 ALTER TABLE `cscart_storage_data` DISABLE KEYS */;
-INSERT INTO `cscart_storage_data` VALUES ('store_mode',''),('addons_snapshots',_binary '099f8e404ffb885933249ce63bd69cda,9f71cf66aabc45aca700ccd19d277437,0ad509f77398848a3504be8b37afde1d,abb2bf1798bd33606ee6c802a0caf53f,bf75cdbbbc35c3d9145c12f6bedd68c1,f424e48110cb09efeebcd838c2b58f7f,0143645ab3db01157fe38f2dea47af02,1bbd7406923feb3713612e84d868504e,bc792ef4cd918e3beb2836f4f657c8f0,f9bd6eb605581e8fb2a211dee0e31b6a,69c259a96ca39c83140e4a33e3d8463b,68f34003ad65fea2e57389abc61b6418,8aed7acb078816d0204eb41193dc5e10,aef0bcf7175ee3f40ad6f2e5ec1de84b,6b2141f5d72ac64128f2a158fd2684bf,23929df73d13ef6036e1033afb3d9ae9,16e74d81db3b6a7e68ccd0066eda0a80,14ee9387a962689b36506d2dc9941037,1bc2a250fc99104943b783805e254a2c'),('cache_id',_binary '1629475834'),('yandex_money_postponed_order_status',_binary 'A'),('yandex_money_refunded_order_status',_binary 'E'),('cart_products_next_check',_binary '1629517827'),('allowed_number_of_stores',_binary '1'),('last_session_gc_execution_time',_binary '1629480556'),('dev_mode',_binary 'a:1:{s:13:\"compile_check\";b:1;}');
+INSERT INTO `cscart_storage_data` VALUES ('store_mode',''),('addons_snapshots',_binary '099f8e404ffb885933249ce63bd69cda,9f71cf66aabc45aca700ccd19d277437,0ad509f77398848a3504be8b37afde1d,abb2bf1798bd33606ee6c802a0caf53f,bf75cdbbbc35c3d9145c12f6bedd68c1,f424e48110cb09efeebcd838c2b58f7f,0143645ab3db01157fe38f2dea47af02,1bbd7406923feb3713612e84d868504e,bc792ef4cd918e3beb2836f4f657c8f0,f9bd6eb605581e8fb2a211dee0e31b6a,69c259a96ca39c83140e4a33e3d8463b,68f34003ad65fea2e57389abc61b6418,8aed7acb078816d0204eb41193dc5e10,aef0bcf7175ee3f40ad6f2e5ec1de84b,6b2141f5d72ac64128f2a158fd2684bf,23929df73d13ef6036e1033afb3d9ae9,16e74d81db3b6a7e68ccd0066eda0a80,14ee9387a962689b36506d2dc9941037,1bc2a250fc99104943b783805e254a2c'),('cache_id',_binary '1629475834'),('yandex_money_postponed_order_status',_binary 'A'),('yandex_money_refunded_order_status',_binary 'E'),('cart_products_next_check',_binary '1629606370'),('allowed_number_of_stores',_binary '1'),('last_session_gc_execution_time',_binary '1629563037'),('dev_mode',_binary 'a:1:{s:13:\"compile_check\";b:1;}'),('hd_request_code',_binary '3374852321');
 /*!40000 ALTER TABLE `cscart_storage_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5531,9 +5522,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_store_location_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_store_location_descriptions` (
-  `store_location_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `store_location_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(80) NOT NULL DEFAULT '',
   `description` mediumtext,
@@ -5542,7 +5533,7 @@ CREATE TABLE `cscart_store_location_descriptions` (
   `pickup_phone` varchar(128) NOT NULL DEFAULT '',
   `pickup_time` varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (`store_location_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5561,22 +5552,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_store_locations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_store_locations` (
-  `store_location_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `position` smallint(5) NOT NULL DEFAULT '0',
+  `store_location_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
   `country` char(2) NOT NULL DEFAULT '',
   `state` varchar(32) NOT NULL DEFAULT '',
   `latitude` double NOT NULL DEFAULT '0',
   `longitude` double NOT NULL DEFAULT '0',
   `localization` varchar(255) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT 'A',
-  `main_destination_id` int(11) unsigned DEFAULT NULL,
+  `main_destination_id` int unsigned DEFAULT NULL,
   `pickup_destinations_ids` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`store_location_id`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5595,14 +5586,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_stored_sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_stored_sessions` (
   `session_id` varchar(64) NOT NULL,
-  `expiry` int(11) unsigned NOT NULL,
+  `expiry` int unsigned NOT NULL,
   `data` blob,
   PRIMARY KEY (`session_id`),
   KEY `expiry` (`expiry`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5611,7 +5602,7 @@ CREATE TABLE `cscart_stored_sessions` (
 
 LOCK TABLES `cscart_stored_sessions` WRITE;
 /*!40000 ALTER TABLE `cscart_stored_sessions` DISABLE KEYS */;
-INSERT INTO `cscart_stored_sessions` VALUES ('c37b4d2573bce768bc7a86277e5636ed-0-A',1630685577,_binary 'a:6:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079427;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079427;}s:26:\"checkout_customer_location\";a:1:{s:5:\"value\";a:6:{s:7:\"country\";s:2:\"RU\";s:5:\"state\";s:3:\"ULY\";s:4:\"city\";s:18:\"Ульяновск\";s:7:\"zipcode\";s:6:\"432000\";s:7:\"address\";s:14:\"Ленина 1\";s:11:\"is_detected\";b:1;}}s:32:\"checkout_customer_destination_id\";a:1:{s:5:\"value\";b:0;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}}'),('d82fc1aca68d9956b2e8bf252cea3baa-1-C',1630692604,_binary 'a:3:{s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630087804;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079454;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079454;}}'),('a92fbe4cccf8ca85f2e9b846f3491214-1-C',1630690572,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085772;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079492;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079492;}}'),('11aca36f8ea380d52f7fa43bb3a76575-1-C',1630684752,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630079952;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079935;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079935;}}'),('479ceff10374ef7fff3b532f4b37f3c9-1-C',1630686365,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630081565;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630081565;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630081565;}}'),('dccc8e63560db792a13cefd7ad2f853b-1-C',1630690226,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085426;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630085426;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630085426;}}');
+INSERT INTO `cscart_stored_sessions` VALUES ('c37b4d2573bce768bc7a86277e5636ed-0-A',1630685577,_binary 'a:6:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079427;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079427;}s:26:\"checkout_customer_location\";a:1:{s:5:\"value\";a:6:{s:7:\"country\";s:2:\"RU\";s:5:\"state\";s:3:\"ULY\";s:4:\"city\";s:18:\"Ульяновск\";s:7:\"zipcode\";s:6:\"432000\";s:7:\"address\";s:14:\"Ленина 1\";s:11:\"is_detected\";b:1;}}s:32:\"checkout_customer_destination_id\";a:1:{s:5:\"value\";b:0;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}}'),('d82fc1aca68d9956b2e8bf252cea3baa-1-C',1630692604,_binary 'a:3:{s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630087804;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079454;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079454;}}'),('a92fbe4cccf8ca85f2e9b846f3491214-1-C',1630690572,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085772;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079492;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079492;}}'),('11aca36f8ea380d52f7fa43bb3a76575-1-C',1630684752,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630079952;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630079935;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630079935;}}'),('479ceff10374ef7fff3b532f4b37f3c9-1-C',1630686365,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630081565;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630081565;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630081565;}}'),('dccc8e63560db792a13cefd7ad2f853b-1-C',1630690226,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630085426;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630085426;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630085426;}}'),('0e8d9b6cc07d6266af6c3f22f2449875-1-C',1630772938,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168138;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630097926;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630097926;}}'),('cbb25661edb02c148d0af00168e995bc-1-C',1630704637,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630099837;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630099837;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630099837;}}'),('ea5ce4c845a0af15d8a63ac3fb90b69f-1-C',1630704867,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630100067;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630100053;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630100053;}}'),('425e73f52bf01557fdcdcbff82fec73e-1-C',1630713398,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630108598;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630108598;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630108598;}}'),('84b543ea16092bcad56be5d415c9789e-1-C',1630715010,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110210;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110210;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110210;}}'),('444a3fa809bf6c251de8e3298c7e5746-1-C',1630715011,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110211;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110211;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110211;}}'),('faf6ed1cc210780eac68a74008be6493-1-C',1630715013,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110213;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110213;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110213;}}'),('be9b41c1d0b7fa9d087a8ec09df01554-1-C',1630715017,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110217;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110217;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110217;}}'),('793114b778eb494f0e838c3992fd1b51-1-C',1630715020,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110220;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110220;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110220;}}'),('fb28e40e55635fdc8706d2e3585e90e7-1-C',1630715022,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110222;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110222;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110222;}}'),('bfcdc03783e2406004df892e78124849-1-C',1630715023,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110223;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110223;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110223;}}'),('4eda94534f20c0adb6efe516f2820883-1-C',1630715023,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630110223;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630110223;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630110223;}}'),('bd159d8418ecdb032ada3244892d8149-1-C',1630716904,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112104;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112104;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112104;}}'),('edf4918ed4527236ae330c14c2d5cdd7-1-C',1630716904,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112104;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112104;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112104;}}'),('58f5700b62ae450939420bd2812666d9-1-C',1630716904,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112104;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112104;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112104;}}'),('725b3fd42ccb27ed27488039682ff351-1-C',1630716905,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112105;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112105;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112105;}}'),('5ae3fb1723594c1da1880b74fc8169a9-1-C',1630716905,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112105;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112105;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112105;}}'),('291bd6f5ad18757a8baed46c05623c8a-1-C',1630716905,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112105;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112105;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112105;}}'),('31d15458bfefbf7f235810501d243fa1-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('5db96820d71c2ae808829bfeb2ac6192-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('6f7a4ea1caa5f687b608b4dbce9632c1-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('3fee0832a017cd1efc0b765334fdabc7-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('2bfd863ad72a173620806593457ee301-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('9f00ce042eb7f8c5cc4737d7273495da-1-C',1630716906,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112106;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112106;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112106;}}'),('5d954e4d78e18a5b17cd9ef82b7d3ada-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('68ad76b59a593f8c1ef83ccf5fe38d86-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('df6a900cbc9a9a95f6e8cd5de7892017-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('a218a3a8023826caae40cb626362652a-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('58ed47e4b2350320b9596e1e935d5dc5-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('f7b32267e11147474596dbd79263d86b-1-C',1630716907,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630112107;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630112107;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630112107;}}'),('94f2475e3df7277a743ed5dd41dea85d-1-C',1630719240,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630114440;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630114440;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630114440;}}'),('d5259ff6c5b0db94b8e2a6d96235e15d-1-C',1630720173,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630115373;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630115373;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630115373;}}'),('ba09666f86be80d2a623decd4ade780a-1-C',1630720719,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630115919;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630115919;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630115919;}}'),('2b14e965125a7232f06848f5c370c81f-1-C',1630720962,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630116162;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630116162;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630116162;}}'),('a4da1b0be7ef3e8fe7b70dc0511d8db6-1-C',1630726205,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630121405;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630121405;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630121405;}}'),('5493a4b7198b35c7756b392764a5cc6f-1-C',1630726915,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630122115;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630122115;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630122115;}}'),('35ff0396316771d579476e3b3e2a41b1-1-C',1630729568,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630124768;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630124768;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630124768;}}'),('afe7b790ec25ca3c066ab3d2e67585f2-1-C',1630732038,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630127238;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630127238;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630127238;}}'),('bbf13f252876c6b17e6874fe18423066-1-C',1630734759,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630129959;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630129959;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630129959;}}'),('b9dd71d0d80ef2a46b327df1f23394a1-1-C',1630734938,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130138;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130138;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130138;}}'),('c4b3396fceaf2dc5113bf562ad3b348a-1-C',1630734939,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130139;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130139;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130139;}}'),('e0fe9a79092c107c2b3cd2f2ece0a7ef-1-C',1630734939,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130139;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130139;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130139;}}'),('2ddba3e5d1c60898d15d934c9ee97675-1-C',1630734939,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130139;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130139;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130139;}}'),('5c3f972e8f03c4105c54191822734ba5-1-C',1630734940,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130140;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130140;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130140;}}'),('9dd029a2a520e2a1f78d6f9e23ab2e22-1-C',1630734943,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130143;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130143;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130143;}}'),('e8181bcd5c172e627603c93a135919b9-1-C',1630734944,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630130144;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630130144;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630130144;}}'),('c0b94a783946c02682b8ab6b33684361-1-C',1630735972,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630131172;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630131172;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630131172;}}'),('279ca7035c1630ad59ce614c1595a43f-1-C',1630743882,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139082;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139082;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139082;}}'),('874509576beac8aaebb541f2b43ba002-1-C',1630743883,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139083;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139083;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139083;}}'),('fcf9fdc1b4f8f1b52311fed609f45511-1-C',1630743884,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139084;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139084;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139084;}}'),('d50a2e2874b945bae9c07099f06ce0ce-1-C',1630743885,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139085;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139085;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139085;}}'),('1bc79d36bca55aa53bd495b1669e6923-1-C',1630743885,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139085;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139085;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139085;}}'),('295e1b6eca9ba0e1317d7cb4ebb9ebba-1-C',1630743888,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139088;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630139088;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139088;}}'),('ba2556df88189ce210c68c81c7725a8d-1-C',1630744243,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630139443;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630139443;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630139443;}}'),('95fddc132adb3872932742b38a333b4b-1-C',1630773348,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168548;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630141164;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630141164;}}'),('3d3309bfadef5bbc786284259ebd573f-1-C',1630746553,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630141753;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630141753;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630141753;}}'),('8c3d953cc0e8644189c1f65af69501ae-0-A',1630771834,_binary 'a:3:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630143841;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630143841;}}'),('908fc1d06fd6976a7f191047e0491c55-1-C',1630751556,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630146756;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630146756;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630146756;}}'),('7226b08e6e94f0dfa9384b393a9e6e5c-1-C',1630753455,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630148655;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630148655;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630148655;}}'),('135435db1efc710b929cb5e6685946a0-1-C',1630755435,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630150635;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630150635;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630150635;}}'),('8958b1f96650b8abc0c219de92a35ea5-1-C',1630755435,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630150635;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630150635;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630150635;}}'),('7d1c312fa3b52f904fa990ccda8ee699-1-C',1630755486,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630150686;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630150686;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630150686;}}'),('949e18c8f8ff3e1e363a94cf98c16c6f-1-C',1630756390,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630151590;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630151590;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630151590;}}'),('0359c91ffe903f25bef591aec28ca4a7-1-C',1630757004,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152204;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152204;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152204;}}'),('9013cdc383692dc7c24629812e8f47bc-1-C',1630757004,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152204;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152204;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152204;}}'),('04db35958037a842b47c6f36a119b2e8-1-C',1630757007,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152207;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152207;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152207;}}'),('f070c834ef2166d4a2c3c027e377fd6d-1-C',1630757010,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152210;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152210;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152210;}}'),('979d4bd2f4f7a1528654249ed38f24a7-1-C',1630757012,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152212;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152212;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152212;}}'),('071cd79af346d807b3da2b196e005ed1-1-C',1630757012,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152212;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152212;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152212;}}'),('74253210a0f31516e8869c010b5f5fbb-1-C',1630757015,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152215;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152215;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152215;}}'),('1bf99c7f28859ba34c669494c074f597-1-C',1630757015,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152215;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152215;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152215;}}'),('dc3d3491f54efaf2d09c9cf3a8770a40-1-C',1630757017,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152217;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152217;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152217;}}'),('e3a224b13315227fc8a44b56baf98238-1-C',1630757018,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152218;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152218;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152218;}}'),('ea3e5a616869efc7c044b06dbc704a8b-1-C',1630757527,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152727;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152727;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152727;}}'),('8a06149885460360ee33b854d1690c62-1-C',1630757527,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152727;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152727;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152727;}}'),('f1bb547b2c0964098c6d5294b6b89129-1-C',1630757527,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152727;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152727;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152727;}}'),('a9c7977660188fdce26017b8ffb58252-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('938560876223b4137e475a8cc10f4e70-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('0a7a4622db5e2ebfe146c93ebd0ea2ad-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('d8219c13d9e13cf414fb34fc9aed23dc-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('3c2062aea89c8aaa5e5adf381f3e036c-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('0c5fa91cf21dafa548324cfaf29905d2-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('f10d44f26c05f155c9fd71cdf29c22ff-1-C',1630757528,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630152728;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630152728;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630152728;}}'),('3d10f0073b918def1157d9f641930e34-1-C',1630759134,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630154334;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630154334;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630154334;}}'),('7f4453c8bb3111b68372e1cf3670242b-1-C',1630759372,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630154572;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630154572;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630154572;}}'),('8c206fe1fa9651632150b547725dfd05-1-C',1630759467,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630154667;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630154667;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630154667;}}'),('bf40dc47c7bb973d9cf82d41d9bcbcdc-1-C',1630772031,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167231;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156457;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156457;}}'),('543f811222949a6af17efdb835756f6b-0-A',1630772617,_binary 'a:6:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156482;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156482;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630158270;}s:8:\"descr_sl\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630158270;}}'),('f319368b4d7f7bbed7a5a287fa659851-1-C',1630761364,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630156564;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156564;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156564;}}'),('10f92c865a35e27e6b608ba431a1c8ab-1-C',1630761366,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630156566;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156566;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156566;}}'),('69bbf8c15446eff84e651ae05f9b86db-1-C',1630761367,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630156567;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156567;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156567;}}'),('0f465aaff1ef3639c069fe5c13b05e04-1-C',1630761368,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630156568;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156568;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156568;}}'),('5c6442899c80900c5ef623744f7cac0f-1-C',1630761715,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630156915;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630156915;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630156915;}}'),('33bff091a1bdf25176ca9264788e2f3b-1-C',1630764718,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630159918;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630159918;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630159918;}}'),('37af008954d2f46b053bd1bd3a397797-1-C',1630766276,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161476;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161476;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161476;}}'),('da3467d8de880ae4c5800677d2da087d-1-C',1630766283,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161483;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161483;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161483;}}'),('3b23f194929fb49c6d2d3e716bc17e38-1-C',1630766289,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630161489;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630161489;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630161489;}}'),('a9af7c5047a10a8e9c31fa3f8415096c-1-C',1630767475,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630162675;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630162675;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630162675;}}'),('c4a8e7189385d88c77fc0329b01a26a3-1-C',1630768741,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630163941;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630163941;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630163941;}}'),('c69f7d8607f1bf43c62c91bebe4cf295-1-C',1630771445,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630166645;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"en\";s:6:\"expiry\";i:1630166645;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630166645;}}'),('829de4e3b565818a00872c27bcd53a04-1-C',1630771987,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167187;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167187;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167187;}}'),('38f2bc5942e9ca19373511f0f849b6fd-0-A',1630772129,_binary 'a:3:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167329;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167329;}}'),('44ab182bc25cae40a469cc16620e00b6-1-C',1630772435,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167635;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167635;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167635;}}'),('650345e4b7abe5a0aff507f41924fbd0-1-C',1630772466,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167666;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167666;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167666;}}'),('c4e14096868cad3790e81bedd2a8c8d7-1-C',1630772468,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167668;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167668;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167668;}}'),('4e1bdf29b3fd08ded85c5924ee8382bb-1-C',1630772470,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167670;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167670;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167670;}}'),('9796d58ca9ee4edf9430a0eb4b73633f-1-C',1630772471,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167671;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167671;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167671;}}'),('693c85a62a2036e68572ab32669f2a83-1-C',1630772471,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167671;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167671;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167671;}}'),('d35d218368c26fd2cea05b3a3eea33c7-1-C',1630772475,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167675;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167675;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167675;}}'),('fedabafd9bfffcd3db7e15ca12cc6c9e-1-C',1630772476,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167676;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167676;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167676;}}'),('b85ea137789a540bcc86a8f0224cb29c-1-C',1630772480,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167680;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167680;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167680;}}'),('6310f24bdbfcfac88b3e42cb3d5e9203-1-C',1630772480,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167680;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167680;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167680;}}'),('569c237ca79d091737e31e92fa3e167f-1-C',1630772540,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167740;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167740;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167740;}}'),('5101092c993f1ce8fa8600018898e0e3-1-C',1630772562,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630167762;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630167762;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630167762;}}'),('fb18da4c0a4c5d9999329ec551b6b3de-0-A',1630772874,_binary 'a:4:{i:0;b:0;s:14:\"cart_languageA\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630168011;}s:19:\"secondary_currencyA\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630168011;}s:15:\"stored_layout_1\";a:1:{s:5:\"value\";s:1:\"1\";}}'),('b70cf9af43fc5451f92d42584364e4af-1-C',1630773746,_binary 'a:4:{i:0;b:0;s:10:\"company_id\";a:2:{s:5:\"value\";i:1;s:6:\"expiry\";i:1630168946;}s:14:\"cart_languageC\";a:2:{s:5:\"value\";s:2:\"ru\";s:6:\"expiry\";i:1630168946;}s:19:\"secondary_currencyC\";a:2:{s:5:\"value\";s:3:\"RUB\";s:6:\"expiry\";i:1630168946;}}');
 /*!40000 ALTER TABLE `cscart_stored_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5621,9 +5612,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts` (
-  `storefront_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Storefront ID',
+  `storefront_id` int NOT NULL AUTO_INCREMENT COMMENT 'Storefront ID',
   `url` varchar(256) NOT NULL DEFAULT '' COMMENT 'Storefront URL (host + path)',
   `redirect_customer` char(1) NOT NULL DEFAULT 'N' COMMENT 'Whether customers must be redirected from the storefront to a storefront with proper assigned countries',
   `is_default` char(1) NOT NULL DEFAULT 'N' COMMENT 'Whether a storefront is the default one. Default storefront cannot be deleted',
@@ -5633,7 +5624,7 @@ CREATE TABLE `cscart_storefronts` (
   `theme_name` varchar(128) NOT NULL DEFAULT '' COMMENT 'Theme that the storefront uses',
   `is_accessible_for_authorized_customers_only` char(1) NOT NULL DEFAULT 'N' COMMENT 'Storefront is accessible for authorized customers only',
   PRIMARY KEY (`storefront_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5642,7 +5633,7 @@ CREATE TABLE `cscart_storefronts` (
 
 LOCK TABLES `cscart_storefronts` WRITE;
 /*!40000 ALTER TABLE `cscart_storefronts` DISABLE KEYS */;
-INSERT INTO `cscart_storefronts` VALUES (1,'dev.cs-coding.com/rosatom','N','Y','N','','Simtech','bright_theme','N');
+INSERT INTO `cscart_storefronts` VALUES (1,'185.233.37.254','N','Y','N','','Simtech','bright_theme','N');
 /*!40000 ALTER TABLE `cscart_storefronts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5652,13 +5643,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_companies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_companies` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`company_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5677,13 +5668,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_countries` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   `country_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`storefront_id`,`country_code`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5701,13 +5692,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_currencies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_currencies` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `currency_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `currency_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`currency_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5725,13 +5716,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_languages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_languages` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `language_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `language_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`language_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5749,13 +5740,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_payments` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `payment_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `payment_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`payment_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5774,13 +5765,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_promotions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_promotions` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `promotion_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `promotion_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`promotion_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5798,13 +5789,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_storefronts_shippings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_storefronts_shippings` (
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `shipping_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `shipping_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`storefront_id`,`shipping_id`),
   KEY `idx_storefront_id` (`storefront_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5823,15 +5814,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_subscribers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_subscribers` (
-  `subscriber_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `subscriber_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`subscriber_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5849,13 +5840,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_sync_data_settings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_sync_data_settings` (
   `provider_id` varchar(128) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `settings_data` text,
   PRIMARY KEY (`provider_id`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5873,15 +5864,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_tag_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_tag_links` (
-  `tag_id` mediumint(8) unsigned NOT NULL,
+  `tag_id` mediumint unsigned NOT NULL,
   `object_type` char(1) NOT NULL DEFAULT 'P',
-  `object_id` mediumint(8) unsigned NOT NULL,
+  `object_id` mediumint unsigned NOT NULL,
   PRIMARY KEY (`object_type`,`object_id`,`tag_id`),
   KEY `tag_id` (`tag_id`),
   KEY `ids` (`tag_id`,`object_type`,`object_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5899,16 +5890,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_tags` (
-  `tag_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `tag_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   `tag` varchar(255) NOT NULL DEFAULT '',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'P',
   PRIMARY KEY (`tag_id`),
   UNIQUE KEY `tag` (`tag`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5926,13 +5917,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_tax_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_tax_descriptions` (
-  `tax_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `tax_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `tax` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`tax_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5951,16 +5942,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_tax_rates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_tax_rates` (
-  `rate_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `tax_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `destination_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `rate_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `tax_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `destination_id` mediumint unsigned NOT NULL DEFAULT '0',
   `rate_value` decimal(13,3) NOT NULL DEFAULT '0.000',
   `rate_type` char(1) NOT NULL DEFAULT '',
   PRIMARY KEY (`rate_id`),
   UNIQUE KEY `tax_rate` (`tax_id`,`destination_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5979,20 +5970,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_taxes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_taxes` (
-  `tax_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `tax_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `address_type` char(1) NOT NULL DEFAULT 'S',
   `status` char(1) NOT NULL DEFAULT 'D',
   `price_includes_tax` char(1) NOT NULL DEFAULT 'N',
   `display_including_tax` char(1) NOT NULL DEFAULT 'N',
   `display_info` char(1) NOT NULL DEFAULT '',
   `regnumber` varchar(255) NOT NULL DEFAULT '',
-  `priority` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `priority` mediumint unsigned NOT NULL DEFAULT '0',
   `tax_type` varchar(6) NOT NULL DEFAULT '',
   PRIMARY KEY (`tax_id`),
   KEY `c_status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6011,19 +6002,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_documents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_documents` (
-  `document_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `document_id` int unsigned NOT NULL AUTO_INCREMENT,
   `template` text,
   `default_template` text,
   `type` varchar(32) NOT NULL DEFAULT '',
   `code` varchar(128) NOT NULL DEFAULT '',
   `addon` varchar(32) NOT NULL DEFAULT '',
-  `updated` int(10) unsigned NOT NULL DEFAULT '0',
-  `created` int(10) unsigned NOT NULL DEFAULT '0',
+  `updated` int unsigned NOT NULL DEFAULT '0',
+  `created` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`document_id`),
   UNIQUE KEY `code` (`code`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6042,9 +6033,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_emails`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_emails` (
-  `template_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `template_id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(128) NOT NULL,
   `area` char(1) NOT NULL DEFAULT 'C',
   `status` char(1) NOT NULL DEFAULT 'A',
@@ -6055,11 +6046,11 @@ CREATE TABLE `cscart_template_emails` (
   `params_schema` text,
   `params` text,
   `addon` varchar(32) NOT NULL DEFAULT '',
-  `updated` int(10) unsigned NOT NULL DEFAULT '0',
-  `created` int(10) unsigned NOT NULL DEFAULT '0',
+  `updated` int unsigned NOT NULL DEFAULT '0',
+  `created` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`template_id`),
   UNIQUE KEY `template` (`code`,`area`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6078,9 +6069,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_internal_notifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_internal_notifications` (
-  `template_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `template_id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(128) NOT NULL,
   `area` char(1) NOT NULL DEFAULT 'C',
   `status` char(1) NOT NULL DEFAULT 'A',
@@ -6091,11 +6082,11 @@ CREATE TABLE `cscart_template_internal_notifications` (
   `params_schema` text,
   `params` text,
   `addon` varchar(32) NOT NULL DEFAULT '',
-  `updated` int(10) unsigned NOT NULL DEFAULT '0',
-  `created` int(10) unsigned NOT NULL DEFAULT '0',
+  `updated` int unsigned NOT NULL DEFAULT '0',
+  `created` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`template_id`),
   UNIQUE KEY `template` (`code`,`area`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6114,13 +6105,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_snippet_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_snippet_descriptions` (
-  `snippet_id` int(11) unsigned NOT NULL,
+  `snippet_id` int unsigned NOT NULL,
   `lang_code` varchar(2) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`snippet_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6139,9 +6130,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_snippets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_snippets` (
-  `snippet_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `snippet_id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(128) NOT NULL DEFAULT '',
   `type` varchar(32) NOT NULL DEFAULT '',
   `template` text,
@@ -6150,11 +6141,11 @@ CREATE TABLE `cscart_template_snippets` (
   `params` text,
   `handler` text,
   `addon` varchar(32) NOT NULL DEFAULT '',
-  `updated` int(11) unsigned NOT NULL DEFAULT '0',
-  `created` int(11) unsigned NOT NULL DEFAULT '0',
+  `updated` int unsigned NOT NULL DEFAULT '0',
+  `created` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`snippet_id`),
   UNIQUE KEY `code` (`code`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6173,13 +6164,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_table_column_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_table_column_descriptions` (
-  `column_id` int(11) unsigned NOT NULL,
+  `column_id` int unsigned NOT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`column_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6198,20 +6189,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_template_table_columns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_template_table_columns` (
-  `column_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `column_id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(128) DEFAULT NULL,
   `snippet_code` varchar(128) NOT NULL DEFAULT '',
   `snippet_type` varchar(32) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL DEFAULT '',
-  `position` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position` smallint unsigned NOT NULL DEFAULT '0',
   `template` text,
   `default_template` text,
   `addon` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`column_id`),
   KEY `snippet_idx` (`snippet_code`,`snippet_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6230,14 +6221,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_language_values`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_language_values` (
   `lang_code` char(2) NOT NULL DEFAULT '',
   `name` varchar(128) NOT NULL DEFAULT '',
   `value` text NOT NULL,
-  `company_id` int(11) unsigned NOT NULL,
+  `company_id` int unsigned NOT NULL,
   PRIMARY KEY (`lang_code`,`name`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6255,13 +6246,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_objects_sharing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_objects_sharing` (
-  `share_company_id` int(11) unsigned NOT NULL,
-  `share_object_id` mediumint(8) NOT NULL DEFAULT '0',
+  `share_company_id` int unsigned NOT NULL,
+  `share_object_id` mediumint NOT NULL DEFAULT '0',
   `share_object_type` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`share_object_id`,`share_company_id`,`share_object_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6270,7 +6261,7 @@ CREATE TABLE `cscart_ult_objects_sharing` (
 
 LOCK TABLES `cscart_ult_objects_sharing` WRITE;
 /*!40000 ALTER TABLE `cscart_ult_objects_sharing` DISABLE KEYS */;
-INSERT INTO `cscart_ult_objects_sharing` VALUES (1,0,'profile_fields'),(1,1,'pages'),(1,1,'store_locations'),(1,2,'pages'),(1,2,'store_locations'),(1,3,'pages'),(1,3,'store_locations'),(1,4,'store_locations'),(1,4,'usergroups'),(1,5,'store_locations'),(1,6,'banners'),(1,6,'pages'),(1,6,'profile_fields'),(1,6,'store_locations'),(1,7,'banners'),(1,7,'profile_fields'),(1,7,'store_locations'),(1,8,'banners'),(1,8,'profile_fields'),(1,8,'store_locations'),(1,9,'banners'),(1,9,'profile_fields'),(1,9,'store_locations'),(1,10,'profile_fields'),(1,10,'store_locations'),(1,11,'profile_fields'),(1,11,'store_locations'),(1,12,'store_locations'),(1,13,'store_locations'),(1,14,'profile_fields'),(1,14,'store_locations'),(1,15,'profile_fields'),(1,15,'store_locations'),(1,16,'banners'),(1,16,'profile_fields'),(1,16,'store_locations'),(1,17,'banners'),(1,17,'profile_fields'),(1,17,'store_locations'),(1,18,'banners'),(1,18,'payments'),(1,18,'profile_fields'),(1,18,'store_locations'),(1,19,'banners'),(1,19,'pages'),(1,19,'profile_fields'),(1,19,'store_locations'),(1,20,'pages'),(1,20,'profile_fields'),(1,20,'store_locations'),(1,21,'pages'),(1,21,'profile_fields'),(1,21,'store_locations'),(1,22,'pages'),(1,22,'profile_fields'),(1,22,'store_locations'),(1,23,'pages'),(1,23,'profile_fields'),(1,23,'store_locations'),(1,24,'pages'),(1,24,'profile_fields'),(1,24,'store_locations'),(1,25,'profile_fields'),(1,25,'store_locations'),(1,26,'profile_fields'),(1,26,'store_locations'),(1,27,'profile_fields'),(1,28,'profile_fields'),(1,29,'profile_fields'),(1,30,'profile_fields'),(1,31,'profile_fields'),(1,32,'profile_fields'),(1,33,'profile_fields'),(1,35,'profile_fields'),(1,36,'profile_fields');
+INSERT INTO `cscart_ult_objects_sharing` VALUES (1,0,'profile_fields'),(1,1,'pages'),(1,1,'store_locations'),(1,2,'pages'),(1,2,'store_locations'),(1,3,'pages'),(1,3,'store_locations'),(1,4,'store_locations'),(1,4,'usergroups'),(1,5,'store_locations'),(1,6,'pages'),(1,6,'profile_fields'),(1,6,'store_locations'),(1,7,'profile_fields'),(1,7,'store_locations'),(1,8,'profile_fields'),(1,8,'store_locations'),(1,9,'profile_fields'),(1,9,'store_locations'),(1,10,'profile_fields'),(1,10,'store_locations'),(1,11,'profile_fields'),(1,11,'store_locations'),(1,12,'store_locations'),(1,13,'store_locations'),(1,14,'profile_fields'),(1,14,'store_locations'),(1,15,'profile_fields'),(1,15,'store_locations'),(1,16,'profile_fields'),(1,16,'store_locations'),(1,17,'profile_fields'),(1,17,'store_locations'),(1,18,'payments'),(1,18,'profile_fields'),(1,18,'store_locations'),(1,19,'pages'),(1,19,'profile_fields'),(1,19,'store_locations'),(1,20,'pages'),(1,20,'profile_fields'),(1,20,'store_locations'),(1,21,'pages'),(1,21,'profile_fields'),(1,21,'store_locations'),(1,22,'pages'),(1,22,'profile_fields'),(1,22,'store_locations'),(1,23,'banners'),(1,23,'pages'),(1,23,'profile_fields'),(1,23,'store_locations'),(1,24,'pages'),(1,24,'profile_fields'),(1,24,'store_locations'),(1,25,'profile_fields'),(1,25,'store_locations'),(1,26,'profile_fields'),(1,26,'store_locations'),(1,27,'profile_fields'),(1,28,'profile_fields'),(1,29,'profile_fields'),(1,30,'profile_fields'),(1,31,'profile_fields'),(1,32,'profile_fields'),(1,33,'profile_fields'),(1,35,'profile_fields'),(1,36,'profile_fields');
 /*!40000 ALTER TABLE `cscart_ult_objects_sharing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6280,11 +6271,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_product_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_product_descriptions` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
-  `company_id` int(11) unsigned NOT NULL,
+  `company_id` int unsigned NOT NULL,
   `product` varchar(255) NOT NULL DEFAULT '',
   `shortname` varchar(255) NOT NULL DEFAULT '',
   `short_description` mediumtext NOT NULL,
@@ -6298,7 +6289,7 @@ CREATE TABLE `cscart_ult_product_descriptions` (
   PRIMARY KEY (`product_id`,`lang_code`,`company_id`),
   KEY `product_id` (`product_id`),
   KEY `company_id` (`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6316,17 +6307,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_product_option_variants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_product_option_variants` (
-  `variant_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `option_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL,
+  `variant_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `option_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL,
   `modifier` decimal(13,3) NOT NULL DEFAULT '0.000',
   `modifier_type` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`variant_id`,`company_id`),
   KEY `company_id` (`company_id`),
   KEY `option_id` (`option_id`,`variant_id`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6344,20 +6335,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_product_prices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_product_prices` (
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `percentage_discount` int(2) unsigned NOT NULL DEFAULT '0',
-  `lower_limit` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL,
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `percentage_discount` int unsigned NOT NULL DEFAULT '0',
+  `lower_limit` mediumint unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL,
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `usergroup` (`product_id`,`usergroup_id`,`lower_limit`,`company_id`),
   KEY `product_id` (`product_id`),
   KEY `company_id` (`company_id`),
   KEY `lower_limit` (`lower_limit`),
   KEY `usergroup_id` (`usergroup_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6375,15 +6366,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_ult_status_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_ult_status_descriptions` (
-  `company_id` int(11) unsigned NOT NULL,
-  `status_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int unsigned NOT NULL,
+  `status_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `email_subj` varchar(255) NOT NULL DEFAULT '',
   `email_header` text NOT NULL,
   `lang_code` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`status_id`,`lang_code`,`company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6401,13 +6392,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_user_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_user_data` (
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT '',
   `data` text,
   PRIMARY KEY (`user_id`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6416,7 +6407,7 @@ CREATE TABLE `cscart_user_data` (
 
 LOCK TABLES `cscart_user_data` WRITE;
 /*!40000 ALTER TABLE `cscart_user_data` DISABLE KEYS */;
-INSERT INTO `cscart_user_data` VALUES (1,'L','a:1:{i:2006356955;a:4:{s:4:\"func\";a:2:{i:0;s:16:\"fn_get_page_name\";i:1;s:2:\"24\";}s:3:\"url\";s:77:\"admin.php?dispatch=pages.update&page_id=24&come_from=&selected_section=blocks\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:4:\"page\";}}');
+INSERT INTO `cscart_user_data` VALUES (1,'L','a:2:{i:2006356955;a:4:{s:4:\"func\";a:2:{i:0;s:16:\"fn_get_page_name\";i:1;s:2:\"24\";}s:3:\"url\";s:77:\"admin.php?dispatch=pages.update&page_id=24&come_from=&selected_section=blocks\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:4:\"page\";}i:2853595133;a:4:{s:4:\"func\";a:2:{i:0;s:18:\"fn_get_banner_name\";i:1;s:2:\"23\";}s:3:\"url\";s:46:\"admin.php?dispatch=banners.update&banner_id=23\";s:4:\"icon\";s:0:\"\";s:4:\"text\";s:7:\"banners\";}}');
 /*!40000 ALTER TABLE `cscart_user_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6426,11 +6417,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_user_last_passwords`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_user_last_passwords` (
-  `user_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `user_id` int unsigned NOT NULL DEFAULT '0',
   `last_password` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6448,18 +6439,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_user_mailing_lists`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_user_mailing_lists` (
-  `subscriber_id` mediumint(8) unsigned NOT NULL,
-  `list_id` mediumint(8) unsigned NOT NULL,
+  `subscriber_id` mediumint unsigned NOT NULL,
+  `list_id` mediumint unsigned NOT NULL,
   `activation_key` varchar(32) NOT NULL DEFAULT '',
   `unsubscribe_key` varchar(32) NOT NULL DEFAULT '',
-  `confirmed` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `confirmed` tinyint unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `subscriber_list` (`list_id`,`subscriber_id`),
   KEY `subscriber_id` (`subscriber_id`),
   KEY `list_id` (`list_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6477,10 +6468,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_user_profiles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_user_profiles` (
-  `profile_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `profile_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `profile_type` char(1) NOT NULL DEFAULT 'P',
   `b_firstname` varchar(128) NOT NULL DEFAULT '',
   `b_lastname` varchar(128) NOT NULL DEFAULT '',
@@ -6504,11 +6495,11 @@ CREATE TABLE `cscart_user_profiles` (
   `s_phone` varchar(128) NOT NULL DEFAULT '',
   `s_address_type` varchar(255) NOT NULL DEFAULT '',
   `profile_name` varchar(32) NOT NULL DEFAULT '',
-  `profile_update_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `profile_update_timestamp` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`profile_id`),
   KEY `uid_p` (`user_id`,`profile_type`),
   KEY `profile_type` (`profile_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6527,28 +6518,28 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_user_session_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_user_session_products` (
-  `user_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `user_id` int unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `type` char(1) NOT NULL DEFAULT 'C',
   `user_type` char(1) NOT NULL DEFAULT 'R',
-  `item_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `item_id` int unsigned NOT NULL DEFAULT '0',
   `item_type` char(1) NOT NULL DEFAULT 'P',
-  `product_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `amount` mediumint(8) unsigned NOT NULL DEFAULT '1',
+  `product_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `amount` mediumint unsigned NOT NULL DEFAULT '1',
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
   `extra` blob,
   `session_id` varchar(64) NOT NULL DEFAULT '',
   `ip_address` varbinary(40) NOT NULL DEFAULT '',
-  `order_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `company_id` int(11) unsigned NOT NULL,
+  `order_id` mediumint unsigned NOT NULL DEFAULT '0',
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`type`,`user_type`,`item_id`,`company_id`),
   KEY `timestamp` (`timestamp`,`user_type`),
   KEY `session_id` (`session_id`),
   KEY `type` (`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6566,13 +6557,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_usergroup_descriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_usergroup_descriptions` (
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
   `lang_code` char(2) NOT NULL DEFAULT '',
   `usergroup` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`usergroup_id`,`lang_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6591,15 +6582,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_usergroup_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_usergroup_links` (
-  `link_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL,
-  `usergroup_id` mediumint(8) unsigned NOT NULL,
+  `link_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL,
+  `usergroup_id` mediumint unsigned NOT NULL,
   `status` char(1) NOT NULL DEFAULT 'D',
   PRIMARY KEY (`link_id`),
   UNIQUE KEY `user_id` (`user_id`,`usergroup_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6617,12 +6608,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_usergroup_privileges`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_usergroup_privileges` (
-  `usergroup_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `usergroup_id` mediumint unsigned NOT NULL DEFAULT '0',
   `privilege` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`usergroup_id`,`privilege`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6641,16 +6632,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_usergroups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_usergroups` (
-  `usergroup_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `usergroup_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT '',
   `type` char(1) NOT NULL DEFAULT 'C',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`usergroup_id`),
   KEY `c_status` (`usergroup_id`,`status`),
   KEY `status` (`status`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6669,18 +6660,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_users` (
-  `user_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `status` char(1) NOT NULL DEFAULT 'A',
   `user_type` char(1) NOT NULL DEFAULT 'C',
   `user_login` varchar(255) NOT NULL DEFAULT '',
   `referer` varchar(255) NOT NULL DEFAULT '',
   `is_root` char(1) NOT NULL DEFAULT 'N',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `last_login` int(11) unsigned NOT NULL DEFAULT '0',
-  `last_activity` int(11) unsigned NOT NULL DEFAULT '0',
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
+  `last_login` int unsigned NOT NULL DEFAULT '0',
+  `last_activity` int unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL DEFAULT '',
   `salt` varchar(10) NOT NULL DEFAULT '',
   `firstname` varchar(128) NOT NULL DEFAULT '',
@@ -6692,11 +6683,11 @@ CREATE TABLE `cscart_users` (
   `url` varchar(128) NOT NULL DEFAULT '',
   `tax_exempt` char(1) NOT NULL DEFAULT 'N',
   `lang_code` char(2) NOT NULL DEFAULT '',
-  `birthday` int(11) NOT NULL DEFAULT '0',
-  `purchase_timestamp_from` int(11) NOT NULL DEFAULT '0',
-  `purchase_timestamp_to` int(11) NOT NULL DEFAULT '0',
+  `birthday` int NOT NULL DEFAULT '0',
+  `purchase_timestamp_from` int NOT NULL DEFAULT '0',
+  `purchase_timestamp_to` int NOT NULL DEFAULT '0',
   `responsible_email` varchar(80) NOT NULL DEFAULT '',
-  `password_change_timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `password_change_timestamp` int unsigned NOT NULL DEFAULT '0',
   `api_key` varchar(255) NOT NULL DEFAULT '',
   `janrain_identifier` varchar(32) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`),
@@ -6704,7 +6695,7 @@ CREATE TABLE `cscart_users` (
   KEY `uname` (`firstname`,`lastname`),
   KEY `idx_email` (`email`),
   KEY `idx_last_activity` (`last_activity`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6713,7 +6704,7 @@ CREATE TABLE `cscart_users` (
 
 LOCK TABLES `cscart_users` WRITE;
 /*!40000 ALTER TABLE `cscart_users` DISABLE KEYS */;
-INSERT INTO `cscart_users` VALUES (1,'A','A','admin','','Y',0,0,1629483005,1629474613,'$2y$10$1fm7ZuU1p4uEYIopzq4fVeuy7w2LiGdCsd2sg7RSmi.8nuSePgu4S','Hh}>:w:M&D','Администратор','Главный','Simtech','skater4@yandex.ru','55 55 5555 5555','','','N','ru',0,0,0,'',0,'','');
+INSERT INTO `cscart_users` VALUES (1,'A','A','admin','','Y',0,1629563222,1629563222,1629474613,'$2y$10$1fm7ZuU1p4uEYIopzq4fVeuy7w2LiGdCsd2sg7RSmi.8nuSePgu4S','Hh}>:w:M&D','Администратор','Главный','Simtech','skater4@yandex.ru','55 55 5555 5555','','','N','ru',0,0,0,'',0,'','');
 /*!40000 ALTER TABLE `cscart_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6723,17 +6714,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_vendor_communication_messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_vendor_communication_messages` (
-  `message_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `thread_id` int(11) unsigned NOT NULL,
-  `user_id` mediumint(8) unsigned NOT NULL,
+  `message_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `thread_id` int unsigned NOT NULL,
+  `user_id` mediumint unsigned NOT NULL,
   `user_type` char(1) NOT NULL,
-  `timestamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `timestamp` int unsigned NOT NULL DEFAULT '0',
   `message` text,
   PRIMARY KEY (`message_id`),
   KEY `idx_thread_id` (`thread_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6751,26 +6742,26 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_vendor_communications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_vendor_communications` (
-  `thread_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `storefront_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `thread_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `storefront_id` int unsigned NOT NULL DEFAULT '0',
   `status` char(1) NOT NULL DEFAULT 'N',
-  `user_id` mediumint(8) unsigned NOT NULL,
-  `company_id` int(11) unsigned NOT NULL,
-  `object_id` int(11) unsigned DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL,
+  `company_id` int unsigned NOT NULL,
+  `object_id` int unsigned DEFAULT '0',
   `object_type` char(1) DEFAULT '',
-  `created_at` int(11) unsigned NOT NULL DEFAULT '0',
+  `created_at` int unsigned NOT NULL DEFAULT '0',
   `last_message` varchar(255) DEFAULT '',
-  `last_message_user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `last_message_user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `last_message_user_type` char(1) NOT NULL DEFAULT '',
-  `last_updated` int(11) unsigned NOT NULL DEFAULT '0',
+  `last_updated` int unsigned NOT NULL DEFAULT '0',
   `subject` varchar(255) NOT NULL DEFAULT '',
   `communication_type` varchar(40) NOT NULL DEFAULT '',
   PRIMARY KEY (`thread_id`),
   KEY `idx_company_id` (`company_id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6788,19 +6779,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_views`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_views` (
-  `view_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `view_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `object` varchar(24) NOT NULL DEFAULT '',
   `name` varchar(32) NOT NULL DEFAULT '',
   `params` text,
   `view_results` text,
-  `user_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `user_id` mediumint unsigned NOT NULL DEFAULT '0',
   `active` char(1) NOT NULL DEFAULT 'N',
   `is_default` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`view_id`),
   KEY `idx_user_id_object` (`user_id`,`object`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6819,13 +6810,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_yml_exclude_objects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_yml_exclude_objects` (
-  `price_id` mediumint(8) unsigned NOT NULL,
-  `object_id` mediumint(8) unsigned NOT NULL,
+  `price_id` mediumint unsigned NOT NULL,
+  `object_id` mediumint unsigned NOT NULL,
   `object_type` varchar(16) NOT NULL DEFAULT '',
   PRIMARY KEY (`price_id`,`object_id`,`object_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6843,17 +6834,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cscart_yml_param`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cscart_yml_param` (
-  `param_id` mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+  `param_id` mediumint unsigned NOT NULL AUTO_INCREMENT,
   `param_type` varchar(16) DEFAULT NULL,
   `param_key` varchar(16) DEFAULT NULL,
   `param_data` text,
   `status` char(1) NOT NULL DEFAULT 'A',
-  `company_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `company_id` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`param_id`),
   UNIQUE KEY `key` (`param_type`,`param_key`,`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6865,10 +6856,6 @@ LOCK TABLES `cscart_yml_param` WRITE;
 INSERT INTO `cscart_yml_param` VALUES (1,'offer','common','a:5:{s:10:\"vendorCode\";a:2:{s:4:\"type\";s:7:\"product\";s:5:\"value\";s:12:\"product_code\";}s:11:\"description\";a:2:{s:4:\"type\";s:7:\"product\";s:5:\"value\";s:16:\"yml2_description\";}s:5:\"model\";a:2:{s:4:\"type\";s:7:\"product\";s:5:\"value\";s:10:\"yml2_model\";}s:10:\"typePrefix\";a:2:{s:4:\"type\";s:7:\"product\";s:5:\"value\";s:16:\"yml2_type_prefix\";}s:6:\"vendor\";a:2:{s:4:\"type\";s:7:\"product\";s:5:\"value\";s:10:\"yml2_brand\";}}','A',1);
 /*!40000 ALTER TABLE `cscart_yml_param` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50112 SET @disable_bulk_load = IF (@is_rocksdb_supported, 'SET SESSION rocksdb_bulk_load = @old_rocksdb_bulk_load', 'SET @dummy_rocksdb_bulk_load = 0') */;
-/*!50112 PREPARE s FROM @disable_bulk_load */;
-/*!50112 EXECUTE s */;
-/*!50112 DEALLOCATE PREPARE s */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -6879,4 +6866,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-20 23:41:47
+-- Dump completed on 2021-08-21 16:46:38
