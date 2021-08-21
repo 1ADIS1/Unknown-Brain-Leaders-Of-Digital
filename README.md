@@ -57,7 +57,7 @@ apt update && apt upgrade && apt install php-imagick php-gd php-mbstring php-ico
 
 **( 2 )** Далее открываем файл local_conf.php, заменяем данные базы данных, вписываем хост\домен и если есть подпапку проекта.
 
-**( 3 )** Выполняем миграции командой mysql -uusername -ppassword -hlocalhost rosatom < dump.sql где заменяем username, password и db_name на соответствующие значения.
+**( 3 )** Выполняем миграции командой mysql -uroot -proot rosatom < dump.sql
 
 **( 4 )** Выполняем команду php db_install.php
 
