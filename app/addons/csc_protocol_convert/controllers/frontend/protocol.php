@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unlink(VIDEO_DIR . '/' . $uploaded_data['video']['name']);
         fn_save_protocol($text);
         fn_set_notification('N', 'Успешно', 'Протокол сохранен в файл');
+
+        return array(CONTROLLER_STATUS_OK, 'protocol.convert');
     }
 }
 else {
