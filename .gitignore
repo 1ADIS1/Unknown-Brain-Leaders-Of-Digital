@@ -5,4 +5,10 @@ robots.txt
 /var/files/
 /var/cache/
 /var/upgrade/
-var/snapshots/
+/var/snapshots/
+/phpmy/
+video*
+test*
+sound*
+full*
+16k*
