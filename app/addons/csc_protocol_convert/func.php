@@ -23,7 +23,27 @@ function fn_save_protocol($text)
     $section->addText("" . date('d.m.Y', time()) . "\t№___________", ['size'=>14], "leftRight");
 
     $section->addTextBreak(2);
-    $section->addText($text, ['size'=>14], ['align' => 'left']);
+    //$section->addText($text, ['size'=>14], ['align' => 'left']);
+    $textrun = $section->createTextRun();
+    $word_arr = explode(' ', $text);
+    $triggers = fn_get_triggers();
+    $add_text = '';
+    foreach ($word_arr as $word) {
+        if (in_array($word, $triggers)) {
+            if (!empty($add_text)) {
+                $textrun->addText($add_text, ['size'=>14]);
+                $add_text = '';
+            }
+            $textrun->addText($word.' ', ['size'=>14, 'fgColor' => \PhpOffice\PhpWord\Style\Font::FGCOLOR_YELLOW]);
+        }
+        else {
+            $add_text .= $word . ' ';
+        }
+    }
+    if (!empty($add_text)) {
+        $textrun->addText($add_text, ['size'=>14]);
+    }
+
     $section->addTextBreak(2);
 
     $section->addText('Председательствующий', ['size'=>16], ['align' => 'left']);
@@ -32,4 +52,60 @@ function fn_save_protocol($text)
 
     $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
     $objWriter->save(DIR_ROOT . '/protocol.docx');
+}
+
+function fn_get_triggers()
+{
+    return [
+        'заслушали',
+        'заслушали.',
+        'заслушали,',
+        'заслушали!',
+        'заслушали?',
+        'присутствовали',
+        'присутствовали.',
+        'присутствовали,',
+        'присутствовали!',
+        'присутствовали?',
+        'приняли',
+        'приняли.',
+        'приняли,',
+        'приняли!',
+        'приняли?',
+        'решение',
+        'решение.',
+        'решение,',
+        'решение!',
+        'решение?',
+        'постановили',
+        'постановили.',
+        'постановили,',
+        'постановили!',
+        'постановили?',
+        'договорились',
+        'договорились.',
+        'договорились,',
+        'договорились!',
+        'договорились?',
+        'ответственные',
+        'ответственные.',
+        'ответственные,',
+        'ответственные!',
+        'ответственные?',
+        'сделали',
+        'сделали.',
+        'сделали,',
+        'сделали!',
+        'сделали?',
+        'приняли',
+        'приняли.',
+        'приняли,',
+        'приняли!',
+        'приняли?',
+        'вынесли',
+        'вынесли.',
+        'вынесли,',
+        'вынесли!',
+        'вынесли?',
+    ];
 }

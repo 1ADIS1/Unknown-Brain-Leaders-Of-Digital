@@ -4,12 +4,12 @@
     <div class="control-group">
         <label class="ty-control-group__title">Видео-файл для конвертации</label>
         <div class="controls">
-            {include file="common/fileuploader.tpl" var_name="files[video]"}
+            {include file="common/fileuploader.tpl" var_name="files[video]"} (avi, mp4, не больше 300МБ)
         </div>
     </div>
     {if file_exists("`$smarty.const.DIR_ROOT`/protocol.docx")}
         <div>
-            <br>Последний сохраненный протокол: <a href="http://185.233.37.254/protocol.docx">Скачать</a>
+            <br>Последний сохраненный протокол: <a href="http://rosatom.cs-coding.com/protocol.docx">Скачать</a>
         </div>
     {/if}
     <div class="buttons-container" style="margin-top: 10px;">
