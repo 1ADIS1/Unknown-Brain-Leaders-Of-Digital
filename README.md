@@ -60,6 +60,9 @@ apt update && apt upgrade && apt install ffmpeg php-imagick php-gd php-mbstring 
 
 **( 3 )** Выполняем миграции командой mysql -uroot -proot rosatom < dump.sql
 
-**( 4 )** Выполняем команду php db_install.php
+**( 4 )** Выполняем команду 
+~~~
+php db_install.php
+~~~
 
 РАЗРАБОТЧИКИ
