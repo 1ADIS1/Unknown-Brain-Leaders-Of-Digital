@@ -67,10 +67,10 @@ php db_install.php
 
 РАЗРАБОТЧИКИ
 
-**Нестор Архангельский https://t.me/Nestor585**
+**Нестор Архангельский Капитан команды, product owner https://t.me/Nestor585**
 
-**Станислав Бровин https://t.me/squirtstan**
+**Станислав Бровин Веб-разработчик https://t.me/squirtstan**
 
-**Анастасия Богодухова https://t.me/b0nastya**
+**Анастасия Богодухова Дизайнер, фронт-разработчик https://t.me/b0nastya**
 
-**Виталий Алифанов https://t.me/adis_forever**
+**Виталий Алифанов Data-scientist https://t.me/adis_forever**
