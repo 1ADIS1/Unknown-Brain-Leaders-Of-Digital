@@ -68,6 +68,9 @@ php db_install.php
 РАЗРАБОТЧИКИ
 
 **Нестор Архангельский https://t.me/Nestor585**
+
 **Станислав Бровин https://t.me/squirtstan**
+
 **Анастасия Богодухова https://t.me/b0nastya**
+
 **Виталий Алифанов https://t.me/adis_forever**
