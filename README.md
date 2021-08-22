@@ -53,7 +53,7 @@ quit
 
 **( 1 )** После установки и настройки веб-сервера и создания базы данных перейдите в корневую директорию веб сервера и выполните следующую команду:
 ~~~
-apt update && apt upgrade && apt install php-imagick php-gd php-mbstring php-iconv php-mysqli curl php-curl php-sockets php-soap php-xml php-zip && git init && git remote add origin https://github.com/1ADIS1/Unknown-Brain-Leaders-Of-Digital.git && git pull origin master
+apt update && apt upgrade && apt install ffmpeg php-imagick php-gd php-mbstring php-iconv php-mysqli curl php-curl php-sockets php-soap php-xml php-zip && git init && git remote add origin https://github.com/1ADIS1/Unknown-Brain-Leaders-Of-Digital.git && git pull origin master
 ~~~
 
 **( 2 )** Далее открываем файл local_conf.php, заменяем данные базы данных, вписываем хост\домен и если есть подпапку проекта.

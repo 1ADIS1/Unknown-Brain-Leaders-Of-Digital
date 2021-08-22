@@ -18,8 +18,8 @@
 </form>
 
 <style>
-    .ty-banner__image {
-        max-width: 500px;
+    .banners {
+        margin-top: 5px;
     }
 </style>
 

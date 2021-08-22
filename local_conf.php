@@ -7,3 +7,6 @@ $config['db_password'] = 'gavnovoz';
 
 $config['http_host'] = 'rosatom.cs-coding.com'; //хост или домен
 $config['http_path'] = ''; //    /subfolder
+
+$config['https_host'] = 'rosatom.cs-coding.com';
+$config['https_path'] = '';
